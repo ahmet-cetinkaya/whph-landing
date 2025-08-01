@@ -1,0 +1,3 @@
+[submodule "src/presentation/web/src/core/acore-astro"]
+	path = src/presentation/web/src/core/acore-astro
+	url = git@github.com:ahmet-cetinkaya/acore-astro.git
