@@ -12,4 +12,34 @@ export default defineConfig({
     tailwind(),
     solidJs(),
   ],
+  vite: {
+    build: {
+      // Optimize chunks for better caching
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // Keep vendor chunks separate for long-term caching
+            vendor: ['astro/client-base'],
+          },
+        },
+      },
+      // Enable minification
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true, // Remove console.logs in production
+          drop_debugger: true,
+        },
+      },
+    },
+    // Optimize dependencies
+    optimizeDeps: {
+      include: ['solid-js'],
+    },
+  },
+  compressHTML: true,
+  build: {
+    // Enable static file compression
+    inlineStylesheets: 'auto',
+  },
 });
