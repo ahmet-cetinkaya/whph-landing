@@ -1,4 +1,6 @@
 ---
+import Header from '../components/Header.astro';
+
 export interface Props {
   title: string;
   description?: string;
@@ -91,7 +93,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       }
     </script>
   </head>
-  <body class="antialiased bg-surface-0 dark:bg-dark-surface-0 text-text-primary dark:text-dark-primary font-sans text-body leading-relaxed transition-colors duration-200">
+  <body class="antialiased bg-white dark:bg-black text-gray-900 dark:text-white font-sans leading-relaxed transition-colors duration-200">
+    <Header />
     <slot />
     
     <!-- Theme Toggle Script -->

@@ -4,6 +4,8 @@ import Section from '../components/ui/Section.astro';
 import Container from '../components/ui/Container.astro';
 import Card from '../components/ui/Card.astro';
 import Button from '../components/ui/Button.astro';
+import ScreenshotGallery from '../components/ScreenshotGallery.astro';
+import SocialProof from '../components/SocialProof.astro';
 ---
 
 <Layout 
@@ -117,8 +119,36 @@ import Button from '../components/ui/Button.astro';
       </Container>
     </Section>
 
+    <!-- Screenshots Gallery Section -->
+    <Section id="screenshots" padding="lg">
+      <Container>
+        <div class="text-center mb-12">
+          <h2 class="text-section-title mb-4">See WHPH in Action</h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Explore the intuitive interface and powerful features that make WHPH the ultimate productivity companion.
+          </p>
+        </div>
+        
+        <ScreenshotGallery />
+      </Container>
+    </Section>
+
+    <!-- Social Proof Section -->
+    <Section background="surface-1" padding="lg">
+      <Container>
+        <div class="text-center mb-12">
+          <h2 class="text-section-title mb-4">Trusted by Productivity Enthusiasts</h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Join thousands of users who have transformed their productivity with WHPH's comprehensive approach to task management and habit building.
+          </p>
+        </div>
+        
+        <SocialProof />
+      </Container>
+    </Section>
+
     <!-- Download Section -->
-    <Section id="download" background="surface-1" padding="lg">
+    <Section id="download" background="default" padding="lg">
       <Container>
         <div class="text-center">
           <h2 class="text-section-title mb-4">Get Started Today</h2>

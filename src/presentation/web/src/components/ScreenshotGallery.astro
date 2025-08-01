@@ -1,0 +1,222 @@
+---
+export interface Screenshot {
+  src: string;
+  alt: string;
+  title: string;
+  description: string;
+}
+
+const screenshots: Screenshot[] = [
+  {
+    src: "/screenshots/today-view.png",
+    alt: "WHPH Today View showing tasks and habits dashboard",
+    title: "Today View",
+    description: "Main dashboard with tasks and habits overview"
+  },
+  {
+    src: "/screenshots/task-detail.png", 
+    alt: "WHPH Task detail view with subtasks and progress",
+    title: "Task Management",
+    description: "Detailed task view with subtasks and scheduling"
+  },
+  {
+    src: "/screenshots/habits.png",
+    alt: "WHPH Habit tracking with progress charts and streaks",
+    title: "Habit Tracking", 
+    description: "Habit progress with streak visualization"
+  },
+  {
+    src: "/screenshots/analytics.png",
+    alt: "WHPH Time analytics and productivity insights",
+    title: "Time Analytics",
+    description: "Productivity patterns and time distribution"
+  }
+];
+---
+
+<div class="screenshot-gallery">
+  <!-- Gallery Container -->
+  <div class="relative overflow-hidden rounded-whph-lg bg-gray-50 dark:bg-gray-900">
+    <!-- Screenshots Container -->
+    <div 
+      id="screenshots-container" 
+      class="flex transition-transform duration-500 ease-out"
+      style="transform: translateX(0%)"
+    >
+      {screenshots.map((screenshot, index) => (
+        <div class="w-full flex-shrink-0 px-4 py-8">
+          <div class="max-w-sm mx-auto">
+            <!-- Screenshot Placeholder (will be replaced with actual screenshots) -->
+            <div class="aspect-[9/16] bg-white dark:bg-gray-800 rounded-whph shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+              <div class="w-full h-full flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 p-6">
+                <svg class="w-16 h-16 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <h3 class="font-semibold text-lg mb-2 text-center">{screenshot.title}</h3>
+                <p class="text-sm text-center leading-relaxed">{screenshot.description}</p>
+                <div class="mt-4 text-xs opacity-75">
+                  {screenshot.alt}
+                </div>
+              </div>
+              <!-- Future: Replace with actual image -->
+              <!-- <img src={screenshot.src} alt={screenshot.alt} class="w-full h-full object-cover" loading="lazy" /> -->
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button 
+      id="prev-btn"
+      class="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+      aria-label="Previous screenshot"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+
+    <button 
+      id="next-btn"
+      class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+      aria-label="Next screenshot"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Navigation Dots -->
+  <div class="flex justify-center mt-6 space-x-2">
+    {screenshots.map((_, index) => (
+      <button 
+        class="dot w-2 h-2 rounded-full transition-all duration-300"
+        class:list={[
+          index === 0 ? 'bg-primary' : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+        ]}
+        data-index={index}
+        aria-label={`Go to screenshot ${index + 1}`}
+      ></button>
+    ))}
+  </div>
+
+  <!-- Screenshot Info -->
+  <div class="text-center mt-6">
+    <h3 id="current-title" class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+      {screenshots[0].title}
+    </h3>
+    <p id="current-description" class="text-gray-600 dark:text-gray-300">
+      {screenshots[0].description}
+    </p>
+  </div>
+</div>
+
+<script define:vars={{ screenshots }}>
+  let currentIndex = 0;
+  const totalScreenshots = screenshots.length;
+  
+  function initScreenshotGallery() {
+    const container = document.getElementById('screenshots-container');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const dots = document.querySelectorAll('.dot');
+    const currentTitle = document.getElementById('current-title');
+    const currentDescription = document.getElementById('current-description');
+
+    function updateGallery() {
+      if (!container || !currentTitle || !currentDescription) return;
+
+      // Update container position
+      const translateX = -currentIndex * 100;
+      container.style.transform = `translateX(${translateX}%)`;
+
+      // Update navigation buttons
+      if (prevBtn) prevBtn.disabled = currentIndex === 0;
+      if (nextBtn) nextBtn.disabled = currentIndex === totalScreenshots - 1;
+
+      // Update dots
+      dots.forEach((dot, index) => {
+        if (index === currentIndex) {
+          dot.classList.remove('bg-gray-300', 'dark:bg-gray-600');
+          dot.classList.add('bg-primary');
+        } else {
+          dot.classList.remove('bg-primary');
+          dot.classList.add('bg-gray-300', 'dark:bg-gray-600');
+        }
+      });
+
+      // Update info
+      currentTitle.textContent = screenshots[currentIndex].title;
+      currentDescription.textContent = screenshots[currentIndex].description;
+    }
+
+    function goToSlide(index) {
+      currentIndex = Math.max(0, Math.min(index, totalScreenshots - 1));
+      updateGallery();
+    }
+
+    function nextSlide() {
+      if (currentIndex < totalScreenshots - 1) {
+        goToSlide(currentIndex + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        goToSlide(currentIndex - 1);
+      }
+    }
+
+    // Event listeners
+    prevBtn?.addEventListener('click', prevSlide);
+    nextBtn?.addEventListener('click', nextSlide);
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => goToSlide(index));
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') prevSlide();
+      if (e.key === 'ArrowRight') nextSlide();
+    });
+
+    // Auto-advance (optional)
+    let autoAdvanceInterval;
+    
+    function startAutoAdvance() {
+      autoAdvanceInterval = setInterval(() => {
+        if (currentIndex === totalScreenshots - 1) {
+          goToSlide(0);
+        } else {
+          nextSlide();
+        }
+      }, 5000);
+    }
+
+    function stopAutoAdvance() {
+      if (autoAdvanceInterval) {
+        clearInterval(autoAdvanceInterval);
+      }
+    }
+
+    // Start auto-advance and pause on hover
+    startAutoAdvance();
+    
+    const gallery = document.querySelector('.screenshot-gallery');
+    gallery?.addEventListener('mouseenter', stopAutoAdvance);
+    gallery?.addEventListener('mouseleave', startAutoAdvance);
+
+    // Initialize
+    updateGallery();
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScreenshotGallery);
+  } else {
+    initScreenshotGallery();
+  }
+</script>
