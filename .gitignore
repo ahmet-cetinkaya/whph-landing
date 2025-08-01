@@ -1,0 +1,9 @@
+# AstroJS
+.astro/
+node_modules/
+
+# AI Agents
+.cursor/
+.qodo/
+.zencoder/
+CLAUDE.md
