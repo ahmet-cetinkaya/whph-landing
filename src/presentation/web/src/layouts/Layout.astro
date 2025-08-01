@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import PerformanceMonitor from '../components/PerformanceMonitor.astro';
 import AccessibilityEnhancements from '../components/AccessibilityEnhancements.astro';
+import Analytics from '../components/Analytics.astro';
 
 export interface Props {
   title: string;
@@ -118,6 +119,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     
     <!-- Performance Monitoring (Development) -->
     <PerformanceMonitor />
+    
+    <!-- Privacy-Focused Analytics -->
+    <Analytics />
     
     <!-- Theme Toggle Script -->
     <script>
