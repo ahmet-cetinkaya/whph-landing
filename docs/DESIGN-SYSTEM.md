@@ -6,7 +6,7 @@ WHPH (Work Hard Play Hard) is a comprehensive productivity application with a mo
 
 ### Design Philosophy
 
-- **Adaptive Theming**: Supports light/dark modes with automatic system detection
+- **Dark Mode Only**: Exclusively uses dark theme for optimal focus and reduced eye strain
 - **Dynamic Colors**: Material You integration with custom accent color support
 - **Accessibility First**: High contrast ratios and clear visual hierarchy
 - **Minimalist Approach**: Clean interfaces that reduce cognitive load
@@ -24,13 +24,7 @@ The application uses a golden yellow as its primary brand color, with support fo
 
 ### Surface Colors
 
-#### Light Theme
-- **Surface 0** (Background): `#FFFBFF` - Pure white with slight warm tint
-- **Surface 1** (Primary Surface): `#F8F9FA` - Very light gray with subtle blue tint
-- **Surface 2** (Cards/Containers): `#F1F3F4` - Light gray for elevated content
-- **Surface 3** (Elevated Surfaces): `#E8EAED` - Medium light gray for highest elevation
-
-#### Dark Theme
+#### Dark Theme (Only)
 - **Surface 0** (Background): `#000000` - Pure black background
 - **Surface 1** (Primary Surface): `#121212` - Dark surface
 - **Surface 2** (Cards/Containers): `#181818` - Dark surface variant for cards
@@ -38,13 +32,7 @@ The application uses a golden yellow as its primary brand color, with support fo
 
 ### Text Colors
 
-#### Light Theme
-- **Primary Text**: `#202124` - Rich dark gray for optimal readability
-- **Secondary Text**: `#5F6368` - Medium gray for supporting text
-- **Light Text**: `#FFFFFF` - Pure white for dark backgrounds
-- **Dark Text**: `#000000` - Pure black for light backgrounds
-
-#### Dark Theme
+#### Dark Theme (Only)
 - **Primary Text**: `#FFFFFF` - Pure white text
 - **Secondary Text**: `#B0B0B0` - Secondary gray for supporting content
 - **Light Text**: `#FFFFFF` - Pure white
@@ -75,15 +63,14 @@ A carefully curated palette for data visualization:
 9. `#558B2F` - Light Green
 10. `#9E9D24` - Lime
 
-### UI Accent Colors
+### UI Accent Colors (Dark Theme Only)
 
-- **Border**: `#BDBDBD` - Standard border color
-- **Shadow**: `#1F000000` - Semi-transparent black for shadows
+- **Border**: `#282828` - Dark theme border color
+- **Shadow**: Not used (dark theme relies on surface differentiation)
 - **Hover**: `#0A000000` - Subtle hover state
 - **Focus**: `#1F000000` - Focus indicator
 - **Splash**: `#1F000000` - Touch feedback
-- **Divider Light**: `#DADCE0` - Light theme dividers
-- **Divider Dark**: `#282828` - Dark theme dividers
+- **Divider**: `#282828` - Dark theme dividers
 
 ## Typography
 
@@ -150,8 +137,8 @@ The typography system uses a consistent scale with optimal line heights:
 
 - **Background**: Surface 2
 - **Border Radius**: 12px
-- **Elevation**: 1 (light theme), 0 (dark theme)
-- **Shadow**: Subtle black shadow (light theme only)
+- **Elevation**: 0 (dark theme only)
+- **Shadow**: None (dark theme uses surface color differentiation)
 - **Margin**: Zero (handled by parent containers)
 - **Clip Behavior**: Anti-alias
 
@@ -226,9 +213,8 @@ Consistent spacing system based on 4px grid:
 
 ### Elevation and Shadows
 
-- **Light Theme**: Subtle shadows with 10% black opacity
-- **Dark Theme**: No shadows, relies on surface color differentiation
-- **Card Elevation**: 1dp (light), 0dp (dark)
+- **Dark Theme Only**: No shadows, relies on surface color differentiation
+- **Card Elevation**: 0dp (dark theme only)
 
 ### State Indicators
 
@@ -268,10 +254,10 @@ Consistent spacing system based on 4px grid:
 ### Theme Service
 
 The application uses a sophisticated theme service that:
-- Supports automatic light/dark mode detection
+- Exclusively uses dark mode for optimal user experience
 - Integrates with Material You dynamic colors
 - Allows custom accent color selection
-- Maintains consistent surface colors across themes
+- Maintains consistent dark surface colors
 
 ### Material 3 Integration
 

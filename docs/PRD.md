@@ -330,7 +330,7 @@ The WHPH landing page serves as the primary digital gateway for potential users 
 - **Grid System**: Match app's responsive grid with consistent spacing
 - **Spacing**: Exact 4px-based spacing system from app design (12px base unit)
 - **Border Radius**: 12px for cards and buttons, 15px for containers (matching app)
-- **Elevation**: Same elevation system - subtle shadows in light mode, surface differentiation in dark mode
+- **Elevation**: Dark mode only - surface differentiation without shadows
 
 ### 7.3 Component Design (App-Identical)
 
@@ -341,8 +341,8 @@ The WHPH landing page serves as the primary digital gateway for potential users 
 
 ### 7.4 Theme Consistency
 
-- **Light/Dark Modes**: Exact same color schemes and surface colors as the application
-- **Color Adaptation**: Identical contrast ratios and color usage patterns
+- **Dark Mode Only**: Exclusively uses dark theme matching the application
+- **Color Adaptation**: Identical contrast ratios and color usage patterns for dark theme
 - **Visual Hierarchy**: Same typography scale and visual weight distribution as app interface
 
 ---
