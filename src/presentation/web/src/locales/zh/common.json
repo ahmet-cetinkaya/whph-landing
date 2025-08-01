@@ -1,0 +1,266 @@
+{
+  "site": {
+    "title": "WHPH - Work Hard Play Hard | 掌握您的生产力",
+    "description": "通过智能任务管理、习惯追踪和时间优化来转变您的生产力。适用于Android、Windows和Linux的免费、开源、跨平台生产力应用。",
+    "keywords": "生产力应用, 任务管理, 习惯追踪器, 时间追踪, 开源生产力, 跨平台, 隐私优先, 免费生产力工具"
+  },
+  "navigation": {
+    "features": "功能",
+    "download": "下载",
+    "faq": "常见问题",
+    "github": "GitHub",
+    "toggleTheme": "切换主题",
+    "toggleMenu": "移动菜单",
+    "skipToContent": "跳转到主要内容"
+  },
+  "hero": {
+    "title": "Work Hard, Play Hard",
+    "titleHighlight": "掌握您的生产力",
+    "subtitle": "这是一款综合性生产力应用，帮助您在所有设备上管理任务、建立习惯和优化时间。",
+    "downloadFree": "立即免费下载",
+    "viewGithub": "在GitHub上查看",
+    "availableOn": "适用于:",
+    "platforms": {
+      "android": "Android",
+      "windows": "Windows", 
+      "linux": "Linux"
+    },
+    "screenshotAlt": "主要应用截图"
+  },
+  "features": {
+    "title": "生产力所需的一切",
+    "subtitle": "WHPH将强大的任务管理、习惯追踪和时间分析结合在一个全面的、注重隐私的应用程序中。",
+    "taskManagement": {
+      "title": "智能任务管理",
+      "description": "通过智能调度和进度可视化来组织、优先排序和追踪您的任务。"
+    },
+    "habitTracking": {
+      "title": "习惯培养", 
+      "description": "通过进度追踪、连续记录可视化和激励洞察来建立持久的习惯。"
+    },
+    "timeAnalytics": {
+      "title": "时间洞察",
+      "description": "通过详细的应用使用分析和时间分配来了解您的生产力模式。"
+    },
+    "crossPlatform": {
+      "title": "随处工作",
+      "description": "在Android、Windows和Linux上享受无缝体验，可选数据同步。"
+    }
+  },
+  "screenshots": {
+    "title": "看看WHPH的实际效果",
+    "subtitle": "探索使WHPH成为终极生产力伙伴的直观界面和强大功能。",
+    "todayView": {
+      "title": "今日视图",
+      "description": "包含任务和习惯概览的主仪表板"
+    },
+    "taskManagement": {
+      "title": "任务管理", 
+      "description": "包含子任务和调度的详细任务视图"
+    },
+    "habitTracking": {
+      "title": "习惯追踪",
+      "description": "习惯进度与连续记录可视化"
+    },
+    "timeAnalytics": {
+      "title": "时间分析",
+      "description": "生产力模式和时间分配"
+    },
+    "prevScreenshot": "上一个截图",
+    "nextScreenshot": "下一个截图",
+    "goToScreenshot": "转到截图{{number}}"
+  },
+  "socialProof": {
+    "title": "受到生产力爱好者信赖",
+    "subtitle": "加入成千上万的用户，他们通过WHPH全面的任务管理和习惯建立方法转变了自己的生产力。",
+    "stats": {
+      "githubStars": "GitHub星标",
+      "downloads": "下载量", 
+      "activeUsers": "活跃用户",
+      "contributors": "贡献者"
+    },
+    "community": {
+      "title": "加入我们的开源社区",
+      "subtitle": "在GitHub上给我们点星并为项目做出贡献"
+    }
+  },
+  "download": {
+    "title": "今天就开始",
+    "subtitle": "免费下载WHPH并开始转变您的生产力。在所有主要平台上都可用，无需账户。",
+    "downloadFor": "下载{{platform}}版",
+    "alsoAvailable": "也可在{{fdroid}}和{{github}}上获得",
+    "fdroid": "F-Droid",
+    "githubReleases": "GitHub发布"
+  },
+  "faq": {
+    "title": "常见问题",
+    "subtitle": "获取关于WHPH功能、隐私和社区的常见问题答案。",
+    "questions": {
+      "free": {
+        "question": "WHPH真的免费吗？",
+        "answer": "是的，WHPH完全免费且开源。没有高级版本、订阅费用或隐藏成本。您可以无限制地访问所有功能。该应用由社区贡献资助，由相信生产力工具应该人人可用的志愿者开发。"
+      },
+      "platforms": {
+        "question": "支持哪些平台？",
+        "answer": "WHPH适用于Android、Windows和Linux。您可以从我们的GitHub发布页面、F-Droid（Android版）下载，或从源代码编译。我们正在努力支持iOS和macOS，但由于开发资源限制，目前还不可用。"
+      },
+      "privacy": {
+        "question": "我的数据如何受到保护？",
+        "answer": "您的隐私是我们的首要任务。WHPH默认将所有数据本地存储在您的设备上。我们不在外部服务器上收集、跟踪或存储任何个人信息。如果您选择启用，可通过您自己的云存储提供商（如Google Drive或Dropbox）进行可选的云同步，让您完全控制数据。"
+      },
+      "contribute": {
+        "question": "如何获得帮助或做出贡献？",
+        "answer": "加入我们的GitHub讨论区，获得社区支持、功能请求和一般问题。如果您是开发者，可以在我们的GitHub仓库中贡献代码、报告错误或帮助翻译。我们也欢迎设计师、文档编写者以及任何对改进生产力工具感兴趣的人。"
+      },
+      "sync": {
+        "question": "如何在设备间同步数据？",
+        "answer": "WHPH在您的桌面和移动设备之间通过本地网络提供可选的数据同步。您可以在设备之间直接同步任务、习惯和进度数据，无需使用任何云服务。所有同步都在本地进行，确保您的生产力数据完全私密，永不离开您的网络。"
+      },
+      "offline": {
+        "question": "WHPH可以离线工作吗？",
+        "answer": "当然！WHPH设计为完全离线工作。您的所有任务、习惯和分析都存储在设备本地。您可以在没有互联网连接的情况下使用每个功能。本地网络同步仅在您明确启用时使用，且仅与同一网络上的设备工作。"
+      },
+      "backup": {
+        "question": "我可以备份和恢复我的数据吗？",
+        "answer": "是的，WHPH提供全面的备份和恢复支持。您可以轻松备份所有任务、习惯和进度数据，并在需要时恢复它们。此外，您可以根据需要将数据导出为CSV和JSON格式。这样您可以保证数据安全，并与其他工具一起使用。"
+      },
+      "workHardPlayHard": {
+        "question": "\"Work Hard Play Hard\"口号的意义是什么？",
+        "answer": "\"Work Hard Play Hard\"(中文：\"努力工作，尽情玩乐\")不仅代表一种生活方式，更代表一种世界观。这个口号建议在高度责任感和高度生活满意度之间取得平衡。它意味着“在工作中全力以赴，但在不工作时尽情享受生活”。这种哲学认为，工作应该是为了自我实现，而不仅仅是为了生存，娱乐不是懒惰，而是努力的自然回报。作为WHPH，我们的目标是帮助您在工作中更加高效，并有意识地庆祝您的成就。关键点：有意识地生活在这两个领域。您应该像工作一样努力地生活，但生活不应该仅仅是工作的奖励。现在您已经以新的理解学习了这个口号的意义，可以享受[Wiz Khalifa的这首歌](https://youtu.be/TWHNr0BrNgo)。"
+      }
+    }
+  },
+  "about": {
+    "title": "开源与隐私优先",
+    "description": "WHPH完全开源，设计时充分考虑隐私。除非您选择同步，否则数据会保留在您的设备上。加入我们在GitHub讨论区的社区，获得支持、功能请求和贡献。",
+    "viewSource": "查看源代码",
+    "joinCommunity": "加入社区"
+  },
+  "footer": {
+    "links": {
+      "github": "GitHub",
+      "community": "社区", 
+      "license": "许可证"
+    },
+    "copyright": "© {{year}} WHPH - Work Hard Play Hard"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "错误",
+    "close": "关闭",
+    "open": "打开",
+    "yes": "是",
+    "no": "否"
+  },
+  "docs": {
+    "title": "文档",
+    "subtitle": "WHPH的全面指南和资源",
+    "navigation": {
+      "overview": "概述",
+      "gettingStarted": "入门",
+      "features": "功能",
+      "installation": "安装",
+      "userGuide": "用户指南",
+      "api": "API参考",
+      "contributing": "贡献",
+      "changelog": "变更日志",
+      "support": "支持"
+    },
+    "overview": {
+      "title": "WHPH文档",
+      "description": "欢迎来到WHPH（Work Hard Play Hard）的全面文档，您的终极生产力伙伴。",
+      "quickStart": "快速开始",
+      "quickStartDesc": "几分钟内启动并运行WHPH",
+      "userGuide": "用户指南",
+      "userGuideDesc": "学习如何充分利用WHPH的功能",
+      "apiReference": "API参考",
+      "apiReferenceDesc": "面向开发者的技术文档",
+      "community": "社区",
+      "communityDesc": "加入我们的社区并获得支持"
+    },
+    "gettingStarted": {
+      "title": "入门",
+      "description": "学习如何在您的设备上安装和设置WHPH",
+      "systemRequirements": "系统要求",
+      "installation": "安装",
+      "firstRun": "首次运行",
+      "basicSetup": "基本设置"
+    },
+    "features": {
+      "title": "功能",
+      "description": "探索使WHPH成为您生产力伙伴的所有强大功能",
+      "taskManagement": "任务管理",
+      "habitTracking": "习惯追踪",
+      "timeAnalytics": "时间分析",
+      "dataSync": "数据同步",
+      "privacy": "隐私与安全"
+    },
+    "installation": {
+      "title": "安装指南",
+      "description": "在不同平台上安装WHPH的逐步说明",
+      "android": "Android安装",
+      "windows": "Windows安装",
+      "linux": "Linux安装",
+      "requirements": "系统要求",
+      "troubleshooting": "故障排除"
+    },
+    "userGuide": {
+      "title": "用户指南",
+      "description": "有效使用WHPH的完整指南",
+      "dashboard": "仪表板概述",
+      "tasks": "管理任务",
+      "habits": "建立习惯",
+      "analytics": "理解分析",
+      "settings": "设置和偏好",
+      "sync": "数据同步",
+      "backup": "备份和恢复"
+    },
+    "api": {
+      "title": "API参考",
+      "description": "面向开发者和集成的技术文档",
+      "authentication": "身份验证",
+      "endpoints": "API端点",
+      "dataModels": "数据模型",
+      "examples": "代码示例",
+      "sdks": "SDK和库"
+    },
+    "contributing": {
+      "title": "贡献",
+      "description": "学习如何为WHPH项目做出贡献",
+      "codeContribution": "代码贡献",
+      "bugReports": "错误报告",
+      "featureRequests": "功能请求",
+      "translations": "翻译",
+      "documentation": "文档",
+      "community": "社区指南"
+    },
+    "changelog": {
+      "title": "变更日志",
+      "description": "跟踪WHPH的最新更新和改进",
+      "latest": "最新版本",
+      "previous": "以前版本",
+      "upcoming": "即将推出的功能"
+    },
+    "support": {
+      "title": "支持",
+      "description": "获得WHPH的帮助和支持",
+      "faq": "常见问题",
+      "community": "社区支持",
+      "bugReport": "报告错误",
+      "featureRequest": "请求功能",
+      "contact": "联系我们"
+    },
+    "common": {
+      "readMore": "阅读更多",
+      "backToTop": "返回顶部",
+      "tableOfContents": "目录",
+      "lastUpdated": "最后更新",
+      "editPage": "编辑此页面",
+      "previousPage": "上一页",
+      "nextPage": "下一页",
+      "searchDocs": "搜索文档...",
+      "noResults": "未找到结果",
+      "loading": "正在加载文档..."
+    }
+  }
+}

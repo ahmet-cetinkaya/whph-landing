@@ -1,0 +1,266 @@
+{
+  "site": {
+    "title": "WHPH - Work Hard Play Hard | Padroneggia la Tua Produttività",
+    "description": "Trasforma la tua produttività con gestione intelligente delle attività, monitoraggio delle abitudini e ottimizzazione del tempo. App di produttività gratuita, open-source e multipiattaforma per Android, Windows e Linux.",
+    "keywords": "app produttività, gestione attività, tracker abitudini, monitoraggio tempo, produttività open source, multipiattaforma, privacy first, strumenti produttività gratuiti"
+  },
+  "navigation": {
+    "features": "Funzionalità",
+    "download": "Download",
+    "faq": "FAQ",
+    "github": "GitHub",
+    "toggleTheme": "Cambia Tema",
+    "toggleMenu": "Menu mobile",
+    "skipToContent": "Vai al contenuto principale"
+  },
+  "hero": {
+    "title": "Work Hard, Play Hard",
+    "titleHighlight": "Padroneggia la Tua Produttività",
+    "subtitle": "L'app di produttività completa che ti aiuta a gestire attività, costruire abitudini e ottimizzare il tuo tempo su tutti i tuoi dispositivi.",
+    "downloadFree": "Scarica Gratis Ora",
+    "viewGithub": "Vedi su GitHub",
+    "availableOn": "Disponibile su:",
+    "platforms": {
+      "android": "Android",
+      "windows": "Windows", 
+      "linux": "Linux"
+    },
+    "screenshotAlt": "Screenshot App Hero"
+  },
+  "features": {
+    "title": "Tutto Quello che Serve per la Produttività",
+    "subtitle": "WHPH combina potente gestione delle attività, monitoraggio delle abitudini e analisi del tempo in un'applicazione completa e attenta alla privacy.",
+    "taskManagement": {
+      "title": "Gestione Intelligente delle Attività",
+      "description": "Organizza, dai priorità e monitora le tue attività con pianificazione intelligente e visualizzazione dei progressi."
+    },
+    "habitTracking": {
+      "title": "Sviluppo delle Abitudini", 
+      "description": "Costruisci abitudini durature con monitoraggio dei progressi, visualizzazione delle serie e insight motivazionali."
+    },
+    "timeAnalytics": {
+      "title": "Analisi del Tempo",
+      "description": "Comprendi i tuoi pattern di produttività con analisi dettagliate dell'uso delle app e distribuzione del tempo."
+    },
+    "crossPlatform": {
+      "title": "Ovunque Tu Lavori",
+      "description": "Esperienza fluida su Android, Windows e Linux con sincronizzazione dati opzionale."
+    }
+  },
+  "screenshots": {
+    "title": "Vedi WHPH in Azione",
+    "subtitle": "Esplora l'interfaccia intuitiva e le potenti funzionalità che rendono WHPH il compagno di produttività definitivo.",
+    "todayView": {
+      "title": "Vista Oggi",
+      "description": "Dashboard principale con panoramica attività e abitudini"
+    },
+    "taskManagement": {
+      "title": "Gestione Attività", 
+      "description": "Vista dettagliata attività con sottoattività e pianificazione"
+    },
+    "habitTracking": {
+      "title": "Monitoraggio Abitudini",
+      "description": "Progresso abitudini con visualizzazione serie"
+    },
+    "timeAnalytics": {
+      "title": "Analisi del Tempo",
+      "description": "Pattern di produttività e distribuzione del tempo"
+    },
+    "prevScreenshot": "Screenshot precedente",
+    "nextScreenshot": "Screenshot successivo",
+    "goToScreenshot": "Vai allo screenshot {{number}}"
+  },
+  "socialProof": {
+    "title": "Fidato dagli Appassionati di Produttività",
+    "subtitle": "Unisciti a migliaia di utenti che hanno trasformato la loro produttività con l'approccio completo di WHPH alla gestione delle attività e alla costruzione di abitudini.",
+    "stats": {
+      "githubStars": "Stelle GitHub",
+      "downloads": "Download", 
+      "activeUsers": "Utenti Attivi",
+      "contributors": "Contributori"
+    },
+    "community": {
+      "title": "Unisciti alla nostra comunità open source",
+      "subtitle": "Metti una stella su GitHub e contribuisci al progetto"
+    }
+  },
+  "download": {
+    "title": "Inizia Oggi",
+    "subtitle": "Scarica WHPH gratuitamente e inizia a trasformare la tua produttività. Disponibile su tutte le principali piattaforme senza necessità di account.",
+    "downloadFor": "Scarica per {{platform}}",
+    "alsoAvailable": "Disponibile anche su {{fdroid}} e {{github}}",
+    "fdroid": "F-Droid",
+    "githubReleases": "Release GitHub"
+  },
+  "faq": {
+    "title": "Domande Frequenti",
+    "subtitle": "Ottieni risposte alle domande comuni su funzionalità, privacy e comunità di WHPH.",
+    "questions": {
+      "free": {
+        "question": "WHPH è davvero gratuito?",
+        "answer": "Sì, WHPH è completamente gratuito e open source. Non ci sono livelli premium, abbonamenti o costi nascosti. Hai accesso a tutte le funzionalità senza limitazioni. L'app è finanziata da contributi della comunità e sviluppata da volontari che credono che gli strumenti di produttività dovrebbero essere accessibili a tutti."
+      },
+      "platforms": {
+        "question": "Quali piattaforme sono supportate?",
+        "answer": "WHPH è disponibile su Android, Windows e Linux. Puoi scaricarlo dalle nostre release GitHub, F-Droid (per Android), o compilare dal codice sorgente. Stiamo lavorando al supporto per iOS e macOS, ma non sono ancora disponibili a causa di limitazioni delle risorse di sviluppo."
+      },
+      "privacy": {
+        "question": "Come sono protetti i miei dati?",
+        "answer": "La tua privacy è la nostra priorità principale. WHPH memorizza tutti i dati localmente sul tuo dispositivo per impostazione predefinita. Non raccogliamo, tracciamo o memorizziamo informazioni personali su server esterni. La sincronizzazione cloud opzionale è disponibile attraverso i tuoi provider di archiviazione cloud (come Google Drive o Dropbox) se scegli di abilitarla, dandoti pieno controllo sui tuoi dati."
+      },
+      "contribute": {
+        "question": "Come posso ottenere aiuto o contribuire?",
+        "answer": "Unisciti alle nostre Discussioni GitHub per supporto della comunità, richieste di funzionalità e domande generali. Se sei uno sviluppatore, puoi contribuire con codice, segnalare bug o aiutare con le traduzioni nel nostro repository GitHub. Accogliamo anche designer, scrittori di documentazione e chiunque sia interessato a migliorare gli strumenti di produttività."
+      },
+      "sync": {
+        "question": "Come sincronizzo i dati tra dispositivi?",
+        "answer": "WHPH offre sincronizzazione dati opzionale tra i tuoi dispositivi desktop e mobile attraverso la tua rete locale. Puoi sincronizzare le tue attività, abitudini e dati di progresso direttamente tra i dispositivi senza alcun servizio cloud. Tutta la sincronizzazione avviene localmente, assicurando che i tuoi dati di produttività rimangano completamente privati e non escano mai dalla tua rete."
+      },
+      "offline": {
+        "question": "WHPH funziona offline?",
+        "answer": "Assolutamente! WHPH è progettato per funzionare completamente offline. Tutte le tue attività, abitudini e analisi sono memorizzate localmente sul tuo dispositivo. Puoi usare ogni funzionalità senza connessione internet. La sincronizzazione di rete locale è usata solo quando la abiliti esplicitamente e funziona solo con dispositivi sulla stessa rete."
+      },
+      "backup": {
+        "question": "Posso fare backup e ripristinare i miei dati?",
+        "answer": "Sì, WHPH fornisce supporto completo per backup e ripristino. Puoi facilmente fare backup di tutte le tue attività, abitudini e dati di progresso, e ripristinarli quando necessario. Inoltre, puoi esportare i tuoi dati in formati CSV e JSON secondo necessità. In questo modo puoi mantenere i tuoi dati al sicuro e usarli con altri strumenti."
+      },
+      "workHardPlayHard": {
+        "question": "Cosa significa il motto \"Work Hard Play Hard\"?",
+        "answer": "\"Work Hard Play Hard\" (Lavora Sodo, Gioca Sodo) rappresenta non solo uno stile di vita, ma una visione del mondo. Questo motto suggerisce di bilanciare alta responsabilità con alta soddisfazione di vita. Significa 'Dai tutto al lavoro, ma vivi la vita al massimo quando non stai lavorando.' Questa filosofia sostiene che il lavoro dovrebbe essere per l'autorealizzazione, non solo per la sopravvivenza, e che il divertimento non è pigrizia ma la ricompensa naturale dello sforzo. Come WHPH, miriamo ad aiutarti ad essere più produttivo al lavoro e a celebrare consapevolmente i tuoi risultati. Il punto chiave: vivi entrambe le aree consapevolmente. Dovresti vivere tanto quanto lavori, ma vivere non dovrebbe essere solo la ricompensa del lavorare. Ora che hai imparato cosa significa questo motto con una nuova comprensione, puoi goderti [la canzone di Wiz Khalifa](https://youtu.be/TWHNr0BrNgo)."
+      }
+    }
+  },
+  "about": {
+    "title": "Open Source e Privacy-First",
+    "description": "WHPH è completamente open source e progettato pensando alla privacy. I tuoi dati rimangono sul tuo dispositivo a meno che tu non scelga di sincronizzarli. Unisciti alla nostra comunità su GitHub Discussions per supporto, richieste di funzionalità e contributi.",
+    "viewSource": "Vedi Codice Sorgente",
+    "joinCommunity": "Unisciti alla Comunità"
+  },
+  "footer": {
+    "links": {
+      "github": "GitHub",
+      "community": "Comunità", 
+      "license": "Licenza"
+    },
+    "copyright": "© {{year}} WHPH - Work Hard Play Hard"
+  },
+  "common": {
+    "loading": "Caricamento...",
+    "error": "Errore",
+    "close": "Chiudi",
+    "open": "Apri",
+    "yes": "Sì",
+    "no": "No"
+  },
+  "docs": {
+    "title": "Documentazione",
+    "subtitle": "Guide complete e risorse per WHPH",
+    "navigation": {
+      "overview": "Panoramica",
+      "gettingStarted": "Iniziare",
+      "features": "Funzionalità",
+      "installation": "Installazione",
+      "userGuide": "Guida Utente",
+      "api": "Riferimento API",
+      "contributing": "Contribuire",
+      "changelog": "Changelog",
+      "support": "Supporto"
+    },
+    "overview": {
+      "title": "Documentazione WHPH",
+      "description": "Benvenuto nella documentazione completa per WHPH (Work Hard Play Hard), il tuo compagno di produttività definitivo.",
+      "quickStart": "Avvio Rapido",
+      "quickStartDesc": "Inizia e usa WHPH in pochi minuti",
+      "userGuide": "Guida Utente",
+      "userGuideDesc": "Impara come sfruttare al meglio le funzionalità di WHPH",
+      "apiReference": "Riferimento API",
+      "apiReferenceDesc": "Documentazione tecnica per sviluppatori",
+      "community": "Comunità",
+      "communityDesc": "Unisciti alla nostra comunità e ottieni supporto"
+    },
+    "gettingStarted": {
+      "title": "Iniziare",
+      "description": "Impara come installare e configurare WHPH sul tuo dispositivo",
+      "systemRequirements": "Requisiti di Sistema",
+      "installation": "Installazione",
+      "firstRun": "Prima Esecuzione",
+      "basicSetup": "Configurazione Base"
+    },
+    "features": {
+      "title": "Funzionalità",
+      "description": "Esplora tutte le potenti funzionalità che rendono WHPH il tuo compagno di produttività",
+      "taskManagement": "Gestione Attività",
+      "habitTracking": "Monitoraggio Abitudini",
+      "timeAnalytics": "Analisi del Tempo",
+      "dataSync": "Sincronizzazione Dati",
+      "privacy": "Privacy e Sicurezza"
+    },
+    "installation": {
+      "title": "Guida all'Installazione",
+      "description": "Istruzioni passo-passo per installare WHPH su diverse piattaforme",
+      "android": "Installazione Android",
+      "windows": "Installazione Windows",
+      "linux": "Installazione Linux",
+      "requirements": "Requisiti di Sistema",
+      "troubleshooting": "Risoluzione Problemi"
+    },
+    "userGuide": {
+      "title": "Guida Utente",
+      "description": "Guida completa per usare WHPH efficacemente",
+      "dashboard": "Panoramica Dashboard",
+      "tasks": "Gestione Attività",
+      "habits": "Costruzione Abitudini",
+      "analytics": "Comprensione Analisi",
+      "settings": "Impostazioni e Preferenze",
+      "sync": "Sincronizzazione Dati",
+      "backup": "Backup e Ripristino"
+    },
+    "api": {
+      "title": "Riferimento API",
+      "description": "Documentazione tecnica per sviluppatori e integrazioni",
+      "authentication": "Autenticazione",
+      "endpoints": "Endpoint API",
+      "dataModels": "Modelli Dati",
+      "examples": "Esempi di Codice",
+      "sdks": "SDK e Librerie"
+    },
+    "contributing": {
+      "title": "Contribuire",
+      "description": "Impara come contribuire al progetto WHPH",
+      "codeContribution": "Contributo Codice",
+      "bugReports": "Segnalazioni Bug",
+      "featureRequests": "Richieste Funzionalità",
+      "translations": "Traduzioni",
+      "documentation": "Documentazione",
+      "community": "Linee Guida Comunità"
+    },
+    "changelog": {
+      "title": "Changelog",
+      "description": "Traccia gli ultimi aggiornamenti e miglioramenti a WHPH",
+      "latest": "Ultima Versione",
+      "previous": "Versioni Precedenti",
+      "upcoming": "Funzionalità in Arrivo"
+    },
+    "support": {
+      "title": "Supporto",
+      "description": "Ottieni aiuto e supporto per WHPH",
+      "faq": "Domande Frequenti",
+      "community": "Supporto Comunità",
+      "bugReport": "Segnala un Bug",
+      "featureRequest": "Richiedi una Funzionalità",
+      "contact": "Contattaci"
+    },
+    "common": {
+      "readMore": "Leggi di Più",
+      "backToTop": "Torna su",
+      "tableOfContents": "Indice",
+      "lastUpdated": "Ultimo aggiornamento",
+      "editPage": "Modifica questa pagina",
+      "previousPage": "Precedente",
+      "nextPage": "Successivo",
+      "searchDocs": "Cerca documentazione...",
+      "noResults": "Nessun risultato trovato",
+      "loading": "Caricamento documentazione..."
+    }
+  }
+}

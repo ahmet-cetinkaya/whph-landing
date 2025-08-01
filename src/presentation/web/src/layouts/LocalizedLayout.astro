@@ -1,0 +1,214 @@
+---
+import LocalizedHeader from '../components/LocalizedHeader.astro';
+import PerformanceMonitor from '../components/PerformanceMonitor.astro';
+import AccessibilityEnhancements from '../components/AccessibilityEnhancements.astro';
+import Analytics from '../components/Analytics.astro';
+import { 
+  getLanguageFromURL, 
+  loadTranslations, 
+  getAlternateLanguageURLs, 
+  languageCodes, 
+  textDirection,
+  getCurrentYear,
+  createTranslationFunction
+} from '../utils/i18n';
+
+export interface Props {
+  frontmatter?: {
+    title?: string;
+    description?: string;
+    keywords?: string;
+    ogImage?: string;
+  };
+}
+
+const { frontmatter = {} } = Astro.props;
+
+// Get current language from URL
+const currentLang = getLanguageFromURL(Astro.url.pathname);
+
+// Load translations
+const translations = await loadTranslations(currentLang);
+const t = createTranslationFunction(translations);
+
+// Get localized metadata
+const title = frontmatter.title || t('site.title');
+const description = frontmatter.description || t('site.description');
+const keywords = frontmatter.keywords || t('site.keywords');
+const ogImage = frontmatter.ogImage || "/og-image.png";
+
+// Get language attributes
+const htmlLang = languageCodes[currentLang];
+const dir = textDirection[currentLang];
+
+// Generate canonical and alternate URLs
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const alternateURLs = getAlternateLanguageURLs(Astro.url.pathname, Astro.site.toString());
+
+// Get current year for footer
+const currentYear = getCurrentYear();
+---
+
+<!DOCTYPE html>
+<html lang={htmlLang} dir={dir} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Alternate language links for SEO -->
+    {alternateURLs.map(({ lang, url }) => (
+      <link rel="alternate" hreflang={languageCodes[lang]} href={url} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={alternateURLs.find(alt => alt.lang === 'en')?.url} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.url)} />
+    <meta property="og:site_name" content="WHPH - Work Hard Play Hard" />
+    <meta property="og:locale" content={htmlLang.replace('-', '_')} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(ogImage, Astro.url)} />
+    
+    <!-- Structured Data for Software Application -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "WHPH - Work Hard Play Hard",
+      "description": t('site.description'),
+      "url": "https://whph.ahmetcetinkaya.me",
+      "applicationCategory": "ProductivityApplication",
+      "operatingSystem": ["Android", "Windows", "Linux"],
+      "inLanguage": htmlLang,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Ahmet Çetinkaya"
+      },
+      "softwareVersion": "1.0",
+      "downloadUrl": "https://github.com/ahmet-cetinkaya/whph/releases",
+      "screenshot": "https://whph.ahmetcetinkaya.me/screenshots/hero.png",
+      "featureList": [
+        t('features.taskManagement.title'),
+        t('features.habitTracking.title'),
+        t('features.timeAnalytics.title'),
+        t('features.crossPlatform.title')
+      ]
+    })} />
+    
+    <!-- Preload critical resources -->
+    <link rel="dns-prefetch" href="//github.com">
+    <link rel="preconnect" href="https://github.com" crossorigin>
+    
+    <!-- Resource hints for better performance -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="WHPH">
+    <meta name="application-name" content="WHPH">
+    <meta name="theme-color" content="#F4D03E">
+    <meta name="msapplication-TileColor" content="#F4D03E">
+    
+    <!-- Theme Detection Script (runs before page load) -->
+    <script is:inline>
+      // Detect system theme preference and apply immediately
+      if (typeof Storage !== 'undefined') {
+        const theme = localStorage.getItem('theme') || 
+                     (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      }
+    </script>
+  </head>
+  <body class="antialiased bg-white dark:bg-black text-gray-900 dark:text-white font-sans leading-relaxed transition-colors duration-200">
+    <AccessibilityEnhancements />
+    <LocalizedHeader currentLang={currentLang} translations={translations} />
+    <main id="main-content">
+      <slot />
+    </main>
+    
+    <!-- Performance Monitoring (Development) -->
+    <PerformanceMonitor />
+    
+    <!-- Privacy-Focused Analytics -->
+    <Analytics />
+    
+    <!-- Global JavaScript with translations -->
+    <script define:vars={{ translations, currentLang, currentYear }}>
+      // Make translations available globally for JavaScript
+      window.WHPH_TRANSLATIONS = translations;
+      window.WHPH_CURRENT_LANG = currentLang;
+      window.WHPH_CURRENT_YEAR = currentYear;
+      
+      // Translation function for JavaScript
+      window.t = function(key, variables = {}) {
+        const keys = key.split('.');
+        let value = translations;
+        
+        for (const k of keys) {
+          if (value && typeof value === 'object' && k in value) {
+            value = value[k];
+          } else {
+            console.warn(`Translation key not found: ${key}`);
+            return key;
+          }
+        }
+        
+        if (typeof value === 'string') {
+          return value.replace(/\{\{(\w+)\}\}/g, (match, k) => {
+            return variables[k]?.toString() || match;
+          });
+        }
+        
+        return key;
+      };
+    </script>
+    
+    <!-- Theme Toggle Script -->
+    <script>
+      // Theme toggle functionality
+      function initTheme() {
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+        
+        [themeToggle, themeToggleMobile].forEach(toggle => {
+          if (!toggle) return;
+          
+          toggle.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            const newTheme = isDark ? 'light' : 'dark';
+            
+            document.documentElement.classList.toggle('dark', newTheme === 'dark');
+            localStorage.setItem('theme', newTheme);
+          });
+        });
+      }
+      
+      // Initialize when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTheme);
+      } else {
+        initTheme();
+      }
+    </script>
+  </body>
+</html>

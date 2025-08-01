@@ -8,6 +8,14 @@ export default defineConfig({
   site: 'https://whph.ahmetcetinkaya.me',
   base: '/',
   outDir: './dist',
+  // i18n configuration
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'tr', 'es', 'fr', 'de', 'it', 'ja', 'ko', 'ru', 'zh'],
+    routing: {
+      prefixDefaultLocale: false
+    }
+  },
   integrations: [
     tailwind(),
     solidJs(),

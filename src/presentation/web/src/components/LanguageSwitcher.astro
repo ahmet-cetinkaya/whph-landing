@@ -1,0 +1,219 @@
+---
+import { supportedLanguages, languageNames, getLanguageFromURL, addLanguageToURL, removeLanguageFromURL, type SupportedLanguage } from '../utils/i18n';
+
+interface Props {
+  currentLang: SupportedLanguage;
+  currentPath: string;
+  isMobile?: boolean;
+}
+
+const { currentLang, currentPath, isMobile = false } = Astro.props;
+
+// Generate language switching URLs
+const cleanPath = removeLanguageFromURL(currentPath);
+const languageLinks = supportedLanguages.map(lang => ({
+  code: lang,
+  name: languageNames[lang],
+  url: addLanguageToURL(cleanPath, lang),
+  isActive: lang === currentLang
+}));
+---
+
+<div class={`language-switcher ${isMobile ? 'mobile' : 'desktop'}`} data-astro-cid-lang>
+  {!isMobile && (
+    <div class="relative inline-block text-left" data-astro-cid-lang>
+      <button
+        id="language-button"
+        class="inline-flex items-center justify-center w-full px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-whph shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 transition-colors"
+        aria-haspopup="true"
+        aria-expanded="false"
+        data-astro-cid-lang
+      >
+        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-lang>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" data-astro-cid-lang></path>
+        </svg>
+        <span data-astro-cid-lang>{languageNames[currentLang]}</span>
+        <svg class="w-4 h-4 ml-2 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-lang>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" data-astro-cid-lang></path>
+        </svg>
+      </button>
+
+      <div
+        id="language-dropdown"
+        class="absolute right-0 z-10 mt-2 w-40 origin-top-right bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-whph shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none transform opacity-0 scale-95 transition-all duration-200 invisible"
+        role="menu"
+        aria-orientation="vertical"
+        aria-labelledby="language-button"
+        data-astro-cid-lang
+      >
+        <div class="py-1" role="none" data-astro-cid-lang>
+          {languageLinks.map(lang => (
+            <a
+              href={lang.url}
+              class={`block px-4 py-2 text-sm transition-colors ${
+                lang.isActive
+                  ? 'bg-primary/10 text-primary'
+                  : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+              }`}
+              role="menuitem"
+              data-astro-cid-lang
+            >
+              <span class="flex items-center" data-astro-cid-lang>
+                {lang.isActive && (
+                  <svg class="w-4 h-4 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-lang>
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" data-astro-cid-lang></path>
+                  </svg>
+                )}
+                {lang.name}
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  )}
+
+  {isMobile && (
+    <div class="space-y-1" data-astro-cid-lang>
+      <div class="px-4 py-2 text-sm font-medium text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700" data-astro-cid-lang>
+        Language
+      </div>
+      {languageLinks.map(lang => (
+        <a
+          href={lang.url}
+          class={`block px-4 py-2 text-sm transition-colors ${
+            lang.isActive
+              ? 'bg-primary/10 text-primary font-medium'
+              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+          }`}
+          data-astro-cid-lang
+        >
+          <span class="flex items-center" data-astro-cid-lang>
+            {lang.isActive && (
+              <svg class="w-4 h-4 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-lang>
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" data-astro-cid-lang></path>
+              </svg>
+            )}
+            {lang.name}
+          </span>
+        </a>
+      ))}
+    </div>
+  )}
+</div>
+
+<script>
+  function initLanguageSwitcher() {
+    const button = document.getElementById('language-button');
+    const dropdown = document.getElementById('language-dropdown');
+    
+    if (!button || !dropdown) return;
+    
+    function toggleDropdown() {
+      const isOpen = dropdown!.classList.contains('opacity-100');
+      
+      if (isOpen) {
+        dropdown!.classList.remove('opacity-100', 'scale-100', 'visible');
+        dropdown!.classList.add('opacity-0', 'scale-95', 'invisible');
+        button!.setAttribute('aria-expanded', 'false');
+        
+        // Rotate arrow back
+        const arrow = button!.querySelector('svg:last-child') as HTMLElement;
+        if (arrow) arrow.style.transform = 'rotate(0deg)';
+      } else {
+        dropdown!.classList.remove('opacity-0', 'scale-95', 'invisible');
+        dropdown!.classList.add('opacity-100', 'scale-100', 'visible');
+        button!.setAttribute('aria-expanded', 'true');
+        
+        // Rotate arrow down
+        const arrow = button!.querySelector('svg:last-child') as HTMLElement;
+        if (arrow) arrow.style.transform = 'rotate(180deg)';
+      }
+    }
+    
+    function closeDropdown() {
+      if (!dropdown || !button) return;
+      
+      dropdown.classList.remove('opacity-100', 'scale-100', 'visible');
+      dropdown.classList.add('opacity-0', 'scale-95', 'invisible');
+      button.setAttribute('aria-expanded', 'false');
+      
+      const arrow = button.querySelector('svg:last-child') as HTMLElement;
+      if (arrow) arrow.style.transform = 'rotate(0deg)';
+    }
+    
+    // Toggle on button click
+    button.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleDropdown();
+    });
+    
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      const target = e.target as Node;
+      if (target && !button.contains(target) && !dropdown.contains(target)) {
+        closeDropdown();
+      }
+    });
+    
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeDropdown();
+      }
+    });
+    
+    // Handle keyboard navigation
+    dropdown.addEventListener('keydown', (e) => {
+      const items = dropdown.querySelectorAll('a[role="menuitem"]');
+      const currentIndex = Array.from(items).findIndex(item => item === document.activeElement);
+      
+      switch (e.key) {
+        case 'ArrowDown':
+          e.preventDefault();
+          const nextIndex = currentIndex < items.length - 1 ? currentIndex + 1 : 0;
+          (items[nextIndex] as HTMLElement).focus();
+          break;
+        case 'ArrowUp':
+          e.preventDefault();
+          const prevIndex = currentIndex > 0 ? currentIndex - 1 : items.length - 1;
+          (items[prevIndex] as HTMLElement).focus();
+          break;
+        case 'Enter':
+        case ' ':
+          e.preventDefault();
+          (document.activeElement as HTMLElement).click();
+          break;
+      }
+    });
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
+  } else {
+    initLanguageSwitcher();
+  }
+</script>
+
+<style>
+  /* Ensure proper z-index for dropdown */
+  .language-switcher {
+    position: relative;
+  }
+  
+  /* Smooth transitions */
+  #language-dropdown {
+    transition: opacity 200ms ease-out, transform 200ms ease-out, visibility 200ms ease-out;
+  }
+  
+  /* Mobile styles */
+  .language-switcher.mobile {
+    width: 100%;
+  }
+  
+  .language-switcher.mobile a {
+    display: block;
+    width: 100%;
+  }
+</style>

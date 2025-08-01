@@ -9,9 +9,10 @@ The landing page serves as the primary gateway for users to discover, understand
 This landing page is built with modern web technologies to provide:
 - **Fast Performance**: Static site generation with AstroJS
 - **Responsive Design**: Optimized for all devices and screen sizes
+- **Multi-Language Support**: Available in 10 languages (de, en, es, fr, it, ja, ko, ru, tr, zh)
 - **Accessibility**: WCAG 2.1 AA compliance
 - **Privacy-Focused**: Self-hosted analytics with no tracking
-- **SEO Optimized**: Structured for search engine visibility
+- **SEO Optimized**: Structured for search engine visibility with localized content
 
 ## 🛠️ Technology Stack
 
@@ -47,6 +48,7 @@ For detailed setup instructions, see [CONTRIBUTING.md](CONTRIBUTING.md).
 - **[Product Requirements Document](docs/PRD-LANDING-PAGE.md)** - Complete project specifications and requirements
 - **[Design System](docs/DESIGN-SYSTEM.md)** - Visual design guidelines and component specifications
 - **[Wireframe Specifications](docs/WIREFRAME-SPECIFICATIONS.md)** - Detailed layout and interaction specifications
+- **[Internationalization Guide](docs/INTERNATIONALIZATION.md)** - Multi-language support documentation and implementation guide
 
 ## ⏬ Download WHPH App
 
