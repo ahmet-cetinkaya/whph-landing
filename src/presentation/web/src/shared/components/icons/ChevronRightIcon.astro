@@ -1,0 +1,29 @@
+---
+export interface Props {
+  class?: string;
+  size?: string;
+  color?: string;
+}
+
+const { 
+  class: className = "w-5 h-5", 
+  size,
+  color = "currentColor"
+} = Astro.props;
+
+const sizeClass = size ? `w-${size} h-${size}` : className;
+---
+
+<svg 
+  class={sizeClass} 
+  fill="none" 
+  stroke={color} 
+  viewBox="0 0 24 24"
+>
+  <path 
+    stroke-linecap="round" 
+    stroke-linejoin="round" 
+    stroke-width="2" 
+    d="M9 5l7 7-7 7"
+  />
+</svg>

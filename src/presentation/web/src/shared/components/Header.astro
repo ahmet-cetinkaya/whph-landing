@@ -2,6 +2,9 @@
 import Container from './ui/Container.astro';
 import Button from './ui/Button.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
+import HamburgerIcon from './icons/HamburgerIcon.astro';
+import CloseIcon from './icons/CloseIcon.astro';
+import MoonIcon from './icons/MoonIcon.astro';
 import { createTranslationFunction, addLanguageToURL, type SupportedLanguage } from '../utils/i18n';
 
 interface Props {
@@ -63,9 +66,7 @@ const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
         class="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
         aria-label={t('navigation.toggleMenu')}
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-        </svg>
+        <HamburgerIcon />
       </button>
     </nav>
   </Container>
@@ -89,9 +90,7 @@ const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
           class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           aria-label={t('common.close')}
         >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
+          <CloseIcon />
         </button>
       </div>
 
@@ -125,9 +124,7 @@ const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
             id="theme-toggle-mobile" 
             class="flex items-center space-x-3 w-full p-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
           >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-            </svg>
+            <MoonIcon />
             <span>{t('navigation.toggleTheme')}</span>
           </button>
         </div>

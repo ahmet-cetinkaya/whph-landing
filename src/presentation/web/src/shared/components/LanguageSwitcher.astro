@@ -1,5 +1,8 @@
 ---
 import { supportedLanguages, languageNames, getLanguageFromURL, addLanguageToURL, removeLanguageFromURL, type SupportedLanguage } from '../utils/i18n';
+import LanguageIcon from './icons/LanguageIcon.astro';
+import ChevronDownIcon from './icons/ChevronDownIcon.astro';
+import CheckmarkIcon from './icons/CheckmarkIcon.astro';
 
 interface Props {
   currentLang: SupportedLanguage;
@@ -29,13 +32,9 @@ const languageLinks = supportedLanguages.map(lang => ({
         aria-expanded="false"
         data-astro-cid-lang
       >
-        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-lang>
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" data-astro-cid-lang></path>
-        </svg>
+        <LanguageIcon class="mr-2" />
         <span data-astro-cid-lang>{languageNames[currentLang]}</span>
-        <svg class="w-4 h-4 ml-2 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" data-astro-cid-lang>
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" data-astro-cid-lang></path>
-        </svg>
+        <ChevronDownIcon class="ml-2 transition-transform duration-200" />
       </button>
 
       <div
@@ -60,9 +59,7 @@ const languageLinks = supportedLanguages.map(lang => ({
             >
               <span class="flex items-center" data-astro-cid-lang>
                 {lang.isActive && (
-                  <svg class="w-4 h-4 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-lang>
-                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" data-astro-cid-lang></path>
-                  </svg>
+                  <CheckmarkIcon class="mr-2 text-primary" />
                 )}
                 {lang.name}
               </span>
@@ -90,9 +87,7 @@ const languageLinks = supportedLanguages.map(lang => ({
         >
           <span class="flex items-center" data-astro-cid-lang>
             {lang.isActive && (
-              <svg class="w-4 h-4 mr-2 text-primary" fill="currentColor" viewBox="0 0 20 20" data-astro-cid-lang>
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" data-astro-cid-lang></path>
-              </svg>
+              <CheckmarkIcon class="mr-2 text-primary" />
             )}
             {lang.name}
           </span>
