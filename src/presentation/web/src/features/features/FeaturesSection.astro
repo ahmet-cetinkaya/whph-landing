@@ -1,0 +1,34 @@
+---
+import Container from '../../shared/components/ui/Container.astro';
+import Section from '../../shared/components/ui/Section.astro';
+import AnimatedSection from '../../core/acore-astro/src/components/AnimatedSection.astro';
+import TaskManagementCard from './TaskManagementCard.astro';
+import HabitTrackingCard from './HabitTrackingCard.astro';
+import TimeAnalyticsCard from './TimeAnalyticsCard.astro';
+import CrossPlatformCard from './CrossPlatformCard.astro';
+
+interface Props {
+  t: (key: string, params?: Record<string, any>) => string;
+}
+
+const { t } = Astro.props;
+---
+
+<Section class="py-20 bg-white dark:bg-black" id="features">
+  <Container>
+    <AnimatedSection animation="fade-up" delay={0}>
+      <div class="text-center mb-12">
+        <h2 class="text-section-title mb-4">{t('features.title')}</h2>
+        <p class="text-xl text-text-secondary dark:text-dark-secondary max-w-2xl mx-auto">
+          {t('features.subtitle')}
+        </p>
+      </div>
+    </AnimatedSection>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+      <TaskManagementCard t={t} />
+      <HabitTrackingCard t={t} />
+      <TimeAnalyticsCard t={t} />
+      <CrossPlatformCard t={t} />
+    </div>
+  </Container>
+</Section>

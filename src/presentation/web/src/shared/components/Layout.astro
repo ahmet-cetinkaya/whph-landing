@@ -1,8 +1,8 @@
 ---
-import LocalizedHeader from '../components/LocalizedHeader.astro';
-import PerformanceMonitor from '../components/PerformanceMonitor.astro';
-import AccessibilityEnhancements from '../components/AccessibilityEnhancements.astro';
-import Analytics from '../components/Analytics.astro';
+import Header from './Header.astro';
+import PerformanceMonitor from './PerformanceMonitor.astro';
+import AccessibilityEnhancements from './AccessibilityEnhancements.astro';
+import Analytics from './Analytics.astro';
 import { 
   getLanguageFromURL, 
   loadTranslations, 
@@ -45,8 +45,9 @@ const htmlLang = languageCodes[currentLang];
 const dir = textDirection[currentLang];
 
 // Generate canonical and alternate URLs
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const alternateURLs = getAlternateLanguageURLs(Astro.url.pathname, Astro.site.toString());
+const siteUrl = Astro.site || new URL(Astro.url.origin);
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const alternateURLs = getAlternateLanguageURLs(Astro.url.pathname, siteUrl.toString());
 
 // Get current year for footer
 const currentYear = getCurrentYear();
@@ -144,7 +145,7 @@ const currentYear = getCurrentYear();
   </head>
   <body class="antialiased bg-white dark:bg-black text-gray-900 dark:text-white font-sans leading-relaxed transition-colors duration-200">
     <AccessibilityEnhancements />
-    <LocalizedHeader currentLang={currentLang} translations={translations} />
+    <Header currentLang={currentLang} translations={translations} />
     <main id="main-content">
       <slot />
     </main>

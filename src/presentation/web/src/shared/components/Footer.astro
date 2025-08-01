@@ -1,0 +1,37 @@
+---
+import Container from './ui/Container.astro';
+import AnimatedSection from '../../core/acore-astro/src/components/AnimatedSection.astro';
+
+interface Props {
+  t: (key: string, params?: Record<string, any>) => string;
+  currentYear: number;
+}
+
+const { t, currentYear } = Astro.props;
+---
+
+<footer class="border-t border-divider dark:border-dark-divider py-8">
+  <Container>
+    <AnimatedSection animation="fade-up" delay={0}>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-6">
+          <span class="font-semibold text-primary text-lg transition-all duration-200 hover:scale-105">WHPH</span>
+          <div class="flex items-center gap-4 text-sm">
+            <a href="https://github.com/ahmet-cetinkaya/whph" class="text-text-secondary dark:text-dark-secondary hover:text-primary transition-all duration-200 hover:scale-105">
+              {t('footer.links.github')}
+            </a>
+            <a href="https://github.com/ahmet-cetinkaya/whph/discussions" class="text-text-secondary dark:text-dark-secondary hover:text-primary transition-all duration-200 hover:scale-105">
+              {t('footer.links.community')}
+            </a>
+            <a href="https://github.com/ahmet-cetinkaya/whph/blob/main/LICENSE" class="text-text-secondary dark:text-dark-secondary hover:text-primary transition-all duration-200 hover:scale-105">
+              {t('footer.links.license')}
+            </a>
+          </div>
+        </div>
+        <p class="text-sm text-text-secondary dark:text-dark-secondary">
+          {t('footer.copyright', { year: currentYear })}
+        </p>
+      </div>
+    </AnimatedSection>
+  </Container>
+</footer>

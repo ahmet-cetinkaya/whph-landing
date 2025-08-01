@@ -1,0 +1,43 @@
+---
+import Container from '../../shared/components/ui/Container.astro';
+import Section from '../../shared/components/ui/Section.astro';
+import Button from '../../shared/components/ui/Button.astro';
+import AnimatedSection from '../../core/acore-astro/src/components/AnimatedSection.astro';
+
+interface Props {
+  t: (key: string, params?: Record<string, any>) => string;
+}
+
+const { t } = Astro.props;
+---
+
+<Section class="py-section bg-white dark:bg-black">
+  <Container class="max-w-4xl">
+    <AnimatedSection animation="fade-up" delay={0}>
+      <div class="text-center space-y-6">
+        <h2 class="text-section-title">{t('about.title')}</h2>
+        <p class="text-body-lg text-text-secondary dark:text-dark-secondary">
+          {t('about.description')}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button 
+            href="https://github.com/ahmet-cetinkaya/whph" 
+            variant="secondary" 
+            target="_blank" 
+            rel="noopener"
+          >
+            {t('about.viewSource')}
+          </Button>
+          <Button 
+            href="https://github.com/ahmet-cetinkaya/whph/discussions" 
+            variant="ghost" 
+            target="_blank" 
+            rel="noopener"
+          >
+            {t('about.joinCommunity')}
+          </Button>
+        </div>
+      </div>
+    </AnimatedSection>
+  </Container>
+</Section>

@@ -112,16 +112,17 @@
     const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
     
     element.addEventListener('keydown', (e) => {
-      if (e.key === 'Tab') {
-        if (e.shiftKey) {
+      const event = e as KeyboardEvent;
+      if (event.key === 'Tab') {
+        if (event.shiftKey) {
           if (document.activeElement === firstElement) {
             lastElement.focus();
-            e.preventDefault();
+            event.preventDefault();
           }
         } else {
           if (document.activeElement === lastElement) {
             firstElement.focus();
-            e.preventDefault();
+            event.preventDefault();
           }
         }
       }

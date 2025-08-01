@@ -1,0 +1,36 @@
+---
+import Container from '../../shared/components/ui/Container.astro';
+import Section from '../../shared/components/ui/Section.astro';
+import Button from '../../shared/components/ui/Button.astro';
+import AnimatedSection from '../../core/acore-astro/src/components/AnimatedSection.astro';
+
+interface Props {
+  t: (key: string, params?: Record<string, any>) => string;
+}
+
+const { t } = Astro.props;
+---
+
+<Section class="py-20 bg-white dark:bg-black" id="download">
+  <Container>
+    <AnimatedSection animation="fade-up" delay={0}>
+      <div class="text-center">
+        <h2 class="text-section-title mb-4">{t('download.title')}</h2>
+        <p class="text-xl text-text-secondary dark:text-dark-secondary mb-8 max-w-2xl mx-auto">
+          {t('download.subtitle')}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <Button href="#" variant="primary" size="lg">
+            {t('download.downloadFor', { platform: t('hero.platforms.android') })}
+          </Button>
+          <Button href="#" variant="secondary" size="lg">
+            {t('download.downloadFor', { platform: t('hero.platforms.windows') })}
+          </Button>
+          <Button href="#" variant="secondary" size="lg">
+            {t('download.downloadFor', { platform: t('hero.platforms.linux') })}
+          </Button>
+        </div>
+      </div>
+    </AnimatedSection>
+  </Container>
+</Section>

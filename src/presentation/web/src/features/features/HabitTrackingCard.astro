@@ -1,0 +1,160 @@
+---
+import AnimatedSection from '../../core/acore-astro/src/components/AnimatedSection.astro';
+
+interface Props {
+  t: (key: string, params?: Record<string, any>) => string;
+}
+
+const { t } = Astro.props;
+---
+
+<AnimatedSection animation="fade-up" delay={200}>
+  <div class="feature-card bg-white dark:bg-gray-800 rounded-whph shadow-sm p-6 text-center space-y-4 transition-all duration-500 hover:-translate-y-2 hover:scale-105 group cursor-pointer relative overflow-hidden h-full flex flex-col">
+    <!-- Animated calendar background with ticks -->
+    <div class="absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-500">
+      <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-green-50/20 to-primary/5"></div>
+      
+      <!-- Calendar grid with ticks and day numbers -->
+      <div class="absolute inset-6 grid grid-cols-5 grid-rows-4 gap-2 opacity-40">
+        <!-- Week 1 -->
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">1</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-100" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">2</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-200" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">3</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-250" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">4</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-300" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">5</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        
+        <!-- Week 2 -->
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">6</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">7</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-550" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">8</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-600" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">9</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-700" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">10</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-800" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        
+        <!-- Week 3 -->
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">11</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-850" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">12</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-900" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">13</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-1000" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">14</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-1050" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">15</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-1100" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        
+        <!-- Week 4 -->
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">16</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-1200" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">17</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-1250" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded-sm relative">
+          <span class="text-[8px] text-gray-600 dark:text-gray-400 font-medium absolute bottom-0 right-0 leading-none p-0.5">18</span>
+          <svg class="w-3 h-3 text-green-500 absolute inset-0 m-auto opacity-0 group-hover:opacity-70 transition-opacity duration-300 delay-1300" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="w-4 h-4 bg-primary/30 dark:bg-primary/40 rounded-sm relative">
+          <span class="text-[8px] text-gray-700 dark:text-gray-300 font-medium absolute bottom-0 right-0 leading-none p-0.5">19</span>
+        </div>
+        <div class="w-4 h-4 bg-primary/20 dark:bg-primary/30 rounded-sm relative">
+          <span class="text-[8px] text-gray-700 dark:text-gray-300 font-medium absolute bottom-0 right-0 leading-none p-0.5">20</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="relative z-10 flex flex-col h-full justify-between">
+      <div class="space-y-4">
+        <div class="w-12 h-12 bg-primary/20 rounded-whph mx-auto flex items-center justify-center transition-all duration-500 group-hover:bg-green-100 group-hover:scale-125 group-hover:rotate-3 group-hover:shadow-lg">
+          <svg class="w-6 h-6 text-primary transition-all duration-500 group-hover:scale-110 group-hover:text-green-600 calendar-icon-draw" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <h3 class="text-card-title transition-all duration-300 group-hover:text-green-600 group-hover:scale-105">{t('features.habitTracking.title')}</h3>
+      </div>
+      <p class="text-text-secondary dark:text-dark-secondary transition-all duration-300 group-hover:text-text-primary group-hover:dark:text-dark-primary mt-4">
+        {t('features.habitTracking.description')}
+      </p>
+    </div>
+    
+    <!-- Progress bar animation -->
+    <div class="absolute bottom-0 left-0 h-1 bg-green-500/0 group-hover:bg-green-500/30 transition-all duration-1000 w-0 group-hover:w-full rounded-b-whph"></div>
+  </div>
+</AnimatedSection>

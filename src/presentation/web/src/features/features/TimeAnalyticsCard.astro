@@ -1,0 +1,85 @@
+---
+import AnimatedSection from '../../core/acore-astro/src/components/AnimatedSection.astro';
+
+interface Props {
+  t: (key: string, params?: Record<string, any>) => string;
+}
+
+const { t } = Astro.props;
+---
+
+<AnimatedSection animation="fade-up" delay={300}>
+  <div class="feature-card bg-white dark:bg-gray-800 rounded-whph shadow-sm p-6 text-center space-y-4 transition-all duration-500 hover:-translate-y-2 hover:scale-105 group cursor-pointer relative overflow-hidden h-full flex flex-col">
+    <!-- Animated chart background with dynamic bars -->
+    <div class="absolute inset-0 opacity-0 group-hover:opacity-60 transition-opacity duration-500">
+      <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-50/20 to-primary/5"></div>
+      
+      <!-- Enhanced animated bar chart -->
+      <div class="absolute bottom-6 left-6 right-6 flex items-end justify-between h-12 opacity-50 analytics-chart">
+        <!-- Monday -->
+        <div class="flex flex-col items-center space-y-1">
+          <div class="chart-bar w-3 bg-blue-400/60 rounded-t transition-all duration-1000 delay-100 group-hover:bg-blue-500/80 group-hover:h-8" style="height: 16px;"></div>
+          <div class="w-1 h-1 bg-blue-400/40 rounded-full"></div>
+        </div>
+        
+        <!-- Tuesday -->
+        <div class="flex flex-col items-center space-y-1">
+          <div class="chart-bar w-3 bg-primary/60 rounded-t transition-all duration-1000 delay-200 group-hover:bg-primary/80 group-hover:h-10" style="height: 24px;"></div>
+          <div class="w-1 h-1 bg-primary/40 rounded-full"></div>
+        </div>
+        
+        <!-- Wednesday -->
+        <div class="flex flex-col items-center space-y-1">
+          <div class="chart-bar w-3 bg-purple-400/60 rounded-t transition-all duration-1000 delay-300 group-hover:bg-purple-500/80 group-hover:h-7" style="height: 12px;"></div>
+          <div class="w-1 h-1 bg-purple-400/40 rounded-full"></div>
+        </div>
+        
+        <!-- Thursday -->
+        <div class="flex flex-col items-center space-y-1">
+          <div class="chart-bar w-3 bg-green-400/60 rounded-t transition-all duration-1000 delay-400 group-hover:bg-green-500/80 group-hover:h-11" style="height: 28px;"></div>
+          <div class="w-1 h-1 bg-green-400/40 rounded-full"></div>
+        </div>
+        
+        <!-- Friday -->
+        <div class="flex flex-col items-center space-y-1">
+          <div class="chart-bar w-3 bg-orange-400/60 rounded-t transition-all duration-1000 delay-500 group-hover:bg-orange-500/80 group-hover:h-9" style="height: 20px;"></div>
+          <div class="w-1 h-1 bg-orange-400/40 rounded-full"></div>
+        </div>
+        
+        <!-- Saturday -->
+        <div class="flex flex-col items-center space-y-1">
+          <div class="chart-bar w-3 bg-indigo-400/60 rounded-t transition-all duration-1000 delay-600 group-hover:bg-indigo-500/80 group-hover:h-5" style="height: 8px;"></div>
+          <div class="w-1 h-1 bg-indigo-400/40 rounded-full"></div>
+        </div>
+        
+        <!-- Sunday -->
+        <div class="flex flex-col items-center space-y-1">
+          <div class="chart-bar w-3 bg-pink-400/60 rounded-t transition-all duration-1000 delay-700 group-hover:bg-pink-500/80 group-hover:h-4" style="height: 6px;"></div>
+          <div class="w-1 h-1 bg-pink-400/40 rounded-full"></div>
+        </div>
+      </div>
+      
+      <!-- Chart grid lines -->
+      <div class="absolute bottom-6 left-6 right-6 h-12 opacity-20">
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gray-400/50"></div>
+        <div class="absolute bottom-3 left-0 right-0 h-px bg-gray-400/30"></div>
+        <div class="absolute bottom-6 left-0 right-0 h-px bg-gray-400/30"></div>
+        <div class="absolute bottom-9 left-0 right-0 h-px bg-gray-400/30"></div>
+      </div>
+    </div>
+    
+    <div class="relative z-10 flex flex-col h-full justify-between">
+      <div class="space-y-4">
+        <div class="w-12 h-12 bg-primary/20 rounded-whph mx-auto flex items-center justify-center transition-all duration-500 group-hover:bg-blue-100 group-hover:scale-125 group-hover:-rotate-3 group-hover:shadow-lg">
+          <svg class="w-6 h-6 text-primary transition-all duration-500 group-hover:scale-110 group-hover:text-blue-600 chart-icon-draw" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+          </svg>
+        </div>
+        <h3 class="text-card-title transition-all duration-300 group-hover:text-blue-600 group-hover:scale-105">{t('features.timeAnalytics.title')}</h3>
+      </div>
+      <p class="text-text-secondary dark:text-dark-secondary transition-all duration-300 group-hover:text-text-primary group-hover:dark:text-dark-primary mt-4">
+        {t('features.timeAnalytics.description')}
+      </p>
+    </div>
+  </div>
+</AnimatedSection>

@@ -1,0 +1,56 @@
+---
+import Container from '../../shared/components/ui/Container.astro';
+import Section from '../../shared/components/ui/Section.astro';
+import AnimatedSection from '../../core/acore-astro/src/components/AnimatedSection.astro';
+import MarkdownRenderer from '../../shared/MarkdownRenderer.astro';
+
+interface Props {
+  t: (key: string, params?: Record<string, any>) => string;
+}
+
+const { t } = Astro.props;
+
+const faqQuestions = [
+  'free',
+  'platforms', 
+  'privacy',
+  'contribute',
+  'sync',
+  'offline',
+  'backup',
+  'workHardPlayHard'
+];
+---
+
+<Section class="py-20 bg-white dark:bg-black" id="faq">
+  <Container>
+    <AnimatedSection animation="fade-up" delay={0}>
+      <div class="text-center mb-12">
+        <h2 class="text-section-title mb-4">{t('faq.title')}</h2>
+        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          {t('faq.subtitle')}
+        </p>
+      </div>
+    </AnimatedSection>
+    
+    <div class="max-w-3xl mx-auto">
+      <div class="space-y-4">
+        {faqQuestions.map((questionKey, index) => (
+          <AnimatedSection animation="fade-up" delay={index * 100}>
+            <details class="bg-white dark:bg-gray-800 rounded-whph shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-lg">
+              <summary class="cursor-pointer p-6 font-semibold text-gray-900 dark:text-white hover:text-primary transition-colors">
+                {t(`faq.questions.${questionKey}.question`)}
+              </summary>
+              <div class="px-6 pb-6">
+                <MarkdownRenderer 
+                  content={t(`faq.questions.${questionKey}.answer`)} 
+                  class="text-gray-700 dark:text-gray-300 leading-relaxed prose prose-sm max-w-none prose-a:text-primary prose-a:hover:underline prose-strong:text-gray-900 dark:prose-strong:text-white"
+                />
+              </div>
+            </details>
+          </AnimatedSection>
+        ))}
+      </div>
+    </div>
+  </Container>
+</Section>

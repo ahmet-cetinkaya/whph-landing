@@ -1,0 +1,66 @@
+---
+import Container from '../../shared/components/ui/Container.astro';
+import Section from '../../shared/components/ui/Section.astro';
+import Button from '../../shared/components/ui/Button.astro';
+import AnimatedSection from '../../core/acore-astro/src/components/AnimatedSection.astro';
+
+interface Props {
+  t: (key: string, params?: Record<string, any>) => string;
+}
+
+const { t } = Astro.props;
+---
+
+<Section class="py-20 bg-gradient-to-br from-white to-gray-50 dark:from-black dark:to-gray-900">
+  <Container>
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <AnimatedSection animation="fade-up" delay={200}>
+        <div class="space-y-6">
+          <h1 class="text-hero text-balance text-gray-900 dark:text-white">
+            {t('hero.title')} <span class="text-primary">{t('hero.titleHighlight')}</span>
+          </h1>
+          <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+            {t('hero.subtitle')}
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <Button href="#download" variant="primary" size="lg">
+              {t('hero.downloadFree')}
+            </Button>
+            <Button 
+              href="https://github.com/ahmet-cetinkaya/whph" 
+              variant="secondary" 
+              size="lg"
+              target="_blank" 
+              rel="noopener"
+            >
+              {t('hero.viewGithub')}
+            </Button>
+          </div>
+          <div class="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-300">
+            <span>{t('hero.availableOn')}</span>
+            <div class="flex items-center gap-2">
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-whph text-xs font-medium text-gray-700 dark:text-gray-300 transition-all duration-200 hover:scale-105">
+                {t('hero.platforms.android')}
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-whph text-xs font-medium text-gray-700 dark:text-gray-300 transition-all duration-200 hover:scale-105">
+                {t('hero.platforms.windows')}
+              </span>
+              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-whph text-xs font-medium text-gray-700 dark:text-gray-300 transition-all duration-200 hover:scale-105">
+                {t('hero.platforms.linux')}
+              </span>
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+      <AnimatedSection animation="slide-right" delay={400}>
+        <div class="relative">
+          <div class="bg-white dark:bg-gray-800 rounded-whph shadow-sm p-8 text-center transition-all duration-300 hover:shadow-lg hover:scale-105">
+            <div class="w-64 h-96 mx-auto bg-gray-100 dark:bg-gray-700 rounded-whph flex items-center justify-center text-gray-600 dark:text-gray-300">
+              [{t('hero.screenshotAlt')}]
+            </div>
+          </div>
+        </div>
+      </AnimatedSection>
+    </div>
+  </Container>
+</Section>

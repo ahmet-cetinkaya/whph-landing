@@ -129,7 +129,7 @@ export function detectUserLanguage(): SupportedLanguage {
 // Load translations for a specific language
 export async function loadTranslations(lang: SupportedLanguage): Promise<any> {
   try {
-    const translations = await import(`../locales/${lang}/common.json`);
+    const translations = await import(`../../locales/${lang}/common.json`);
     return translations.default || translations;
   } catch (error) {
     console.warn(

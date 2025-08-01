@@ -1,4 +1,5 @@
 // Animation utilities with accessibility considerations
+@use "sass:map";
 
 // Variables
 $primary-color: rgba(244, 208, 62, 1);
@@ -65,7 +66,7 @@ $glow-dark: (
 
 @keyframes glow {
   0%, 100% {
-    box-shadow: 0 0 5px map-get($glow-light, inner);
+    box-shadow: 0 0 5px map.get($glow-light, inner);
   }
   50% {
     box-shadow: 0 0 20px rgba(244, 208, 62, 0.6);
@@ -79,18 +80,18 @@ $glow-dark: (
 
   &:hover {
     box-shadow: 
-      0 0 0 2px map-get($glow-light, inner),
-      0 0 20px map-get($glow-light, mid),
-      0 0 40px map-get($glow-light, outer);
+      0 0 0 2px map.get($glow-light, inner),
+      0 0 20px map.get($glow-light, mid),
+      0 0 40px map.get($glow-light, outer);
   }
 }
 
 @media (prefers-color-scheme: dark) {
   .feature-card:hover {
     box-shadow: 
-      0 0 0 2px map-get($glow-dark, inner),
-      0 0 20px map-get($glow-dark, mid),
-      0 0 40px map-get($glow-dark, outer);
+      0 0 0 2px map.get($glow-dark, inner),
+      0 0 20px map.get($glow-dark, mid),
+      0 0 40px map.get($glow-dark, outer);
   }
 }
 
@@ -198,19 +199,19 @@ $icon-animations: (
 
 // Subtle icon animations - simpler approach
 .task-icon-draw {
-  animation: iconPulse map-get(map-get($icon-animations, pulse), duration) map-get(map-get($icon-animations, pulse), timing) infinite;
+  animation: iconPulse map.get(map.get($icon-animations, pulse), duration) map.get(map.get($icon-animations, pulse), timing) infinite;
 }
 
 .calendar-icon-draw {
-  animation: iconFloat map-get(map-get($icon-animations, float), duration) map-get(map-get($icon-animations, float), timing) infinite;
+  animation: iconFloat map.get(map.get($icon-animations, float), duration) map.get(map.get($icon-animations, float), timing) infinite;
 }
 
 .chart-icon-draw {
-  animation: iconBounce map-get(map-get($icon-animations, bounce), duration) map-get(map-get($icon-animations, bounce), timing) infinite;
+  animation: iconBounce map.get(map.get($icon-animations, bounce), duration) map.get(map.get($icon-animations, bounce), timing) infinite;
 }
 
 .sync-icon-draw {
-  animation: iconRotate map-get(map-get($icon-animations, rotate), duration) map-get(map-get($icon-animations, rotate), timing) infinite;
+  animation: iconRotate map.get(map.get($icon-animations, rotate), duration) map.get(map.get($icon-animations, rotate), timing) infinite;
 }
 
 @keyframes iconPulse {
