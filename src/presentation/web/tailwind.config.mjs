@@ -19,17 +19,17 @@ export default {
           900: '#8C6C0F',
         },
         
-        // Surface Colors
+        // Surface Colors (Dark Theme Only)
         surface: {
-          0: '#FFFBFF', // Background - Light
-          1: '#F8F9FA', // Primary Surface - Light
-          2: '#F1F3F4', // Cards/Containers - Light
-          3: '#E8EAED', // Elevated Surfaces - Light
+          0: '#000000', // Background - Dark
+          1: '#121212', // Primary Surface - Dark
+          2: '#181818', // Cards/Containers - Dark
+          3: '#202020', // Elevated Surfaces - Dark
         },
         
-        // Text Colors
-        'text-primary': '#202124',
-        'text-secondary': '#5F6368',
+        // Text Colors (Dark Theme Only)
+        'text-primary': '#FFFFFF',
+        'text-secondary': '#B0B0B0',
         
         // Semantic Colors
         success: '#4CAF50',
@@ -37,9 +37,9 @@ export default {
         error: '#F44336',
         info: '#2196F3',
         
-        // UI Colors
-        border: '#BDBDBD',
-        divider: '#DADCE0',
+        // UI Colors (Dark Theme Only)
+        border: '#282828',
+        divider: '#282828',
       },
       
       backgroundColor: {
