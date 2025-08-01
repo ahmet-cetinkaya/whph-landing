@@ -10,7 +10,6 @@ export { default as HamburgerIcon } from './HamburgerIcon.astro';
 export { default as ImageIcon } from './ImageIcon.astro';
 export { default as LanguageIcon } from './LanguageIcon.astro';
 export { default as LaptopIcon } from './LaptopIcon.astro';
-export { default as MoonIcon } from './MoonIcon.astro';
 export { default as SyncIcon } from './SyncIcon.astro';
 export { default as ChartIcon } from './ChartIcon.astro';
 export { default as TaskIcon } from './TaskIcon.astro';

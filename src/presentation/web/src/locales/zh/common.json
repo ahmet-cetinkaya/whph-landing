@@ -9,8 +9,7 @@
     "download": "下载",
     "faq": "常见问题",
     "github": "GitHub",
-    "toggleTheme": "切换主题",
-    "toggleMenu": "移动菜单",
+        "toggleMenu": "移动菜单",
     "skipToContent": "跳转到主要内容"
   },
   "hero": {

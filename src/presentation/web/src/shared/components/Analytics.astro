@@ -124,20 +124,7 @@ const isDev = import.meta.env.DEV;
         });
       });
       
-      // Theme toggle tracking
-      const themeToggle = document.getElementById('theme-toggle');
-      const themeToggleMobile = document.getElementById('theme-toggle-mobile');
-      
-      [themeToggle, themeToggleMobile].forEach(toggle => {
-        if (toggle) {
-          toggle.addEventListener('click', (e) => {
-            const currentTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            umami.track('theme-toggle', { from: currentTheme, to: newTheme });
-          });
-        }
-      });
-      
+            
       // External link tracking
       document.querySelectorAll('a[href^="http"]:not([href*="whph.ahmetcetinkaya.me"])').forEach(link => {
         link.addEventListener('click', (e) => {

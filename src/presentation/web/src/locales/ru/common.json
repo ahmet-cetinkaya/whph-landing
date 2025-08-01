@@ -9,8 +9,7 @@
     "download": "Скачать",
     "faq": "FAQ",
     "github": "GitHub",
-    "toggleTheme": "Переключить тему",
-    "toggleMenu": "Мобильное меню",
+        "toggleMenu": "Мобильное меню",
     "skipToContent": "Перейти к основному содержанию"
   },
   "hero": {

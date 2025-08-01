@@ -9,8 +9,7 @@
     "download": "Télécharger",
     "faq": "FAQ",
     "github": "GitHub",
-    "toggleTheme": "Changer le Thème",
-    "toggleMenu": "Basculer le menu mobile",
+        "toggleMenu": "Basculer le menu mobile",
     "skipToContent": "Aller au contenu principal"
   },
   "hero": {

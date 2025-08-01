@@ -133,17 +133,13 @@ const currentYear = getCurrentYear();
     <meta name="theme-color" content="#F4D03E">
     <meta name="msapplication-TileColor" content="#F4D03E">
     
-    <!-- Theme Detection Script (runs before page load) -->
+    <!-- Force Dark Mode Script (runs before page load) -->
     <script is:inline>
-      // Detect system theme preference and apply immediately
-      if (typeof Storage !== 'undefined') {
-        const theme = localStorage.getItem('theme') || 
-                     (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        document.documentElement.classList.toggle('dark', theme === 'dark');
-      }
+      // Force dark mode always
+      document.documentElement.classList.add('dark');
     </script>
   </head>
-  <body class="antialiased bg-white dark:bg-black text-gray-900 dark:text-white font-sans leading-relaxed transition-colors duration-200">
+  <body class="antialiased bg-black text-white font-sans leading-relaxed">
     <AccessibilityEnhancements />
     <Header currentLang={currentLang} translations={translations} />
     <main id="main-content">
@@ -187,32 +183,5 @@ const currentYear = getCurrentYear();
       };
     </script>
     
-    <!-- Theme Toggle Script -->
-    <script>
-      // Theme toggle functionality
-      function initTheme() {
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeToggleMobile = document.getElementById('theme-toggle-mobile');
-        
-        [themeToggle, themeToggleMobile].forEach(toggle => {
-          if (!toggle) return;
-          
-          toggle.addEventListener('click', () => {
-            const isDark = document.documentElement.classList.contains('dark');
-            const newTheme = isDark ? 'light' : 'dark';
-            
-            document.documentElement.classList.toggle('dark', newTheme === 'dark');
-            localStorage.setItem('theme', newTheme);
-          });
-        });
-      }
-      
-      // Initialize when DOM is ready
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initTheme);
-      } else {
-        initTheme();
-      }
-    </script>
-  </body>
+      </body>
 </html>

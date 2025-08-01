@@ -9,8 +9,7 @@
     "download": "ダウンロード",
     "faq": "FAQ",
     "github": "GitHub",
-    "toggleTheme": "テーマ切り替え",
-    "toggleMenu": "モバイルメニュー",
+        "toggleMenu": "モバイルメニュー",
     "skipToContent": "メインコンテンツへスキップ"
   },
   "hero": {

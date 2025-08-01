@@ -4,7 +4,6 @@ import Button from './ui/Button.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
 import HamburgerIcon from './icons/HamburgerIcon.astro';
 import CloseIcon from './icons/CloseIcon.astro';
-import MoonIcon from './icons/MoonIcon.astro';
 import { createTranslationFunction, addLanguageToURL, type SupportedLanguage } from '../utils/i18n';
 
 interface Props {
@@ -20,7 +19,7 @@ const currentPath = Astro.url.pathname;
 const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
 ---
 
-<header class="sticky top-0 z-50 bg-white/90 dark:bg-black/90 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 transition-colors duration-200">
+<header class="sticky top-0 z-50 bg-black/90 border-b border-gray-800">
   <Container>
     <nav class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -29,41 +28,37 @@ const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
           <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
             <span class="text-black font-bold text-sm">W</span>
           </div>
-          <span class="font-semibold text-lg text-gray-900 dark:text-white">WHPH</span>
+          <span class="font-semibold text-lg text-white">WHPH</span>
         </a>
       </div>
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center space-x-6">
-        <a href="#features" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors font-medium">
+        <a href="#features" class="text-gray-300 hover:text-primary transition-colors font-medium">
           {t('navigation.features')}
         </a>
-        <a href="#download" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors font-medium">
+        <a href="#download" class="text-gray-300 hover:text-primary transition-colors font-medium">
           {t('navigation.download')}
         </a>
-        <a href="#faq" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors font-medium">
+        <a href="#faq" class="text-gray-300 hover:text-primary transition-colors font-medium">
           {t('navigation.faq')}
         </a>
         <a href="https://github.com/ahmet-cetinkaya/whph" target="_blank" rel="noopener" 
-           class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors font-medium">
+           class="text-gray-300 hover:text-primary transition-colors font-medium">
           {t('navigation.github')}
         </a>
-        
-        <!-- Language Switcher -->
-        <LanguageSwitcher currentLang={currentLang} currentPath={currentPath} />
       </div>
 
-      <!-- Desktop CTA -->
-      <div class="hidden md:flex items-center">
-        <Button href="#download" size="sm">
-          {t('navigation.download')}
-        </Button>
+      <!-- Desktop Actions -->
+      <div class="hidden md:flex items-center space-x-3">
+        <!-- Language Switcher -->
+        <LanguageSwitcher currentLang={currentLang} currentPath={currentPath} />
       </div>
 
       <!-- Mobile Menu Button -->
       <button 
         id="mobile-menu-button" 
-        class="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        class="md:hidden p-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-colors"
         aria-label={t('navigation.toggleMenu')}
       >
         <HamburgerIcon />
@@ -71,23 +66,28 @@ const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
     </nav>
   </Container>
 
-  <!-- Mobile Menu Overlay -->
+  <!-- Mobile Menu Blur Overlay -->
+  <div 
+    id="mobile-menu-overlay" 
+    class="fixed inset-0 z-40 backdrop-blur-md opacity-0 invisible transition-all duration-300 md:hidden"
+  ></div>
+
+  <!-- Mobile Menu Drawer -->
   <div 
     id="mobile-menu" 
-    class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm opacity-0 invisible transition-all duration-300 md:hidden"
+    class="fixed right-0 top-0 h-screen w-80 max-w-[80vw] z-50 bg-gray-900/95 shadow-xl border-l border-gray-700 transform translate-x-full transition-transform duration-300 flex flex-col md:hidden"
   >
-    <div class="fixed right-0 top-0 h-full w-80 max-w-[80vw] bg-white dark:bg-gray-900 shadow-xl transform translate-x-full transition-transform duration-300">
       <!-- Mobile Menu Header -->
-      <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+      <div class="flex items-center justify-between p-6 border-b border-gray-700 bg-gray-800/90 flex-shrink-0">
         <div class="flex items-center space-x-2">
           <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
             <span class="text-black font-bold text-sm">W</span>
           </div>
-          <span class="font-semibold text-lg text-gray-900 dark:text-white">WHPH</span>
+          <span class="font-semibold text-lg text-white">WHPH</span>
         </div>
         <button 
           id="mobile-menu-close" 
-          class="p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          class="p-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-colors"
           aria-label={t('common.close')}
         >
           <CloseIcon />
@@ -95,44 +95,29 @@ const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
       </div>
 
       <!-- Mobile Menu Content -->
-      <div class="p-6 space-y-6">
+      <div class="flex-1 p-6 space-y-6 bg-gray-900/90 overflow-y-auto min-h-0">
+        <!-- Navigation Links (matching desktop exactly) -->
         <nav class="space-y-4">
-          <a href="#features" class="block text-lg font-medium text-gray-900 dark:text-white hover:text-primary transition-colors mobile-menu-link">
+          <a href="#features" class="block text-lg font-medium text-white hover:text-primary transition-colors mobile-menu-link">
             {t('navigation.features')}
           </a>
-          <a href="#download" class="block text-lg font-medium text-gray-900 dark:text-white hover:text-primary transition-colors mobile-menu-link">
+          <a href="#download" class="block text-lg font-medium text-white hover:text-primary transition-colors mobile-menu-link">
             {t('navigation.download')}
           </a>
-          <a href="#faq" class="block text-lg font-medium text-gray-900 dark:text-white hover:text-primary transition-colors mobile-menu-link">
+          <a href="#faq" class="block text-lg font-medium text-white hover:text-primary transition-colors mobile-menu-link">
             {t('navigation.faq')}
           </a>
           <a href="https://github.com/ahmet-cetinkaya/whph" target="_blank" rel="noopener" 
-             class="block text-lg font-medium text-gray-900 dark:text-white hover:text-primary transition-colors mobile-menu-link">
+             class="block text-lg font-medium text-white hover:text-primary transition-colors mobile-menu-link">
             {t('navigation.github')}
           </a>
         </nav>
 
-        <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
-          <Button href="#download" variant="primary" size="lg" class="w-full justify-center">
-            {t('navigation.download')}
-          </Button>
+        <!-- Language Switcher (matching desktop functionality) -->
+        <div>
+          <LanguageSwitcher currentLang={currentLang} currentPath={currentPath} isMobile={true} />
         </div>
-
-        <!-- Theme Toggle (Optional) -->
-        <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
-          <button 
-            id="theme-toggle-mobile" 
-            class="flex items-center space-x-3 w-full p-3 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-          >
-            <MoonIcon />
-            <span>{t('navigation.toggleTheme')}</span>
-          </button>
-        </div>
-
-        <!-- Mobile Language Switcher -->
-        <LanguageSwitcher currentLang={currentLang} currentPath={currentPath} isMobile={true} />
       </div>
-    </div>
   </div>
 </header>
 
@@ -140,38 +125,44 @@ const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
   function initMobileMenu() {
     const menuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
     const closeButton = document.getElementById('mobile-menu-close');
-    const menuPanel = mobileMenu?.querySelector('div');
     const menuLinks = document.querySelectorAll('.mobile-menu-link');
 
     function closeMobileMenu() {
-      if (mobileMenu && menuPanel) {
-        mobileMenu.classList.add('opacity-0', 'invisible');
-        menuPanel.classList.add('translate-x-full');
+      if (mobileMenu && mobileMenuOverlay) {
+        // Hide overlay
+        mobileMenuOverlay.classList.add('opacity-0', 'invisible');
+        // Slide drawer out
+        mobileMenu.classList.add('translate-x-full');
+        // Restore body scroll
         document.body.style.overflow = '';
       }
     }
 
-    menuButton?.addEventListener('click', function() {
-      if (mobileMenu && menuPanel) {
-        mobileMenu.classList.remove('opacity-0', 'invisible');
-        menuPanel.classList.remove('translate-x-full');
+    function openMobileMenu() {
+      if (mobileMenu && mobileMenuOverlay) {
+        // Show overlay
+        mobileMenuOverlay.classList.remove('opacity-0', 'invisible');
+        // Slide drawer in
+        mobileMenu.classList.remove('translate-x-full');
+        // Prevent body scroll
         document.body.style.overflow = 'hidden';
       }
-    });
+    }
 
+    menuButton?.addEventListener('click', openMobileMenu);
     closeButton?.addEventListener('click', closeMobileMenu);
 
-    mobileMenu?.addEventListener('click', (e) => {
-      if (e.target === mobileMenu) {
-        closeMobileMenu();
-      }
-    });
+    // Close when clicking on overlay
+    mobileMenuOverlay?.addEventListener('click', closeMobileMenu);
 
+    // Close when clicking menu links
     menuLinks.forEach(link => {
       link.addEventListener('click', closeMobileMenu);
     });
 
+    // Close on escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeMobileMenu();
@@ -181,7 +172,9 @@ const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
 
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initMobileMenu);
+    document.addEventListener('DOMContentLoaded', () => {
+      initMobileMenu();
+    });
   } else {
     initMobileMenu();
   }
