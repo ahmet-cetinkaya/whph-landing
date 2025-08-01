@@ -8,8 +8,8 @@ import Button from './ui/Button.astro';
     <nav class="flex items-center justify-between h-16">
       <!-- Logo -->
       <div class="flex items-center">
-        <a href="/" class="flex items-center space-x-2 hover:opacity-80 transition-opacity">
-          <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+        <a href="/" class="flex items-center space-x-2 hover:opacity-80 transition-all duration-200 hover:scale-105">
+          <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center transition-all duration-200 hover:rotate-12">
             <span class="text-black font-bold text-sm">W</span>
           </div>
           <span class="font-semibold text-lg text-gray-900 dark:text-white">WHPH</span>
@@ -18,18 +18,22 @@ import Button from './ui/Button.astro';
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center space-x-8">
-        <a href="#features" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors font-medium">
+        <a href="#features" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-all duration-200 font-medium hover:scale-105 relative group">
           Features
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
         </a>
-        <a href="#download" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors font-medium">
+        <a href="#download" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-all duration-200 font-medium hover:scale-105 relative group">
           Download
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
         </a>
-        <a href="#faq" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors font-medium">
+        <a href="#faq" class="text-gray-600 dark:text-gray-300 hover:text-primary transition-all duration-200 font-medium hover:scale-105 relative group">
           FAQ
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
         </a>
         <a href="https://github.com/ahmet-cetinkaya/whph" target="_blank" rel="noopener" 
-           class="text-gray-600 dark:text-gray-300 hover:text-primary transition-colors font-medium">
+           class="text-gray-600 dark:text-gray-300 hover:text-primary transition-all duration-200 font-medium hover:scale-105 relative group">
           GitHub
+          <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
         </a>
       </div>
 
@@ -43,10 +47,10 @@ import Button from './ui/Button.astro';
       <!-- Mobile Menu Button -->
       <button 
         id="mobile-menu-button"
-        class="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+        class="md:hidden p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 hover:scale-110"
         aria-label="Toggle mobile menu"
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-6 h-6 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
         </svg>
       </button>
