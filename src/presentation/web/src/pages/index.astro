@@ -6,6 +6,7 @@ import Card from '../components/ui/Card.astro';
 import Button from '../components/ui/Button.astro';
 import ScreenshotGallery from '../components/ScreenshotGallery.astro';
 import SocialProof from '../components/SocialProof.astro';
+import FAQ from '../components/FAQ.astro';
 ---
 
 <Layout 
@@ -172,6 +173,20 @@ import SocialProof from '../components/SocialProof.astro';
             <p>Also available on <a href="#" class="text-primary hover:underline transition-colors">F-Droid</a> and <a href="https://github.com/ahmet-cetinkaya/whph/releases" class="text-primary hover:underline transition-colors">GitHub Releases</a></p>
           </div>
         </div>
+      </Container>
+    </Section>
+
+    <!-- FAQ Section -->
+    <Section id="faq" padding="lg">
+      <Container>
+        <div class="text-center mb-12">
+          <h2 class="text-section-title mb-4">Frequently Asked Questions</h2>
+          <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Get answers to common questions about WHPH's features, privacy, and community.
+          </p>
+        </div>
+        
+        <FAQ />
       </Container>
     </Section>
 

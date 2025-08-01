@@ -1,0 +1,157 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+  id: string;
+}
+
+const faqItems: FAQItem[] = [
+  {
+    id: "free",
+    question: "Is WHPH really free?",
+    answer: "Yes, WHPH is completely free and open source. There are no premium tiers, subscription fees, or hidden costs. You get access to all features without any limitations. The app is funded by community contributions and developed by volunteers who believe productivity tools should be accessible to everyone."
+  },
+  {
+    id: "platforms",
+    question: "What platforms are supported?",
+    answer: "WHPH is available on Android, Windows, and Linux. You can download it from our GitHub releases, F-Droid (for Android), or compile from source. We're working on iOS and macOS support, but they're not available yet due to development resource constraints."
+  },
+  {
+    id: "privacy",
+    question: "How is my data protected?",
+    answer: "Your privacy is our top priority. WHPH stores all data locally on your device by default. We don't collect, track, or store any personal information on external servers. Optional cloud sync is available through your own cloud storage providers (like Google Drive or Dropbox) if you choose to enable it, giving you full control over your data."
+  },
+  {
+    id: "contribute",
+    question: "How can I get help or contribute?",
+    answer: "Join our GitHub Discussions for community support, feature requests, and general questions. If you're a developer, you can contribute code, report bugs, or help with translations on our GitHub repository. We also welcome designers, documentation writers, and anyone interested in improving productivity tools."
+  },
+  {
+    id: "sync",
+    question: "How do I sync data between devices?",
+    answer: "WHPH offers optional data synchronization through popular cloud storage services. You can configure sync with Google Drive, Dropbox, or any WebDAV-compatible service. All data is encrypted before being uploaded to your chosen cloud provider, ensuring your productivity data remains private and secure."
+  },
+  {
+    id: "offline",
+    question: "Does WHPH work offline?",
+    answer: "Absolutely! WHPH is designed to work completely offline. All your tasks, habits, and analytics are stored locally on your device. You can use every feature without an internet connection. Cloud sync is only used when you explicitly enable it and only when you're online."
+  },
+  {
+    id: "import",
+    question: "Can I import data from other productivity apps?",
+    answer: "Yes, WHPH supports importing data from popular productivity apps including Todoist, Trello, Google Tasks, and others. We also support standard formats like CSV and JSON. Check our documentation for the complete list of supported import formats and step-by-step guides."
+  }
+];
+---
+
+<div class="faq-container max-w-3xl mx-auto">
+  {faqItems.map((item, index) => (
+    <div class="faq-item border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+      <button 
+        class="faq-question w-full py-6 px-4 text-left flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors rounded-lg group"
+        data-faq-toggle={item.id}
+        aria-expanded="false"
+        aria-controls={`faq-answer-${item.id}`}
+      >
+        <span class="text-lg font-semibold text-gray-900 dark:text-white pr-4">
+          {item.question}
+        </span>
+        <svg 
+          class="faq-icon w-5 h-5 text-gray-500 dark:text-gray-400 transition-transform duration-200 flex-shrink-0"
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </button>
+      
+      <div 
+        id={`faq-answer-${item.id}`}
+        class="faq-answer overflow-hidden transition-all duration-300 ease-out"
+        style="max-height: 0; opacity: 0;"
+        aria-hidden="true"
+      >
+        <div class="px-4 pb-6">
+          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+            {item.answer}
+          </p>
+        </div>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  function initFAQ() {
+    const faqToggles = document.querySelectorAll('[data-faq-toggle]');
+    
+    faqToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const targetId = toggle.getAttribute('data-faq-toggle');
+        const answer = document.getElementById(`faq-answer-${targetId}`);
+        const icon = toggle.querySelector('.faq-icon');
+        const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+        
+        if (!answer || !icon) return;
+        
+        if (isExpanded) {
+          // Close the FAQ
+          answer.style.maxHeight = '0';
+          answer.style.opacity = '0';
+          answer.setAttribute('aria-hidden', 'true');
+          toggle.setAttribute('aria-expanded', 'false');
+          icon.style.transform = 'rotate(0deg)';
+        } else {
+          // Close other open FAQs (optional - remove if you want multiple open)
+          faqToggles.forEach(otherToggle => {
+            if (otherToggle !== toggle) {
+              const otherId = otherToggle.getAttribute('data-faq-toggle');
+              const otherAnswer = document.getElementById(`faq-answer-${otherId}`);
+              const otherIcon = otherToggle.querySelector('.faq-icon');
+              
+              if (otherAnswer && otherIcon) {
+                otherAnswer.style.maxHeight = '0';
+                otherAnswer.style.opacity = '0';
+                otherAnswer.setAttribute('aria-hidden', 'true');
+                otherToggle.setAttribute('aria-expanded', 'false');
+                otherIcon.style.transform = 'rotate(0deg)';
+              }
+            }
+          });
+          
+          // Open the FAQ
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          answer.style.opacity = '1';
+          answer.setAttribute('aria-hidden', 'false');
+          toggle.setAttribute('aria-expanded', 'true');
+          icon.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+    
+    // Open first FAQ by default
+    const firstToggle = faqToggles[0];
+    if (firstToggle) {
+      firstToggle.click();
+    }
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFAQ);
+  } else {
+    initFAQ();
+  }
+</script>
+
+<style>
+  .faq-question:focus {
+    outline: 2px solid #F4D03E;
+    outline-offset: 2px;
+  }
+  
+  .faq-item:hover .faq-icon {
+    color: #F4D03E;
+  }
+</style>
