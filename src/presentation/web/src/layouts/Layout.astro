@@ -1,5 +1,6 @@
 ---
 import Header from '../components/Header.astro';
+import PerformanceMonitor from '../components/PerformanceMonitor.astro';
 
 export interface Props {
   title: string;
@@ -81,7 +82,21 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     </script>
     
     <!-- Preload critical resources -->
-    <link rel="preload" href="/fonts/system.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="dns-prefetch" href="//github.com">
+    <link rel="preconnect" href="https://github.com" crossorigin>
+    
+    <!-- Preload critical assets -->
+    <link rel="modulepreload" href="/_astro/client.yr7uPUmK.js">
+    <link rel="preload" href="/_astro/index.BjPiVCJJ.css" as="style">
+    
+    <!-- Resource hints for better performance -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="WHPH">
+    <meta name="application-name" content="WHPH">
+    <meta name="theme-color" content="#F4D03E">
+    <meta name="msapplication-TileColor" content="#F4D03E">
     
     <!-- Theme Detection Script (runs before page load) -->
     <script is:inline>
@@ -96,6 +111,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <body class="antialiased bg-white dark:bg-black text-gray-900 dark:text-white font-sans leading-relaxed transition-colors duration-200">
     <Header />
     <slot />
+    
+    <!-- Performance Monitoring (Development) -->
+    <PerformanceMonitor />
     
     <!-- Theme Toggle Script -->
     <script>

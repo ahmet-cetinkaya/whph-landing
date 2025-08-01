@@ -1,0 +1,128 @@
+---
+// Performance monitoring component for development
+// This will be removed or disabled in production
+---
+
+<script is:inline>
+  // Core Web Vitals monitoring
+  function initPerformanceMonitoring() {
+    if (typeof window === 'undefined') return;
+    
+    // Only run in development or when explicitly enabled
+    const isDev = import.meta.env.DEV;
+    const enablePerfMonitoring = localStorage.getItem('whph-perf-monitoring') === 'true';
+    
+    if (!isDev && !enablePerfMonitoring) return;
+    
+    console.log('🎯 WHPH Performance Monitoring Active');
+    
+    // Measure page load performance
+    window.addEventListener('load', () => {
+      if (performance.getEntriesByType) {
+        const navigationEntry = performance.getEntriesByType('navigation')[0];
+        if (navigationEntry) {
+          console.log('📊 Page Load Metrics:', {
+            domContentLoaded: `${Math.round(navigationEntry.domContentLoadedEventEnd - navigationEntry.domContentLoadedEventStart)}ms`,
+            loadComplete: `${Math.round(navigationEntry.loadEventEnd - navigationEntry.loadEventStart)}ms`,
+            firstByte: `${Math.round(navigationEntry.responseStart - navigationEntry.requestStart)}ms`,
+            domInteractive: `${Math.round(navigationEntry.domInteractive - navigationEntry.navigationStart)}ms`
+          });
+        }
+        
+        // Resource loading analysis
+        const resources = performance.getEntriesByType('resource');
+        const cssResources = resources.filter(r => r.name.includes('.css'));
+        const jsResources = resources.filter(r => r.name.includes('.js'));
+        
+        console.log('📦 Resource Load Times:', {
+          css: cssResources.map(r => ({ 
+            name: r.name.split('/').pop(), 
+            duration: `${Math.round(r.duration)}ms`,
+            size: r.transferSize ? `${Math.round(r.transferSize / 1024)}kb` : 'cached'
+          })),
+          js: jsResources.map(r => ({ 
+            name: r.name.split('/').pop(), 
+            duration: `${Math.round(r.duration)}ms`,
+            size: r.transferSize ? `${Math.round(r.transferSize / 1024)}kb` : 'cached'
+          }))
+        });
+      }
+    });
+    
+    // Monitor Core Web Vitals if available
+    if ('PerformanceObserver' in window) {
+      // Largest Contentful Paint
+      new PerformanceObserver((entryList) => {
+        const entries = entryList.getEntries();
+        const lastEntry = entries[entries.length - 1];
+        console.log('🎨 LCP (Largest Contentful Paint):', `${Math.round(lastEntry.startTime)}ms`);
+      }).observe({ entryTypes: ['largest-contentful-paint'] });
+      
+      // First Input Delay
+      new PerformanceObserver((entryList) => {
+        const firstInput = entryList.getEntries()[0];
+        console.log('⚡ FID (First Input Delay):', `${Math.round(firstInput.processingStart - firstInput.startTime)}ms`);
+      }).observe({ entryTypes: ['first-input'] });
+      
+      // Cumulative Layout Shift
+      let clsValue = 0;
+      new PerformanceObserver((entryList) => {
+        for (const entry of entryList.getEntries()) {
+          if (!entry.hadRecentInput) {
+            clsValue += entry.value;
+          }
+        }
+        console.log('📐 CLS (Cumulative Layout Shift):', clsValue.toFixed(4));
+      }).observe({ entryTypes: ['layout-shift'] });
+    }
+    
+    // Memory usage monitoring (if available)
+    if ('memory' in performance) {
+      const memoryInfo = performance.memory;
+      console.log('💾 Memory Usage:', {
+        used: `${Math.round(memoryInfo.usedJSHeapSize / 1024 / 1024)}mb`,
+        total: `${Math.round(memoryInfo.totalJSHeapSize / 1024 / 1024)}mb`,
+        limit: `${Math.round(memoryInfo.jsHeapSizeLimit / 1024 / 1024)}mb`
+      });
+    }
+    
+    // Interactive monitoring
+    let interactionCount = 0;
+    ['click', 'touchstart', 'keydown'].forEach(eventType => {
+      document.addEventListener(eventType, () => {
+        interactionCount++;
+        if (interactionCount === 1) {
+          console.log('👆 First user interaction detected');
+        }
+      }, { once: eventType === 'click' || eventType === 'touchstart' });
+    });
+    
+    // Bundle size analysis
+    const scriptTags = document.querySelectorAll('script[src]');
+    const styleTags = document.querySelectorAll('link[rel="stylesheet"]');
+    
+    console.log('📋 Bundle Analysis:', {
+      scripts: scriptTags.length,
+      stylesheets: styleTags.length,
+      inlineScripts: document.querySelectorAll('script:not([src])').length
+    });
+  }
+  
+  // Initialize performance monitoring
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPerformanceMonitoring);
+  } else {
+    initPerformanceMonitoring();
+  }
+  
+  // Add global function to enable performance monitoring
+  window.__enableWHPHPerfMonitoring = () => {
+    localStorage.setItem('whph-perf-monitoring', 'true');
+    console.log('✅ WHPH Performance Monitoring enabled. Reload the page to see metrics.');
+  };
+  
+  window.__disableWHPHPerfMonitoring = () => {
+    localStorage.removeItem('whph-perf-monitoring');
+    console.log('❌ WHPH Performance Monitoring disabled.');
+  };
+</script>
