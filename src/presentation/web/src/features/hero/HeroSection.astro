@@ -55,8 +55,12 @@ const { t } = Astro.props;
       <AnimatedSection animation="slide-right" delay={400}>
         <div class="relative">
           <div class="bg-white dark:bg-gray-800 rounded-whph shadow-sm p-8 text-center transition-all duration-300 hover:shadow-lg hover:scale-105">
-            <div class="w-64 h-96 mx-auto bg-gray-100 dark:bg-gray-700 rounded-whph flex items-center justify-center text-gray-600 dark:text-gray-300">
-              [{t('hero.screenshotAlt')}]
+            <div class="w-64 h-64 mx-auto flex items-center justify-center">
+              <img 
+                src="/favicon.svg" 
+                alt={t('hero.screenshotAlt')} 
+                class="w-48 h-48 object-contain transition-all duration-300 hover:scale-110"
+              />
             </div>
           </div>
         </div>
