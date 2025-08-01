@@ -133,10 +133,12 @@ const currentYear = getCurrentYear();
     <meta name="theme-color" content="#F4D03E">
     <meta name="msapplication-TileColor" content="#F4D03E">
     
-    <!-- Force Dark Mode Script (runs before page load) -->
+    <!-- Dark Mode Only Script (runs before page load) -->
     <script is:inline>
-      // Force dark mode always
+      // Ensure dark mode is always active
       document.documentElement.classList.add('dark');
+      // Remove any potential light mode classes
+      document.documentElement.classList.remove('light');
     </script>
   </head>
   <body class="antialiased bg-black text-white font-sans leading-relaxed">

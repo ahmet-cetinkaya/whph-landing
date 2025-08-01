@@ -1,13 +1,8 @@
 // Animation utilities with accessibility considerations
 @use "sass:map";
 
-// Variables
+// Variables (Dark Theme Only)
 $primary-color: rgba(244, 208, 62, 1);
-$glow-light: (
-  inner: rgba(244, 208, 62, 0.3),
-  mid: rgba(244, 208, 62, 0.4),
-  outer: rgba(244, 208, 62, 0.2)
-);
 $glow-dark: (
   inner: rgba(244, 208, 62, 0.4),
   mid: rgba(244, 208, 62, 0.5),
@@ -66,28 +61,19 @@ $glow-dark: (
 
 @keyframes glow {
   0%, 100% {
-    box-shadow: 0 0 5px map.get($glow-light, inner);
+    box-shadow: 0 0 5px map.get($glow-dark, inner);
   }
   50% {
     box-shadow: 0 0 20px rgba(244, 208, 62, 0.6);
   }
 }
 
-// Feature card glow effect
+// Feature card glow effect (Dark Theme Only)
 .feature-card {
   transition: all 0.5s ease;
   position: relative;
 
   &:hover {
-    box-shadow: 
-      0 0 0 2px map.get($glow-light, inner),
-      0 0 20px map.get($glow-light, mid),
-      0 0 40px map.get($glow-light, outer);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .feature-card:hover {
     box-shadow: 
       0 0 0 2px map.get($glow-dark, inner),
       0 0 20px map.get($glow-dark, mid),
