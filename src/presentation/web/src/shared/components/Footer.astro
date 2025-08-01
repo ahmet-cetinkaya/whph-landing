@@ -12,7 +12,6 @@ const { t, currentYear } = Astro.props;
 
 <footer class="border-t border-divider dark:border-dark-divider py-8">
   <Container>
-    <AnimatedSection animation="fade-up" delay={0}>
       <div class="flex flex-col md:flex-row justify-between items-center gap-4">
         <div class="flex items-center gap-6">
           <span class="font-semibold text-primary text-lg transition-all duration-200 hover:scale-105">WHPH</span>
@@ -32,6 +31,5 @@ const { t, currentYear } = Astro.props;
           {t('footer.copyright', { year: currentYear })}
         </p>
       </div>
-    </AnimatedSection>
   </Container>
 </footer>
