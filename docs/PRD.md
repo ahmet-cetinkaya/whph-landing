@@ -144,6 +144,33 @@ The WHPH landing page serves as the primary digital gateway for potential users 
 - Screenshot lightbox gallery
 - Expandable FAQ section
 - GitHub Discussions link for community engagement
+- Language switcher with dropdown menu for 10 supported languages
+
+### 4.4 Multi-Language Support
+
+**4.4.1 Language Switcher Component**
+
+- Accessible dropdown menu in navigation header
+- Display language names in their native scripts
+- Preserve current page context when switching languages
+- Visual indicator for currently selected language
+- Keyboard navigation support
+
+**4.4.2 Localized Content Management**
+
+- Complete translation of all user-facing content
+- Localized meta tags and SEO content for each language
+- Language-specific URL structure with proper routing
+- Consistent terminology across all sections
+- Cultural adaptation where appropriate
+
+**4.4.3 Technical Implementation**
+
+- JSON-based translation files for each supported language
+- Dynamic content loading based on user language preference
+- Proper HTML lang attributes for accessibility
+- hreflang tags for SEO optimization
+- Browser language detection with manual override capability
 
 ---
 
@@ -208,6 +235,32 @@ The WHPH landing page serves as the primary digital gateway for potential users 
 - Structured data markup for app information
 - Alt text for all images and screenshots
 
+### 5.4 Internationalization Content Strategy
+
+**5.4.1 Localized Content Requirements**
+
+- **Complete Translation**: All user-facing content translated into 10 supported languages
+- **Cultural Adaptation**: Messaging adapted for cultural context while maintaining brand consistency
+- **Localized Keywords**: SEO keywords researched and optimized for each target language/region
+- **Native Language Quality**: Professional-grade translations that read naturally to native speakers
+
+**5.4.2 Content Localization Scope**
+
+- **Navigation Elements**: Menu items, buttons, and interactive elements
+- **Marketing Copy**: Headlines, value propositions, and feature descriptions
+- **Technical Content**: Installation instructions, system requirements, and troubleshooting
+- **Legal Content**: Privacy policies, terms of service, and licensing information
+- **Meta Content**: Page titles, descriptions, and social media tags
+- **Error Messages**: User feedback and system messages
+
+**5.4.3 Translation Management**
+
+- **Source Language**: English as the primary source for all translations
+- **Translation Keys**: Structured JSON format with nested keys for organization
+- **Version Control**: Translation updates tracked alongside code changes
+- **Quality Assurance**: Native speaker review process for translation accuracy
+- **Maintenance**: Regular updates to keep translations current with feature changes
+
 ---
 
 ## 6. Technical Requirements
@@ -233,7 +286,28 @@ The WHPH landing page serves as the primary digital gateway for potential users 
 - **Social Media**: Open Graph and Twitter Card meta tags
 - **Search Console**: Integration for performance monitoring
 
-### 6.4 Hosting and Infrastructure
+### 6.4 Internationalization (i18n)
+
+- **Supported Languages**: 10 languages with full localization support
+  - **de** (German) - Deutsch
+  - **en** (English) - English (default)
+  - **es** (Spanish) - Español
+  - **fr** (French) - Français
+  - **it** (Italian) - Italiano
+  - **ja** (Japanese) - 日本語
+  - **ko** (Korean) - 한국어
+  - **ru** (Russian) - Русский
+  - **tr** (Turkish) - Türkçe
+  - **zh** (Chinese) - 中文
+- **URL Structure**: Language-specific URLs (e.g., `/de/`, `/es/`, `/fr/`)
+- **Language Detection**: Automatic browser language detection with manual override
+- **Language Switcher**: Accessible language selection component in header
+- **SEO Optimization**: Proper hreflang tags and localized meta content
+- **Content Management**: JSON-based translation files for maintainable localization
+- **Fallback Strategy**: Graceful fallback to English for missing translations
+- **RTL Support**: Prepared infrastructure for future right-to-left language support
+
+### 6.5 Hosting and Infrastructure
 
 - **Static Hosting**: Netlify, Vercel, or similar static site hosting
 - **SSL**: HTTPS encryption for all traffic
@@ -321,7 +395,15 @@ The WHPH landing page serves as the primary digital gateway for potential users 
 - **Page Performance**: Core Web Vitals, load times, and error rates
 - **SEO Performance**: Keyword rankings, organic traffic growth, click-through rates
 
-### 9.3 Tracking Implementation
+### 9.3 Internationalization Metrics
+
+- **Language Distribution**: Breakdown of visitors and downloads by language preference
+- **Language Switcher Usage**: Frequency of language changes and preferred languages
+- **Localized SEO Performance**: Organic traffic and rankings for each supported language
+- **Regional Engagement**: Time on page and conversion rates by language/region
+- **Translation Quality**: User feedback and bounce rates for non-English pages
+
+### 9.4 Tracking Implementation
 
 - **Umami Analytics**: Privacy-focused analytics for download tracking
 - **Conversion Tracking**: Platform-specific download events
@@ -335,30 +417,34 @@ The WHPH landing page serves as the primary digital gateway for potential users 
 
 **Week 1: Planning and Setup**
 
-- Day 1-2: Finalize content and messaging
-- Day 3-4: Create wireframes and design specifications
-- Day 5-7: Set up AstroJS project with Tailwind CSS and Umami analytics
+- Day 1-2: Finalize content and messaging for all 10 supported languages
+- Day 3-4: Create wireframes and design specifications with i18n considerations
+- Day 5-7: Set up AstroJS project with Tailwind CSS, i18n framework, and Umami analytics
 
 **Week 2: Development and Content**
 
-- Day 1-3: Implement responsive layout with Tailwind CSS
-- Day 4-5: Develop SolidJS components for interactive elements
-- Day 6-7: Add content, screenshots, and optimize for performance
+- Day 1-3: Implement responsive layout with Tailwind CSS and language routing
+- Day 4-5: Develop SolidJS components for interactive elements and language switcher
+- Day 6-7: Add localized content, screenshots, and optimize for performance
 
 **Week 3: Testing and Launch**
 
-- Day 1-2: Cross-browser testing and accessibility verification
-- Day 3-4: Performance optimization and SEO implementation
-- Day 5-7: Deploy to production and monitor initial performance
+- Day 1-2: Cross-browser testing, accessibility verification, and multi-language testing
+- Day 3-4: Performance optimization, SEO implementation, and hreflang configuration
+- Day 5-7: Deploy to production with all language versions and monitor initial performance
 
 ### 10.2 Key Deliverables
 
 - [ ] AstroJS static site with Tailwind CSS styling
 - [ ] SolidJS components for interactive elements
-- [ ] Umami analytics integration
-- [ ] SEO optimization and structured data
+- [ ] Multi-language support with 10 supported languages (de, en, es, fr, it, ja, ko, ru, tr, zh)
+- [ ] Language switcher component with accessible navigation
+- [ ] Localized content management system with JSON translation files
+- [ ] Language-specific URL routing and SEO optimization
+- [ ] Umami analytics integration with language tracking
+- [ ] SEO optimization and structured data with hreflang tags
 - [ ] Performance optimization (Core Web Vitals compliance)
-- [ ] Accessibility compliance verification
+- [ ] Accessibility compliance verification for all languages
 
 ### 10.3 Success Criteria
 
