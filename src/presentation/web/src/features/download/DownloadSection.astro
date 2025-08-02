@@ -3,6 +3,9 @@ import Container from '../../shared/components/ui/Container.astro';
 import Button from '../../shared/components/ui/Button.astro';
 import AnimatedSection from '../../core/acore-astro/src/components/AnimatedSection.astro';
 import AndroidDownloadModal from './AndroidDownloadModal.astro';
+import AndroidIcon from '../../shared/components/icons/AndroidIcon.astro';
+import WindowsIcon from '../../shared/components/icons/WindowsIcon.astro';
+import LinuxIcon from '../../shared/components/icons/LinuxIcon.astro';
 
 interface Props {
   t: (key: string, params?: Record<string, any>) => string;
@@ -24,12 +27,15 @@ const GITHUB_RELEASES_URL = "https://github.com/ahmet-cetinkaya/whph/releases/la
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8" id="download-buttons">
           <Button href="#" variant="secondary" size="lg" id="android-btn">
+            <AndroidIcon class="w-5 h-5 mr-2" />
             {t('download.downloadFor', { platform: t('hero.platforms.android') })}
           </Button>
           <Button href={GITHUB_RELEASES_URL} variant="secondary" size="lg" id="windows-btn" target="_blank" rel="noopener noreferrer">
+            <WindowsIcon class="w-5 h-5 mr-2" />
             {t('download.downloadFor', { platform: t('hero.platforms.windows') })}
           </Button>
           <Button href={GITHUB_RELEASES_URL} variant="secondary" size="lg" id="linux-btn" target="_blank" rel="noopener noreferrer">
+            <LinuxIcon class="w-5 h-5 mr-2" />
             {t('download.downloadFor', { platform: t('hero.platforms.linux') })}
           </Button>
         </div>
