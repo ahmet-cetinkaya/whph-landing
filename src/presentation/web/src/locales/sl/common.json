@@ -1,0 +1,123 @@
+{
+  "site": {
+    "title": "WHPH - Work Hard Play Hard | Obvladajte Svojo Produktivnost",
+    "description": "Spremenite svojo produktivnost z inteligentnim upravljanjem nalog, sledenjem navad in optimizacijo časa. Brezplačna, odprtokodna in večplatformna aplikacija za produktivnost za Android, Windows in Linux.",
+    "keywords": "aplikacija za produktivnost, upravljanje nalog, sledilnik navad, sledenje časa, odprtokodna produktivnost, večplatformna, osredotočena na zasebnost, brezplačna orodja za produktivnost"
+  },
+  "navigation": {
+    "features": "Funkcije",
+    "download": "Prenesi",
+    "faq": "Pogosta vprašanja",
+    "github": "GitHub",
+    "toggleMenu": "Preklopi mobilni meni"
+  },
+  "hero": {
+    "title": "Work Hard, Play Hard",
+    "titleHighlight": "Obvladajte Svojo Produktivnost",
+    "subtitle": "Celovita aplikacija za produktivnost, ki vam pomaga upravljati naloge, graditi navade in optimizirati čas na vseh vaših napravah.",
+    "downloadFree": "Prenesi Brezplačno Zdaj",
+    "viewGithub": "Poglej na GitHub",
+    "availableOn": "Na voljo na:",
+    "platforms": {
+      "android": "Android",
+      "windows": "Windows",
+      "linux": "Linux"
+    },
+    "screenshotAlt": "Hero App Screenshot"
+  },
+  "features": {
+    "title": "Vse Kar Potrebujete Za Produktivnost",
+    "subtitle": "WHPH združuje močno upravljanje nalog, sledenje navad in analizo časa v eni celoviti, na zasebnost osredotočeni aplikaciji.",
+    "taskManagement": {
+      "title": "Pametno Upravljanje Nalog",
+      "description": "Organizirajte, določite prednostne naloge in sledite svojim nalogam z inteligentnim načrtovanjem in vizualizacijo napredka."
+    },
+    "habitTracking": {
+      "title": "Razvoj Navad",
+      "description": "Gradite trajne navade s sledenjem napredka, vizualizacijo zaporedij in motivacijskimi vpogledi."
+    },
+    "timeAnalytics": {
+      "title": "Vpogledi v Čas",
+      "description": "Razumejte svoje vzorce produktivnosti z podrobno analizo uporabe aplikacij in porazdelitvijo časa."
+    },
+    "crossPlatform": {
+      "title": "Kjer Koli Delate",
+      "description": "Brezhibna izkušnja na Android, Windows in Linux z izbirno sinhronizacijo podatkov."
+    }
+  },
+  "screenshots": {
+    "title": "Poglejte WHPH v Akciji",
+    "subtitle": "Raziščite intuitivni vmesnik in močne funkcije, ki naredijo WHPH ultimativnega partnerja za produktivnost.",
+    "altText": "WHPH app screenshot {{number}}",
+    "description": "Posnetek zaslona {{number}} aplikacije WHPH",
+    "prevScreenshot": "Prejšnji posnetek zaslona",
+    "nextScreenshot": "Naslednji posnetek zaslona",
+    "goToScreenshot": "Pojdi na posnetek zaslona {{number}}"
+  },
+  "download": {
+    "title": "Začnite Danes",
+    "subtitle": "Prenesite WHPH brezplačno in začnite spreminjati svojo produktivnost. Na voljo na vseh glavnih platformah brez potrebnega računa.",
+    "downloadFor": "Prenesi za {{platform}}"
+  },
+  "faq": {
+    "title": "Pogosta Vprašanja",
+    "subtitle": "Pridobite odgovore na pogosta vprašanja o funkcijah WHPH, zasebnosti in skupnosti.",
+    "questions": {
+      "free": {
+        "question": "Je WHPH res brezplačen?",
+        "answer": "Da, WHPH je popolnoma brezplačen in odprtokoden. Ni premium nivojev, naročniških pristojbin ali skritih stroškov. Dostop imate do vseh funkcij brez omejitev."
+      },
+      "platforms": {
+        "question": "Katere platforme so podprte?",
+        "answer": "WHPH je na voljo na Android, Windows in Linux. Lahko ga prenesete iz naših GitHub izdaj, F-Droid (za Android), ali kompajlirate iz izvorne kode."
+      },
+      "privacy": {
+        "question": "Kako so zaščiteni moji podatki?",
+        "answer": "Vaša zasebnost je naša glavna prednostna naloga. WHPH privzeto shranjuje vse podatke lokalno na vaši napravi. Ne zbiramo, sledimo ali shranjujemo osebnih informacij na zunanjih strežnikih."
+      },
+      "contribute": {
+        "question": "Kako lahko dobim pomoč ali prispevam?",
+        "answer": "Pridružite se našim GitHub Discussions za podporo skupnosti, zahteve za funkcije in splošna vprašanja. Če ste razvijalec, lahko prispevate kodo, poročate o napakah ali pomagate s prevodi."
+      },
+      "sync": {
+        "question": "Kako sinhroniziram podatke med napravami?",
+        "answer": "WHPH ponuja izbirno sinhronizacijo podatkov med vašimi namiznimi in mobilnimi napravami preko lokalnega omrežja. Vsa sinhronizacija se dogaja lokalno in zagotavlja, da vaši podatki o produktivnosti ostanejo popolnoma zasebni."
+      },
+      "offline": {
+        "question": "Ali WHPH deluje brez povezave?",
+        "answer": "Absolutno! WHPH je zasnovan za popolno delovanje brez povezave. Vse vaše naloge, navade in analitika so shranjene lokalno na napravi. Lahko uporabljate vsako funkcijo brez internetne povezave."
+      },
+      "backup": {
+        "question": "Ali lahko varnostno kopiram in obnovim svoje podatke?",
+        "answer": "Da, WHPH zagotavlja celovito podporo za varnostno kopiranje in obnovitev. Lahko enostavno varnostno kopirate vse svoje naloge, navade in podatke o napredku ter jih obnovite, ko je potrebno."
+      },
+      "workHardPlayHard": {
+        "question": "Kaj pomeni geslo \"Work Hard Play Hard\"?",
+        "answer": "\"Work Hard Play Hard\" (Slovenščina: \"Trdo Delaj, Trdo se Zabavaj\") izraža ne le življenjski slog, ampak svetovni nazor. To geslo je filozofija, ki predlaga posameznikom, da v svojem življenju uravnotežijo visoko odgovornost z visoko življenjsko zadovoljstvom. Pomeni 'Daj vse od sebe, ko delaš, a živi življenje v polnosti, ko ne delaš.' Ta filozofija trdi, da bi moralo biti delo za samouresničevanje, ne le za preživetje, in da zabava ni lenoba, ampak naravna nagrada za trud. Kot WHPH to odraža naš cilj, da vam pomagamo biti bolj produktivni pri delu in zavestno slaviti vaše dosežke. Ključna točka: zavestno živite oba področja. Živeti bi morali toliko, kolikor delate, vendar življenje ne bi smelo biti le nagrada za delo. Zdaj, ko smo se z novim razumevanjem naučili, kaj to geslo pomeni, se lahko zabavate ob [pesmi Wiz Khalifa](https://youtu.be/TWHNr0BrNgo)."
+      }
+    }
+  },
+  "donate": {
+    "title": "Podprite Razvoj WHPH",
+    "description": "Pomagajte nam nadaljevati z razvojem te brezplačne in odprtokodne aplikacije za produktivnost, ki spoštuje vašo zasebnost in vam daje nadzor nad podatki.",
+    "supportMessage": "Vaša podpora nam omogoča, da ohranimo WHPH brezplačen za vse, medtem ko nenehno izboljšujemo funkcije in vzdržujemo visoke standarde.",
+    "button": "Podpri Razvoj"
+  },
+  "about": {
+    "title": "Odprtokodnost in Zasebnost Najprej",
+    "description": "WHPH je popolnoma odprtokoden in zasnovan z mislijo na zasebnost. Vaši podatki ostanejo na vaši napravi, razen če se odločite za sinhronizacijo.",
+    "viewSource": "Poglej Izvorno Kodo",
+    "joinCommunity": "Pridruži se Skupnosti"
+  },
+  "footer": {
+    "links": {
+      "github": "GitHub",
+      "community": "Skupnost",
+      "license": "Licenca"
+    },
+    "copyright": "© {{year}} WHPH - Work Hard Play Hard"
+  },
+  "common": {
+    "close": "Zapri"
+  }
+}

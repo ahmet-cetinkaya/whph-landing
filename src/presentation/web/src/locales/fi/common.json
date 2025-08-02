@@ -1,0 +1,123 @@
+{
+  "site": {
+    "title": "WHPH - Work Hard Play Hard | Hallitse Tuottavuutesi",
+    "description": "Muuta tuottavuutesi älykkäällä tehtävien hallinnalla, tapojen seurannalla ja ajan optimoinnilla. Ilmainen, avoimen lähdekoodin ja cross-platform tuottavuussovellus Androidille, Windowsille ja Linuxille.",
+    "keywords": "tuottavuussovellus, tehtävien hallinta, tapaseuranta, ajanseuranta, avoimen lähdekoodin tuottavuus, cross platform, yksityisyyteen keskittyvä, ilmaiset tuottavuustyökalut"
+  },
+  "navigation": {
+    "features": "Ominaisuudet",
+    "download": "Lataa",
+    "faq": "UKK",
+    "github": "GitHub",
+    "toggleMenu": "Vaihda mobiilivalikko"
+  },
+  "hero": {
+    "title": "Work Hard, Play Hard",
+    "titleHighlight": "Hallitse Tuottavuutesi",
+    "subtitle": "Kattava tuottavuussovellus, joka auttaa sinua hallitsemaan tehtäviä, rakentamaan tapoja ja optimoimaan aikaasi kaikissa laitteissasi.",
+    "downloadFree": "Lataa Ilmaiseksi Nyt",
+    "viewGithub": "Katso GitHubissa",
+    "availableOn": "Saatavilla:",
+    "platforms": {
+      "android": "Android",
+      "windows": "Windows",
+      "linux": "Linux"
+    },
+    "screenshotAlt": "Hero App Screenshot"
+  },
+  "features": {
+    "title": "Kaikki Mitä Tarvitset Tuottavuuteen",
+    "subtitle": "WHPH yhdistää tehokkaan tehtävien hallinnan, tapojen seurannan ja ajan analytiikan yhteen kattavaan, yksityisyyteen keskittyvään sovellukseen.",
+    "taskManagement": {
+      "title": "Älykäs Tehtävien Hallinta",
+      "description": "Järjestä, priorisoi ja seuraa tehtäviäsi älykkäällä aikataulutuksella ja edistymisen visualisoinnilla."
+    },
+    "habitTracking": {
+      "title": "Tapojen Kehittäminen",
+      "description": "Rakenna kestäviä tapoja edistymisen seurannalla, putken visualisoinnilla ja motivoivilla oivalluksilla."
+    },
+    "timeAnalytics": {
+      "title": "Ajan Oivallukset",
+      "description": "Ymmärrä tuottavuuskuviosi yksityiskohtaisilla sovelluksen käyttöanalytiikalla ja ajan jakautumisella."
+    },
+    "crossPlatform": {
+      "title": "Kaikkialla Missä Työskentelet",
+      "description": "Saumaton kokemus Androidissa, Windowsissa ja Linuxissa valinnaisella tietojen synkronoinnilla."
+    }
+  },
+  "screenshots": {
+    "title": "Katso WHPH Toiminnassa",
+    "subtitle": "Tutustu intuitiiviseen käyttöliittymään ja tehokkaasiin ominaisuuksiin, jotka tekevät WHPH:sta lopullisen tuottavuuskumppanin.",
+    "altText": "WHPH app screenshot {{number}}",
+    "description": "Screenshot {{number}} WHPH-sovelluksesta",
+    "prevScreenshot": "Edellinen screenshot",
+    "nextScreenshot": "Seuraava screenshot",
+    "goToScreenshot": "Siirry screenshotiin {{number}}"
+  },
+  "download": {
+    "title": "Aloita Tänään",
+    "subtitle": "Lataa WHPH ilmaiseksi ja aloita tuottavuutesi muuttaminen. Saatavilla kaikilla suurilla alustoilla ilman tiliä.",
+    "downloadFor": "Lataa {{platform}}lle"
+  },
+  "faq": {
+    "title": "Usein Kysytyt Kysymykset",
+    "subtitle": "Saa vastauksia yleisiin kysymyksiin WHPH:n ominaisuuksista, yksityisyydestä ja yhteisöstä.",
+    "questions": {
+      "free": {
+        "question": "Onko WHPH todella ilmainen?",
+        "answer": "Kyllä, WHPH on täysin ilmainen ja avoimen lähdekoodin. Ei ole premium-tasoja, tilausmaksuja tai piilotettuja kustannuksia. Saat pääsyn kaikkiin ominaisuuksiin ilman rajoituksia."
+      },
+      "platforms": {
+        "question": "Mitä alustoja tuetaan?",
+        "answer": "WHPH on saatavilla Androidille, Windowsille ja Linuxille. Voit ladata sen GitHub-julkaisuistamme, F-Droidista (Androidille) tai kääntää lähdekoodista."
+      },
+      "privacy": {
+        "question": "Miten tietoni suojataan?",
+        "answer": "Yksityisyytesi on tärkein prioriteettimme. WHPH tallentaa kaikki tiedot paikallisesti laitteellesi oletuksena. Emme kerää, seuraa tai tallenna henkilökohtaisia tietoja ulkoisille palvelimille."
+      },
+      "contribute": {
+        "question": "Miten voin saada apua tai osallistua?",
+        "answer": "Liity GitHub Discussions -keskusteluihimme yhteisötukea, ominaisuuspyyntöjä ja yleisiä kysymyksiä varten. Jos olet kehittäjä, voit osallistua koodilla, ilmoittaa virheistä tai auttaa käännöksissä."
+      },
+      "sync": {
+        "question": "Miten synkronoin tietoja laitteiden välillä?",
+        "answer": "WHPH tarjoaa valinnaisen tietojen synkronoinnin työpöytä- ja mobiililaitteidesi välillä paikallisen verkkosi kautta. Kaikki synkronointi tapahtuu paikallisesti ja varmistaa, että tuottavuustietosi pysyvät täysin yksityisinä."
+      },
+      "offline": {
+        "question": "Toimiiko WHPH offline-tilassa?",
+        "answer": "Ehdottomasti! WHPH on suunniteltu toimimaan täysin offline-tilassa. Kaikki tehtäväsi, tapasi ja analytiikkasi tallennetaan paikallisesti laitteellesi. Voit käyttää jokaista ominaisuutta ilman internetyhteyttä."
+      },
+      "backup": {
+        "question": "Voinko varmuuskopioida ja palauttaa tietoni?",
+        "answer": "Kyllä, WHPH tarjoaa kattavan varmuuskopioinnin ja palautuksen tuen. Voit helposti varmuuskopioida kaikki tehtäväsi, tapasi ja edistymistietosi ja palauttaa ne tarvittaessa."
+      },
+      "workHardPlayHard": {
+        "question": "Mitä \"Work Hard Play Hard\" -ilmaisu tarkoittaa?",
+        "answer": "\"Work Hard Play Hard\" (Suomeksi: \"Työskentele Kovaa, Leiki Kovaa\") ilmaisee ei vain elämäntapaa, vaan maailmankatsomusta. Tämä ilmaisu on filosofia, joka ehdottaa yksilöille korkeaa vastuuta ja korkeaa elämäntyytyväisyyttä tasapainottamaan elämässään. Se tarkoittaa 'Anna kaikki kun työskentelet, mutta elä elämää täysillä kun et työskentele.' Tämä filosofia väittää, että työn tulisi palvella itsensä toteuttamista, ei vain selviytymistä, ja että hauskanpito ei ole laiskuutta vaan ponnistelun luonnollinen palkinto. WHPH:na se heijastaa tavoitettamme auttaa sinua olemaan tuottavampi työssä ja juhlimaan tietoisesti saavutuksiasi. Avainpiste: elä molempia alueita tietoisesti. Sinun tulisi elää yhtä paljon kuin työskentelet, mutta elämisen ei tulisi olla vain työn palkinto. Nyt kun olet oppinut mitä tämä ilmaisu tarkoittaa uudella ymmärryksellä, voit nauttia [Wiz Khalifan kappaleesta](https://youtu.be/TWHNr0BrNgo)."
+      }
+    }
+  },
+  "donate": {
+    "title": "Tue WHPH:n Kehitystä",
+    "description": "Auta meitä jatkamaan tämän ilmaisen ja avoimen lähdekoodin tuottavuussovelluksen kehittämistä, joka kunnioittaa yksityisyyttäsi ja antaa sinulle hallinnan tiedoistasi.",
+    "supportMessage": "Tukesi mahdollistaa WHPH:n pitämisen ilmaisena kaikille samalla kun parannamme jatkuvasti sen ominaisuuksia ja ylläpidämme korkeita standardeja.",
+    "button": "Tue Kehitystä"
+  },
+  "about": {
+    "title": "Avoimen Lähdekoodin & Yksityisyys-Ensisijaisesti",
+    "description": "WHPH on täysin avoimen lähdekoodin ja suunniteltu yksityisyys mielessä. Tietosi pysyvät laitteellasi, ellet valitse synkronointia.",
+    "viewSource": "Katso Lähdekoodi",
+    "joinCommunity": "Liity Yhteisöön"
+  },
+  "footer": {
+    "links": {
+      "github": "GitHub",
+      "community": "Yhteisö",
+      "license": "Lisenssi"
+    },
+    "copyright": "© {{year}} WHPH - Work Hard Play Hard"
+  },
+  "common": {
+    "close": "Sulje"
+  }
+}

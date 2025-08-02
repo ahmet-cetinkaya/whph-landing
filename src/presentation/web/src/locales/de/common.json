@@ -9,8 +9,7 @@
     "download": "Herunterladen",
     "faq": "FAQ",
     "github": "GitHub",
-        "toggleMenu": "Mobiles Menü umschalten",
-    "skipToContent": "Zum Hauptinhalt springen"
+    "toggleMenu": "Mobiles Menü umschalten"
   },
   "hero": {
     "title": "Work Hard, Play Hard",
@@ -46,31 +45,10 @@
       "description": "Nahtlose Erfahrung auf Android, Windows und Linux mit optionaler Datensynchronisation."
     }
   },
-  "socialProof": {
-    "title": "Vertraut von Produktivitäts-Enthusiasten",
-    "subtitle": "Schließen Sie sich Tausenden von Benutzern an, die ihre Produktivität mit WHPHs umfassendem Ansatz für Aufgabenverwaltung und Gewohnheitsbildung transformiert haben.",
-    "community": {
-      "title": "Treten Sie unserer Open-Source-Community bei",
-      "subtitle": "Geben Sie uns einen Stern auf GitHub und tragen Sie zum Projekt bei"
-    }
-  },
   "download": {
     "title": "Heute Beginnen",
     "subtitle": "Laden Sie WHPH kostenlos herunter und beginnen Sie, Ihre Produktivität zu transformieren. Verfügbar auf allen wichtigen Plattformen ohne Kontoanforderung.",
-    "downloadFor": "Herunterladen für {{platform}}",
-    "alsoAvailable": "Auch verfügbar auf {{fdroid}} und {{github}}",
-    "fdroid": "F-Droid",
-    "githubReleases": "GitHub Releases"
-  },
-  "faq": {
-    "title": "Häufig Gestellte Fragen",
-    "subtitle": "Erhalten Sie Antworten auf häufige Fragen über WHPHs Features, Datenschutz und Community."
-  },
-  "about": {
-    "title": "Open Source & Datenschutz Zuerst",
-    "description": "WHPH ist vollständig Open Source und mit Blick auf den Datenschutz entwickelt. Ihre Daten bleiben auf Ihrem Gerät, es sei denn, Sie wählen sie zu synchronisieren. Treten Sie unserer Community auf GitHub Discussions für Support, Feature-Anfragen und Beiträge bei.",
-    "viewSource": "Quellcode Ansehen",
-    "joinCommunity": "Community Beitreten"
+    "downloadFor": "Herunterladen für {{platform}}"
   },
   "faq": {
     "title": "Häufig gestellte Fragen",
@@ -105,10 +83,16 @@
         "answer": "Ja, WHPH bietet umfassende Sicherungs- und Wiederherstellungsunterstützung. Sie können alle Ihre Aufgaben, Gewohnheiten und Fortschrittsdaten einfach sichern und bei Bedarf wiederherstellen. Zusätzlich können Sie Ihre Daten bei Bedarf in CSV- und JSON-Formaten exportieren. So können Sie Ihre Daten sicher aufbewahren und mit anderen Tools verwenden."
       },
       "workHardPlayHard": {
-        "question": "Was bedeutet das Motto \"Work Hard Play Hard\"?",
-        "answer": "\"Work Hard Play Hard\" (Deutsch: \"Hart arbeiten, hart spielen\") repräsentiert nicht nur einen Lebensstil, sondern eine Weltanschauung. Dieses Motto schlägt vor, hohe Verantwortung mit hoher Lebenszufriedenheit zu balancieren. Es bedeutet 'Gib alles bei der Arbeit, aber lebe das Leben in vollen Zügen, wenn du nicht arbeitest.' Diese Philosophie argumentiert, dass Arbeit der Selbstverwirklichung dienen sollte, nicht nur dem Überleben, und dass Spaß keine Faulheit ist, sondern die natürliche Belohnung für Anstrengung. Als WHPH helfen wir Ihnen dabei, produktiver bei der Arbeit zu sein und Ihre Erfolge bewusst zu feiern. Der Schlüsselpunkt: Leben Sie beide Bereiche bewusst. Sie sollten so viel leben wie arbeiten, aber das Leben sollte nicht nur die Belohnung der Arbeit sein. Jetzt, da Sie mit neuem Verständnis gelernt haben, was dieses Motto bedeutet, können Sie [Wiz Khalifas Lied](https://youtu.be/TWHNr0BrNgo) genießen."
+        "question": "Was bedeutet der Ausspruch \"Work Hard Play Hard\"?",
+        "answer": "\"Work Hard Play Hard\" (Deutsch: \"Hart arbeiten, hart spielen\") drückt nicht nur einen Lebensstil aus, sondern eine Weltanschauung. Dieser Ausspruch ist eine Philosophie, die Individuen vorschlägt, hohe Verantwortung mit hoher Lebenszufriedenheit in ihrem Leben zu balancieren. Es bedeutet 'Gib alles wenn du arbeitest, aber lebe das Leben in vollen Zügen wenn du nicht arbeitest.' Diese Philosophie argumentiert, dass Arbeit der Selbstverwirklichung dienen sollte, nicht nur dem Überleben, und dass Spaß keine Faulheit ist, sondern die natürliche Belohnung für Anstrengung. Als WHPH spiegelt es unser Ziel wider, Ihnen zu helfen, produktiver bei der Arbeit zu sein und Ihre Erfolge bewusst zu feiern. Der Schlüsselpunkt: Leben Sie beide Bereiche bewusst. Sie sollten so viel leben wie arbeiten, aber das Leben sollte nicht nur die Belohnung der Arbeit sein. Jetzt, da Sie mit neuem Verständnis gelernt haben, was dieser Ausspruch bedeutet, können Sie [Wiz Khalifas Lied](https://youtu.be/TWHNr0BrNgo) genießen."
       }
     }
+  },
+  "about": {
+    "title": "Open Source & Datenschutz Zuerst",
+    "description": "WHPH ist vollständig Open Source und mit Blick auf den Datenschutz entwickelt. Ihre Daten bleiben auf Ihrem Gerät, es sei denn, Sie wählen sie zu synchronisieren. Treten Sie unserer Community auf GitHub Discussions für Support, Feature-Anfragen und Beiträge bei.",
+    "viewSource": "Quellcode Ansehen",
+    "joinCommunity": "Community Beitreten"
   },
   "footer": {
     "links": {
@@ -119,11 +103,21 @@
     "copyright": "© {{year}} WHPH - Work Hard Play Hard"
   },
   "common": {
-    "loading": "Laden...",
-    "error": "Fehler",
-    "close": "Schließen",
-    "open": "Öffnen",
-    "yes": "Ja",
-    "no": "Nein"
+    "close": "Schließen"
+  },
+  "screenshots": {
+    "title": "See WHPH in Action",
+    "subtitle": "Explore the intuitive interface and powerful features that make WHPH the ultimate productivity companion.",
+    "altText": "WHPH app screenshot {{number}}",
+    "description": "Screenshot {{number}} of WHPH application",
+    "prevScreenshot": "Previous screenshot",
+    "nextScreenshot": "Next screenshot",
+    "goToScreenshot": "Go to screenshot {{number}}"
+  },
+  "donate": {
+    "title": "Support WHPH Development",
+    "description": "Help us continue developing this free and open-source productivity app that respects your privacy and puts you in control of your data.",
+    "supportMessage": "Your support enables us to keep WHPH free for everyone while continuously improving its features and maintaining its high standards.",
+    "button": "Support Development"
   }
 }

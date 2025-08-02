@@ -9,8 +9,7 @@
     "download": "Descargar",
     "faq": "FAQ",
     "github": "GitHub",
-        "toggleMenu": "Alternar menú móvil",
-    "skipToContent": "Saltar al contenido principal"
+    "toggleMenu": "Alternar menú móvil"
   },
   "hero": {
     "title": "Work Hard, Play Hard",
@@ -46,31 +45,10 @@
       "description": "Experiencia perfecta en Android, Windows y Linux con sincronización de datos opcional."
     }
   },
-  "socialProof": {
-    "title": "Confiado por Entusiastas de la Productividad",
-    "subtitle": "Únete a miles de usuarios que han transformado su productividad con el enfoque integral de WHPH para la gestión de tareas y desarrollo de hábitos.",
-    "community": {
-      "title": "Únete a nuestra comunidad de código abierto",
-      "subtitle": "Danos una estrella en GitHub y contribuye al proyecto"
-    }
-  },
   "download": {
     "title": "Comienza Hoy",
     "subtitle": "Descarga WHPH gratis y comienza a transformar tu productividad. Disponible en todas las plataformas principales sin necesidad de cuenta.",
-    "downloadFor": "Descargar para {{platform}}",
-    "alsoAvailable": "También disponible en {{fdroid}} y {{github}}",
-    "fdroid": "F-Droid",
-    "githubReleases": "Versiones de GitHub"
-  },
-  "faq": {
-    "title": "Preguntas Frecuentes",
-    "subtitle": "Obtén respuestas a preguntas comunes sobre las características, privacidad y comunidad de WHPH."
-  },
-  "about": {
-    "title": "Código Abierto y Privacidad Primero",
-    "description": "WHPH es completamente de código abierto y está diseñado con la privacidad en mente. Tus datos permanecen en tu dispositivo a menos que elijas sincronizarlos. Únete a nuestra comunidad en GitHub Discussions para soporte, solicitudes de características y contribuciones.",
-    "viewSource": "Ver Código Fuente",
-    "joinCommunity": "Unirse a la Comunidad"
+    "downloadFor": "Descargar para {{platform}}"
   },
   "faq": {
     "title": "Preguntas Frecuentes",
@@ -105,10 +83,16 @@
         "answer": "Sí, WHPH proporciona soporte integral de copia de seguridad y restauración. Puedes hacer copias de seguridad fácilmente de todas tus tareas, hábitos y datos de progreso, y restaurarlos cuando sea necesario. Además, puedes exportar tus datos en formatos CSV y JSON según sea necesario. De esta manera puedes mantener tus datos seguros y usarlos con otras herramientas."
       },
       "workHardPlayHard": {
-        "question": "¿Qué significa el lema \"Work Hard Play Hard\"?",
-        "answer": "\"Work Hard Play Hard\" (Español: \"Trabaja Duro, Juega Duro\") representa no solo un estilo de vida, sino una visión del mundo. Este lema sugiere equilibrar la alta responsabilidad con la alta satisfacción vital. Significa 'Da todo en el trabajo, pero vive la vida al máximo cuando no estés trabajando.' Esta filosofía argumenta que el trabajo debería ser para la autorrealización, no solo la supervivencia, y que la diversión no es pereza sino la recompensa natural del esfuerzo. Como WHPH, nuestro objetivo es ayudarte a ser más productivo en el trabajo y celebrar conscientemente tus logros. El punto clave: vive ambas áreas conscientemente. Deberías vivir tanto como trabajas, pero vivir no debería ser solo la recompensa del trabajo. Ahora que has aprendido lo que significa este lema con nueva comprensión, puedes disfrutar [la canción de Wiz Khalifa](https://youtu.be/TWHNr0BrNgo)."
+        "question": "¿Qué significa el dicho \"Work Hard Play Hard\"?",
+        "answer": "\"Work Hard Play Hard\" (Español: \"Trabaja Duro, Juega Duro\") expresa no solo un estilo de vida, sino una visión del mundo. Este dicho es una filosofía que sugiere a los individuos equilibrar la alta responsabilidad con la alta satisfacción vital en sus vidas. Significa 'Da todo cuando trabajas, pero vive la vida al máximo cuando no estés trabajando.' Esta filosofía argumenta que el trabajo debería ser para la autorrealización, no solo la supervivencia, y que la diversión no es pereza sino la recompensa natural del esfuerzo. Como WHPH, refleja nuestro objetivo de ayudarte a ser más productivo en el trabajo y celebrar conscientemente tus logros. El punto clave: vive ambas áreas conscientemente. Deberías vivir tanto como trabajas, pero vivir no debería ser solo la recompensa del trabajo. Ahora que has aprendido lo que significa este dicho con nueva comprensión, puedes disfrutar [la canción de Wiz Khalifa](https://youtu.be/TWHNr0BrNgo)."
       }
     }
+  },
+  "about": {
+    "title": "Código Abierto y Privacidad Primero",
+    "description": "WHPH es completamente de código abierto y está diseñado con la privacidad en mente. Tus datos permanecen en tu dispositivo a menos que elijas sincronizarlos. Únete a nuestra comunidad en GitHub Discussions para soporte, solicitudes de características y contribuciones.",
+    "viewSource": "Ver Código Fuente",
+    "joinCommunity": "Unirse a la Comunidad"
   },
   "footer": {
     "links": {
@@ -119,11 +103,21 @@
     "copyright": "© {{year}} WHPH - Work Hard Play Hard"
   },
   "common": {
-    "loading": "Cargando...",
-    "error": "Error",
-    "close": "Cerrar",
-    "open": "Abrir",
-    "yes": "Sí",
-    "no": "No"
+    "close": "Cerrar"
+  },
+  "screenshots": {
+    "title": "See WHPH in Action",
+    "subtitle": "Explore the intuitive interface and powerful features that make WHPH the ultimate productivity companion.",
+    "altText": "WHPH app screenshot {{number}}",
+    "description": "Screenshot {{number}} of WHPH application",
+    "prevScreenshot": "Previous screenshot",
+    "nextScreenshot": "Next screenshot",
+    "goToScreenshot": "Go to screenshot {{number}}"
+  },
+  "donate": {
+    "title": "Support WHPH Development",
+    "description": "Help us continue developing this free and open-source productivity app that respects your privacy and puts you in control of your data.",
+    "supportMessage": "Your support enables us to keep WHPH free for everyone while continuously improving its features and maintaining its high standards.",
+    "button": "Support Development"
   }
 }

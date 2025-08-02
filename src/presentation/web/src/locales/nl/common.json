@@ -1,0 +1,123 @@
+{
+  "site": {
+    "title": "WHPH - Work Hard Play Hard | Beheers Je Productiviteit",
+    "description": "Transformeer je productiviteit met intelligente taakbeheer, gewoontetracking en tijdoptimalisatie. Gratis, open-source en cross-platform productiviteitsapp voor Android, Windows en Linux.",
+    "keywords": "productiviteitsapp, taakbeheer, gewoontetracker, tijdtracking, open source productiviteit, cross platform, privacy-gericht, gratis productiviteitstools"
+  },
+  "navigation": {
+    "features": "Functies",
+    "download": "Download",
+    "faq": "Veelgestelde Vragen",
+    "github": "GitHub",
+    "toggleMenu": "Mobiel menu wisselen"
+  },
+  "hero": {
+    "title": "Work Hard, Play Hard",
+    "titleHighlight": "Beheers Je Productiviteit",
+    "subtitle": "De uitgebreide productiviteitsapp die je helpt taken te beheren, gewoontes op te bouwen en je tijd te optimaliseren op al je apparaten.",
+    "downloadFree": "Download Nu Gratis",
+    "viewGithub": "Bekijk op GitHub",
+    "availableOn": "Beschikbaar op:",
+    "platforms": {
+      "android": "Android",
+      "windows": "Windows",
+      "linux": "Linux"
+    },
+    "screenshotAlt": "Hero App Screenshot"
+  },
+  "features": {
+    "title": "Alles Wat Je Nodig Hebt Voor Productiviteit",
+    "subtitle": "WHPH combineert krachtig taakbeheer, gewoontetracking en tijdanalyse in één uitgebreide, privacy-gerichte applicatie.",
+    "taskManagement": {
+      "title": "Slim Taakbeheer",
+      "description": "Organiseer, prioriteer en volg je taken met intelligente planning en voortgangsvisualisatie."
+    },
+    "habitTracking": {
+      "title": "Gewoontesontwikkeling",
+      "description": "Bouw blijvende gewoontes met voortgangsvolging, streakvisualisatie en motiverende inzichten."
+    },
+    "timeAnalytics": {
+      "title": "Tijdinzichten",
+      "description": "Begrijp je productiviteitspatronen met gedetailleerde app-gebruiksanalyse en tijdverdeling."
+    },
+    "crossPlatform": {
+      "title": "Overal Waar Je Werkt",
+      "description": "Naadloze ervaring op Android, Windows en Linux met optionele datasynchronisatie."
+    }
+  },
+  "screenshots": {
+    "title": "Zie WHPH in Actie",
+    "subtitle": "Verken de intuïtieve interface en krachtige functies die WHPH de ultieme productiviteitspartner maken.",
+    "altText": "WHPH app screenshot {{number}}",
+    "description": "Screenshot {{number}} van WHPH applicatie",
+    "prevScreenshot": "Vorige screenshot",
+    "nextScreenshot": "Volgende screenshot",
+    "goToScreenshot": "Ga naar screenshot {{number}}"
+  },
+  "download": {
+    "title": "Begin Vandaag",
+    "subtitle": "Download WHPH gratis en begin je productiviteit te transformeren. Beschikbaar op alle grote platforms zonder account vereist.",
+    "downloadFor": "Download voor {{platform}}"
+  },
+  "faq": {
+    "title": "Veelgestelde Vragen",
+    "subtitle": "Krijg antwoorden op veelgestelde vragen over WHPH's functies, privacy en gemeenschap.",
+    "questions": {
+      "free": {
+        "question": "Is WHPH echt gratis?",
+        "answer": "Ja, WHPH is volledig gratis en open source. Er zijn geen premium lagen, abonnementskosten of verborgen kosten. Je krijgt toegang tot alle functies zonder beperkingen."
+      },
+      "platforms": {
+        "question": "Welke platforms worden ondersteund?",
+        "answer": "WHPH is beschikbaar op Android, Windows en Linux. Je kunt het downloaden van onze GitHub releases, F-Droid (voor Android), of compileren vanuit de broncode."
+      },
+      "privacy": {
+        "question": "Hoe wordt mijn data beschermd?",
+        "answer": "Je privacy is onze topprioriteit. WHPH slaat standaard alle data lokaal op je apparaat op. We verzamelen, volgen of slaan geen persoonlijke informatie op externe servers op."
+      },
+      "contribute": {
+        "question": "Hoe kan ik hulp krijgen of bijdragen?",
+        "answer": "Doe mee aan onze GitHub Discussions voor gemeenschapsondersteuning, functieverzoeken en algemene vragen. Als je een ontwikkelaar bent, kun je code bijdragen, bugs rapporteren of helpen met vertalingen."
+      },
+      "sync": {
+        "question": "Hoe synchroniseer ik data tussen apparaten?",
+        "answer": "WHPH biedt optionele datasynchronisatie tussen je desktop en mobiele apparaten via je lokale netwerk. Alle synchronisatie gebeurt lokaal en zorgt ervoor dat je productiviteitsdata volledig privé blijft."
+      },
+      "offline": {
+        "question": "Werkt WHPH offline?",
+        "answer": "Absoluut! WHPH is ontworpen om volledig offline te werken. Al je taken, gewoontes en analyses worden lokaal op je apparaat opgeslagen. Je kunt elke functie gebruiken zonder internetverbinding."
+      },
+      "backup": {
+        "question": "Kan ik mijn data back-uppen en herstellen?",
+        "answer": "Ja, WHPH biedt uitgebreide back-up en herstelondersteuning. Je kunt eenvoudig al je taken, gewoontes en voortgangsdata back-uppen en herstellen wanneer nodig."
+      },
+      "workHardPlayHard": {
+        "question": "Wat betekent de uitdrukking \"Work Hard Play Hard\"?",
+        "answer": "\"Work Hard Play Hard\" (Nederlands: \"Werk Hard, Speel Hard\") drukt niet alleen een levensstijl uit, maar een wereldbeeld. Deze uitdrukking is een filosofie die individuen voorstelt om hoge verantwoordelijkheid te balanceren met hoge levensvoldoening in hun leven. Het betekent 'Geef alles wanneer je werkt, maar leef het leven ten volle wanneer je niet werkt.' Deze filosofie stelt dat werk zou moeten dienen voor zelfverwezenlijking, niet alleen voor overleving, en dat plezier geen luiheid is maar de natuurlijke beloning van inspanning. Als WHPH weerspiegelt het ons doel om je te helpen productiever te zijn op het werk en bewust je prestaties te vieren. Het belangrijkste punt: leef beide gebieden bewust. Je zou evenveel moeten leven als je werkt, maar leven zou niet alleen de beloning van werken moeten zijn. Nu je hebt geleerd wat deze uitdrukking betekent met nieuw begrip, kun je genieten van [Wiz Khalifa's lied](https://youtu.be/TWHNr0BrNgo)."
+      }
+    }
+  },
+  "donate": {
+    "title": "Ondersteun WHPH Ontwikkeling",
+    "description": "Help ons deze gratis en open-source productiviteitsapp die je privacy respecteert en je controle over je data geeft, te blijven ontwikkelen.",
+    "supportMessage": "Je ondersteuning stelt ons in staat WHPH gratis te houden voor iedereen terwijl we de functies voortdurend verbeteren en hoge standaarden handhaven.",
+    "button": "Ondersteun Ontwikkeling"
+  },
+  "about": {
+    "title": "Open Source & Privacy-Eerst",
+    "description": "WHPH is volledig open source en ontworpen met privacy in gedachten. Je data blijft op je apparaat tenzij je ervoor kiest om te synchroniseren.",
+    "viewSource": "Bekijk Broncode",
+    "joinCommunity": "Doe Mee aan Gemeenschap"
+  },
+  "footer": {
+    "links": {
+      "github": "GitHub",
+      "community": "Gemeenschap",
+      "license": "Licentie"
+    },
+    "copyright": "© {{year}} WHPH - Work Hard Play Hard"
+  },
+  "common": {
+    "close": "Sluiten"
+  }
+}

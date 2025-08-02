@@ -1,0 +1,123 @@
+{
+  "site": {
+    "title": "WHPH - Work Hard Play Hard | Domine Sua Produtividade",
+    "description": "Transforme sua produtividade com gerenciamento inteligente de tarefas, rastreamento de hábitos e otimização de tempo. App de produtividade gratuito, open source e multiplataforma para Android, Windows e Linux.",
+    "keywords": "app de produtividade, gerenciamento de tarefas, rastreador de hábitos, rastreamento de tempo, produtividade open source, multiplataforma, focado em privacidade, ferramentas de produtividade gratuitas"
+  },
+  "navigation": {
+    "features": "Recursos",
+    "download": "Download",
+    "faq": "FAQ",
+    "github": "GitHub",
+    "toggleMenu": "Alternar menu móvel"
+  },
+  "hero": {
+    "title": "Work Hard, Play Hard",
+    "titleHighlight": "Domine Sua Produtividade",
+    "subtitle": "O app de produtividade abrangente que ajuda você a gerenciar tarefas, construir hábitos e otimizar seu tempo em todos os seus dispositivos.",
+    "downloadFree": "Baixe Grátis Agora",
+    "viewGithub": "Ver no GitHub",
+    "availableOn": "Disponível em:",
+    "platforms": {
+      "android": "Android",
+      "windows": "Windows",
+      "linux": "Linux"
+    },
+    "screenshotAlt": "Hero App Screenshot"
+  },
+  "features": {
+    "title": "Tudo Que Você Precisa Para Produtividade",
+    "subtitle": "WHPH combina gerenciamento poderoso de tarefas, rastreamento de hábitos e análise de tempo em uma aplicação abrangente e focada em privacidade.",
+    "taskManagement": {
+      "title": "Gerenciamento Inteligente de Tarefas",
+      "description": "Organize, priorize e acompanhe suas tarefas com agendamento inteligente e visualização de progresso."
+    },
+    "habitTracking": {
+      "title": "Desenvolvimento de Hábitos",
+      "description": "Construa hábitos duradouros com rastreamento de progresso, visualização de sequências e insights motivacionais."
+    },
+    "timeAnalytics": {
+      "title": "Insights de Tempo",
+      "description": "Entenda seus padrões de produtividade com análise detalhada de uso de app e distribuição de tempo."
+    },
+    "crossPlatform": {
+      "title": "Em Qualquer Lugar Que Você Trabalhe",
+      "description": "Experiência perfeita no Android, Windows e Linux com sincronização opcional de dados."
+    }
+  },
+  "screenshots": {
+    "title": "Veja WHPH em Ação",
+    "subtitle": "Explore a interface intuitiva e recursos poderosos que fazem do WHPH o companheiro definitivo de produtividade.",
+    "altText": "WHPH app screenshot {{number}}",
+    "description": "Screenshot {{number}} da aplicação WHPH",
+    "prevScreenshot": "Screenshot anterior",
+    "nextScreenshot": "Próximo screenshot",
+    "goToScreenshot": "Ir para screenshot {{number}}"
+  },
+  "download": {
+    "title": "Comece Hoje",
+    "subtitle": "Baixe WHPH gratuitamente e comece a transformar sua produtividade. Disponível em todas as principais plataformas sem necessidade de conta.",
+    "downloadFor": "Baixar para {{platform}}"
+  },
+  "faq": {
+    "title": "Perguntas Frequentes",
+    "subtitle": "Obtenha respostas para perguntas comuns sobre recursos, privacidade e comunidade do WHPH.",
+    "questions": {
+      "free": {
+        "question": "WHPH é realmente gratuito?",
+        "answer": "Sim, WHPH é completamente gratuito e open source. Não há níveis premium, taxas de assinatura ou custos ocultos. Você tem acesso a todos os recursos sem limitações."
+      },
+      "platforms": {
+        "question": "Quais plataformas são suportadas?",
+        "answer": "WHPH está disponível no Android, Windows e Linux. Você pode baixá-lo de nossos lançamentos no GitHub, F-Droid (para Android), ou compilar do código fonte."
+      },
+      "privacy": {
+        "question": "Como meus dados são protegidos?",
+        "answer": "Sua privacidade é nossa prioridade máxima. WHPH armazena todos os dados localmente em seu dispositivo por padrão. Não coletamos, rastreamos ou armazenamos informações pessoais em servidores externos."
+      },
+      "contribute": {
+        "question": "Como posso obter ajuda ou contribuir?",
+        "answer": "Participe de nossas GitHub Discussions para suporte da comunidade, solicitações de recursos e perguntas gerais. Se você é desenvolvedor, pode contribuir com código, relatar bugs ou ajudar com traduções."
+      },
+      "sync": {
+        "question": "Como sincronizo dados entre dispositivos?",
+        "answer": "WHPH oferece sincronização opcional de dados entre seus dispositivos desktop e móveis através de sua rede local. Toda sincronização acontece localmente e garante que seus dados de produtividade permaneçam completamente privados."
+      },
+      "offline": {
+        "question": "WHPH funciona offline?",
+        "answer": "Absolutamente! WHPH é projetado para funcionar completamente offline. Todas suas tarefas, hábitos e análises são armazenadas localmente em seu dispositivo. Você pode usar todos os recursos sem conexão com a internet."
+      },
+      "backup": {
+        "question": "Posso fazer backup e restaurar meus dados?",
+        "answer": "Sim, WHPH fornece suporte abrangente de backup e restauração. Você pode facilmente fazer backup de todas suas tarefas, hábitos e dados de progresso e restaurá-los quando necessário."
+      },
+      "workHardPlayHard": {
+        "question": "O que significa o lema \"Work Hard Play Hard\"?",
+        "answer": "\"Work Hard Play Hard\" (Português: \"Trabalhe Duro, Brinque Duro\") expressa não apenas um estilo de vida, mas uma visão de mundo. Este lema é uma filosofia que sugere aos indivíduos equilibrar alta responsabilidade com alta satisfação de vida em suas vidas. Significa 'Dê tudo de si quando estiver trabalhando, mas viva a vida ao máximo quando não estiver trabalhando.' Esta filosofia argumenta que o trabalho deve ser para autorrealização, não apenas sobrevivência, e que diversão não é preguiça, mas a recompensa natural do esforço. Como WHPH, isto reflete nosso objetivo de ajudá-lo a ser mais produtivo no trabalho e celebrar conscientemente suas conquistas. O ponto chave: viva ambas as áreas conscientemente. Você deve viver tanto quanto trabalha, mas viver não deve ser apenas a recompensa do trabalho. Agora que aprendemos o que este lema significa com nova compreensão, você pode desfrutar [da música do Wiz Khalifa](https://youtu.be/TWHNr0BrNgo)."
+      }
+    }
+  },
+  "donate": {
+    "title": "Apoie o Desenvolvimento do WHPH",
+    "description": "Ajude-nos a continuar desenvolvendo este app de produtividade gratuito e open source que respeita sua privacidade e lhe dá controle sobre seus dados.",
+    "supportMessage": "Seu apoio nos permite manter WHPH gratuito para todos enquanto continuamente melhoramos seus recursos e mantemos altos padrões.",
+    "button": "Apoiar Desenvolvimento"
+  },
+  "about": {
+    "title": "Open Source & Privacidade em Primeiro Lugar",
+    "description": "WHPH é completamente open source e projetado com privacidade em mente. Seus dados permanecem em seu dispositivo a menos que você escolha sincronizá-los.",
+    "viewSource": "Ver Código Fonte",
+    "joinCommunity": "Junte-se à Comunidade"
+  },
+  "footer": {
+    "links": {
+      "github": "GitHub",
+      "community": "Comunidade",
+      "license": "Licença"
+    },
+    "copyright": "© {{year}} WHPH - Work Hard Play Hard"
+  },
+  "common": {
+    "close": "Fechar"
+  }
+}

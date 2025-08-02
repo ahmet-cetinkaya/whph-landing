@@ -7,259 +7,117 @@
   "navigation": {
     "features": "機能",
     "download": "ダウンロード",
-    "faq": "FAQ",
+    "faq": "よくある質問",
     "github": "GitHub",
-        "toggleMenu": "モバイルメニュー",
-    "skipToContent": "メインコンテンツへスキップ"
+    "toggleMenu": "モバイルメニューを切り替え"
   },
   "hero": {
     "title": "Work Hard, Play Hard",
     "titleHighlight": "生産性をマスターしよう",
-    "subtitle": "すべてのデバイスでタスク管理、習慣構築、時間最適化を支援する包括的な生産性アプリ。",
+    "subtitle": "すべてのデバイスでタスクを管理し、習慣を構築し、時間を最適化するのに役立つ包括的な生産性アプリ。",
     "downloadFree": "今すぐ無料ダウンロード",
     "viewGithub": "GitHubで見る",
     "availableOn": "利用可能:",
     "platforms": {
       "android": "Android",
-      "windows": "Windows", 
+      "windows": "Windows",
       "linux": "Linux"
     },
     "screenshotAlt": "ヒーローアプリスクリーンショット"
   },
   "features": {
     "title": "生産性に必要なすべて",
-    "subtitle": "WHPHは強力なタスク管理、習慣追跡、時間分析を一つの包括的でプライバシー重視のアプリケーションに統合します。",
+    "subtitle": "WHPHは強力なタスク管理、習慣追跡、時間分析を1つの包括的でプライバシー重視のアプリケーションに組み合わせます。",
     "taskManagement": {
       "title": "スマートタスク管理",
-      "description": "インテリジェントなスケジューリングと進捗可視化でタスクを整理、優先順位付け、追跡します。"
+      "description": "インテリジェントなスケジューリングと進捗の可視化でタスクを整理、優先順位付け、追跡します。"
     },
     "habitTracking": {
-      "title": "習慣開発", 
-      "description": "進捗追跡、連続記録可視化、動機づけ洞察で持続的な習慣を構築します。"
+      "title": "習慣の発達",
+      "description": "進捗追跡、ストリーク可視化、動機付けの洞察で持続的な習慣を構築し��す。"
     },
     "timeAnalytics": {
-      "title": "時間インサイト",
+      "title": "時間の洞察",
       "description": "詳細なアプリ使用分析と時間配分で生産性パターンを理解します。"
     },
     "crossPlatform": {
       "title": "どこでも作業",
-      "description": "Android、Windows、Linuxでオプションのデータ同期によるシームレスな体験。"
+      "description": "オプションのデータ同期でAndroid、Windows、Linuxでシームレスな体験。"
     }
   },
   "screenshots": {
-    "title": "WHPHの実際の動作を見る",
-    "subtitle": "WHPHを究極の生産性コンパニオンにする直感的なインターフェースと強力な機能を探索しましょう。",
-    "todayView": {
-      "title": "今日のビュー",
-      "description": "タスクと習慣の概要を含むメインダッシュボード"
-    },
-    "taskManagement": {
-      "title": "タスク管理", 
-      "description": "サブタスクとスケジューリングを含む詳細タスクビュー"
-    },
-    "habitTracking": {
-      "title": "習慣追跡",
-      "description": "連続記録可視化による習慣進捗"
-    },
-    "timeAnalytics": {
-      "title": "時間分析",
-      "description": "生産性パターンと時間配分"
-    },
+    "title": "WHPHの動作を見る",
+    "subtitle": "WHPHを究極の生産性パートナーにする直感的なインターフェースと強力な機能を探索してください。",
+    "altText": "WHPHアプリスクリーンショット {{number}}",
+    "description": "WHPHアプリケーションのスクリーンショット {{number}}",
     "prevScreenshot": "前のスクリーンショット",
     "nextScreenshot": "次のスクリーンショット",
-    "goToScreenshot": "スクリーンショット{{number}}へ移動"
-  },
-  "socialProof": {
-    "title": "生産性愛好家に信頼されています",
-    "subtitle": "WHPHの包括的なタスク管理と習慣構築アプローチで生産性を変革した何千人ものユーザーに参加しましょう。",
-    "stats": {
-      "githubStars": "GitHub スター",
-      "downloads": "ダウンロード", 
-      "activeUsers": "アクティブユーザー",
-      "contributors": "貢献者"
-    },
-    "community": {
-      "title": "オープンソースコミュニティに参加",
-      "subtitle": "GitHubでスターを付けてプロジェクトに貢献しましょう"
-    }
+    "goToScreenshot": "スクリーンショット {{number}} に移動"
   },
   "download": {
     "title": "今日から始めよう",
-    "subtitle": "WHPHを無料でダウンロードして生産性の変革を始めましょう。アカウント不要ですべての主要プラットフォームで利用可能です。",
-    "downloadFor": "{{platform}}版をダウンロード",
-    "alsoAvailable": "{{fdroid}}と{{github}}でも利用可能",
-    "fdroid": "F-Droid",
-    "githubReleases": "GitHubリリース"
+    "subtitle": "WHPHを無料でダウンロードして生産性の変革を始めましょう。アカウント不要ですべての主要プラットフォームで利用可能。",
+    "downloadFor": "{{platform}}用にダウンロード"
   },
   "faq": {
     "title": "よくある質問",
-    "subtitle": "WHPHの機能、プライバシー、コミュニティに関する一般的な質問への回答を得ましょう。",
+    "subtitle": "WHPHの機能、プライバシー、コミュニティに関する一般的な質問への回答を得る。",
     "questions": {
       "free": {
         "question": "WHPHは本当に無料ですか？",
-        "answer": "はい、WHPHは完全に無料でオープンソースです。プレミアムティア、サブスクリプション料金、潜在的なコストはありません。制限なしですべての機能にアクセスできます。アプリはコミュニティ貢献によって資金提供され、生産性ツールがすべての人にアクセス可能であるべきだと信じるボランティアによって開発されています。"
+        "answer": "はい、WHPHは完全に無料でオープンソースです。プレミアム層、サブスクリプション料金、隠れたコストはありません。制限なしですべての機能にアクセスできます。"
       },
       "platforms": {
         "question": "どのプラットフォームがサポートされていますか？",
-        "answer": "WHPHはAndroid、Windows、Linuxで利用できます。GitHubリリース、F-Droid（Android用）からダウンロードするか、ソースからコンパイルできます。iOSとmacOSサポートに取り組んでいますが、開発リソースの制約により、まだ利用できません。"
+        "answer": "WHPHはAndroid、Windows、Linuxで利用可能です。GitHubリリース、F-Droid（Android用）からダウンロードするか、ソースからコンパイルできます。"
       },
       "privacy": {
-        "question": "私のデータはどのように保護されていますか？",
-        "answer": "あなたのプライバシーが最優先です。WHPHはデフォルトですべてのデータをデバイスにローカルに保存します。外部サーバーで個人情報を収集、追跡、保存することはありません。有効にすることを選択した場合、独自のクラウドストレージプロバイダー（Google DriveやDropboxなど）を通じてオプションのクラウド同期が利用可能で、データを完全にコントロールできます。"
+        "question": "私のデータはどのように保護されますか？",
+        "answer": "あなたのプライバシーが最優先です。WHPHはデフォルトですべてのデータをデバイスにローカルに保存します。外部サーバーで個人情報を収集、追跡、保存することはありません。"
       },
       "contribute": {
         "question": "どのようにヘルプを得たり貢献したりできますか？",
-        "answer": "コミュニティサポート、機能リクエスト、一般的な質問についてはGitHub Discussionsに参加してください。開発者の場合、GitHubリポジトリでコード貢献、バグ報告、翻訳サポートができます。デザイナー、ドキュメンテーションライター、生産性ツールの改善に興味のある方も歓迎します。"
+        "answer": "コミュニティサポート、機能リクエスト、一般的な質問についてはGitHub Discussionsに参加してください。開発者の場合、コード貢献、バグ報告、翻訳支援ができます。"
       },
       "sync": {
         "question": "デバイス間でデータを同期するにはどうすればよいですか？",
-        "answer": "WHPHはデスクトップとモバイルデバイス間でローカルネットワーク経由でのオプションのデータ同期を提供します。クラウドサービスを使用せずに、デバイス間で直接タスク、習慣、進捗データを同期できます。すべての同期はローカルで行われ、生産性データが完全にプライベートで、ネットワークから外に出ることがないことを保証します。"
+        "answer": "WHPHはローカルネットワーク経由でデスクトップとモバイルデバイス間のオプションのデータ同期を提供します。すべての同期はローカルで行われ、生産性データが完全にプライベートであることを保証します。"
       },
       "offline": {
         "question": "WHPHはオフラインで動作しますか？",
-        "answer": "絶対に！WHPHは完全にオフラインで動作するように設計されています。すべてのタスク、習慣、分析はデバイスにローカルに保存されます。インターネット接続なしですべての機能を使用できます。ローカルネットワーク同期は明示的に有効にした場合のみ使用され、同じネットワーク上のデバイスでのみ動作します。"
+        "answer": "絶対に！WHPHは完全にオフラインで動作するように設計されています。すべてのタスク、習慣、分析はデバイスにローカルに保存されます。インターネット接続なしですべての機能を使用できます。"
       },
       "backup": {
-        "question": "データをバックアップ・復元できますか？",
-        "answer": "はい、WHPHは包括的なバックアップとリストア支援を提供します。すべてのタスク、習慣、進捗データを簡単にバックアップし、必要な時に復元できます。さらに、必要に応じてCSVとJSON形式でデータをエクスポートできます。これにより、データを安全に保ち、他のツールでも使用できます。"
+        "question": "データをバックアップして復元できますか？",
+        "answer": "はい、WHPHは包括的なバックアップと復元サポートを提供します。すべてのタスク、習慣、進捗データを簡単に���ックアップし、必要に応じて復元できます。"
       },
       "workHardPlayHard": {
-        "question": "\"Work Hard Play Hard\"のモットーの意味は何ですか？",
-        "answer": "\"Work Hard Play Hard\"（一生懸命働き、一生懸命遊ぶ）は単なるライフスタイルではなく、世界観を表しています。このモットーは高い責任と高い人生満足度のバランスを提案しています。それは『仕事では全力を尽くし、働いていない時は人生を最大限に生きる』ことを意味します。この哲学は、仕事は生存のためだけでなく自己実現のためであり、楽しみは怠惰ではなく努力の自然な報酬であると主張します。WHPHとして、私たちは仕事でより生産的になり、成果を意識的に祝うことを支援することを目指しています。重要なのは：両方の領域を意識的に生きることです。働くだけ生きるべきですが、生きることは働くことの報酬だけであってはいけません。今、この新しい理解でこのモットーの意味を学んだので、[Wiz Khalifaの歌](https://youtu.be/TWHNr0BrNgo)を楽しめます。"
+        "question": "「Work Hard Play Hard」の表現は何を意味しますか？",
+        "answer": "「Work Hard Play Hard」（日本語：「一生懸命働き、一生懸命遊ぶ」）は単なるライフスタイルではなく、世界観を表現しています。この表現は、個人が人生において高い責任と高い人生満足度のバランスを取ることを提案する哲学です。それは「働くときは全力を尽くし、働いていないときは人生を最大限に生きる」ことを意味します。この哲学は、仕事は生存のためだけでなく自己実現のためであり、楽しみは怠惰ではなく努力の自然な報酬であると主張しています。WHPHとして、これは仕事でより生産的になり、意識的に成果を祝うことを支援するという私たちの目標を反映しています。重要なポイント：両方の領域を意識的に生きることです。働くのと同じくらい生きるべきですが、生きることは働くことの報酬だけであってはいけません。この表現が何を意味するかを新しい理解で学んだので、[Wiz Khalifaの歌](https://youtu.be/TWHNr0BrNgo)を楽しむことができます。"
       }
     }
   },
+  "donate": {
+    "title": "WHPH開発をサポート",
+    "description": "あなたのプライバシーを尊重し、データの制御を提供するこの無料でオープンソースの生産性アプリの開発を続けるのを手伝ってください。",
+    "supportMessage": "あなたのサポートにより、機能を継続的に改善し、高い基準を維持しながら、WHPHをすべての人に無料で提供し続けることができます。",
+    "button": "開発をサポート"
+  },
   "about": {
-    "title": "オープンソース & プライバシー優先",
-    "description": "WHPHは完全にオープンソースでプライバシーを念頭に設計されています。同期を選択しない限り、データはデバイス上に留まります。サポート、機能リクエスト、貢献についてはGitHub Discussionsのコミュニティに参加してください。",
+    "title": "オープンソース＆プライバシーファースト",
+    "description": "WHPHは完全にオープンソースで、プライバシーを念頭に置いて設計されています。同期を選択しない限り、データはデバイスに残ります。",
     "viewSource": "ソースコードを見る",
     "joinCommunity": "コミュニティに参加"
   },
   "footer": {
     "links": {
       "github": "GitHub",
-      "community": "コミュニティ", 
+      "community": "コミュニティ",
       "license": "ライセンス"
     },
     "copyright": "© {{year}} WHPH - Work Hard Play Hard"
   },
   "common": {
-    "loading": "読み込み中...",
-    "error": "エラー",
-    "close": "閉じる",
-    "open": "開く",
-    "yes": "はい",
-    "no": "いいえ"
-  },
-  "docs": {
-    "title": "ドキュメンテーション",
-    "subtitle": "WHPHの包括的なガイドとリソース",
-    "navigation": {
-      "overview": "概要",
-      "gettingStarted": "はじめに",
-      "features": "機能",
-      "installation": "インストール",
-      "userGuide": "ユーザーガイド",
-      "api": "APIリファレンス",
-      "contributing": "貢献",
-      "changelog": "変更履歴",
-      "support": "サポート"
-    },
-    "overview": {
-      "title": "WHPHドキュメンテーション",
-      "description": "WHPH（Work Hard Play Hard）、究極の生産性コンパニオンの包括的なドキュメンテーションへようこそ。",
-      "quickStart": "クイックスタート",
-      "quickStartDesc": "数分でWHPHを起動・実行",
-      "userGuide": "ユーザーガイド",
-      "userGuideDesc": "WHPHの機能を最大限に活用する方法を学ぶ",
-      "apiReference": "APIリファレンス",
-      "apiReferenceDesc": "開発者向け技術ドキュメンテーション",
-      "community": "コミュニティ",
-      "communityDesc": "コミュニティに参加してサポートを得る"
-    },
-    "gettingStarted": {
-      "title": "はじめに",
-      "description": "デバイスにWHPHをインストール・セットアップする方法を学ぶ",
-      "systemRequirements": "システム要件",
-      "installation": "インストール",
-      "firstRun": "初回実行",
-      "basicSetup": "基本セットアップ"
-    },
-    "features": {
-      "title": "機能",
-      "description": "WHPHを生産性コンパニオンにするすべての強力な機能を探索",
-      "taskManagement": "タスク管理",
-      "habitTracking": "習慣追跡",
-      "timeAnalytics": "時間分析",
-      "dataSync": "データ同期",
-      "privacy": "プライバシーとセキュリティ"
-    },
-    "installation": {
-      "title": "インストールガイド",
-      "description": "異なるプラットフォームでWHPHをインストールするためのステップバイステップ指示",
-      "android": "Androidインストール",
-      "windows": "Windowsインストール",
-      "linux": "Linuxインストール",
-      "requirements": "システム要件",
-      "troubleshooting": "トラブルシューティング"
-    },
-    "userGuide": {
-      "title": "ユーザーガイド",
-      "description": "WHPHを効果的に使用するための完全ガイド",
-      "dashboard": "ダッシュボード概要",
-      "tasks": "タスク管理",
-      "habits": "習慣構築",
-      "analytics": "分析理解",
-      "settings": "設定と環境設定",
-      "sync": "データ同期",
-      "backup": "バックアップと復元"
-    },
-    "api": {
-      "title": "APIリファレンス",
-      "description": "開発者と統合のための技術ドキュメンテーション",
-      "authentication": "認証",
-      "endpoints": "APIエンドポイント",
-      "dataModels": "データモデル",
-      "examples": "コード例",
-      "sdks": "SDKとライブラリ"
-    },
-    "contributing": {
-      "title": "貢献",
-      "description": "WHPHプロジェクトに貢献する方法を学ぶ",
-      "codeContribution": "コード貢献",
-      "bugReports": "バグ報告",
-      "featureRequests": "機能リクエスト",
-      "translations": "翻訳",
-      "documentation": "ドキュメンテーション",
-      "community": "コミュニティガイドライン"
-    },
-    "changelog": {
-      "title": "変更履歴",
-      "description": "WHPHの最新アップデートと改善を追跡",
-      "latest": "最新バージョン",
-      "previous": "以前のバージョン",
-      "upcoming": "今後の機能"
-    },
-    "support": {
-      "title": "サポート",
-      "description": "WHPHのヘルプとサポートを得る",
-      "faq": "よくある質問",
-      "community": "コミュニティサポート",
-      "bugReport": "バグ報告",
-      "featureRequest": "機能リクエスト",
-      "contact": "お問い合わせ"
-    },
-    "common": {
-      "readMore": "もっと読む",
-      "backToTop": "トップに戻る",
-      "tableOfContents": "目次",
-      "lastUpdated": "最終更新",
-      "editPage": "このページを編集",
-      "previousPage": "前へ",
-      "nextPage": "次へ",
-      "searchDocs": "ドキュメンテーションを検索...",
-      "noResults": "結果が見つかりません",
-      "loading": "ドキュメンテーション読み込み中..."
-    }
+    "close": "閉じる"
   }
 }

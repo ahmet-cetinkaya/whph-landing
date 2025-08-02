@@ -1,0 +1,123 @@
+{
+  "site": {
+    "title": "WHPH - Work Hard Play Hard | Mester Din Produktivitet",
+    "description": "Transformer din produktivitet med intelligent opgavestyring, vanestyring og tidsoptimering. Gratis, open source og cross-platform produktivitetsapp til Android, Windows og Linux.",
+    "keywords": "produktivitetsapp, opgavestyring, vanetracker, tidsstyring, open source produktivitet, cross platform, privatlivsfokuseret, gratis produktivitetsværktøjer"
+  },
+  "navigation": {
+    "features": "Funktioner",
+    "download": "Download",
+    "faq": "FAQ",
+    "github": "GitHub",
+    "toggleMenu": "Skift mobilmenu"
+  },
+  "hero": {
+    "title": "Work Hard, Play Hard",
+    "titleHighlight": "Mester Din Produktivitet",
+    "subtitle": "Den omfattende produktivitetsapp, der hjælper dig med at administrere opgaver, opbygge vaner og optimere din tid på tværs af alle dine enheder.",
+    "downloadFree": "Download Gratis Nu",
+    "viewGithub": "Se på GitHub",
+    "availableOn": "Tilgængelig på:",
+    "platforms": {
+      "android": "Android",
+      "windows": "Windows",
+      "linux": "Linux"
+    },
+    "screenshotAlt": "Hero App Screenshot"
+  },
+  "features": {
+    "title": "Alt Du Har Brug For Til Produktivitet",
+    "subtitle": "WHPH kombinerer kraftfuld opgavestyring, vanestyring og tidsanalyse i én omfattende, privatlivsfokuseret applikation.",
+    "taskManagement": {
+      "title": "Smart Opgavestyring",
+      "description": "Organiser, prioriter og spor dine opgaver med intelligent planlægning og fremskridt visualisering."
+    },
+    "habitTracking": {
+      "title": "Vaneudvikling",
+      "description": "Byg varige vaner med fremskridtssporing, streak visualisering og motiverende indsigter."
+    },
+    "timeAnalytics": {
+      "title": "Tidsindsigter",
+      "description": "Forstå dine produktivitetsmønstre med detaljeret app-brugsanalyse og tidsfordeling."
+    },
+    "crossPlatform": {
+      "title": "Overalt Du Arbejder",
+      "description": "Sømløs oplevelse på tværs af Android, Windows og Linux med valgfri datasynkronisering."
+    }
+  },
+  "screenshots": {
+    "title": "Se WHPH i Aktion",
+    "subtitle": "Udforsk den intuitive grænseflade og kraftfulde funktioner, der gør WHPH til den ultimative produktivitetspartner.",
+    "altText": "WHPH app screenshot {{number}}",
+    "description": "Screenshot {{number}} af WHPH applikation",
+    "prevScreenshot": "Forrige screenshot",
+    "nextScreenshot": "Næste screenshot",
+    "goToScreenshot": "Gå til screenshot {{number}}"
+  },
+  "download": {
+    "title": "Kom I Gang I Dag",
+    "subtitle": "Download WHPH gratis og begynd at transformere din produktivitet. Tilgængelig på alle større platforme uden konto påkrævet.",
+    "downloadFor": "Download til {{platform}}"
+  },
+  "faq": {
+    "title": "Ofte Stillede Spørgsmål",
+    "subtitle": "Få svar på almindelige spørgsmål om WHPH's funktioner, privatliv og fællesskab.",
+    "questions": {
+      "free": {
+        "question": "Er WHPH virkelig gratis?",
+        "answer": "Ja, WHPH er helt gratis og open source. Der er ingen premium niveauer, abonnementsgebyrer eller skjulte omkostninger. Du får adgang til alle funktioner uden begrænsninger."
+      },
+      "platforms": {
+        "question": "Hvilke platforme understøttes?",
+        "answer": "WHPH er tilgængelig på Android, Windows og Linux. Du kan downloade det fra vores GitHub releases, F-Droid (til Android), eller kompilere fra kildekode."
+      },
+      "privacy": {
+        "question": "Hvordan beskyttes mine data?",
+        "answer": "Dit privatliv er vores topprioritet. WHPH gemmer alle data lokalt på din enhed som standard. Vi indsamler, sporer eller gemmer ikke personlige oplysninger på eksterne servere."
+      },
+      "contribute": {
+        "question": "Hvordan kan jeg få hjælp eller bidrage?",
+        "answer": "Deltag i vores GitHub Discussions for fællesskabsstøtte, funktionsanmodninger og generelle spørgsmål. Hvis du er udvikler, kan du bidrage med kode, rapportere fejl eller hjælpe med oversættelser."
+      },
+      "sync": {
+        "question": "Hvordan synkroniserer jeg data mellem enheder?",
+        "answer": "WHPH tilbyder valgfri datasynkronisering mellem dine desktop- og mobilenheder over dit lokale netværk. Al synkronisering sker lokalt og sikrer, at dine produktivitetsdata forbliver helt private."
+      },
+      "offline": {
+        "question": "Virker WHPH offline?",
+        "answer": "Absolut! WHPH er designet til at fungere helt offline. Alle dine opgaver, vaner og analyser gemmes lokalt på din enhed. Du kan bruge alle funktioner uden internetforbindelse."
+      },
+      "backup": {
+        "question": "Kan jeg sikkerhedskopiere og gendanne mine data?",
+        "answer": "Ja, WHPH giver omfattende backup og gendannelsessupport. Du kan nemt sikkerhedskopiere alle dine opgaver, vaner og fremskridtsdata og gendanne dem når det er nødvendigt."
+      },
+      "workHardPlayHard": {
+        "question": "Hvad betyder \"Work Hard Play Hard\" udsagnet?",
+        "answer": "\"Work Hard Play Hard\" (dansk: \"Arbejd Hårdt, Leg Hårdt\") udtrykker ikke bare en livsstil, men et verdenssyn. Dette udsagn er en filosofi, der foreslår individer at balancere højt ansvar med høj livstilfredshed i deres liv. Det betyder 'Giv alt når du arbejder, men lev livet fuldt ud når du ikke arbejder.' Denne filosofi argumenterer for, at arbejde skal være for selvrealisering, ikke bare overlevelse, og at sjov ikke er dovenskab, men den naturlige belønning for indsats. Som WHPH afspejler det vores mål om at hjælpe dig med at være mere produktiv på arbejdet og bevidst fejre dine præstationer. Nøglepunktet: lev begge områder bevidst. Du skal leve lige så meget som du arbejder, men at leve skal ikke bare være belønningen for at arbejde. Nu hvor du har lært hvad dette udsagn betyder med ny forståelse, kan du nyde [Wiz Khalifas sang](https://youtu.be/TWHNr0BrNgo)."
+      }
+    }
+  },
+  "donate": {
+    "title": "Støt WHPH Udvikling",
+    "description": "Hjælp os med at fortsætte udviklingen af denne gratis og open source produktivitetsapp, der respekterer dit privatliv og giver dig kontrol over dine data.",
+    "supportMessage": "Din støtte gør det muligt for os at holde WHPH gratis for alle, mens vi kontinuerligt forbedrer funktionerne og opretholder høje standarder.",
+    "button": "Støt Udvikling"
+  },
+  "about": {
+    "title": "Open Source & Privatliv-Først",
+    "description": "WHPH er helt open source og designet med privatliv i tankerne. Dine data forbliver på din enhed, medmindre du vælger at synkronisere dem.",
+    "viewSource": "Se Kildekode",
+    "joinCommunity": "Deltag i Fællesskab"
+  },
+  "footer": {
+    "links": {
+      "github": "GitHub",
+      "community": "Fællesskab",
+      "license": "Licens"
+    },
+    "copyright": "© {{year}} WHPH - Work Hard Play Hard"
+  },
+  "common": {
+    "close": "Luk"
+  }
+}

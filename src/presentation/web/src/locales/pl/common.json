@@ -1,139 +1,113 @@
 {
   "site": {
-    "title": "WHPH - Work Hard Play Hard | Opanuj swoją produktywność",
-    "description": "Zmień swoją produktywność dzięki inteligentnemu zarządzaniu zadaniami, śledzeniu nawyków i optymalizacji czasu. Darmowa, open-source’owa aplikacja produktywnościowa na Androida, Windows i Linux.",
-    "keywords": "aplikacja produktywnościowa, zarządzanie zadaniami, śledzenie nawyków, śledzenie czasu, open source, wieloplatformowa, prywatność, darmowe narzędzia produktywności"
+    "title": "WHPH - Work Hard Play Hard | Opanuj Swoją Produktywność",
+    "description": "Przekształć swoją produktywność dzięki inteligentnemu zarządzaniu zadaniami, śledzeniu nawyków i optymalizacji czasu. Darmowa, open source i wieloplatformowa aplikacja produktywności dla Android, Windows i Linux.",
+    "keywords": "aplikacja produktywności, zarządzanie zadaniami, tracker nawyków, śledzenie czasu, open source produktywność, wieloplatformowa, skoncentrowana na prywatności, darmowe narzędzia produktywności"
   },
   "navigation": {
     "features": "Funkcje",
     "download": "Pobierz",
     "faq": "FAQ",
     "github": "GitHub",
-        "toggleMenu": "Przełącz menu mobilne",
-    "skipToContent": "Przejdź do głównej treści"
+    "toggleMenu": "Przełącz menu mobilne"
   },
   "hero": {
     "title": "Work Hard, Play Hard",
-    "titleHighlight": "Opanuj swoją produktywność",
-    "subtitle": "Wszechstronna aplikacja produktywnościowa, która pomaga zarządzać zadaniami, budować nawyki i optymalizować czas na wszystkich urządzeniach.",
-    "downloadFree": "Pobierz za darmo",
-    "viewGithub": "Zobacz na GitHubie",
+    "titleHighlight": "Opanuj Swoją Produktywność",
+    "subtitle": "Kompleksowa aplikacja produktywności, która pomaga zarządzać zadaniami, budować nawyki i optymalizować czas na wszystkich urządzeniach.",
+    "downloadFree": "Pobierz Za Darmo Teraz",
+    "viewGithub": "Zobacz na GitHub",
     "availableOn": "Dostępne na:",
     "platforms": {
       "android": "Android",
       "windows": "Windows",
       "linux": "Linux"
     },
-    "screenshotAlt": "Zrzut ekranu aplikacji"
+    "screenshotAlt": "Hero App Screenshot"
   },
   "features": {
-    "title": "Wszystko, czego potrzebujesz do produktywności",
-    "subtitle": "WHPH łączy potężne zarządzanie zadaniami, śledzenie nawyków i analizę czasu w jednej kompleksowej, prywatnościowej aplikacji.",
+    "title": "Wszystko Czego Potrzebujesz Do Produktywności",
+    "subtitle": "WHPH łączy potężne zarządzanie zadaniami, śledzenie nawyków i analizę czasu w jednej kompleksowej, skoncentrowanej na prywatności aplikacji.",
     "taskManagement": {
-      "title": "Inteligentne zarządzanie zadaniami",
-      "description": "Organizuj, priorytetyzuj i śledź swoje zadania dzięki inteligentnemu harmonogramowaniu i wizualizacji postępów."
+      "title": "Inteligentne Zarządzanie Zadaniami",
+      "description": "Organizuj, ustalaj priorytety i śledź swoje zadania dzięki inteligentnemu planowaniu i wizualizacji postępów."
     },
     "habitTracking": {
-      "title": "Budowanie nawyków",
-      "description": "Buduj trwałe nawyki dzięki śledzeniu postępów, wizualizacji serii i motywacyjnym wglądom."
+      "title": "Rozwój Nawyków",
+      "description": "Buduj trwałe nawyki dzięki śledzeniu postępów, wizualizacji serii i motywującym spostrzeżeniom."
     },
     "timeAnalytics": {
-      "title": "Wgląd w czas",
-      "description": "Zrozum swoje wzorce produktywności dzięki szczegółowej analizie użycia aplikacji i dystrybucji czasu."
+      "title": "Wgląd w Czas",
+      "description": "Zrozum swoje wzorce produktywności dzięki szczegółowej analizie użytkowania aplikacji i dystrybucji czasu."
     },
     "crossPlatform": {
-      "title": "Wszędzie, gdzie pracujesz",
-      "description": "Bezproblemowe doświadczenie na Androidzie, Windows i Linux z opcjonalną synchronizacją danych."
+      "title": "Wszędzie Gdzie Pracujesz",
+      "description": "Bezproblemowe doświadczenie na Android, Windows i Linux z opcjonalną synchronizacją danych."
     }
   },
   "screenshots": {
-    "title": "Zobacz WHPH w akcji",
-    "subtitle": "Poznaj intuicyjny interfejs i potężne funkcje, które czynią WHPH Twoim najlepszym towarzyszem produktywności.",
-    "todayView": {
-      "title": "Widok Dnia",
-      "description": "Główny pulpit z przeglądem zadań i nawyków"
-    },
-    "taskManagement": {
-      "title": "Zarządzanie zadaniami",
-      "description": "Szczegółowy widok zadania z podzadaniami i harmonogramem"
-    },
-    "habitTracking": {
-      "title": "Śledzenie nawyków",
-      "description": "Postęp nawyków z wizualizacją serii"
-    },
-    "timeAnalytics": {
-      "title": "Analiza czasu",
-      "description": "Wzorce produktywności i dystrybucja czasu"
-    },
-    "prevScreenshot": "Poprzedni zrzut ekranu",
-    "nextScreenshot": "Następny zrzut ekranu",
-    "goToScreenshot": "Przejdź do zrzutu ekranu {{number}}"
-  },
-  "socialProof": {
-    "title": "Zaufane przez entuzjastów produktywności",
-    "subtitle": "Dołącz do tysięcy użytkowników, którzy przekształcili swoją produktywność z WHPH.",
-    "stats": {
-      "githubStars": "Gwiazdki GitHuba",
-      "downloads": "Pobrań",
-      "activeUsers": "Aktywnych użytkowników",
-      "contributors": "Współtwórców"
-    },
-    "community": {
-      "title": "Dołącz do naszej społeczności open source",
-      "subtitle": "Daj nam gwiazdkę na GitHubie i współtwórz projekt"
-    }
+    "title": "Zobacz WHPH w Akcji",
+    "subtitle": "Poznaj intuicyjny interfejs i potężne funkcje, które czynią WHPH ostatecznym partnerem produktywności.",
+    "altText": "WHPH app screenshot {{number}}",
+    "description": "Screenshot {{number}} aplikacji WHPH",
+    "prevScreenshot": "Poprzedni screenshot",
+    "nextScreenshot": "Następny screenshot",
+    "goToScreenshot": "Przejdź do screenshot {{number}}"
   },
   "download": {
-    "title": "Zacznij już dziś",
-    "subtitle": "Pobierz WHPH za darmo i zacznij przekształcać swoją produktywność. Dostępne na wszystkich głównych platformach bez potrzeby zakładania konta.",
-    "downloadFor": "Pobierz dla {{platform}}",
-    "alsoAvailable": "Dostępne również na {{fdroid}} i {{github}}",
-    "fdroid": "F-Droid",
-    "githubReleases": "Wydania GitHuba"
+    "title": "Zacznij Dziś",
+    "subtitle": "Pobierz WHPH za darmo i zacznij przekształcać swoją produktywność. Dostępne na wszystkich głównych platformach bez wymaganego konta.",
+    "downloadFor": "Pobierz dla {{platform}}"
   },
   "faq": {
-    "title": "Najczęściej zadawane pytania",
-    "subtitle": "Uzyskaj odpowiedzi na częste pytania dotyczące WHPH.",
+    "title": "Często Zadawane Pytania",
+    "subtitle": "Uzyskaj odpowiedzi na częste pytania dotyczące funkcji WHPH, prywatności i społeczności.",
     "questions": {
       "free": {
         "question": "Czy WHPH jest naprawdę darmowe?",
-        "answer": "Tak, WHPH jest całkowicie darmowe i open source. Nie ma żadnych płatnych planów czy ukrytych kosztów. Aplikacja jest finansowana z wkładów społeczności."
+        "answer": "Tak, WHPH jest całkowicie darmowe i open source. Nie ma poziomów premium, opłat subskrypcyjnych ani ukrytych kosztów. Masz dostęp do wszystkich funkcji bez ograniczeń."
       },
       "platforms": {
         "question": "Jakie platformy są obsługiwane?",
-        "answer": "WHPH jest dostępne na Androida, Windows i Linux. Możesz pobrać je z wydań GitHub, F-Droid lub skompilować ze źródeł. Pracujemy nad obsługą iOS i macOS."
+        "answer": "WHPH jest dostępne na Android, Windows i Linux. Możesz pobrać je z naszych wydań GitHub, F-Droid (dla Android) lub skompilować ze źródła."
       },
       "privacy": {
         "question": "Jak chronione są moje dane?",
-        "answer": "Twoja prywatność jest naszym priorytetem. Domyślnie WHPH przechowuje wszystkie dane lokalnie na Twoim urządzeniu. Nie zbieramy ani nie wysyłamy żadnych danych na zewnętrzne serwery."
+        "answer": "Twoja prywatność to nasz najwyższy priorytet. WHPH domyślnie przechowuje wszystkie dane lokalnie na twoim urządzeniu. Nie zbieramy, nie śledzimy ani nie przechowujemy informacji osobistych na zewnętrznych serwerach."
       },
       "contribute": {
-        "question": "Jak mogę pomóc lub przyczynić się?",
-        "answer": "Dołącz do dyskusji na GitHubie, zgłaszaj błędy, pomagaj z tłumaczeniami lub kodem – każda pomoc jest mile widziana!"
+        "question": "Jak mogę uzyskać pomoc lub przyczynić się?",
+        "answer": "Dołącz do naszych GitHub Discussions w celu uzyskania wsparcia społeczności, próśb o funkcje i ogólnych pytań. Jeśli jesteś programistą, możesz wnosić kod, zgłaszać błędy lub pomagać w tłumaczeniach."
       },
       "sync": {
         "question": "Jak synchronizować dane między urządzeniami?",
-        "answer": "WHPH oferuje opcjonalną synchronizację w sieci lokalnej między urządzeniami. Wszystko odbywa się lokalnie, Twoje dane nie opuszczają sieci."
+        "answer": "WHPH oferuje opcjonalną synchronizację danych między urządzeniami stacjonarnymi i mobilnymi przez sieć lokalną. Cała synchronizacja odbywa się lokalnie i zapewnia, że dane produktywności pozostają całkowicie prywatne."
       },
       "offline": {
         "question": "Czy WHPH działa offline?",
-        "answer": "Oczywiście! WHPH zostało zaprojektowane tak, aby działało całkowicie offline."
+        "answer": "Absolutnie! WHPH jest zaprojektowane do pracy całkowicie offline. Wszystkie zadania, nawyki i analizy są przechowywane lokalnie na urządzeniu. Możesz używać każdej funkcji bez połączenia internetowego."
       },
       "backup": {
-        "question": "Czy mogę zrobić kopię zapasową moich danych?",
-        "answer": "Tak, WHPH umożliwia tworzenie kopii zapasowych i ich przywracanie, a także eksport danych w formacie CSV lub JSON."
+        "question": "Czy mogę tworzyć kopie zapasowe i przywracać moje dane?",
+        "answer": "Tak, WHPH zapewnia kompleksowe wsparcie kopii zapasowych i przywracania. Możesz łatwo tworzyć kopie zapasowe wszystkich zadań, nawyków i danych postępów oraz przywracać je w razie potrzeby."
       },
       "workHardPlayHard": {
-        "question": "Co oznacza motto 'Work Hard Play Hard'?",
-        "answer": "'Work Hard Play Hard' oznacza równowagę między ciężką pracą a pełnym życiem. WHPH ma pomóc Ci w pracy, ale też przypomnieć, abyś cieszył się życiem."
+        "question": "Co oznacza motto \"Work Hard Play Hard\"?",
+        "answer": "\"Work Hard Play Hard\" (polski: \"Pracuj ciężko, baw się ciężko\") wyraża nie tylko styl życia, ale światopogląd. To motto to filozofia, która sugeruje, że jednostki powinny równoważyć wysoką odpowiedzialność z wysoką satysfakcją życiową. Oznacza to 'Dawaj z siebie wszystko podczas pracy, ale żyj pełnią życia, gdy nie pracujesz'. Ta filozofia twierdzi, że praca powinna służyć samorealizacji, a nie tylko przetrwaniu, a zabawa to nie lenistwo, ale naturalna nagroda za wysiłek. Jako WHPH odzwierciedla to nasz cel pomocy w większej produktywności w pracy i świadomego świętowania osiągnięć. Kluczowa kwestia: świadome życie w obu obszarach. Powinieneś żyć tak intensywnie, jak pracujesz, ale życie nie powinno być tylko nagrodą za pracę. Teraz, gdy nauczyliśmy się z nowym zrozumieniem, co oznacza to motto, możesz cieszyć się [piosenką Wiz Khalifa](https://youtu.be/TWHNr0BrNgo)."
       }
     }
   },
+  "donate": {
+    "title": "Wspieraj Rozwój WHPH",
+    "description": "Pomóż nam kontynuować rozwój tej darmowej i open source aplikacji produktywności, która szanuje twoją prywatność i daje ci kontrolę nad danymi.",
+    "supportMessage": "Twoje wsparcie pozwala nam utrzymać WHPH darmowe dla wszystkich, jednocześnie ciągle ulepszając funkcje i utrzymując wysokie standardy.",
+    "button": "Wspieraj Rozwój"
+  },
   "about": {
-    "title": "Open Source i Prywatność",
-    "description": "WHPH jest całkowicie open source i zaprojektowane z myślą o prywatności. Twoje dane pozostają na Twoim urządzeniu, chyba że zdecydujesz inaczej.",
-    "viewSource": "Zobacz kod źródłowy",
-    "joinCommunity": "Dołącz do społeczności"
+    "title": "Open Source i Prywatność Przede Wszystkim",
+    "description": "WHPH jest całkowicie open source i zaprojektowane z myślą o prywatności. Twoje dane pozostają na urządzeniu, chyba że zdecydujesz się je synchronizować.",
+    "viewSource": "Zobacz Kod Źródłowy",
+    "joinCommunity": "Dołącz do Społeczności"
   },
   "footer": {
     "links": {
@@ -144,11 +118,6 @@
     "copyright": "© {{year}} WHPH - Work Hard Play Hard"
   },
   "common": {
-    "loading": "Ładowanie...",
-    "error": "Błąd",
-    "close": "Zamknij",
-    "open": "Otwórz",
-    "yes": "Tak",
-    "no": "Nie"
+    "close": "Zamknij"
   }
 }

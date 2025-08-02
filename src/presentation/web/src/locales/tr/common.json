@@ -1,24 +1,23 @@
 {
   "site": {
-    "title": "WHPH - Work Hard Play Hard | Üretkenliğinizde Uzmanlaşın",
+    "title": "WHPH - Work Hard Play Hard | Üretkenliğinizde Ustalaşın",
     "description": "Akıllı görev yönetimi, alışkanlık takibi ve zaman optimizasyonu ile üretkenliğinizi dönüştürün. Android, Windows ve Linux için ücretsiz, açık kaynak ve çapraz platform üretkenlik uygulaması.",
-    "keywords": "üretkenlik uygulaması, görev yönetimi, alışkanlık takibi, zaman takibi, açık kaynak üretkenlik, çapraz platform, gizlilik odaklı, ücretsiz üretkenlik araçları"
+    "keywords": "üretkenlik uygulaması, görev yönetimi, alışkanlık takipçisi, zaman takibi, açık kaynak üretkenlik, çapraz platform, gizlilik odaklı, ücretsiz üretkenlik araçları"
   },
   "navigation": {
     "features": "Özellikler",
     "download": "İndir",
     "faq": "SSS",
     "github": "GitHub",
-        "toggleMenu": "Mobil menüyü aç/kapat",
-    "skipToContent": "Ana içeriğe atla"
+    "toggleMenu": "Mobil menüyü aç/kapat"
   },
   "hero": {
     "title": "Work Hard, Play Hard",
-    "titleHighlight": "Üretkenliğinizde Uzmanlaşın",
-    "subtitle": "Görevlerinizi yönetmenize, alışkanlıklar oluşturmanıza ve tüm cihazlarınızda zamanınızı optimize etmenize yardımcı olan kapsamlı üretkenlik uygulaması.",
-    "downloadFree": "Ücretsiz İndir",
+    "titleHighlight": "Üretkenliğinizde Ustalaşın",
+    "subtitle": "Tüm cihazlarınızda görevleri yönetmenize, alışkanlıklar oluşturmanıza ve zamanınızı optimize etmenize yardımcı olan kapsamlı üretkenlik uygulaması.",
+    "downloadFree": "Şimdi Ücretsiz İndir",
     "viewGithub": "GitHub'da Görüntüle",
-    "availableOn": "Şu platformlarda mevcut:",
+    "availableOn": "Şurada mevcut:",
     "platforms": {
       "android": "Android",
       "windows": "Windows",
@@ -28,100 +27,69 @@
   },
   "features": {
     "title": "Üretkenlik İçin İhtiyacınız Olan Her Şey",
-    "subtitle": "WHPH, güçlü görev yönetimi, alışkanlık takibi ve zaman analizlerini kapsamlı, gizlilik odaklı tek bir uygulamada birleştirir.",
+    "subtitle": "WHPH güçlü görev yönetimi, alışkanlık takibi ve zaman analitiğini tek bir kapsamlı, gizlilik odaklı uygulamada birleştirir.",
     "taskManagement": {
       "title": "Akıllı Görev Yönetimi",
-      "description": "Akıllı zamanlama ve ilerleme görselleştirmesi ile görevlerinizi organize edin, öncelikleyin ve takip edin."
+      "description": "Akıllı zamanlama ve ilerleme görselleştirmesi ile görevlerinizi düzenleyin, önceliklendirin ve takip edin."
     },
     "habitTracking": {
       "title": "Alışkanlık Geliştirme",
-      "description": "İlerleme takibi, seri görselleştirmesi ve motive edici içgörüler ile kalıcı alışkanlıklar oluşturun."
+      "description": "İlerleme takibi, seri görselleştirmesi ve motive edici içgörülerle kalıcı alışkanlıklar oluşturun."
     },
     "timeAnalytics": {
       "title": "Zaman İçgörüleri",
-      "description": "Detaylı uygulama kullanım analitiği ve zaman dağılımı ile üretkenlik kalıplarınızı anlayın."
+      "description": "Detaylı uygulama kullanım analizi ve zaman dağılımı ile üretkenlik kalıplarınızı anlayın."
     },
     "crossPlatform": {
       "title": "Çalıştığınız Her Yerde",
-      "description": "İsteğe bağlı veri senkronizasyonu ile Android, Windows ve Linux'ta sorunsuz deneyim."
+      "description": "İsteğe bağlı veri senkronizasyonu ile Android, Windows ve Linux'ta kusursuz deneyim."
     }
   },
   "screenshots": {
-    "title": "WHPH'yi Çalışırken Görün",
-    "subtitle": "WHPH'yi nihai üretkenlik arkadaşı yapan sezgisel arayüz ve güçlü özellikleri keşfedin.",
-    "todayView": {
-      "title": "Bugün Görünümü",
-      "description": "Görevler ve alışkanlıklar özeti ile ana gösterge paneli"
-    },
-    "taskManagement": {
-      "title": "Görev Yönetimi",
-      "description": "Alt görevler ve zamanlama ile detaylı görev görünümü"
-    },
-    "habitTracking": {
-      "title": "Alışkanlık Takibi",
-      "description": "Seri görselleştirmesi ile alışkanlık ilerlemesi"
-    },
-    "timeAnalytics": {
-      "title": "Zaman Analitiği",
-      "description": "Üretkenlik kalıpları ve zaman dağılımı"
-    },
+    "title": "WHPH'yi Eylemde Görün",
+    "subtitle": "WHPH'yi nihai üretkenlik ortağı yapan sezgisel arayüzü ve güçlü özellikleri keşfedin.",
+    "altText": "WHPH uygulama ekran görüntüsü {{number}}",
+    "description": "WHPH uygulamasının {{number}} numaralı ekran görüntüsü",
     "prevScreenshot": "Önceki ekran görüntüsü",
     "nextScreenshot": "Sonraki ekran görüntüsü",
-    "goToScreenshot": "{{number}}. ekran görüntüsüne git"
-  },
-  "socialProof": {
-    "title": "Üretkenlik Meraklıları Tarafından Güveniliyor",
-    "subtitle": "WHPH'nin görev yönetimi ve alışkanlık oluşturmaya yönelik kapsamlı yaklaşımı ile üretkenliklerini dönüştüren binlerce kullanıcıya katılın.",
-    "stats": {
-      "githubStars": "GitHub Yıldızları",
-      "downloads": "İndirmeler",
-      "activeUsers": "Aktif Kullanıcılar",
-      "contributors": "Katkıda Bulunanlar"
-    },
-    "community": {
-      "title": "Açık kaynak topluluğumuza katılın",
-      "subtitle": "GitHub'da bizi yıldızlayın ve projeye katkıda bulunun"
-    }
+    "goToScreenshot": "{{number}} numaralı ekran görüntüsüne git"
   },
   "download": {
     "title": "Bugün Başlayın",
-    "subtitle": "WHPH'yi ücretsiz indirin ve üretkenliğinizi dönüştürmeye başlayın. Hesap gerektirmeden tüm ana platformlarda kullanılabilir.",
-    "downloadFor": "{{platform}} için İndir",
-    "alsoAvailable": "Ayrıca {{fdroid}} ve {{github}}'da da mevcut",
-    "fdroid": "F-Droid",
-    "githubReleases": "GitHub Sürümleri"
+    "subtitle": "WHPH'yi ücretsiz indirin ve üretkenliğinizi dönüştürmeye başlayın. Hesap gerektirmeden tüm büyük platformlarda mevcut.",
+    "downloadFor": "{{platform}} için indir"
   },
   "faq": {
     "title": "Sıkça Sorulan Sorular",
-    "subtitle": "WHPH'nin özellikleri, gizliliği ve topluluğu hakkında yaygın soruların yanıtlarını alın.",
+    "subtitle": "WHPH'nin özellikleri, gizlilik ve topluluk hakkında yaygın sorulara yanıt alın.",
     "questions": {
       "free": {
         "question": "WHPH gerçekten ücretsiz mi?",
-        "answer": "Evet, WHPH tamamen ücretsiz ve açık kaynaktır. Premium katmanlar, abonelik ücretleri veya gizli maliyetler yoktur. Tüm özelliklere herhangi bir sınırlama olmadan erişebilirsiniz. Uygulama topluluk katkıları ile finanse edilir ve üretkenlik araçlarının herkese erişilebilir olması gerektiğine inanan gönüllüler tarafından geliştirilir."
+        "answer": "Evet, WHPH tamamen ücretsiz ve açık kaynaklıdır. Premium seviyeler, abonelik ücretleri veya gizli maliyetler yoktur. Tüm özelliklere sınırsız erişim elde edersiniz."
       },
       "platforms": {
         "question": "Hangi platformlar destekleniyor?",
-        "answer": "WHPH Android, Windows ve Linux'ta kullanılabilir. GitHub sürümlerimizden, F-Droid'den (Android için) indirebilir veya kaynak koddan derleyebilirsiniz. iOS ve macOS desteği üzerinde çalışıyoruz, ancak geliştirme kaynak kısıtlamaları nedeniyle henüz mevcut değil."
+        "answer": "WHPH Android, Windows ve Linux'ta mevcuttur. GitHub sürümlerimizden, F-Droid'den (Android için) indirebilir veya kaynak koddan derleyebilirsiniz."
       },
       "privacy": {
         "question": "Verilerim nasıl korunuyor?",
-        "answer": "Gizliliğiniz en önceliğimizdir. WHPH varsayılan olarak tüm verileri cihazınızda yerel olarak saklar. Harici sunucularda herhangi bir kişisel bilgi toplamaz, takip etmez veya saklamayız. İsteğe bağlı bulut senkronizasyonu, kendi bulut depolama sağlayıcılarınız (Google Drive veya Dropbox gibi) aracılığıyla etkinleştirmeyi seçerseniz kullanılabilir ve verileriniz üzerinde tam kontrol sahibi olursunuz."
+        "answer": "Gizliliğiniz en önemli önceliğimizdir. WHPH varsayılan olarak tüm verileri cihazınızda yerel olarak saklar. Harici sunucularda kişisel bilgileri toplamaz, takip etmez veya saklamayız."
       },
       "contribute": {
         "question": "Nasıl yardım alabilirim veya katkıda bulunabilirim?",
-        "answer": "Topluluk desteği, özellik istekleri ve genel sorular için GitHub Tartışmalarımıza katılın. Eğer bir geliştiriciyseniz, GitHub deposumuzda kod katkısında bulunabilir, hata raporlayabilir veya çevirilerde yardımcı olabilirsiniz. Ayrıca tasarımcıları, dokümantasyon yazarlarını ve üretkenlik araçlarını geliştirmekle ilgilenen herkesi de memnuniyetle karşılıyoruz."
+        "answer": "Topluluk desteği, özellik istekleri ve genel sorular için GitHub Discussions'a katılın. Geliştirici iseniz, kod katkısında bulunabilir, hata raporlayabilir veya çevirilerde yardımcı olabilirsiniz."
       },
       "sync": {
-        "question": "Cihazlar arasında veri nasıl senkronize edilir?",
-        "answer": "WHPH masaüstü ve mobil cihazlarınız arasında yerel ağ üzerinden isteğe bağlı veri senkronizasyonu sunar. Görevlerinizi, alışkanlıklarınızı ve ilerleme verilerinizi herhangi bir bulut hizmeti kullanmadan doğrudan cihazlar arasında senkronize edebilirsiniz. Tüm senkronizasyon yerel olarak gerçekleşir, üretkenlik verilerinizin tamamen gizli kalmasını ve ağınızdan asla çıkmamasını sağlar."
+        "question": "Cihazlar arasında verileri nasıl senkronize ederim?",
+        "answer": "WHPH yerel ağınız üzerinden masaüstü ve mobil cihazlarınız arasında isteğe bağlı veri senkronizasyonu sunar. Tüm senkronizasyon yerel olarak gerçekleşir ve üretkenlik verilerinizin tamamen özel kalmasını sağlar."
       },
       "offline": {
         "question": "WHPH çevrimdışı çalışır mı?",
-        "answer": "Kesinlikle! WHPH tamamen çevrimdışı çalışacak şekilde tasarlanmıştır. Tüm görevleriniz, alışkanlıklarınız ve analizleriniz cihazınızda yerel olarak saklanır. İnternet bağlantısı olmadan her özelliği kullanabilirsiniz. Yerel ağ senkronizasyonu yalnızca açıkça etkinleştirdiğinizde ve aynı ağdaki cihazlarla çalışır."
+        "answer": "Kesinlikle! WHPH tamamen çevrimdı��ı çalışacak şekilde tasarlanmıştır. Tüm görevleriniz, alışkanlıklarınız ve analizleriniz cihazınızda yerel olarak saklanır. İnternet bağlantısı olmadan her özelliği kullanabilirsiniz."
       },
       "backup": {
         "question": "Verilerimi yedekleyebilir ve geri yükleyebilir miyim?",
-        "answer": "Evet, WHPH kapsamlı yedekleme ve geri yükleme desteği sunar. Tüm görevlerinizi, alışkanlıklarınızı ve ilerleme verilerinizi kolayca yedekleyebilir ve gerektiğinde geri yükleyebilirsiniz. Ayrıca ihtiyaçlarınıza göre verilerinizi CSV ve JSON formatlarında dışa aktarabilirsiniz. Bu sayede verilerinizi güvenli tutabilir ve diğer araçlarla kullanabilirsiniz."
+        "answer": "Evet, WHPH kapsamlı yedekleme ve geri yükleme desteği sağlar. Tüm görevlerinizi, alışkanlıklarınızı ve ilerleme verilerinizi kolayca yedekleyebilir ve gerektiğinde geri yükleyebilirsiniz."
       },
       "workHardPlayHard": {
         "question": "\"Work Hard Play Hard\" söylemi ne anlama geliyor?",
@@ -129,9 +97,15 @@
       }
     }
   },
+  "donate": {
+    "title": "WHPH Geliştirmeyi Destekleyin",
+    "description": "Gizliliğinizi saygı gören ve verileriniz üzerinde size kontrol veren bu ücretsiz ve açık kaynak üretkenlik uygulamasını geliştirmeye devam etmemize yardımcı olun.",
+    "supportMessage": "Desteğiniz, özellikleri sürekli geliştirirken ve yüksek standartları korurken WHPH'yi herkes için ücretsiz tutmamızı sağlar.",
+    "button": "Geliştirmeyi Destekle"
+  },
   "about": {
-    "title": "Açık Kaynak ve Gizlilik Odaklı",
-    "description": "WHPH tamamen açık kaynak kodludur ve gizliliği göz önünde bulundurarak tasarlanmıştır. Senkronize etmeyi seçmediğiniz sürece verileriniz cihazınızda kalır. Destek, özellik istekleri ve katkılar için GitHub Tartışmalarındaki topluluğumuza katılın.",
+    "title": "Açık Kaynak ve Gizlilik Öncelikli",
+    "description": "WHPH tamamen açık kaynaklıdır ve gizlilik düşünülerek tasarlanmıştır. Senkronize etmeyi seçmediğiniz sürece verileriniz cihazınızda kalır.",
     "viewSource": "Kaynak Kodunu Görüntüle",
     "joinCommunity": "Topluluğa Katıl"
   },
@@ -144,11 +118,6 @@
     "copyright": "© {{year}} WHPH - Work Hard Play Hard"
   },
   "common": {
-    "loading": "Yükleniyor...",
-    "error": "Hata",
-    "close": "Kapat",
-    "open": "Aç",
-    "yes": "Evet",
-    "no": "Hayır"
+    "close": "Kapat"
   }
 }

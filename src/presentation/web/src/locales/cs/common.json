@@ -1,0 +1,123 @@
+{
+  "site": {
+    "title": "WHPH - Work Hard Play Hard | Ovládněte Svou Produktivitu",
+    "description": "Transformujte svou produktivitu pomocí inteligentního řízení úkolů, sledování návyků a optimalizace času. Bezplatná, open source a multiplatformní aplikace pro produktivitu pro Android, Windows a Linux.",
+    "keywords": "aplikace produktivity, řízení úkolů, sledování návyků, sledování času, open source produktivita, multiplatformní, zaměřená na soukromí, bezplatné nástroje produktivity"
+  },
+  "navigation": {
+    "features": "Funkce",
+    "download": "Stáhnout",
+    "faq": "Často kladené otázky",
+    "github": "GitHub",
+    "toggleMenu": "Přepnout mobilní menu"
+  },
+  "hero": {
+    "title": "Work Hard, Play Hard",
+    "titleHighlight": "Ovládněte Svou Produktivitu",
+    "subtitle": "Komplexní aplikace pro produktivitu, která vám pomáhá spravovat úkoly, budovat návyky a optimalizovat čas na všech vašich zařízeních.",
+    "downloadFree": "Stáhnout Zdarma Nyní",
+    "viewGithub": "Zobrazit na GitHub",
+    "availableOn": "Dostupné na:",
+    "platforms": {
+      "android": "Android",
+      "windows": "Windows",
+      "linux": "Linux"
+    },
+    "screenshotAlt": "Hero App Screenshot"
+  },
+  "features": {
+    "title": "Vše Co Potřebujete Pro Produktivitu",
+    "subtitle": "WHPH kombinuje výkonné řízení úkolů, sledování návyků a analýzu času v jedné komplexní, na soukromí zaměřené aplikaci.",
+    "taskManagement": {
+      "title": "Inteligentní Řízení Úkolů",
+      "description": "Organizujte, stanovte priority a sledujte své úkoly pomocí inteligentního plánování a vizualizace pokroku."
+    },
+    "habitTracking": {
+      "title": "Rozvoj Návyků",
+      "description": "Budujte trvalé návyky se sledováním pokroku, vizualizací série a motivačními pozorováními."
+    },
+    "timeAnalytics": {
+      "title": "Pozorování Času",
+      "description": "Pochopte své vzorce produktivity pomocí podrobné analýzy používání aplikací a distribuce času."
+    },
+    "crossPlatform": {
+      "title": "Všude Kde Pracujete",
+      "description": "Bezproblémový zážitek na Android, Windows a Linux s volitelnou synchronizací dat."
+    }
+  },
+  "screenshots": {
+    "title": "Podívejte se na WHPH v Akci",
+    "subtitle": "Prozkoumejte intuitivní rozhraní a výkonné funkce, které dělají z WHPH ultimátního partnera produktivity.",
+    "altText": "WHPH app screenshot {{number}}",
+    "description": "Screenshot {{number}} aplikace WHPH",
+    "prevScreenshot": "Předchozí screenshot",
+    "nextScreenshot": "Další screenshot",
+    "goToScreenshot": "Přejít na screenshot {{number}}"
+  },
+  "download": {
+    "title": "Začněte Dnes",
+    "subtitle": "Stáhněte si WHPH zdarma a začněte transformovat svou produktivitu. Dostupné na všech hlavních platformách bez nutnosti účtu.",
+    "downloadFor": "Stáhnout pro {{platform}}"
+  },
+  "faq": {
+    "title": "Často Kladené Otázky",
+    "subtitle": "Získejte odpovědi na běžné otázky o funkcích WHPH, soukromí a komunitě.",
+    "questions": {
+      "free": {
+        "question": "Je WHPH opravdu zdarma?",
+        "answer": "Ano, WHPH je zcela zdarma a open source. Nejsou žádné prémiové úrovně, poplatky za předplatné nebo skryté náklady. Máte přístup ke všem funkcím bez omezení."
+      },
+      "platforms": {
+        "question": "Které platformy jsou podporovány?",
+        "answer": "WHPH je dostupné na Android, Windows a Linux. Můžete si jej stáhnout z našich GitHub vydání, F-Droid (pro Android), nebo zkompilovat ze zdrojového kódu."
+      },
+      "privacy": {
+        "question": "Jak jsou chráněna moje data?",
+        "answer": "Vaše soukromí je naší nejvyšší prioritou. WHPH ve výchozím nastavení ukládá všechna data lokálně na vašem zařízení. Neshromažďujeme, nesledujeme ani neukládáme osobní informace na externích serverech."
+      },
+      "contribute": {
+        "question": "Jak mohu získat pomoc nebo přispět?",
+        "answer": "Připojte se k našim GitHub Discussions pro komunitní podporu, žádosti o funkce a obecné otázky. Pokud jste vývojář, můžete přispívat kódem, hlásit chyby nebo pomáhat s překlady."
+      },
+      "sync": {
+        "question": "Jak synchronizuji data mezi zařízeními?",
+        "answer": "WHPH nabízí volitelnou synchronizaci dat mezi vašimi stolními a mobilními zařízeními přes vaši místní síť. Veškerá synchronizace probíhá lokálně a zajišťuje, že vaše data produktivity zůstávají zcela soukromá."
+      },
+      "offline": {
+        "question": "Funguje WHPH offline?",
+        "answer": "Absolutně! WHPH je navrženo tak, aby fungovalo zcela offline. Všechny vaše úkoly, návyky a analýzy jsou uloženy lokálně na vašem zařízení. Můžete používat každou funkci bez připojení k internetu."
+      },
+      "backup": {
+        "question": "Mohu zálohovat a obnovit svá data?",
+        "answer": "Ano, WHPH poskytuje komplexní podporu zálohování a obnovy. Můžete snadno zálohovat všechny své úkoly, návyky a data o pokroku a obnovit je v případě potřeby."
+      },
+      "workHardPlayHard": {
+        "question": "Co znamená výrok \"Work Hard Play Hard\"?",
+        "answer": "\"Work Hard Play Hard\" (česky: \"Tvrdě pracuj, tvrdě si užívej\") vyjadřuje nejen životní styl, ale světový názor. Tento výrok je filozofií, která navrhuje jednotlivcům vyvážit vysokou odpovědnost s vysokou životní spokojeností ve svých životech. Znamená to 'Dej do práce všechno, ale když nepracuješ, žij naplno.' Tato filozofie tvrdí, že práce by měla sloužit k seberealizaci, ne jen k přežití, a že zábava není lenost, ale přirozená odměna za úsilí. Jako WHPH to odráží náš cíl pomoci vám být produktivnější v práci a vědomě slavit vaše úspěchy. Klíčový bod: žijte obě oblasti vědomě. Měli byste žít stejně, jako pracujete, ale život by neměl být jen odměnou za práci. Nyní, když jste se s novým porozuměním naučili, co tento výrok znamená, můžete si užít [píseň Wiz Khalify](https://youtu.be/TWHNr0BrNgo)."
+      }
+    }
+  },
+  "donate": {
+    "title": "Podpořte Vývoj WHPH",
+    "description": "Pomozte nám pokračovat ve vývoji této bezplatné a open source aplikace pro produktivitu, která respektuje vaše soukromí a dává vám kontrolu nad vašimi daty.",
+    "supportMessage": "Vaše podpora nám umožňuje udržet WHPH zdarma pro všechny, zatímco neustále vylepšujeme funkce a udržujeme vysoké standardy.",
+    "button": "Podpořit Vývoj"
+  },
+  "about": {
+    "title": "Open Source a Soukromí Především",
+    "description": "WHPH je zcela open source a navrženo s ohledem na soukromí. Vaše data zůstávají na vašem zařízení, pokud se nerozhodnete je synchronizovat.",
+    "viewSource": "Zobrazit Zdrojový Kód",
+    "joinCommunity": "Připojit se ke Komunitě"
+  },
+  "footer": {
+    "links": {
+      "github": "GitHub",
+      "community": "Komunita",
+      "license": "Licence"
+    },
+    "copyright": "© {{year}} WHPH - Work Hard Play Hard"
+  },
+  "common": {
+    "close": "Zavřít"
+  }
+}

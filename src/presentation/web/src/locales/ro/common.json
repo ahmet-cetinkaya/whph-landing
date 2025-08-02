@@ -1,0 +1,123 @@
+{
+  "site": {
+    "title": "WHPH - Work Hard Play Hard | Stăpânește-ți Productivitatea",
+    "description": "Transformă-ți productivitatea cu managementul inteligent al sarcinilor, urmărirea obiceiurilor și optimizarea timpului. Aplicație de productivitate gratuită, open source și cross-platform pentru Android, Windows și Linux.",
+    "keywords": "aplicație productivitate, management sarcini, tracker obiceiuri, urmărire timp, productivitate open source, cross platform, focalizată pe confidențialitate, instrumente productivitate gratuite"
+  },
+  "navigation": {
+    "features": "Caracteristici",
+    "download": "Descarcă",
+    "faq": "Întrebări Frecvente",
+    "github": "GitHub",
+    "toggleMenu": "Comută meniul mobil"
+  },
+  "hero": {
+    "title": "Work Hard, Play Hard",
+    "titleHighlight": "Stăpânește-ți Productivitatea",
+    "subtitle": "Aplicația de productivitate cuprinzătoare care te ajută să gestionezi sarcinile, să construiești obiceiuri și să optimizezi timpul pe toate dispozitivele tale.",
+    "downloadFree": "Descarcă Gratuit Acum",
+    "viewGithub": "Vezi pe GitHub",
+    "availableOn": "Disponibil pe:",
+    "platforms": {
+      "android": "Android",
+      "windows": "Windows",
+      "linux": "Linux"
+    },
+    "screenshotAlt": "Hero App Screenshot"
+  },
+  "features": {
+    "title": "Tot Ce Ai Nevoie Pentru Productivitate",
+    "subtitle": "WHPH combină managementul puternic al sarcinilor, urmărirea obiceiurilor și analiza timpului într-o aplicație cuprinzătoare, focalizată pe confidențialitate.",
+    "taskManagement": {
+      "title": "Management Inteligent al Sarcinilor",
+      "description": "Organizează, prioritizează și urmărește sarcinile cu programare inteligentă și vizualizarea progresului."
+    },
+    "habitTracking": {
+      "title": "Dezvoltarea Obiceiurilor",
+      "description": "Construiește obiceiuri durabile cu urmărirea progresului, vizualizarea seriilor și perspective motivaționale."
+    },
+    "timeAnalytics": {
+      "title": "Perspective asupra Timpului",
+      "description": "Înțelege modelele de productivitate cu analiz�� detaliată a utilizării aplicației și distribuția timpului."
+    },
+    "crossPlatform": {
+      "title": "Oriunde Lucrezi",
+      "description": "Experiență perfectă pe Android, Windows și Linux cu sincronizare opțională a datelor."
+    }
+  },
+  "screenshots": {
+    "title": "Vezi WHPH în Acțiune",
+    "subtitle": "Explorează interfața intuitivă și caracteristicile puternice care fac din WHPH partenerul definitiv de productivitate.",
+    "altText": "WHPH app screenshot {{number}}",
+    "description": "Screenshot {{number}} al aplicației WHPH",
+    "prevScreenshot": "Screenshot anterior",
+    "nextScreenshot": "Screenshot următor",
+    "goToScreenshot": "Mergi la screenshot {{number}}"
+  },
+  "download": {
+    "title": "Începe Astăzi",
+    "subtitle": "Descarcă WHPH gratuit și începe să-ți transformi productivitatea. Disponibil pe toate platformele majore fără cont necesar.",
+    "downloadFor": "Descarcă pentru {{platform}}"
+  },
+  "faq": {
+    "title": "Întrebări Frecvente",
+    "subtitle": "Obține răspunsuri la întrebări comune despre caracteristicile WHPH, confidențialitate și comunitate.",
+    "questions": {
+      "free": {
+        "question": "Este WHPH cu adevărat gratuit?",
+        "answer": "Da, WHPH este complet gratuit și open source. Nu există niveluri premium, taxe de abonament sau costuri ascunse. Ai acces la toate caracteristicile fără limitări."
+      },
+      "platforms": {
+        "question": "Ce platforme sunt suportate?",
+        "answer": "WHPH este disponibil pe Android, Windows și Linux. Poți să-l descarci din lansările noastre GitHub, F-Droid (pentru Android), sau să compilezi din sursă."
+      },
+      "privacy": {
+        "question": "Cum sunt protejate datele mele?",
+        "answer": "Confidențialitatea ta este prioritatea noastră principală. WHPH stochează toate datele local pe dispozitivul tău în mod implicit. Nu colectăm, urmărim sau stocăm informații personale pe servere externe."
+      },
+      "contribute": {
+        "question": "Cum pot obține ajutor sau contribui?",
+        "answer": "Alătură-te GitHub Discussions pentru suport comunitar, cereri de caracteristici și întrebări generale. Dacă ești dezvoltator, poți contribui cu cod, raporta bug-uri sau ajuta cu traducerile."
+      },
+      "sync": {
+        "question": "Cum sincronizez datele între dispozitive?",
+        "answer": "WHPH oferă sincronizare opțională a datelor între dispozitivele desktop și mobile prin rețeaua ta locală. Toată sincronizarea se întâmplă local și asigură că datele de productivitate rămân complet private."
+      },
+      "offline": {
+        "question": "Funcționează WHPH offline?",
+        "answer": "Absolut! WHPH este proiectat să funcționeze complet offline. Toate sarcinile, obiceiurile și analizele sunt stocate local pe dispozitiv. Poți folosi orice caracteristică fără conexiune la internet."
+      },
+      "backup": {
+        "question": "Pot face backup și restaura datele mele?",
+        "answer": "Da, WHPH oferă suport cuprinzător pentru backup și restaurare. Poți face backup ușor la toate sarcinile, obiceiurile și datele de progres și să le restaurezi când este necesar."
+      },
+      "workHardPlayHard": {
+        "question": "Ce înseamnă motto-ul \"Work Hard Play Hard\"?",
+        "answer": "\"Work Hard Play Hard\" (Română: \"Muncește Din Greu, Joacă-te Din Greu\") exprimă nu doar un stil de viață, ci o viziune asupra lumii. Acest motto este o filozofie care sugerează indivizilor să echilibreze responsabilitatea înaltă cu satisfacția înaltă a vieții în viețile lor. Înseamnă 'Dă totul când lucrezi, dar trăiește viața la maximum când nu lucrezi.' Această filozofie argumentează că munca ar trebui să fie pentru autorealizare, nu doar pentru supraviețuire, și că distracția nu este lene, ci recompensa naturală a efortului. Ca WHPH, aceasta reflectă obiectivul nostru de a te ajuta să fii mai productiv la muncă și să-ți celebrezi în mod conștient realizările. Punctul cheie: trăiește ambele domenii în mod conștient. Ar trebui să trăiești la fel de mult cât lucrezi, dar să trăiești nu ar trebui să fie doar recompensa muncii. Acum că am învățat ce înseamnă acest motto cu o nouă înțelegere, poți să te bucuri de [cântecul lui Wiz Khalifa](https://youtu.be/TWHNr0BrNgo)."
+      }
+    }
+  },
+  "donate": {
+    "title": "Susține Dezvoltarea WHPH",
+    "description": "Ajută-ne să continuăm dezvoltarea acestei aplicații de productivitate gratuite și open source care îți respectă confidențialitatea și îți oferă control asupra datelor.",
+    "supportMessage": "Suportul tău ne permite să menținem WHPH gratuit pentru toți în timp ce îmbunătățim continuu caracteristicile și menținem standarde înalte.",
+    "button": "Susține Dezvoltarea"
+  },
+  "about": {
+    "title": "Open Source & Confidențialitate Primul",
+    "description": "WHPH este complet open source și proiectat cu confidențialitatea în minte. Datele tale rămân pe dispozitiv decât dacă alegi să le sincronizezi.",
+    "viewSource": "Vezi Codul Sursă",
+    "joinCommunity": "Alătură-te Comunității"
+  },
+  "footer": {
+    "links": {
+      "github": "GitHub",
+      "community": "Comunitate",
+      "license": "Licență"
+    },
+    "copyright": "© {{year}} WHPH - Work Hard Play Hard"
+  },
+  "common": {
+    "close": "Închide"
+  }
+}
