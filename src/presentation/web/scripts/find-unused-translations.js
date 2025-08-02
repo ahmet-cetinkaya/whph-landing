@@ -19,10 +19,10 @@ const CODE_EXTENSIONS = ['.astro', '.ts', '.js', '.jsx', '.tsx', '.vue', '.svelt
  */
 function getTranslationKeys(obj, prefix = '') {
   const keys = [];
-  
+
   for (const [key, value] of Object.entries(obj)) {
     const fullKey = prefix ? `${prefix}.${key}` : key;
-    
+
     if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
       // Recursive call for nested objects
       keys.push(...getTranslationKeys(value, fullKey));
@@ -31,7 +31,7 @@ function getTranslationKeys(obj, prefix = '') {
       keys.push(fullKey);
     }
   }
-  
+
   return keys;
 }
 
@@ -54,14 +54,14 @@ function loadTranslationKeys(filePath) {
  */
 function getCodeFiles(dir, extensions) {
   const files = [];
-  
+
   function walk(currentDir) {
     const items = fs.readdirSync(currentDir);
-    
+
     for (const item of items) {
       const fullPath = path.join(currentDir, item);
       const stat = fs.statSync(fullPath);
-      
+
       if (stat.isDirectory()) {
         // Skip node_modules and other irrelevant directories
         if (!['node_modules', '.git', 'dist', '.astro'].includes(item)) {
@@ -72,7 +72,7 @@ function getCodeFiles(dir, extensions) {
       }
     }
   }
-  
+
   walk(dir);
   return files;
 }
@@ -84,7 +84,7 @@ function findTranslationUsage(filePath) {
   try {
     const content = fs.readFileSync(filePath, 'utf-8');
     const usedKeys = new Set();
-    
+
     // Patterns to match t('key'), t("key"), t(`key`)
     const staticPatterns = [
       /t\(\s*['"`]([^'"`]+)['"`]\s*[,)]/g,
@@ -94,7 +94,7 @@ function findTranslationUsage(filePath) {
       // Match t( "key" ) with extra spaces
       /t\(\s*["']([^"']+)["']\s*\)/g,
     ];
-    
+
     // Find static translation keys
     staticPatterns.forEach(pattern => {
       let match;
@@ -102,11 +102,11 @@ function findTranslationUsage(filePath) {
         usedKeys.add(match[1]);
       }
     });
-    
+
     // Find dynamic translation patterns and resolve them
     const dynamicKeys = findDynamicTranslationUsage(content, filePath);
     dynamicKeys.forEach(key => usedKeys.add(key));
-    
+
     return Array.from(usedKeys);
   } catch (error) {
     console.error(`Error reading ${filePath}:`, error.message);
@@ -119,19 +119,19 @@ function findTranslationUsage(filePath) {
  */
 function findDynamicTranslationUsage(content, filePath) {
   const dynamicKeys = new Set();
-  
+
   // Pattern to match t(`template${variable}template`)
   const templateLiteralPattern = /t\(\s*`([^`]*\$\{[^}]+\}[^`]*)`\s*[,)]/g;
-  
+
   let match;
   while ((match = templateLiteralPattern.exec(content)) !== null) {
     const template = match[1];
-    
+
     // Resolve the template by finding variable arrays/values in the same file
     const resolvedKeys = resolveDynamicTemplate(template, content, filePath);
     resolvedKeys.forEach(key => dynamicKeys.add(key));
   }
-  
+
   return Array.from(dynamicKeys);
 }
 
@@ -140,13 +140,13 @@ function findDynamicTranslationUsage(content, filePath) {
  */
 function resolveDynamicTemplate(template, content, filePath) {
   const resolvedKeys = [];
-  
+
   // Extract the variable name from ${variableName}
   const variableMatch = template.match(/\$\{(\w+)\}/);
   if (!variableMatch) return resolvedKeys;
-  
+
   const variableName = variableMatch[1];
-  
+
   // Look for array declarations or object property definitions
   const arrayPatterns = [
     // Array literal: const variableName = ['value1', 'value2']
@@ -154,25 +154,25 @@ function resolveDynamicTemplate(template, content, filePath) {
     // Variable assignment: variableName = ['value1', 'value2']
     new RegExp(`${variableName}\\s*=\\s*\\[([^\\]]+)\\]`, 'g'),
   ];
-  
+
   for (const pattern of arrayPatterns) {
     let arrayMatch;
     while ((arrayMatch = pattern.exec(content)) !== null) {
       const arrayContent = arrayMatch[1];
-      
+
       // Extract string values from the array
       const stringPattern = /['"`]([^'"`]+)['"`]/g;
       let stringMatch;
       while ((stringMatch = stringPattern.exec(arrayContent)) !== null) {
         const value = stringMatch[1];
-        
+
         // Replace ${variableName} with the actual value
         const resolvedKey = template.replace(`\${${variableName}}`, value);
         resolvedKeys.push(resolvedKey);
       }
     }
   }
-  
+
   // Handle object property iterations like Object.keys(someObject)
   const objectKeyPatterns = [
     // Object.keys(objectName).map(...) or similar
@@ -180,18 +180,21 @@ function resolveDynamicTemplate(template, content, filePath) {
     // for...in loops: for (const key in objectName)
     new RegExp(`for\\s*\\(\\s*(?:const|let|var)\\s+\\w+\\s+in\\s+(\\w+)\\s*\\)`, 'g'),
   ];
-  
+
   for (const pattern of objectKeyPatterns) {
     let objectMatch;
     while ((objectMatch = pattern.exec(content)) !== null) {
       const objectName = objectMatch[1];
-      
+
       // Look for object definition in the same file
-      const objectDefPattern = new RegExp(`(?:const|let|var)\\s+${objectName}\\s*=\\s*\\{([^}]+)\\}`, 'g');
+      const objectDefPattern = new RegExp(
+        `(?:const|let|var)\\s+${objectName}\\s*=\\s*\\{([^}]+)\\}`,
+        'g'
+      );
       let objectDefMatch;
       while ((objectDefMatch = objectDefPattern.exec(content)) !== null) {
         const objectContent = objectDefMatch[1];
-        
+
         // Extract property names
         const propertyPattern = /['"`]?(\w+)['"`]?\s*:/g;
         let propertyMatch;
@@ -203,7 +206,7 @@ function resolveDynamicTemplate(template, content, filePath) {
       }
     }
   }
-  
+
   // Special case: Handle common FAQ pattern where array is defined inline
   if (template.includes('faq.questions.') && template.includes('${')) {
     // Look for faqQuestions array in FAQ components
@@ -211,7 +214,7 @@ function resolveDynamicTemplate(template, content, filePath) {
     let faqMatch;
     while ((faqMatch = faqPattern.exec(content)) !== null) {
       const arrayContent = faqMatch[1];
-      
+
       // Extract string values
       const stringPattern = /['"`]([^'"`]+)['"`]/g;
       let stringMatch;
@@ -222,7 +225,7 @@ function resolveDynamicTemplate(template, content, filePath) {
       }
     }
   }
-  
+
   // Special handling for known commonly used dynamic patterns
   const commonPatterns = [
     // screenshots.altText and screenshots.description with number parameter
@@ -235,14 +238,14 @@ function resolveDynamicTemplate(template, content, filePath) {
     { pattern: 'donate.supportMessage', usesParam: false },
     { pattern: 'donate.button', usesParam: false },
   ];
-  
+
   // Check if this template matches any common patterns
   commonPatterns.forEach(({ pattern, usesParam }) => {
     if (template.includes(pattern) || template === pattern) {
       resolvedKeys.push(pattern);
     }
   });
-  
+
   return resolvedKeys;
 }
 
@@ -251,48 +254,48 @@ function resolveDynamicTemplate(template, content, filePath) {
  */
 function analyzeTranslations(verbose = false) {
   console.log('🔍 Analyzing translation usage...\n');
-  
+
   // 1. Get all translation keys from English (reference)
   const englishTranslationPath = path.join(LOCALES_DIR, 'en', 'common.json');
   if (!fs.existsSync(englishTranslationPath)) {
     console.error('❌ English translation file not found:', englishTranslationPath);
     return;
   }
-  
+
   const allTranslationKeys = loadTranslationKeys(englishTranslationPath);
   console.log(`📋 Found ${allTranslationKeys.length} translation keys in English locale`);
-  
+
   // 2. Find all code files
   const codeFiles = getCodeFiles(SRC_DIR, CODE_EXTENSIONS);
   console.log(`📁 Scanning ${codeFiles.length} code files for translation usage`);
-  
+
   // 3. Find used translation keys
   const usedKeys = new Set();
   const staticKeys = new Set();
   const dynamicKeys = new Set();
-  
+
   codeFiles.forEach(filePath => {
     const keysInFile = findTranslationUsage(filePath);
-    
+
     // Also track static vs dynamic separately for debugging
     const content = fs.readFileSync(filePath, 'utf-8');
     const staticPatterns = [
       /t\(\s*['"`]([^'"`]+)['"`]\s*[,)]/g,
       /t\(\s*['"`]([^'"`]+)['"`]\s*,\s*\{[^}]*\}\s*\)/g,
     ];
-    
+
     staticPatterns.forEach(pattern => {
       let match;
       while ((match = pattern.exec(content)) !== null) {
         staticKeys.add(match[1]);
       }
     });
-    
+
     const dynamicKeysInFile = findDynamicTranslationUsage(content, filePath);
     dynamicKeysInFile.forEach(key => dynamicKeys.add(key));
-    
+
     keysInFile.forEach(key => usedKeys.add(key));
-    
+
     if (verbose && keysInFile.length > 0) {
       console.log(`   📄 ${path.relative(process.cwd(), filePath)}: ${keysInFile.length} keys`);
       if (dynamicKeysInFile.length > 0) {
@@ -300,23 +303,23 @@ function analyzeTranslations(verbose = false) {
       }
     }
   });
-  
+
   console.log(`✅ Found ${usedKeys.size} used translation keys`);
   console.log(`   📌 Static keys: ${staticKeys.size}`);
   console.log(`   🔄 Dynamic keys: ${dynamicKeys.size}\n`);
-  
+
   // 4. Find unused keys
   const unusedKeys = allTranslationKeys.filter(key => !usedKeys.has(key));
-  
+
   // 5. Generate report
   if (unusedKeys.length === 0) {
     console.log('🎉 All translation keys are being used!');
     return;
   }
-  
+
   console.log('🗑️  UNUSED TRANSLATION KEYS:');
   console.log('================================\n');
-  
+
   // Group unused keys by section
   const keysBySection = {};
   unusedKeys.forEach(key => {
@@ -326,7 +329,7 @@ function analyzeTranslations(verbose = false) {
     }
     keysBySection[section].push(key);
   });
-  
+
   // Display grouped results
   Object.entries(keysBySection).forEach(([section, keys]) => {
     console.log(`📂 ${section.toUpperCase()} (${keys.length} unused keys):`);
@@ -335,22 +338,25 @@ function analyzeTranslations(verbose = false) {
     });
     console.log('');
   });
-  
+
   // 6. Generate removal suggestions
   console.log('💡 REMOVAL SUGGESTIONS:');
   console.log('=======================\n');
-  
-  const localeFiles = fs.readdirSync(LOCALES_DIR)
+
+  const localeFiles = fs
+    .readdirSync(LOCALES_DIR)
     .filter(item => fs.statSync(path.join(LOCALES_DIR, item)).isDirectory())
     .map(locale => path.join(LOCALES_DIR, locale, 'common.json'));
-  
-  console.log(`These ${unusedKeys.length} keys can be safely removed from all ${localeFiles.length} locale files:`);
+
+  console.log(
+    `These ${unusedKeys.length} keys can be safely removed from all ${localeFiles.length} locale files:`
+  );
   console.log('(Run with --remove flag to automatically remove them)\n');
-  
+
   unusedKeys.forEach(key => {
     console.log(`   "${key}"`);
   });
-  
+
   // 7. Summary
   console.log('\n📊 SUMMARY:');
   console.log('============');
@@ -358,12 +364,12 @@ function analyzeTranslations(verbose = false) {
   console.log(`Used keys: ${usedKeys.size}`);
   console.log(`Unused keys: ${unusedKeys.length}`);
   console.log(`Usage rate: ${((usedKeys.size / allTranslationKeys.length) * 100).toFixed(1)}%`);
-  
+
   return {
     totalKeys: allTranslationKeys.length,
     usedKeys: Array.from(usedKeys),
     unusedKeys: unusedKeys,
-    localeFiles: localeFiles
+    localeFiles: localeFiles,
   };
 }
 
@@ -373,11 +379,11 @@ function analyzeTranslations(verbose = false) {
 function removeEmptyObjects(obj) {
   Object.keys(obj).forEach(key => {
     const value = obj[key];
-    
+
     if (value && typeof value === 'object' && !Array.isArray(value)) {
       // Recursively clean nested objects
       removeEmptyObjects(value);
-      
+
       // Check if object is now empty and remove it
       if (Object.keys(value).length === 0) {
         delete obj[key];
@@ -392,22 +398,22 @@ function removeEmptyObjects(obj) {
 function removeUnusedKeys(unusedKeys, localeFiles, dryRun = false) {
   const actionText = dryRun ? 'Would remove' : 'Removing';
   console.log(`\n🗑️  ${actionText} unused translation keys and empty objects...\n`);
-  
+
   let totalModified = 0;
   let totalKeysRemoved = 0;
-  
+
   localeFiles.forEach(filePath => {
     try {
       const content = fs.readFileSync(filePath, 'utf-8');
       const translations = JSON.parse(content);
       let modified = false;
       let keysRemovedInFile = 0;
-      
+
       // Remove unused keys
       unusedKeys.forEach(keyPath => {
         const keys = keyPath.split('.');
         let current = translations;
-        
+
         // Navigate to parent object
         for (let i = 0; i < keys.length - 1; i++) {
           if (current[keys[i]]) {
@@ -416,7 +422,7 @@ function removeUnusedKeys(unusedKeys, localeFiles, dryRun = false) {
             return; // Key doesn't exist
           }
         }
-        
+
         // Remove the key
         const lastKey = keys[keys.length - 1];
         if (current[lastKey] !== undefined) {
@@ -427,18 +433,18 @@ function removeUnusedKeys(unusedKeys, localeFiles, dryRun = false) {
           keysRemovedInFile++;
         }
       });
-      
+
       // Remove empty objects
       if (!dryRun) {
         const originalString = JSON.stringify(translations);
         removeEmptyObjects(translations);
         const cleanedString = JSON.stringify(translations);
-        
+
         if (originalString !== cleanedString) {
           modified = true;
         }
       }
-      
+
       if (modified) {
         if (!dryRun) {
           // Write back to file with proper formatting
@@ -458,14 +464,16 @@ function removeUnusedKeys(unusedKeys, localeFiles, dryRun = false) {
       console.error(`❌ Error ${dryRun ? 'analyzing' : 'updating'} ${filePath}:`, error.message);
     }
   });
-  
+
   if (dryRun) {
     console.log(`\n📊 DRY RUN SUMMARY:`);
     console.log(`Files that would be modified: ${totalModified}`);
     console.log(`Total keys that would be removed: ${totalKeysRemoved}`);
     console.log(`\n💡 Run without --dry-run to actually remove the keys.`);
   } else {
-    console.log(`\n✅ Successfully removed ${totalKeysRemoved} unused keys from ${totalModified} files!`);
+    console.log(
+      `\n✅ Successfully removed ${totalKeysRemoved} unused keys from ${totalModified} files!`
+    );
   }
 }
 
@@ -475,24 +483,24 @@ function removeUnusedKeys(unusedKeys, localeFiles, dryRun = false) {
 function cleanEmptyObjects(localeFiles, dryRun = false) {
   const actionText = dryRun ? 'Would clean' : 'Cleaning';
   console.log(`\n🧹 ${actionText} empty objects from translation files...\n`);
-  
+
   let totalModified = 0;
   let totalEmptyObjectsRemoved = 0;
-  
+
   localeFiles.forEach(filePath => {
     try {
       const content = fs.readFileSync(filePath, 'utf-8');
       const translations = JSON.parse(content);
-      
+
       // Count empty objects before cleaning
       const emptyObjectsCount = countEmptyObjects(translations);
-      
+
       if (!dryRun) {
         // Remove empty objects
         const originalString = JSON.stringify(translations);
         removeEmptyObjects(translations);
         const cleanedString = JSON.stringify(translations);
-        
+
         if (originalString !== cleanedString) {
           // Write back to file with proper formatting
           fs.writeFileSync(filePath, JSON.stringify(translations, null, 2) + '\n');
@@ -518,14 +526,16 @@ function cleanEmptyObjects(localeFiles, dryRun = false) {
       console.error(`❌ Error ${dryRun ? 'analyzing' : 'cleaning'} ${filePath}:`, error.message);
     }
   });
-  
+
   if (dryRun) {
     console.log(`\n📊 DRY RUN SUMMARY:`);
     console.log(`Files that would be modified: ${totalModified}`);
     console.log(`Total empty objects that would be removed: ${totalEmptyObjectsRemoved}`);
     console.log(`\n💡 Run without --dry-run to actually clean the files.`);
   } else {
-    console.log(`\n✅ Successfully removed ${totalEmptyObjectsRemoved} empty objects from ${totalModified} files!`);
+    console.log(
+      `\n✅ Successfully removed ${totalEmptyObjectsRemoved} empty objects from ${totalModified} files!`
+    );
   }
 }
 
@@ -534,10 +544,10 @@ function cleanEmptyObjects(localeFiles, dryRun = false) {
  */
 function countEmptyObjects(obj) {
   let count = 0;
-  
+
   Object.keys(obj).forEach(key => {
     const value = obj[key];
-    
+
     if (value && typeof value === 'object' && !Array.isArray(value)) {
       // Check if this object is empty
       if (Object.keys(value).length === 0) {
@@ -548,7 +558,7 @@ function countEmptyObjects(obj) {
       }
     }
   });
-  
+
   return count;
 }
 
@@ -558,19 +568,21 @@ function countEmptyObjects(obj) {
 function displayHelp() {
   console.log('🌍 WHPH Translation Analyzer');
   console.log('=============================\n');
-  
+
   console.log('USAGE:');
   console.log('  node scripts/find-unused-translations.js [OPTIONS]\n');
-  
+
   console.log('OPTIONS:');
   console.log('  -h, --help                Show this help message');
   console.log('  -v, --verbose             Show detailed analysis output');
   console.log('  -r, --remove              Remove unused translation keys');
   console.log('  -c, --clean-empty         Clean only empty objects from translation files');
-  console.log('  --add-missing             Add missing keys to all locale files (using English as template)');
+  console.log(
+    '  --add-missing             Add missing keys to all locale files (using English as template)'
+  );
   console.log('  --dry-run                 Show what would be changed without modifying files');
   console.log('  --all                     Analyze, remove unused keys, and clean empty objects\n');
-  
+
   console.log('EXAMPLES:');
   console.log('  node scripts/find-unused-translations.js');
   console.log('    → Analyze translation usage and show unused keys');
@@ -592,7 +604,7 @@ function displayHelp() {
   console.log('');
   console.log('  node scripts/find-unused-translations.js --all');
   console.log('    → Full cleanup: analyze, remove unused keys, and clean empty objects\n');
-  
+
   console.log('FEATURES:');
   console.log('  ✅ Detects static translation keys: t("key.name")');
   console.log('  ✅ Detects dynamic translation keys: t(`prefix.${variable}.suffix`)');
@@ -606,7 +618,8 @@ function displayHelp() {
  * Get all locale files
  */
 function getLocaleFiles() {
-  return fs.readdirSync(LOCALES_DIR)
+  return fs
+    .readdirSync(LOCALES_DIR)
     .filter(item => fs.statSync(path.join(LOCALES_DIR, item)).isDirectory())
     .map(locale => path.join(LOCALES_DIR, locale, 'common.json'))
     .filter(filePath => fs.existsSync(filePath));
@@ -624,37 +637,37 @@ function main() {
   const verbose = args.includes('--verbose') || args.includes('-v');
   const dryRun = args.includes('--dry-run');
   const doAll = args.includes('--all');
-  
+
   if (showHelp) {
     displayHelp();
     return;
   }
-  
+
   console.log('🌍 WHPH Translation Analyzer');
   console.log('=============================\n');
-  
+
   const localeFiles = getLocaleFiles();
-  
+
   // Handle different operation modes
   if (shouldCleanEmpty && !doAll && !shouldRemove && !shouldAddMissing) {
     // Only clean empty objects
     cleanEmptyObjects(localeFiles, dryRun);
     return;
   }
-  
+
   if (shouldAddMissing && !doAll && !shouldRemove && !shouldCleanEmpty) {
     // Only add missing keys
     addMissingKeys(dryRun);
     return;
   }
-  
+
   // Always start with analysis
   const analysis = analyzeTranslations(verbose);
-  
+
   if (!analysis) {
     process.exit(1);
   }
-  
+
   // Handle removal operations
   if (shouldRemove || doAll) {
     if (analysis.unusedKeys.length > 0) {
@@ -662,7 +675,7 @@ function main() {
     } else {
       console.log('\n🎉 No unused keys to remove!');
     }
-    
+
     // Clean empty objects after removing keys (or if --all is specified)
     if (doAll) {
       cleanEmptyObjects(localeFiles, dryRun);
@@ -696,23 +709,23 @@ if (import.meta.url === `file://${process.argv[1]}`) {
  */
 function addMissingKeys(dryRun = false) {
   console.log(`\n🔧 ${dryRun ? 'Would add' : 'Adding'} missing translation keys...\n`);
-  
+
   const englishPath = path.join(LOCALES_DIR, 'en', 'common.json');
   const englishTranslations = JSON.parse(fs.readFileSync(englishPath, 'utf-8'));
   const englishKeys = getTranslationKeys(englishTranslations);
-  
+
   const localeFiles = getLocaleFiles().filter(f => !f.includes('/en/'));
   let totalKeysAdded = 0;
   let totalFilesModified = 0;
-  
+
   localeFiles.forEach(filePath => {
     try {
       const content = fs.readFileSync(filePath, 'utf-8');
       const translations = JSON.parse(content);
       const existingKeys = getTranslationKeys(translations);
-      
+
       const missingKeys = englishKeys.filter(key => !existingKeys.includes(key));
-      
+
       if (missingKeys.length > 0) {
         if (!dryRun) {
           // Add missing keys with English values as placeholders
@@ -720,27 +733,27 @@ function addMissingKeys(dryRun = false) {
             const keys = keyPath.split('.');
             let currentEn = englishTranslations;
             let currentTarget = translations;
-            
+
             // Navigate to get English value
             for (let i = 0; i < keys.length - 1; i++) {
               currentEn = currentEn[keys[i]];
-              
+
               // Create nested structure if doesn't exist
               if (!currentTarget[keys[i]]) {
                 currentTarget[keys[i]] = {};
               }
               currentTarget = currentTarget[keys[i]];
             }
-            
+
             // Set the value with English as placeholder
             const lastKey = keys[keys.length - 1];
             currentTarget[lastKey] = currentEn[lastKey];
           });
-          
+
           // Write back to file
           fs.writeFileSync(filePath, JSON.stringify(translations, null, 2) + '\n');
         }
-        
+
         const relativePath = path.relative(process.cwd(), filePath);
         const prefix = dryRun ? '🔍 Would update' : '✅ Updated';
         console.log(`${prefix}: ${relativePath} (${missingKeys.length} keys added)`);
@@ -754,13 +767,15 @@ function addMissingKeys(dryRun = false) {
       console.error(`❌ Error processing ${filePath}:`, error.message);
     }
   });
-  
+
   if (dryRun) {
     console.log(`\n📊 DRY RUN SUMMARY:`);
     console.log(`Files that would be modified: ${totalFilesModified}`);
     console.log(`Total keys that would be added: ${totalKeysAdded}`);
   } else {
-    console.log(`\n✅ Successfully added ${totalKeysAdded} missing keys to ${totalFilesModified} files!`);
+    console.log(
+      `\n✅ Successfully added ${totalKeysAdded} missing keys to ${totalFilesModified} files!`
+    );
   }
 }
 

@@ -17,12 +17,12 @@ const { t, currentLang } = Astro.props;
     <AnimatedSection animation="fade-up" delay={0}>
       <div class="text-center">
         <h2 class="text-section-title mb-4">{t('screenshots.title')}</h2>
-        <p class="text-xl text-text-secondary dark:text-dark-secondary max-w-2xl mx-auto">
+        <p class="text-text-secondary dark:text-dark-secondary mx-auto max-w-2xl text-xl">
           {t('screenshots.subtitle')}
         </p>
       </div>
     </AnimatedSection>
-    
+
     <AnimatedSection animation="fade-up" delay={200}>
       <ScreenshotGallery t={t} currentLang={currentLang} />
     </AnimatedSection>

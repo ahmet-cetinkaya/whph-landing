@@ -5,19 +5,13 @@ export interface Props {
   color?: string;
 }
 
-const { 
-  class: className = "w-4 h-4", 
-  size,
-  color = "currentColor"
-} = Astro.props;
+const { class: className = 'w-4 h-4', size, color = 'currentColor' } = Astro.props;
 
 const sizeClass = size ? `w-${size} h-${size}` : className;
 ---
 
-<svg 
-  class={sizeClass} 
-  fill={color} 
-  viewBox="0 0 20 20"
->
-  <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v8a1 1 0 01-1 1V9a1 1 0 00-1-1H5a1 1 0 00-1 1v4a1 1 0 01-1-1V4zM2 14h16l-2 2H4l-2-2z" />
+<svg class={sizeClass} fill={color} viewBox="0 0 20 20">
+  <path
+    d="M3 4a1 1 0 011-1h12a1 1 0 011 1v8a1 1 0 01-1 1V9a1 1 0 00-1-1H5a1 1 0 00-1 1v4a1 1 0 01-1-1V4zM2 14h16l-2 2H4l-2-2z"
+  ></path>
 </svg>

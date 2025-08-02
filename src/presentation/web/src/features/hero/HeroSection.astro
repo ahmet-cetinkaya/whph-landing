@@ -13,24 +13,24 @@ const { t } = Astro.props;
 
 <div>
   <Container>
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="grid items-center gap-12 lg:grid-cols-2">
       <AnimatedSection animation="fade-up" delay={200}>
         <div class="space-y-6">
           <h1 class="text-hero text-balance text-gray-900 dark:text-white">
             {t('hero.title')}: <span class="text-primary">{t('hero.titleHighlight')}</span>
           </h1>
-          <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+          <p class="text-xl leading-relaxed text-gray-600 dark:text-gray-300">
             {t('hero.subtitle')}
           </p>
-          <div class="flex flex-col sm:flex-row gap-4">
+          <div class="flex flex-col gap-4 sm:flex-row">
             <Button href="#download" variant="primary" size="lg">
               {t('hero.downloadFree')}
             </Button>
-            <Button 
-              href="https://github.com/ahmet-cetinkaya/whph" 
-              variant="secondary" 
+            <Button
+              href="https://github.com/ahmet-cetinkaya/whph"
+              variant="secondary"
               size="lg"
-              target="_blank" 
+              target="_blank"
               rel="noopener"
             >
               {t('hero.viewGithub')}
@@ -39,13 +39,19 @@ const { t } = Astro.props;
           <div class="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-300">
             <span>{t('hero.availableOn')}</span>
             <div class="flex items-center gap-2">
-              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-whph text-xs font-medium text-gray-700 dark:text-gray-300 transition-all duration-200 hover:scale-105">
+              <span
+                class="rounded-whph bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 transition-all duration-200 hover:scale-105 dark:bg-gray-800 dark:text-gray-300"
+              >
                 {t('hero.platforms.android')}
               </span>
-              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-whph text-xs font-medium text-gray-700 dark:text-gray-300 transition-all duration-200 hover:scale-105">
+              <span
+                class="rounded-whph bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 transition-all duration-200 hover:scale-105 dark:bg-gray-800 dark:text-gray-300"
+              >
                 {t('hero.platforms.windows')}
               </span>
-              <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 rounded-whph text-xs font-medium text-gray-700 dark:text-gray-300 transition-all duration-200 hover:scale-105">
+              <span
+                class="rounded-whph bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 transition-all duration-200 hover:scale-105 dark:bg-gray-800 dark:text-gray-300"
+              >
                 {t('hero.platforms.linux')}
               </span>
             </div>
@@ -54,12 +60,14 @@ const { t } = Astro.props;
       </AnimatedSection>
       <AnimatedSection animation="slide-right" delay={400}>
         <div class="relative">
-          <div class="bg-white dark:bg-gray-800 rounded-whph shadow-sm p-8 text-center transition-all duration-300 hover:shadow-lg hover:scale-105">
-            <div class="w-64 h-64 mx-auto flex items-center justify-center">
-              <img 
-                src="/favicon.svg" 
-                alt={t('hero.screenshotAlt')} 
-                class="w-48 h-48 object-contain transition-all duration-300 hover:scale-110"
+          <div
+            class="rounded-whph bg-white p-8 text-center shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-lg dark:bg-gray-800"
+          >
+            <div class="mx-auto flex h-64 w-64 items-center justify-center">
+              <img
+                src="/favicon.svg"
+                alt={t('hero.screenshotAlt')}
+                class="h-48 w-48 object-contain transition-all duration-300 hover:scale-110"
               />
             </div>
           </div>

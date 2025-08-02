@@ -4,13 +4,13 @@
 
 <script is:inline>
   // Client-side language detection and redirect
-  (function() {
+  (function () {
     // Only run on the default route
     if (window.location.pathname === '/') {
       // Get browser language
       const browserLang = navigator.language.split('-')[0];
       const supportedLangs = ['en', 'tr', 'es', 'fr', 'de', 'pl', 'it', 'ja', 'ko', 'ru', 'zh'];
-      
+
       // Check if browser language is supported and not English
       if (supportedLangs.includes(browserLang) && browserLang !== 'en') {
         // Redirect to localized version

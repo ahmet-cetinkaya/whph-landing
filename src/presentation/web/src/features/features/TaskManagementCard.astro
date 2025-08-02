@@ -9,42 +9,99 @@ const { t } = Astro.props;
 ---
 
 <AnimatedSection animation="fade-up" delay={100}>
-  <div class="feature-card bg-white dark:bg-gray-800 rounded-whph shadow-sm p-6 text-center space-y-4 transition-all duration-500 hover:-translate-y-2 hover:scale-105 group cursor-pointer relative overflow-hidden h-full flex flex-col">
+  <div
+    class="feature-card group rounded-whph relative flex h-full cursor-pointer flex-col space-y-4 overflow-hidden bg-white p-6 text-center shadow-sm transition-all duration-500 hover:-translate-y-2 hover:scale-105 dark:bg-gray-800"
+  >
     <!-- Animated background gradient with ticks -->
-    <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 opacity-0 group-hover:opacity-60 transition-opacity duration-500">
+    <div
+      class="from-primary/5 to-primary/10 absolute inset-0 bg-gradient-to-br opacity-0 transition-opacity duration-500 group-hover:opacity-60"
+    >
       <!-- Animated checkmark ticks -->
-      <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-60 transition-all duration-300 delay-200">
-        <svg class="w-4 h-4 text-green-500 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+      <div
+        class="absolute top-4 right-4 opacity-0 transition-all delay-200 duration-300 group-hover:opacity-60"
+      >
+        <svg class="h-4 w-4 animate-pulse text-green-500" fill="currentColor" viewBox="0 0 20 20">
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
         </svg>
       </div>
-      <div class="absolute top-8 left-4 opacity-0 group-hover:opacity-40 transition-all duration-300 delay-400">
-        <svg class="w-3 h-3 text-green-400 animate-pulse" style="animation-delay: 200ms" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+      <div
+        class="absolute top-8 left-4 opacity-0 transition-all delay-400 duration-300 group-hover:opacity-40"
+      >
+        <svg
+          class="h-3 w-3 animate-pulse text-green-400"
+          style="animation-delay: 200ms"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
         </svg>
       </div>
-      <div class="absolute bottom-6 right-6 opacity-0 group-hover:opacity-40 transition-all duration-300 delay-600">
-        <svg class="w-3 h-3 text-green-600 animate-pulse" style="animation-delay: 400ms" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+      <div
+        class="absolute right-6 bottom-6 opacity-0 transition-all delay-600 duration-300 group-hover:opacity-40"
+      >
+        <svg
+          class="h-3 w-3 animate-pulse text-green-600"
+          style="animation-delay: 400ms"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
         </svg>
       </div>
-      <div class="absolute bottom-4 left-8 opacity-0 group-hover:opacity-30 transition-all duration-300 delay-800">
-        <svg class="w-2 h-2 text-green-500 animate-pulse" style="animation-delay: 600ms" fill="currentColor" viewBox="0 0 20 20">
-          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+      <div
+        class="absolute bottom-4 left-8 opacity-0 transition-all delay-800 duration-300 group-hover:opacity-30"
+      >
+        <svg
+          class="h-2 w-2 animate-pulse text-green-500"
+          style="animation-delay: 600ms"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"></path>
         </svg>
       </div>
     </div>
-    
-    <div class="relative z-10 flex flex-col h-full justify-between">
+
+    <div class="relative z-10 flex h-full flex-col justify-between">
       <div class="space-y-4">
-        <div class="w-12 h-12 bg-primary/20 rounded-whph mx-auto flex items-center justify-center transition-all duration-500 group-hover:bg-primary/40 group-hover:scale-125 group-hover:rotate-12 group-hover:shadow-lg">
-          <svg class="w-6 h-6 text-primary transition-all duration-500 group-hover:scale-110 group-hover:text-primary/80 task-icon-draw" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+        <div
+          class="rounded-whph bg-primary/20 group-hover:bg-primary/40 mx-auto flex h-12 w-12 items-center justify-center transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 group-hover:shadow-lg"
+        >
+          <svg
+            class="task-icon-draw text-primary group-hover:text-primary/80 h-6 w-6 transition-all duration-500 group-hover:scale-110"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+            ></path>
           </svg>
         </div>
-        <h3 class="text-card-title transition-all duration-300 group-hover:text-primary group-hover:scale-105">{t('features.taskManagement.title')}</h3>
+        <h3
+          class="text-card-title group-hover:text-primary transition-all duration-300 group-hover:scale-105"
+        >
+          {t('features.taskManagement.title')}
+        </h3>
       </div>
-      <p class="text-text-secondary dark:text-dark-secondary transition-all duration-300 group-hover:text-text-primary group-hover:dark:text-dark-primary mt-4">
+      <p
+        class="text-text-secondary group-hover:text-text-primary dark:text-dark-secondary group-hover:dark:text-dark-primary mt-4 transition-all duration-300"
+      >
         {t('features.taskManagement.description')}
       </p>
     </div>

@@ -12,49 +12,61 @@ const { t } = Astro.props;
 
 const faqQuestions = [
   'free',
-  'platforms', 
+  'platforms',
   'privacy',
   'contribute',
   'sync',
   'offline',
   'backup',
-  'workHardPlayHard'
+  'workHardPlayHard',
 ];
 ---
 
 <div>
   <Container>
     <AnimatedSection animation="fade-up" delay={0}>
-      <div class="text-center mb-12">
+      <div class="mb-12 text-center">
         <h2 class="text-section-title mb-4">{t('faq.title')}</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        <p class="mx-auto max-w-2xl text-xl text-gray-600 dark:text-gray-300">
           {t('faq.subtitle')}
         </p>
       </div>
     </AnimatedSection>
-    
-    <div class="max-w-3xl mx-auto">
+
+    <div class="mx-auto max-w-3xl">
       <div class="space-y-4">
-        {faqQuestions.map((questionKey, index) => (
-          <AnimatedSection animation="fade-up" delay={index * 100}>
-            <details class="faq-item bg-white dark:bg-gray-800 rounded-whph shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-lg">
-              <summary class="cursor-pointer p-6 font-semibold text-gray-900 dark:text-white hover:text-primary transition-colors flex items-center justify-between">
-                <span>{t(`faq.questions.${questionKey}.question`)}</span>
-                <svg class="faq-chevron w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
-              </summary>
-              <div class="faq-content">
-                <div class="px-6 pb-6">
-                  <MarkdownRenderer 
-                    content={t(`faq.questions.${questionKey}.answer`)} 
-                    class="text-gray-700 dark:text-gray-300 leading-relaxed prose prose-sm max-w-none prose-a:text-primary prose-a:hover:underline prose-strong:text-gray-900 dark:prose-strong:text-white"
-                  />
+        {
+          faqQuestions.map((questionKey, index) => (
+            <AnimatedSection animation="fade-up" delay={index * 100}>
+              <details class="faq-item rounded-whph border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800">
+                <summary class="hover:text-primary flex cursor-pointer items-center justify-between p-6 font-semibold text-gray-900 transition-colors dark:text-white">
+                  <span>{t(`faq.questions.${questionKey}.question`)}</span>
+                  <svg
+                    class="faq-chevron h-5 w-5 transition-transform duration-300"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </summary>
+                <div class="faq-content">
+                  <div class="px-6 pb-6">
+                    <MarkdownRenderer
+                      content={t(`faq.questions.${questionKey}.answer`)}
+                      class="prose prose-sm prose-a:text-primary prose-a:hover:underline prose-strong:text-gray-900 dark:prose-strong:text-white max-w-none leading-relaxed text-gray-700 dark:text-gray-300"
+                    />
+                  </div>
                 </div>
-              </div>
-            </details>
-          </AnimatedSection>
-        ))}
+              </details>
+            </AnimatedSection>
+          ))
+        }
       </div>
     </div>
   </Container>
@@ -64,46 +76,47 @@ const faqQuestions = [
   .faq-item[open] .faq-chevron {
     transform: rotate(180deg);
   }
-  
+
   .faq-content {
     overflow: hidden;
-    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    transition:
+      max-height 0.3s ease-out,
+      opacity 0.3s ease-out;
   }
-  
+
   .faq-item:not([open]) .faq-content {
     max-height: 0;
     opacity: 0;
   }
-  
+
   .faq-item[open] .faq-content {
     max-height: 1000px;
     opacity: 1;
   }
-  
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     const faqItems = document.querySelectorAll('.faq-item');
-    
+
     faqItems.forEach(item => {
       const summary = item.querySelector('summary');
       const content = item.querySelector('.faq-content') as HTMLElement | null;
-      
+
       if (summary && content) {
         // Prevent default details behavior
-        summary.addEventListener('click', function(e) {
+        summary.addEventListener('click', function (e) {
           e.preventDefault();
-          
+
           const isOpen = item.hasAttribute('open');
-          
+
           if (isOpen) {
             // Closing animation
             content.style.maxHeight = content.scrollHeight + 'px';
             content.offsetHeight; // Force reflow
             content.style.maxHeight = '0';
             content.style.opacity = '0';
-            
+
             setTimeout(() => {
               item.removeAttribute('open');
             }, 300);
@@ -115,7 +128,7 @@ const faqQuestions = [
             content.offsetHeight; // Force reflow
             content.style.maxHeight = content.scrollHeight + 'px';
             content.style.opacity = '1';
-            
+
             // Reset max-height after animation
             setTimeout(() => {
               content.style.maxHeight = 'none';

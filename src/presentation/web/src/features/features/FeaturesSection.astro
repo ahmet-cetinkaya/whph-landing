@@ -17,14 +17,14 @@ const { t } = Astro.props;
 <div>
   <Container>
     <AnimatedSection animation="fade-up" delay={0}>
-      <div class="text-center mb-12">
+      <div class="mb-12 text-center">
         <h2 class="text-section-title mb-4">{t('features.title')}</h2>
-        <p class="text-xl text-text-secondary dark:text-dark-secondary max-w-2xl mx-auto">
+        <p class="text-text-secondary dark:text-dark-secondary mx-auto max-w-2xl text-xl">
           {t('features.subtitle')}
         </p>
       </div>
     </AnimatedSection>
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 items-stretch">
+    <div class="grid items-stretch gap-8 md:grid-cols-2 lg:grid-cols-4">
       <TaskManagementCard t={t} />
       <HabitTrackingCard t={t} />
       <TimeAnalyticsCard t={t} />

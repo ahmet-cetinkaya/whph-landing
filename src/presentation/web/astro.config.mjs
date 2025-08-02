@@ -13,13 +13,10 @@ export default defineConfig({
     defaultLocale: 'en',
     locales: ['en', 'tr', 'es', 'fr', 'de', 'it', 'ja', 'ko', 'ru', 'zh'],
     routing: {
-      prefixDefaultLocale: false
-    }
+      prefixDefaultLocale: false,
+    },
   },
-  integrations: [
-    tailwind(),
-    solidJs(),
-  ],
+  integrations: [tailwind(), solidJs()],
   vite: {
     build: {
       // Optimize chunks for better caching

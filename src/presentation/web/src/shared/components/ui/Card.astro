@@ -4,11 +4,7 @@ export interface Props {
   padding?: 'sm' | 'md' | 'lg';
 }
 
-const { 
-  class: className = '',
-  padding = 'md',
-  ...rest 
-} = Astro.props;
+const { class: className = '', padding = 'md', ...rest } = Astro.props;
 
 const baseClasses = 'bg-white dark:bg-gray-800 rounded-whph shadow-sm';
 

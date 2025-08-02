@@ -14,7 +14,7 @@ interface Props {
 const { t } = Astro.props;
 
 // GitHub repository releases URL
-const GITHUB_RELEASES_URL = "https://github.com/ahmet-cetinkaya/whph/releases/latest";
+const GITHUB_RELEASES_URL = 'https://github.com/ahmet-cetinkaya/whph/releases/latest';
 ---
 
 <div>
@@ -22,20 +22,34 @@ const GITHUB_RELEASES_URL = "https://github.com/ahmet-cetinkaya/whph/releases/la
     <AnimatedSection animation="fade-up" delay={0}>
       <div class="text-center">
         <h2 class="text-section-title mb-4">{t('download.title')}</h2>
-        <p class="text-xl text-text-secondary dark:text-dark-secondary mb-8 max-w-2xl mx-auto">
+        <p class="text-text-secondary dark:text-dark-secondary mx-auto mb-8 max-w-2xl text-xl">
           {t('download.subtitle')}
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8" id="download-buttons">
+        <div class="mb-8 flex flex-col justify-center gap-4 sm:flex-row" id="download-buttons">
           <Button href="#" variant="secondary" size="lg" id="android-btn">
-            <AndroidIcon class="w-5 h-5 mr-2" />
+            <AndroidIcon class="mr-2 h-5 w-5" />
             {t('download.downloadFor', { platform: t('hero.platforms.android') })}
           </Button>
-          <Button href={GITHUB_RELEASES_URL} variant="secondary" size="lg" id="windows-btn" target="_blank" rel="noopener noreferrer">
-            <WindowsIcon class="w-5 h-5 mr-2" />
+          <Button
+            href={GITHUB_RELEASES_URL}
+            variant="secondary"
+            size="lg"
+            id="windows-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <WindowsIcon class="mr-2 h-5 w-5" />
             {t('download.downloadFor', { platform: t('hero.platforms.windows') })}
           </Button>
-          <Button href={GITHUB_RELEASES_URL} variant="secondary" size="lg" id="linux-btn" target="_blank" rel="noopener noreferrer">
-            <LinuxIcon class="w-5 h-5 mr-2" />
+          <Button
+            href={GITHUB_RELEASES_URL}
+            variant="secondary"
+            size="lg"
+            id="linux-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <LinuxIcon class="mr-2 h-5 w-5" />
             {t('download.downloadFor', { platform: t('hero.platforms.linux') })}
           </Button>
         </div>
@@ -52,48 +66,62 @@ const GITHUB_RELEASES_URL = "https://github.com/ahmet-cetinkaya/whph/releases/la
   function detectOS() {
     const userAgent = navigator.userAgent.toLowerCase();
     const platform = navigator.platform.toLowerCase();
-    
+
     // More comprehensive OS detection
-    
+
     // Check for Android first (most specific)
     if (userAgent.includes('android')) {
       return 'android';
     }
-    
+
     // Check for Windows (various versions)
-    if (userAgent.includes('win') || platform.includes('win') || 
-        userAgent.includes('windows') || platform.includes('windows')) {
+    if (
+      userAgent.includes('win') ||
+      platform.includes('win') ||
+      userAgent.includes('windows') ||
+      platform.includes('windows')
+    ) {
       return 'windows';
     }
-    
+
     // Check for Linux (but not Android)
-    if ((userAgent.includes('linux') || platform.includes('linux')) && 
-        !userAgent.includes('android')) {
+    if (
+      (userAgent.includes('linux') || platform.includes('linux')) &&
+      !userAgent.includes('android')
+    ) {
       return 'linux';
     }
-    
+
     // Check for macOS (treat as Linux since macOS isn't supported yet)
-    if (userAgent.includes('mac') || platform.includes('mac') || 
-        userAgent.includes('darwin') || platform.includes('darwin')) {
+    if (
+      userAgent.includes('mac') ||
+      platform.includes('mac') ||
+      userAgent.includes('darwin') ||
+      platform.includes('darwin')
+    ) {
       return 'linux'; // Default to Linux for macOS users
     }
-    
+
     // Check for iOS (treat as Android since iOS isn't supported yet)
-    if (userAgent.includes('iphone') || userAgent.includes('ipad') || 
-        userAgent.includes('ipod') || userAgent.includes('ios')) {
+    if (
+      userAgent.includes('iphone') ||
+      userAgent.includes('ipad') ||
+      userAgent.includes('ipod') ||
+      userAgent.includes('ios')
+    ) {
       return 'android'; // Default to Android for iOS users
     }
-    
+
     // Check for other mobile platforms
     if (userAgent.includes('mobile') || userAgent.includes('phone')) {
       return 'android';
     }
-    
+
     // Default fallback based on common desktop patterns
     if (userAgent.includes('x11') || userAgent.includes('unix')) {
       return 'linux';
     }
-    
+
     // Final fallback - default to Android as it's most widely used
     return 'android';
   }
@@ -117,12 +145,13 @@ const GITHUB_RELEASES_URL = "https://github.com/ahmet-cetinkaya/whph/releases/la
         .replace(/\bshadow-sm\b/g, '')
         .replace(/\bhover:shadow-lg\b/g, '')
         .replace(/\bhover:shadow-primary\/25\b/g, '');
-      
+
       // Ensure secondary variant classes are present
       if (!button.className.includes('border-2 border-primary')) {
-        button.className += ' border-2 border-primary text-primary hover:bg-primary/10 bg-transparent hover:border-primary/80';
+        button.className +=
+          ' border-2 border-primary text-primary hover:bg-primary/10 bg-transparent hover:border-primary/80';
       }
-      
+
       // Clean up extra spaces
       button.className = button.className.replace(/\s+/g, ' ').trim();
     });
@@ -137,10 +166,11 @@ const GITHUB_RELEASES_URL = "https://github.com/ahmet-cetinkaya/whph/releases/la
         .replace(/\bhover:bg-primary\/10\b/g, '')
         .replace(/\bbg-transparent\b/g, '')
         .replace(/\bhover:border-primary\/80\b/g, '');
-      
+
       // Add primary variant classes
-      targetButton.className += ' bg-primary text-black hover:bg-primary/90 shadow-sm hover:shadow-lg hover:shadow-primary/25';
-      
+      targetButton.className +=
+        ' bg-primary text-black hover:bg-primary/90 shadow-sm hover:shadow-lg hover:shadow-primary/25';
+
       // Clean up extra spaces
       targetButton.className = targetButton.className.replace(/\s+/g, ' ').trim();
     } else {
@@ -153,12 +183,12 @@ const GITHUB_RELEASES_URL = "https://github.com/ahmet-cetinkaya/whph/releases/la
     try {
       const detectedOS = detectOS();
       setActivePlatform(detectedOS);
-      
+
       // Log for debugging (can be removed in production)
       console.log('WHPH OS Detection:', {
         detected: detectedOS,
         userAgent: navigator.userAgent,
-        platform: navigator.platform
+        platform: navigator.platform,
       });
     } catch (error) {
       console.error('Error in OS detection:', error);

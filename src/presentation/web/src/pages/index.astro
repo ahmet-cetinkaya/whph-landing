@@ -1,14 +1,11 @@
 ---
 // Default route - show English content with auto-redirect
-import Layout from "../shared/components/Layout.astro";
-import HomePage from "./_components/HomePage.astro";
-import {
-  loadTranslations,
-  createTranslationFunction,
-} from "../shared/utils/i18n";
+import Layout from '../shared/components/Layout.astro';
+import HomePage from './_components/HomePage.astro';
+import { loadTranslations, createTranslationFunction } from '../shared/utils/i18n';
 
 // For the default route, we'll show English content
-const currentLang = "en";
+const currentLang = 'en';
 const translations = await loadTranslations(currentLang);
 const t = createTranslationFunction(translations);
 ---

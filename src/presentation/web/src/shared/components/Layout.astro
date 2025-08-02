@@ -4,14 +4,14 @@ import Footer from './Footer.astro';
 import PerformanceMonitor from './PerformanceMonitor.astro';
 import AccessibilityEnhancements from './AccessibilityEnhancements.astro';
 import Analytics from './Analytics.astro';
-import { 
-  getLanguageFromURL, 
-  loadTranslations, 
-  getAlternateLanguageURLs, 
-  languageCodes, 
+import {
+  getLanguageFromURL,
+  loadTranslations,
+  getAlternateLanguageURLs,
+  languageCodes,
   textDirection,
   getCurrentYear,
-  createTranslationFunction
+  createTranslationFunction,
 } from '../utils/i18n';
 
 // Import SCSS styles
@@ -39,7 +39,7 @@ const t = createTranslationFunction(translations);
 const title = frontmatter.title || t('site.title');
 const description = frontmatter.description || t('site.description');
 const keywords = frontmatter.keywords || t('site.keywords');
-const ogImage = frontmatter.ogImage || "/og-image.png";
+const ogImage = frontmatter.ogImage || '/og-image.png';
 
 // Get language attributes
 const htmlLang = languageCodes[currentLang];
@@ -54,27 +54,33 @@ const alternateURLs = getAlternateLanguageURLs(Astro.url.pathname, siteUrl.toStr
 const currentYear = getCurrentYear();
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang={htmlLang} dir={dir} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <link rel="canonical" href={canonicalURL} />
-    
+
     <!-- Alternate language links for SEO -->
-    {alternateURLs.map(({ lang, url }) => (
-      <link rel="alternate" hreflang={languageCodes[lang]} href={url} />
-    ))}
-    <link rel="alternate" hreflang="x-default" href={alternateURLs.find(alt => alt.lang === 'en')?.url} />
-    
+    {
+      alternateURLs.map(({ lang, url }) => (
+        <link rel="alternate" hreflang={languageCodes[lang]} href={url} />
+      ))
+    }
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={alternateURLs.find(alt => alt.lang === 'en')?.url}
+    />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url} />
@@ -83,76 +89,79 @@ const currentYear = getCurrentYear();
     <meta property="og:image" content={new URL(ogImage, Astro.url)} />
     <meta property="og:site_name" content="WHPH - Work Hard Play Hard" />
     <meta property="og:locale" content={htmlLang.replace('-', '_')} />
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={Astro.url} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(ogImage, Astro.url)} />
-    
+
     <!-- Structured Data for Software Application -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "WHPH - Work Hard Play Hard",
-      "description": t('site.description'),
-      "url": "https://whph.ahmetcetinkaya.me",
-      "applicationCategory": "ProductivityApplication",
-      "operatingSystem": ["Android", "Windows", "Linux"],
-      "inLanguage": htmlLang,
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Ahmet Çetinkaya"
-      },
-      "softwareVersion": "1.0",
-      "downloadUrl": "https://github.com/ahmet-cetinkaya/whph/releases",
-      "screenshot": "https://whph.ahmetcetinkaya.me/screenshots/hero.png",
-      "featureList": [
-        t('features.taskManagement.title'),
-        t('features.habitTracking.title'),
-        t('features.timeAnalytics.title'),
-        t('features.crossPlatform.title')
-      ]
-    })} />
-    
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: 'WHPH - Work Hard Play Hard',
+        description: t('site.description'),
+        url: 'https://whph.ahmetcetinkaya.me',
+        applicationCategory: 'ProductivityApplication',
+        operatingSystem: ['Android', 'Windows', 'Linux'],
+        inLanguage: htmlLang,
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'USD',
+        },
+        author: {
+          '@type': 'Person',
+          name: 'Ahmet Çetinkaya',
+        },
+        softwareVersion: '1.0',
+        downloadUrl: 'https://github.com/ahmet-cetinkaya/whph/releases',
+        screenshot: 'https://whph.ahmetcetinkaya.me/screenshots/hero.png',
+        featureList: [
+          t('features.taskManagement.title'),
+          t('features.habitTracking.title'),
+          t('features.timeAnalytics.title'),
+          t('features.crossPlatform.title'),
+        ],
+      })}
+    />
+
     <!-- Preload critical resources -->
-    <link rel="dns-prefetch" href="//github.com">
-    <link rel="preconnect" href="https://github.com" crossorigin>
-    
+    <link rel="dns-prefetch" href="//github.com" />
+    <link rel="preconnect" href="https://github.com" crossorigin />
+
     <!-- Resource hints for better performance -->
-    <meta name="format-detection" content="telephone=no">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="WHPH">
-    <meta name="application-name" content="WHPH">
-    <meta name="theme-color" content="#F4D03E">
-    <meta name="msapplication-TileColor" content="#F4D03E">
-    
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="WHPH" />
+    <meta name="application-name" content="WHPH" />
+    <meta name="theme-color" content="#F4D03E" />
+    <meta name="msapplication-TileColor" content="#F4D03E" />
+
     <!-- Dark Mode Only Script (runs before page load) -->
     <script is:inline>
-      import { supportedLanguages } from "../utils/i18n";
+      import { supportedLanguages } from '../utils/i18n';
 
       // Ensure dark mode is always active
       document.documentElement.classList.add('dark');
       // Remove any potential light mode classes
       document.documentElement.classList.remove('light');
     </script>
-    
+
     <!-- Language Detection Script (only for default route) -->
     <script is:inline>
       // Client-side language detection and redirect
-      (function() {
+      (function () {
         // Only run on the default route
         if (window.location.pathname === '/') {
           // Get browser language
           const browserLang = navigator.language.split('-')[0];
-          
+
           // Check if browser language is supported and not English
           if (supportedLanguages.includes(browserLang) && browserLang !== 'en') {
             // Redirect to localized version
@@ -162,34 +171,34 @@ const currentYear = getCurrentYear();
       })();
     </script>
   </head>
-  <body class="antialiased bg-black text-white font-sans leading-relaxed">
+  <body class="bg-black font-sans leading-relaxed text-white antialiased">
     <AccessibilityEnhancements />
     <Header currentLang={currentLang} translations={translations} />
     <main id="main-content">
       <slot />
     </main>
-    
+
     <!-- Footer -->
     <Footer t={t} currentYear={currentYear} />
-    
+
     <!-- Performance Monitoring (Development) -->
     <PerformanceMonitor />
-    
+
     <!-- Privacy-Focused Analytics -->
     <Analytics />
-    
+
     <!-- Global JavaScript with translations -->
     <script define:vars={{ translations, currentLang, currentYear }}>
       // Make translations available globally for JavaScript
       window.WHPH_TRANSLATIONS = translations;
       window.WHPH_CURRENT_LANG = currentLang;
       window.WHPH_CURRENT_YEAR = currentYear;
-      
+
       // Translation function for JavaScript
-      window.t = function(key, variables = {}) {
+      window.t = function (key, variables = {}) {
         const keys = key.split('.');
         let value = translations;
-        
+
         for (const k of keys) {
           if (value && typeof value === 'object' && k in value) {
             value = value[k];
@@ -198,16 +207,15 @@ const currentYear = getCurrentYear();
             return key;
           }
         }
-        
+
         if (typeof value === 'string') {
           return value.replace(/\{\{(\w+)\}\}/g, (match, k) => {
             return variables[k]?.toString() || match;
           });
         }
-        
+
         return key;
       };
     </script>
-    
-      </body>
+  </body>
 </html>

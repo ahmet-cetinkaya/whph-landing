@@ -10,12 +10,12 @@ interface Props {
   enableEvents?: boolean;
 }
 
-const { 
+const {
   websiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID,
-  src = import.meta.env.PUBLIC_UMAMI_SRC || "https://analytics.whph.ahmetcetinkaya.me/script.js",
-  domains = import.meta.env.PUBLIC_UMAMI_DOMAINS || "whph.ahmetcetinkaya.me",
+  src = import.meta.env.PUBLIC_UMAMI_SRC || 'https://analytics.whph.ahmetcetinkaya.me/script.js',
+  domains = import.meta.env.PUBLIC_UMAMI_DOMAINS || 'whph.ahmetcetinkaya.me',
   autoTrack = true,
-  enableEvents = true
+  enableEvents = true,
 } = Astro.props;
 
 // Only load analytics in production or when explicitly enabled
@@ -23,39 +23,35 @@ const isEnabled = import.meta.env.PROD || import.meta.env.PUBLIC_ENABLE_ANALYTIC
 const isDev = import.meta.env.DEV;
 ---
 
-{isEnabled && websiteId && (
-  <script 
-    async 
-    src={src}
-    data-website-id={websiteId}
-    data-domains={domains}
-    data-auto-track={autoTrack}
-    data-do-not-track="true"
-    data-cache="true"
-  ></script>
-)}
+{
+  isEnabled && websiteId && (
+    <script
+      async
+      src={src}
+      data-website-id={websiteId}
+      data-domains={domains}
+      data-auto-track={autoTrack}
+      data-do-not-track="true"
+      data-cache="true"
+    />
+  )
+}
 
-{isDev && (
-  <script>
-    // Development analytics simulation
-    console.log('📊 Analytics (Development Mode):', {
-      websiteId: websiteId || 'Not configured',
-      src: src,
-      domains: domains,
-      enabled: isEnabled,
-      note: 'Analytics disabled in development. Set PUBLIC_ENABLE_ANALYTICS=true to test.'
-    });
-  </script>
-)}
+{
+  isDev && (
+    <script define:vars={{ websiteId, src, domains, isEnabled }}>
+      // Development analytics simulation
+    </script>
+  )
+}
 
 <script define:vars={{ enableEvents, isEnabled, isDev }}>
   // Enhanced analytics with privacy-focused event tracking
   if (isEnabled && typeof window !== 'undefined') {
-    
     // Wait for Umami to load
     function waitForUmami(callback, maxAttempts = 50) {
       let attempts = 0;
-      
+
       function check() {
         if (window.umami || attempts >= maxAttempts) {
           callback(window.umami);
@@ -64,87 +60,94 @@ const isDev = import.meta.env.DEV;
           setTimeout(check, 100);
         }
       }
-      
+
       check();
     }
-    
+
     // Initialize analytics when page loads
     document.addEventListener('DOMContentLoaded', () => {
-      waitForUmami((umami) => {
+      waitForUmami(umami => {
         if (!umami) {
           console.warn('📊 Umami analytics failed to load');
           return;
         }
-        
+
         if (isDev) {
           console.log('📊 Umami analytics loaded successfully');
         }
-        
+
         // Enhanced event tracking if enabled
         if (enableEvents) {
           initializeEventTracking(umami);
         }
       });
     });
-    
+
     function initializeEventTracking(umami) {
       // Download button clicks
-      document.querySelectorAll('a[href*="download"], a[href*="github.com/ahmet-cetinkaya/whph/releases"]').forEach(link => {
-        link.addEventListener('click', (e) => {
-          const platform = getPlatformFromText(link.textContent) || 'unknown';
-          umami.track('download-click', { platform: platform });
+      document
+        .querySelectorAll(
+          'a[href*="download"], a[href*="github.com/ahmet-cetinkaya/whph/releases"]'
+        )
+        .forEach(link => {
+          link.addEventListener('click', e => {
+            const platform = getPlatformFromText(link.textContent) || 'unknown';
+            umami.track('download-click', { platform: platform });
+          });
         });
-      });
-      
+
       // Navigation clicks
       document.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener('click', (e) => {
+        link.addEventListener('click', e => {
           const section = link.getAttribute('href').substring(1);
           umami.track('navigation', { section: section });
         });
       });
-      
+
       // FAQ interactions
       document.querySelectorAll('[data-faq-toggle]').forEach(button => {
-        button.addEventListener('click', (e) => {
+        button.addEventListener('click', e => {
           const faq = button.getAttribute('data-faq-toggle');
           const isExpanded = button.getAttribute('aria-expanded') === 'true';
-          umami.track('faq-interaction', { 
-            question: faq, 
-            action: isExpanded ? 'close' : 'open' 
+          umami.track('faq-interaction', {
+            question: faq,
+            action: isExpanded ? 'close' : 'open',
           });
         });
       });
-      
+
       // Screenshot gallery interactions
       document.querySelectorAll('.dot, #prev-btn, #next-btn').forEach(control => {
-        control.addEventListener('click', (e) => {
+        control.addEventListener('click', e => {
           const action = control.id || 'dot-navigation';
           umami.track('gallery-interaction', { action: action });
         });
       });
-      
-            
+
       // External link tracking
-      document.querySelectorAll('a[href^="http"]:not([href*="whph.ahmetcetinkaya.me"])').forEach(link => {
-        link.addEventListener('click', (e) => {
-          const destination = getDomain(link.href);
-          umami.track('external-link', { destination: destination });
+      document
+        .querySelectorAll('a[href^="http"]:not([href*="whph.ahmetcetinkaya.me"])')
+        .forEach(link => {
+          link.addEventListener('click', e => {
+            const destination = getDomain(link.href);
+            umami.track('external-link', { destination: destination });
+          });
         });
-      });
-      
+
       // Scroll depth tracking
       let maxScrollDepth = 0;
       let scrollTimer;
-      
+
       window.addEventListener('scroll', () => {
         clearTimeout(scrollTimer);
         scrollTimer = setTimeout(() => {
-          const scrollDepth = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
-          
+          const scrollDepth = Math.round(
+            (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100
+          );
+
           if (scrollDepth > maxScrollDepth) {
             maxScrollDepth = scrollDepth;
-            
+
             // Track at 25%, 50%, 75%, and 100%
             if ([25, 50, 75, 100].includes(scrollDepth)) {
               umami.track('scroll-depth', { percentage: scrollDepth });
@@ -152,29 +155,31 @@ const isDev = import.meta.env.DEV;
           }
         }, 100);
       });
-      
+
       // Performance tracking
       window.addEventListener('load', () => {
         // Track page load performance
         if (performance.getEntriesByType) {
           const navigationEntry = performance.getEntriesByType('navigation')[0];
           if (navigationEntry) {
-            const loadTime = Math.round(navigationEntry.loadEventEnd - navigationEntry.navigationStart);
-            
+            const loadTime = Math.round(
+              navigationEntry.loadEventEnd - navigationEntry.navigationStart
+            );
+
             let performanceCategory = 'excellent';
             if (loadTime > 3000) performanceCategory = 'poor';
             else if (loadTime > 1500) performanceCategory = 'needs-improvement';
             else if (loadTime > 1000) performanceCategory = 'good';
-            
-            umami.track('page-performance', { 
+
+            umami.track('page-performance', {
               loadTime: Math.round(loadTime / 100) * 100, // Round to nearest 100ms
-              category: performanceCategory
+              category: performanceCategory,
             });
           }
         }
       });
     }
-    
+
     // Helper functions
     function getPlatformFromText(text) {
       const lowerText = text.toLowerCase();
@@ -184,7 +189,7 @@ const isDev = import.meta.env.DEV;
       if (lowerText.includes('github')) return 'github';
       return null;
     }
-    
+
     function getDomain(url) {
       try {
         return new URL(url).hostname;
@@ -195,12 +200,8 @@ const isDev = import.meta.env.DEV;
   }
 </script>
 
-<!-- Privacy Notice for Analytics -->
-{isEnabled && (
-  <noscript>
-    <!-- Analytics disabled for users without JavaScript -->
-  </noscript>
-)}
+{/* Privacy Notice for Analytics */}
+{isEnabled && <noscript>{/* Analytics disabled for users without JavaScript */}</noscript>}
 
 <style>
   /* Ensure analytics script doesn't affect layout */

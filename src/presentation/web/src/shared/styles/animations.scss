@@ -1,12 +1,12 @@
 // Animation utilities with accessibility considerations
-@use "sass:map";
+@use 'sass:map';
 
 // Variables (Dark Theme Only)
 $primary-color: rgba(244, 208, 62, 1);
 $glow-dark: (
   inner: rgba(244, 208, 62, 0.4),
   mid: rgba(244, 208, 62, 0.5),
-  outer: rgba(244, 208, 62, 0.3)
+  outer: rgba(244, 208, 62, 0.3),
 );
 
 // Respect user's motion preferences globally
@@ -23,7 +23,8 @@ $glow-dark: (
 
 // Loading animations
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -32,7 +33,8 @@ $glow-dark: (
 }
 
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -51,7 +53,8 @@ $glow-dark: (
 
 // Custom feature card animations
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -60,7 +63,8 @@ $glow-dark: (
 }
 
 @keyframes glow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 5px map.get($glow-dark, inner);
   }
   50% {
@@ -74,7 +78,7 @@ $glow-dark: (
   position: relative;
 
   &:hover {
-    box-shadow: 
+    box-shadow:
       0 0 0 2px map.get($glow-dark, inner),
       0 0 20px map.get($glow-dark, mid),
       0 0 40px map.get($glow-dark, outer);
@@ -123,7 +127,7 @@ html {
 
 /* Focus styles for better accessibility */
 .focus-visible:focus-visible {
-  outline: 2px solid #F4D03E;
+  outline: 2px solid #f4d03e;
   outline-offset: 2px;
 }
 
@@ -177,31 +181,48 @@ html {
 
 // Icon animations
 $icon-animations: (
-  pulse: (duration: 3s, timing: ease-in-out),
-  float: (duration: 4s, timing: ease-in-out),
-  bounce: (duration: 2.5s, timing: ease-in-out),
-  rotate: (duration: 6s, timing: linear)
+  pulse: (
+    duration: 3s,
+    timing: ease-in-out,
+  ),
+  float: (
+    duration: 4s,
+    timing: ease-in-out,
+  ),
+  bounce: (
+    duration: 2.5s,
+    timing: ease-in-out,
+  ),
+  rotate: (
+    duration: 6s,
+    timing: linear,
+  ),
 );
 
 // Subtle icon animations - simpler approach
 .task-icon-draw {
-  animation: iconPulse map.get(map.get($icon-animations, pulse), duration) map.get(map.get($icon-animations, pulse), timing) infinite;
+  animation: iconPulse map.get(map.get($icon-animations, pulse), duration)
+    map.get(map.get($icon-animations, pulse), timing) infinite;
 }
 
 .calendar-icon-draw {
-  animation: iconFloat map.get(map.get($icon-animations, float), duration) map.get(map.get($icon-animations, float), timing) infinite;
+  animation: iconFloat map.get(map.get($icon-animations, float), duration)
+    map.get(map.get($icon-animations, float), timing) infinite;
 }
 
 .chart-icon-draw {
-  animation: iconBounce map.get(map.get($icon-animations, bounce), duration) map.get(map.get($icon-animations, bounce), timing) infinite;
+  animation: iconBounce map.get(map.get($icon-animations, bounce), duration)
+    map.get(map.get($icon-animations, bounce), timing) infinite;
 }
 
 .sync-icon-draw {
-  animation: iconRotate map.get(map.get($icon-animations, rotate), duration) map.get(map.get($icon-animations, rotate), timing) infinite;
+  animation: iconRotate map.get(map.get($icon-animations, rotate), duration)
+    map.get(map.get($icon-animations, rotate), timing) infinite;
 }
 
 @keyframes iconPulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.7;
     transform: scale(1);
   }
@@ -212,7 +233,8 @@ $icon-animations: (
 }
 
 @keyframes iconFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -221,7 +243,8 @@ $icon-animations: (
 }
 
 @keyframes iconBounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   25% {
@@ -250,7 +273,7 @@ $icon-animations: (
   .hover\:scale-110:hover {
     transform: none !important;
   }
-  
+
   .transition-all,
   .transition-colors,
   .transition-transform {
