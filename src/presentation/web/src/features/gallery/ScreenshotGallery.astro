@@ -23,7 +23,7 @@ export interface Screenshot {
 
 // Map language codes to screenshot directory names
 const LANGUAGE_MAP: Record<SupportedLanguage, string> = {
-  en: 'en-EN',
+  en: 'en-GB',
   tr: 'tr-TR',
   es: 'es-ES',
   fr: 'fr-FR',
@@ -48,7 +48,7 @@ const LANGUAGE_MAP: Record<SupportedLanguage, string> = {
 };
 
 // Get the correct language directory with type safety
-const screenshotLang = LANGUAGE_MAP[currentLang as SupportedLanguage] || 'en-EN';
+const screenshotLang = LANGUAGE_MAP[currentLang as SupportedLanguage] || 'en-GB';
 
 // Load screenshots from local metadata or fallback to file system check
 let screenshots: Screenshot[] = [];
@@ -106,7 +106,7 @@ if (screenshots.length === 0) {
   console.warn(`No local screenshots found for ${screenshotLang}, trying fallback languages...`);
 
   // Fallback: current language -> English
-  const fallbackLanguages = [screenshotLang, 'en-EN'];
+  const fallbackLanguages = [screenshotLang, 'en-GB'];
 
   for (const fallbackLang of fallbackLanguages) {
     if (screenshots.length > 0) break;
@@ -163,7 +163,7 @@ if (screenshots.length === 0) {
   // Ultimate fallback: GitHub URLs for English
   if (screenshots.length === 0) {
     console.warn('No local screenshots found, using GitHub URLs as final fallback');
-    const GITHUB_BASE_URL = `https://raw.githubusercontent.com/ahmet-cetinkaya/whph/main/fastlane/metadata/android/en-EN/images/phoneScreenshots`;
+    const GITHUB_BASE_URL = `https://raw.githubusercontent.com/ahmet-cetinkaya/whph/main/fastlane/metadata/android/en-GB/images/phoneScreenshots`;
 
     for (let i = 1; i <= 10; i++) {
       screenshots.push({

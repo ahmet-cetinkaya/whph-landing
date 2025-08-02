@@ -14,7 +14,7 @@ const PUBLIC_DIR = path.join(__dirname, '..', 'public', 'screenshots');
 
 // Supported languages from the WHPH repository
 const SUPPORTED_LANGUAGES = [
-  'en-EN',
+  'en-GB',
   'tr-TR',
   'es-ES',
   'fr-FR',
