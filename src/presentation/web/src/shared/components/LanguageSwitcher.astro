@@ -35,7 +35,7 @@ const languageLinks = supportedLanguages.map(lang => ({
       <div class="relative inline-block text-left" data-astro-cid-lang>
         <button
           id="language-button"
-          class="rounded-whph focus:ring-primary/50 inline-flex w-full items-center justify-center border border-gray-600 bg-gray-800 px-3 py-2 text-sm font-medium text-gray-300 shadow-sm transition-colors hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+          class="inline-flex w-full items-center justify-center rounded-whph border border-gray-600 bg-gray-800 px-3 py-2 text-sm font-medium text-gray-300 shadow-sm transition-colors hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2"
           aria-haspopup="true"
           aria-expanded="false"
           data-astro-cid-lang
@@ -47,7 +47,7 @@ const languageLinks = supportedLanguages.map(lang => ({
 
         <div
           id="language-dropdown"
-          class="rounded-whph ring-opacity-5 invisible absolute right-0 z-10 mt-2 w-40 origin-top-right scale-95 transform border border-gray-700 bg-gray-800 opacity-0 shadow-lg ring-1 ring-black transition-all duration-200 focus:outline-none"
+          class="invisible absolute right-0 z-10 mt-2 w-40 origin-top-right scale-95 transform rounded-whph border border-gray-700 bg-gray-800 opacity-0 shadow-lg ring-1 ring-black ring-opacity-5 transition-all duration-200 focus:outline-none"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="language-button"
@@ -64,7 +64,7 @@ const languageLinks = supportedLanguages.map(lang => ({
                 data-astro-cid-lang
               >
                 <span class="flex items-center" data-astro-cid-lang>
-                  {lang.isActive && <CheckmarkIcon class="text-primary mr-2 h-3 w-3" />}
+                  {lang.isActive && <CheckmarkIcon class="mr-2 h-3 w-3 text-primary" />}
                   {lang.name}
                 </span>
               </a>
@@ -106,14 +106,14 @@ const languageLinks = supportedLanguages.map(lang => ({
                 href={lang.url}
                 class={`block px-4 py-2 text-sm transition-colors ${
                   lang.isActive
-                    ? 'bg-primary/10 text-primary font-medium'
+                    ? 'bg-primary/10 font-medium text-primary'
                     : 'text-gray-300 hover:bg-gray-700'
                 }`}
                 role="menuitem"
                 data-astro-cid-lang
               >
                 <span class="flex items-center" data-astro-cid-lang>
-                  {lang.isActive && <CheckmarkIcon class="text-primary mr-2 h-3 w-3" />}
+                  {lang.isActive && <CheckmarkIcon class="mr-2 h-3 w-3 text-primary" />}
                   {lang.name}
                 </span>
               </a>

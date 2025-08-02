@@ -10,15 +10,15 @@ const { t } = Astro.props;
 
 <AnimatedSection animation="fade-up" delay={100}>
   <div
-    class="feature-card group rounded-whph relative flex h-full cursor-pointer flex-col space-y-4 overflow-hidden bg-white p-6 text-center shadow-sm transition-all duration-500 hover:-translate-y-2 hover:scale-105 dark:bg-gray-800"
+    class="feature-card group relative flex h-full cursor-pointer flex-col space-y-4 overflow-hidden rounded-whph bg-white p-6 text-center shadow-sm transition-all duration-500 hover:-translate-y-2 hover:scale-105 dark:bg-gray-800"
   >
     <!-- Animated background gradient with ticks -->
     <div
-      class="from-primary/5 to-primary/10 absolute inset-0 bg-gradient-to-br opacity-0 transition-opacity duration-500 group-hover:opacity-60"
+      class="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 opacity-0 transition-opacity duration-500 group-hover:opacity-60"
     >
       <!-- Animated checkmark ticks -->
       <div
-        class="absolute top-4 right-4 opacity-0 transition-all delay-200 duration-300 group-hover:opacity-60"
+        class="absolute right-4 top-4 opacity-0 transition-all delay-200 duration-300 group-hover:opacity-60"
       >
         <svg class="h-4 w-4 animate-pulse text-green-500" fill="currentColor" viewBox="0 0 20 20">
           <path
@@ -28,7 +28,7 @@ const { t } = Astro.props;
         </svg>
       </div>
       <div
-        class="absolute top-8 left-4 opacity-0 transition-all delay-400 duration-300 group-hover:opacity-40"
+        class="delay-400 absolute left-4 top-8 opacity-0 transition-all duration-300 group-hover:opacity-40"
       >
         <svg
           class="h-3 w-3 animate-pulse text-green-400"
@@ -43,7 +43,7 @@ const { t } = Astro.props;
         </svg>
       </div>
       <div
-        class="absolute right-6 bottom-6 opacity-0 transition-all delay-600 duration-300 group-hover:opacity-40"
+        class="delay-600 absolute bottom-6 right-6 opacity-0 transition-all duration-300 group-hover:opacity-40"
       >
         <svg
           class="h-3 w-3 animate-pulse text-green-600"
@@ -58,7 +58,7 @@ const { t } = Astro.props;
         </svg>
       </div>
       <div
-        class="absolute bottom-4 left-8 opacity-0 transition-all delay-800 duration-300 group-hover:opacity-30"
+        class="delay-800 absolute bottom-4 left-8 opacity-0 transition-all duration-300 group-hover:opacity-30"
       >
         <svg
           class="h-2 w-2 animate-pulse text-green-500"
@@ -77,10 +77,10 @@ const { t } = Astro.props;
     <div class="relative z-10 flex h-full flex-col justify-between">
       <div class="space-y-4">
         <div
-          class="rounded-whph bg-primary/20 group-hover:bg-primary/40 mx-auto flex h-12 w-12 items-center justify-center transition-all duration-500 group-hover:scale-125 group-hover:rotate-12 group-hover:shadow-lg"
+          class="mx-auto flex h-12 w-12 items-center justify-center rounded-whph bg-primary/20 transition-all duration-500 group-hover:rotate-12 group-hover:scale-125 group-hover:bg-primary/40 group-hover:shadow-lg"
         >
           <svg
-            class="task-icon-draw text-primary group-hover:text-primary/80 h-6 w-6 transition-all duration-500 group-hover:scale-110"
+            class="task-icon-draw h-6 w-6 text-primary transition-all duration-500 group-hover:scale-110 group-hover:text-primary/80"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -94,13 +94,13 @@ const { t } = Astro.props;
           </svg>
         </div>
         <h3
-          class="text-card-title group-hover:text-primary transition-all duration-300 group-hover:scale-105"
+          class="text-card-title transition-all duration-300 group-hover:scale-105 group-hover:text-primary"
         >
           {t('features.taskManagement.title')}
         </h3>
       </div>
       <p
-        class="text-text-secondary group-hover:text-text-primary dark:text-dark-secondary group-hover:dark:text-dark-primary mt-4 transition-all duration-300"
+        class="mt-4 text-text-secondary transition-all duration-300 group-hover:text-text-primary dark:text-dark-secondary group-hover:dark:text-dark-primary"
       >
         {t('features.taskManagement.description')}
       </p>

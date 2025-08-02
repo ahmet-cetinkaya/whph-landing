@@ -12,6 +12,7 @@ import {
   textDirection,
   getCurrentYear,
   createTranslationFunction,
+  supportedLanguages,
 } from '../utils/i18n';
 
 // Import SCSS styles
@@ -145,8 +146,6 @@ const currentYear = getCurrentYear();
 
     <!-- Dark Mode Only Script (runs before page load) -->
     <script is:inline>
-      import { supportedLanguages } from '../utils/i18n';
-
       // Ensure dark mode is always active
       document.documentElement.classList.add('dark');
       // Remove any potential light mode classes
@@ -154,7 +153,7 @@ const currentYear = getCurrentYear();
     </script>
 
     <!-- Language Detection Script (only for default route) -->
-    <script is:inline>
+    <script is:inline define:vars={{ supportedLanguages }}>
       // Client-side language detection and redirect
       (function () {
         // Only run on the default route

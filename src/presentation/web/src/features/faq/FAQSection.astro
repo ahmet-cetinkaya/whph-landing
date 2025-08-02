@@ -26,7 +26,7 @@ const faqQuestions = [
   <Container>
     <AnimatedSection animation="fade-up" delay={0}>
       <div class="mb-12 text-center">
-        <h2 class="text-section-title mb-4">{t('faq.title')}</h2>
+        <h2 class="mb-4 text-section-title">{t('faq.title')}</h2>
         <p class="mx-auto max-w-2xl text-xl text-gray-600 dark:text-gray-300">
           {t('faq.subtitle')}
         </p>
@@ -39,7 +39,7 @@ const faqQuestions = [
           faqQuestions.map((questionKey, index) => (
             <AnimatedSection animation="fade-up" delay={index * 100}>
               <details class="faq-item rounded-whph border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800">
-                <summary class="hover:text-primary flex cursor-pointer items-center justify-between p-6 font-semibold text-gray-900 transition-colors dark:text-white">
+                <summary class="flex cursor-pointer items-center justify-between p-6 font-semibold text-gray-900 transition-colors hover:text-primary dark:text-white">
                   <span>{t(`faq.questions.${questionKey}.question`)}</span>
                   <svg
                     class="faq-chevron h-5 w-5 transition-transform duration-300"
@@ -59,7 +59,7 @@ const faqQuestions = [
                   <div class="px-6 pb-6">
                     <MarkdownRenderer
                       content={t(`faq.questions.${questionKey}.answer`)}
-                      class="prose prose-sm prose-a:text-primary prose-a:hover:underline prose-strong:text-gray-900 dark:prose-strong:text-white max-w-none leading-relaxed text-gray-700 dark:text-gray-300"
+                      class="prose prose-sm max-w-none leading-relaxed text-gray-700 prose-a:text-primary prose-a:hover:underline prose-strong:text-gray-900 dark:text-gray-300 dark:prose-strong:text-white"
                     />
                   </div>
                 </div>

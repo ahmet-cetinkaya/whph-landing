@@ -37,20 +37,20 @@ const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
 
       <!-- Desktop Navigation -->
       <div class="hidden items-center space-x-6 md:flex">
-        <a href="#features" class="hover:text-primary font-medium text-gray-300 transition-colors">
+        <a href="#features" class="font-medium text-gray-300 transition-colors hover:text-primary">
           {t('navigation.features')}
         </a>
-        <a href="#download" class="hover:text-primary font-medium text-gray-300 transition-colors">
+        <a href="#download" class="font-medium text-gray-300 transition-colors hover:text-primary">
           {t('navigation.download')}
         </a>
-        <a href="#faq" class="hover:text-primary font-medium text-gray-300 transition-colors">
+        <a href="#faq" class="font-medium text-gray-300 transition-colors hover:text-primary">
           {t('navigation.faq')}
         </a>
         <a
           href="https://github.com/ahmet-cetinkaya/whph"
           target="_blank"
           rel="noopener"
-          class="hover:text-primary font-medium text-gray-300 transition-colors"
+          class="font-medium text-gray-300 transition-colors hover:text-primary"
         >
           {t('navigation.github')}
         </a>
@@ -83,7 +83,7 @@ const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
   <!-- Mobile Menu Drawer -->
   <div
     id="mobile-menu"
-    class="fixed top-0 right-0 z-50 flex h-screen w-80 max-w-[80vw] translate-x-full transform flex-col border-l border-gray-700 bg-gray-900/95 shadow-xl transition-transform duration-300 md:hidden"
+    class="fixed right-0 top-0 z-50 flex h-screen w-80 max-w-[80vw] translate-x-full transform flex-col border-l border-gray-700 bg-gray-900/95 shadow-xl transition-transform duration-300 md:hidden"
   >
     <!-- Mobile Menu Header -->
     <div
@@ -110,19 +110,19 @@ const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
       <nav class="space-y-4">
         <a
           href="#features"
-          class="mobile-menu-link hover:text-primary block text-lg font-medium text-white transition-colors"
+          class="mobile-menu-link block text-lg font-medium text-white transition-colors hover:text-primary"
         >
           {t('navigation.features')}
         </a>
         <a
           href="#download"
-          class="mobile-menu-link hover:text-primary block text-lg font-medium text-white transition-colors"
+          class="mobile-menu-link block text-lg font-medium text-white transition-colors hover:text-primary"
         >
           {t('navigation.download')}
         </a>
         <a
           href="#faq"
-          class="mobile-menu-link hover:text-primary block text-lg font-medium text-white transition-colors"
+          class="mobile-menu-link block text-lg font-medium text-white transition-colors hover:text-primary"
         >
           {t('navigation.faq')}
         </a>
@@ -130,7 +130,7 @@ const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
           href="https://github.com/ahmet-cetinkaya/whph"
           target="_blank"
           rel="noopener"
-          class="mobile-menu-link hover:text-primary block text-lg font-medium text-white transition-colors"
+          class="mobile-menu-link block text-lg font-medium text-white transition-colors hover:text-primary"
         >
           {t('navigation.github')}
         </a>

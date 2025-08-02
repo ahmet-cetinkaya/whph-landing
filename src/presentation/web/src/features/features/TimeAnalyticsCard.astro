@@ -10,18 +10,18 @@ const { t } = Astro.props;
 
 <AnimatedSection animation="fade-up" delay={300}>
   <div
-    class="feature-card group rounded-whph relative flex h-full cursor-pointer flex-col space-y-4 overflow-hidden bg-white p-6 text-center shadow-sm transition-all duration-500 hover:-translate-y-2 hover:scale-105 dark:bg-gray-800"
+    class="feature-card group relative flex h-full cursor-pointer flex-col space-y-4 overflow-hidden rounded-whph bg-white p-6 text-center shadow-sm transition-all duration-500 hover:-translate-y-2 hover:scale-105 dark:bg-gray-800"
   >
     <!-- Animated chart background with dynamic bars -->
     <div class="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-60">
       <div
-        class="to-primary/5 absolute top-0 left-0 h-full w-full bg-gradient-to-br from-blue-50/20"
+        class="absolute left-0 top-0 h-full w-full bg-gradient-to-br from-blue-50/20 to-primary/5"
       >
       </div>
 
       <!-- Enhanced animated bar chart -->
       <div
-        class="analytics-chart absolute right-6 bottom-6 left-6 flex h-12 items-end justify-between opacity-50"
+        class="analytics-chart absolute bottom-6 left-6 right-6 flex h-12 items-end justify-between opacity-50"
       >
         <!-- Monday -->
         <div class="flex flex-col items-center space-y-1">
@@ -36,11 +36,11 @@ const { t } = Astro.props;
         <!-- Tuesday -->
         <div class="flex flex-col items-center space-y-1">
           <div
-            class="chart-bar bg-primary/60 group-hover:bg-primary/80 w-3 rounded-t transition-all delay-200 duration-1000 group-hover:h-10"
+            class="chart-bar w-3 rounded-t bg-primary/60 transition-all delay-200 duration-1000 group-hover:h-10 group-hover:bg-primary/80"
             style="height: 24px;"
           >
           </div>
-          <div class="bg-primary/40 h-1 w-1 rounded-full"></div>
+          <div class="h-1 w-1 rounded-full bg-primary/40"></div>
         </div>
 
         <!-- Wednesday -->
@@ -56,7 +56,7 @@ const { t } = Astro.props;
         <!-- Thursday -->
         <div class="flex flex-col items-center space-y-1">
           <div
-            class="chart-bar w-3 rounded-t bg-green-400/60 transition-all delay-400 duration-1000 group-hover:h-11 group-hover:bg-green-500/80"
+            class="chart-bar delay-400 w-3 rounded-t bg-green-400/60 transition-all duration-1000 group-hover:h-11 group-hover:bg-green-500/80"
             style="height: 28px;"
           >
           </div>
@@ -76,7 +76,7 @@ const { t } = Astro.props;
         <!-- Saturday -->
         <div class="flex flex-col items-center space-y-1">
           <div
-            class="chart-bar w-3 rounded-t bg-indigo-400/60 transition-all delay-600 duration-1000 group-hover:h-5 group-hover:bg-indigo-500/80"
+            class="chart-bar delay-600 w-3 rounded-t bg-indigo-400/60 transition-all duration-1000 group-hover:h-5 group-hover:bg-indigo-500/80"
             style="height: 8px;"
           >
           </div>
@@ -95,21 +95,21 @@ const { t } = Astro.props;
       </div>
 
       <!-- Chart grid lines -->
-      <div class="absolute right-6 bottom-6 left-6 h-12 opacity-20">
-        <div class="absolute right-0 bottom-0 left-0 h-px bg-gray-400/50"></div>
-        <div class="absolute right-0 bottom-3 left-0 h-px bg-gray-400/30"></div>
-        <div class="absolute right-0 bottom-6 left-0 h-px bg-gray-400/30"></div>
-        <div class="absolute right-0 bottom-9 left-0 h-px bg-gray-400/30"></div>
+      <div class="absolute bottom-6 left-6 right-6 h-12 opacity-20">
+        <div class="absolute bottom-0 left-0 right-0 h-px bg-gray-400/50"></div>
+        <div class="absolute bottom-3 left-0 right-0 h-px bg-gray-400/30"></div>
+        <div class="absolute bottom-6 left-0 right-0 h-px bg-gray-400/30"></div>
+        <div class="absolute bottom-9 left-0 right-0 h-px bg-gray-400/30"></div>
       </div>
     </div>
 
     <div class="relative z-10 flex h-full flex-col justify-between">
       <div class="space-y-4">
         <div
-          class="rounded-whph bg-primary/20 mx-auto flex h-12 w-12 items-center justify-center transition-all duration-500 group-hover:scale-125 group-hover:-rotate-3 group-hover:bg-blue-100 group-hover:shadow-lg"
+          class="mx-auto flex h-12 w-12 items-center justify-center rounded-whph bg-primary/20 transition-all duration-500 group-hover:-rotate-3 group-hover:scale-125 group-hover:bg-blue-100 group-hover:shadow-lg"
         >
           <svg
-            class="chart-icon-draw text-primary h-6 w-6 transition-all duration-500 group-hover:scale-110 group-hover:text-blue-600"
+            class="chart-icon-draw h-6 w-6 text-primary transition-all duration-500 group-hover:scale-110 group-hover:text-blue-600"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -129,7 +129,7 @@ const { t } = Astro.props;
         </h3>
       </div>
       <p
-        class="text-text-secondary group-hover:text-text-primary dark:text-dark-secondary group-hover:dark:text-dark-primary mt-4 transition-all duration-300"
+        class="mt-4 text-text-secondary transition-all duration-300 group-hover:text-text-primary dark:text-dark-secondary group-hover:dark:text-dark-primary"
       >
         {t('features.timeAnalytics.description')}
       </p>

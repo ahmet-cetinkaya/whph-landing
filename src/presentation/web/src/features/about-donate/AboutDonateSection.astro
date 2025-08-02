@@ -18,10 +18,10 @@ const { t } = Astro.props;
       <!-- About Section (Open Source) -->
       <AnimatedSection animation="fade-up" delay={0}>
         <div
-          class="rounded-whph-lg flex h-full flex-col space-y-6 bg-gray-50 p-8 text-center lg:text-left dark:bg-gray-900"
+          class="flex h-full flex-col space-y-6 rounded-whph-lg bg-gray-50 p-8 text-center lg:text-left dark:bg-gray-900"
         >
           <h2 class="text-section-title">{t('about.title')}</h2>
-          <p class="text-body-lg text-text-secondary dark:text-dark-secondary flex-grow">
+          <p class="flex-grow text-body-lg text-text-secondary dark:text-dark-secondary">
             {t('about.description')}
           </p>
           <div class="flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
@@ -50,10 +50,10 @@ const { t } = Astro.props;
       <!-- Donate Section (Support) -->
       <AnimatedSection animation="fade-up" delay={100}>
         <div
-          class="rounded-whph-lg flex h-full flex-col space-y-6 bg-gray-50 p-8 text-center lg:text-left dark:bg-gray-900"
+          class="flex h-full flex-col space-y-6 rounded-whph-lg bg-gray-50 p-8 text-center lg:text-left dark:bg-gray-900"
         >
           <h2 class="text-section-title">{t('donate.title')}</h2>
-          <p class="text-body-lg text-text-secondary dark:text-dark-secondary flex-grow">
+          <p class="flex-grow text-body-lg text-text-secondary dark:text-dark-secondary">
             {t('donate.description')}
             <span class="text-text-tertiary dark:text-dark-tertiary mt-4 block text-sm text-white">
               {t('donate.supportMessage')}

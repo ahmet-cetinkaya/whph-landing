@@ -10,35 +10,35 @@ interface Props {
 const { t, currentYear } = Astro.props;
 ---
 
-<footer class="border-divider dark:border-dark-divider border-t py-8">
+<footer class="border-t border-divider py-8 dark:border-dark-divider">
   <Container>
     <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
       <div class="flex items-center gap-6">
-        <span class="text-primary text-lg font-semibold transition-all duration-200 hover:scale-105"
+        <span class="text-lg font-semibold text-primary transition-all duration-200 hover:scale-105"
           >WHPH</span
         >
         <div class="flex items-center gap-4 text-sm">
           <a
             href="https://github.com/ahmet-cetinkaya/whph"
-            class="text-text-secondary hover:text-primary dark:text-dark-secondary transition-all duration-200 hover:scale-105"
+            class="text-text-secondary transition-all duration-200 hover:scale-105 hover:text-primary dark:text-dark-secondary"
           >
             {t('footer.links.github')}
           </a>
           <a
             href="https://github.com/ahmet-cetinkaya/whph/discussions"
-            class="text-text-secondary hover:text-primary dark:text-dark-secondary transition-all duration-200 hover:scale-105"
+            class="text-text-secondary transition-all duration-200 hover:scale-105 hover:text-primary dark:text-dark-secondary"
           >
             {t('footer.links.community')}
           </a>
           <a
             href="https://github.com/ahmet-cetinkaya/whph/blob/main/LICENSE"
-            class="text-text-secondary hover:text-primary dark:text-dark-secondary transition-all duration-200 hover:scale-105"
+            class="text-text-secondary transition-all duration-200 hover:scale-105 hover:text-primary dark:text-dark-secondary"
           >
             {t('footer.links.license')}
           </a>
         </div>
       </div>
-      <p class="text-text-secondary dark:text-dark-secondary text-sm">
+      <p class="text-sm text-text-secondary dark:text-dark-secondary">
         {t('footer.copyright', { year: currentYear })}
       </p>
     </div>

@@ -1,15 +1,15 @@
 ---
 // Performance monitoring component for development
 // This will be removed or disabled in production
+const isDev = import.meta.env.DEV;
 ---
 
-<script is:inline>
+<script is:inline define:vars={{ isDev }}>
   // Core Web Vitals monitoring
   function initPerformanceMonitoring() {
     if (typeof window === 'undefined') return;
 
     // Only run in development or when explicitly enabled
-    const isDev = import.meta.env.DEV;
     const enablePerfMonitoring = localStorage.getItem('whph-perf-monitoring') === 'true';
 
     if (!isDev && !enablePerfMonitoring) return;
@@ -21,11 +21,24 @@
       if (performance.getEntriesByType) {
         const navigationEntry = performance.getEntriesByType('navigation')[0];
         if (navigationEntry) {
+          // Helper function to safely calculate timing differences
+          const safeTiming = (end, start) => {
+            if (!end || !start || isNaN(end) || isNaN(start)) return 'N/A';
+            const diff = end - start;
+            return isNaN(diff) ? 'N/A' : `${Math.round(diff)}ms`;
+          };
+
           console.log('📊 Page Load Metrics:', {
-            domContentLoaded: `${Math.round(navigationEntry.domContentLoadedEventEnd - navigationEntry.domContentLoadedEventStart)}ms`,
-            loadComplete: `${Math.round(navigationEntry.loadEventEnd - navigationEntry.loadEventStart)}ms`,
-            firstByte: `${Math.round(navigationEntry.responseStart - navigationEntry.requestStart)}ms`,
-            domInteractive: `${Math.round(navigationEntry.domInteractive - navigationEntry.navigationStart)}ms`,
+            domContentLoaded: safeTiming(
+              navigationEntry.domContentLoadedEventEnd,
+              navigationEntry.domContentLoadedEventStart
+            ),
+            loadComplete: safeTiming(navigationEntry.loadEventEnd, navigationEntry.loadEventStart),
+            firstByte: safeTiming(navigationEntry.responseStart, navigationEntry.requestStart),
+            domInteractive: safeTiming(
+              navigationEntry.domInteractive,
+              navigationEntry.navigationStart
+            ),
           });
         }
 
@@ -37,12 +50,12 @@
         console.log('📦 Resource Load Times:', {
           css: cssResources.map(r => ({
             name: r.name.split('/').pop(),
-            duration: `${Math.round(r.duration)}ms`,
+            duration: isNaN(r.duration) ? 'N/A' : `${Math.round(r.duration)}ms`,
             size: r.transferSize ? `${Math.round(r.transferSize / 1024)}kb` : 'cached',
           })),
           js: jsResources.map(r => ({
             name: r.name.split('/').pop(),
-            duration: `${Math.round(r.duration)}ms`,
+            duration: isNaN(r.duration) ? 'N/A' : `${Math.round(r.duration)}ms`,
             size: r.transferSize ? `${Math.round(r.transferSize / 1024)}kb` : 'cached',
           })),
         });
@@ -51,32 +64,78 @@
 
     // Monitor Core Web Vitals if available
     if ('PerformanceObserver' in window) {
+      // Helper function to check if entry type is supported
+      function isEntryTypeSupported(entryType) {
+        try {
+          // Check if PerformanceObserver.supportedEntryTypes exists (newer browsers)
+          if (PerformanceObserver.supportedEntryTypes) {
+            return PerformanceObserver.supportedEntryTypes.includes(entryType);
+          }
+
+          // Fallback: try to create a temporary observer
+          const tempObserver = new PerformanceObserver(() => {});
+          tempObserver.observe({ entryTypes: [entryType] });
+          tempObserver.disconnect();
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+
       // Largest Contentful Paint
-      new PerformanceObserver(entryList => {
-        const entries = entryList.getEntries();
-        const lastEntry = entries[entries.length - 1];
-        console.log('🎨 LCP (Largest Contentful Paint):', `${Math.round(lastEntry.startTime)}ms`);
-      }).observe({ entryTypes: ['largest-contentful-paint'] });
+      if (isEntryTypeSupported('largest-contentful-paint')) {
+        try {
+          const lcpObserver = new PerformanceObserver(entryList => {
+            const entries = entryList.getEntries();
+            const lastEntry = entries[entries.length - 1];
+            if (lastEntry && !isNaN(lastEntry.startTime)) {
+              console.log(
+                '🎨 LCP (Largest Contentful Paint):',
+                `${Math.round(lastEntry.startTime)}ms`
+              );
+            }
+          });
+          lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+        } catch (e) {
+          console.log('⚠️ LCP monitoring failed to initialize');
+        }
+      }
 
       // First Input Delay
-      new PerformanceObserver(entryList => {
-        const firstInput = entryList.getEntries()[0];
-        console.log(
-          '⚡ FID (First Input Delay):',
-          `${Math.round(firstInput.processingStart - firstInput.startTime)}ms`
-        );
-      }).observe({ entryTypes: ['first-input'] });
+      if (isEntryTypeSupported('first-input')) {
+        try {
+          const fidObserver = new PerformanceObserver(entryList => {
+            const firstInput = entryList.getEntries()[0];
+            if (firstInput && !isNaN(firstInput.processingStart) && !isNaN(firstInput.startTime)) {
+              const fid = firstInput.processingStart - firstInput.startTime;
+              if (!isNaN(fid)) {
+                console.log('⚡ FID (First Input Delay):', `${Math.round(fid)}ms`);
+              }
+            }
+          });
+          fidObserver.observe({ entryTypes: ['first-input'] });
+        } catch (e) {
+          console.log('⚠️ FID monitoring failed to initialize');
+        }
+      }
 
       // Cumulative Layout Shift
-      let clsValue = 0;
-      new PerformanceObserver(entryList => {
-        for (const entry of entryList.getEntries()) {
-          if (!entry.hadRecentInput) {
-            clsValue += entry.value;
-          }
+      if (isEntryTypeSupported('layout-shift')) {
+        try {
+          let clsValue = 0;
+          const clsObserver = new PerformanceObserver(entryList => {
+            for (const entry of entryList.getEntries()) {
+              if (!entry.hadRecentInput) {
+                clsValue += entry.value;
+              }
+            }
+            console.log('📐 CLS (Cumulative Layout Shift):', clsValue.toFixed(4));
+          });
+          clsObserver.observe({ entryTypes: ['layout-shift'] });
+        } catch (e) {
+          console.log('⚠️ CLS monitoring failed to initialize');
         }
-        console.log('📐 CLS (Cumulative Layout Shift):', clsValue.toFixed(4));
-      }).observe({ entryTypes: ['layout-shift'] });
+      }
     }
 
     // Memory usage monitoring (if available)
