@@ -11,8 +11,8 @@ interface Props {
 }
 
 const {
-  websiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID,
-  src = import.meta.env.PUBLIC_UMAMI_SRC || 'https://analytics.whph.ahmetcetinkaya.me/script.js',
+  websiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID || 'f0be1dbe-448a-404a-bb1b-7bf12ceacbc8',
+  src = import.meta.env.PUBLIC_UMAMI_SRC || 'https://analytics.ahmetcetinkaya.me/script.js',
   domains = import.meta.env.PUBLIC_UMAMI_DOMAINS || 'whph.ahmetcetinkaya.me',
   autoTrack = true,
   enableEvents = true,
@@ -26,7 +26,7 @@ const isDev = import.meta.env.DEV;
 {
   isEnabled && websiteId && (
     <script
-      async
+      defer
       src={src}
       data-website-id={websiteId}
       data-domains={domains}
