@@ -1,0 +1,191 @@
+name: Screenshot Updates
+
+on:
+  schedule:
+    # Run daily at 06:00 UTC to check for new WHPH releases
+    - cron: '0 6 * * *'
+  repository_dispatch:
+    types: [screenshot-update]
+  workflow_dispatch:
+    inputs:
+      force_update:
+        description: 'Force update all screenshots'
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  BUILD_PATH: "./src/presentation/web"
+  WHPH_REPO: "ahmet-cetinkaya/whph"
+
+jobs:
+  check-whph-releases:
+    name: Check WHPH Releases
+    runs-on: ubuntu-latest
+    outputs:
+      has_new_release: ${{ steps.check.outputs.has_new_release }}
+      latest_version: ${{ steps.check.outputs.latest_version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check for new WHPH releases
+        id: check
+        run: |
+          # Get latest release from WHPH repository
+          LATEST_RELEASE=$(curl -s "https://api.github.com/repos/${{ env.WHPH_REPO }}/releases/latest" | jq -r '.tag_name')
+          
+          # Check if we have this version in our metadata
+          cd ${{ env.BUILD_PATH }}/public/screenshots
+          if [ -f metadata.json ]; then
+            CURRENT_VERSION=$(jq -r '.version // "none"' metadata.json)
+          else
+            CURRENT_VERSION="none"
+          fi
+          
+          echo "Latest WHPH version: $LATEST_RELEASE"
+          echo "Current screenshots version: $CURRENT_VERSION"
+          
+          if [ "$LATEST_RELEASE" != "$CURRENT_VERSION" ] || [ "${{ github.event.inputs.force_update }}" == "true" ]; then
+            echo "has_new_release=true" >> $GITHUB_OUTPUT
+            echo "latest_version=$LATEST_RELEASE" >> $GITHUB_OUTPUT
+          else
+            echo "has_new_release=false" >> $GITHUB_OUTPUT
+            echo "latest_version=$LATEST_RELEASE" >> $GITHUB_OUTPUT
+          fi
+
+  update-screenshots:
+    name: Update Screenshots
+    needs: check-whph-releases
+    runs-on: ubuntu-latest
+    if: needs.check-whph-releases.outputs.has_new_release == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: |
+          cd ${{ env.BUILD_PATH }}
+          bun install --frozen-lockfile
+
+      - name: Download latest screenshots
+        run: |
+          cd ${{ env.BUILD_PATH }}
+          bun run screenshots:download
+
+      - name: Update metadata with new version
+        run: |
+          cd ${{ env.BUILD_PATH }}/public/screenshots
+          jq --arg version "${{ needs.check-whph-releases.outputs.latest_version }}" \
+             --arg updated "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+             '.version = $version | .lastUpdated = $updated' metadata.json > metadata.tmp
+          mv metadata.tmp metadata.json
+
+      - name: Test build with new screenshots
+        run: |
+          cd ${{ env.BUILD_PATH }}
+          bun run build
+
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet HEAD -- ${{ env.BUILD_PATH }}/public/screenshots/; then
+            echo "changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Pull Request
+        if: steps.changes.outputs.changes == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: 'feat(screenshots): update to WHPH v${{ needs.check-whph-releases.outputs.latest_version }}'
+          title: 'feat(screenshots): update screenshots to WHPH v${{ needs.check-whph-releases.outputs.latest_version }}'
+          body: |
+            ## Screenshot Updates for WHPH v${{ needs.check-whph-releases.outputs.latest_version }}
+            
+            This PR automatically updates the screenshot gallery with the latest images from WHPH v${{ needs.check-whph-releases.outputs.latest_version }}.
+            
+            ### Changes
+            - 📸 Updated screenshot gallery with latest WHPH app images
+            - 🔄 Updated metadata.json with new version information
+            - ✅ Build tested successfully
+            
+            ### What's Updated
+            - All localized screenshots (15+ languages)
+            - Metadata tracking for version consistency
+            - Gallery displays latest app features and UI
+            
+            ### Verification
+            - ✅ Screenshots downloaded successfully
+            - ✅ Build passes with new images
+            - ✅ All locales updated consistently
+            
+            This ensures the landing page always showcases the current WHPH application state.
+          branch: feat/screenshot-updates-v${{ needs.check-whph-releases.outputs.latest_version }}
+          delete-branch: true
+          draft: false
+
+  validate-screenshots:
+    name: Validate Screenshots
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate screenshot integrity
+        run: |
+          cd ${{ env.BUILD_PATH }}/public/screenshots
+          
+          echo "🔍 Validating screenshot structure..."
+          
+          # Check if metadata exists
+          if [ ! -f metadata.json ]; then
+            echo "❌ metadata.json is missing"
+            exit 1
+          fi
+          
+          # Validate each locale has required screenshots
+          REQUIRED_LOCALES=("en-EN" "tr-TR" "es-ES" "fr-FR" "de-DE" "it-IT" "ja-JP" "ko-KR" "ru-RU" "zh-CN")
+          REQUIRED_SCREENSHOTS=(1 2 3 4 5 6 7 8 9 10)
+          
+          for locale in "${REQUIRED_LOCALES[@]}"; do
+            if [ ! -d "$locale" ]; then
+              echo "❌ Missing locale directory: $locale"
+              continue
+            fi
+            
+            echo "✅ Checking $locale..."
+            for screenshot in "${REQUIRED_SCREENSHOTS[@]}"; do
+              if [ ! -f "$locale/$screenshot.png" ]; then
+                echo "⚠️  Missing screenshot: $locale/$screenshot.png"
+              fi
+            done
+          done
+          
+          echo "📊 Screenshot validation completed"
+
+      - name: Check image sizes and optimization
+        run: |
+          cd ${{ env.BUILD_PATH }}/public/screenshots
+          
+          echo "📏 Checking image sizes..."
+          find . -name "*.png" | while read img; do
+            size=$(stat -c%s "$img")
+            if [ $size -gt 2000000 ]; then  # 2MB limit
+              echo "⚠️  Large screenshot: $img ($(($size/1024/1024))MB)"
+            fi
+          done

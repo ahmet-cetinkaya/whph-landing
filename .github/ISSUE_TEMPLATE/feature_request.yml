@@ -1,0 +1,22 @@
+name: ✨ Feature Request
+description: Suggest a feature for the WHPH landing page
+title: "[Feature]: "
+labels: ["enhancement"]
+assignees: ["ahmet-cetinkaya"]
+
+body:
+  - type: textarea
+    id: feature
+    attributes:
+      label: Feature Description
+      placeholder: What feature would you like to see?
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is this needed?
+      placeholder: How would this improve the landing page?
+    validations:
+      required: true
