@@ -7,6 +7,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "lint": "eslint . --ext .js,.ts,.tsx,.astro",
+    "lint:fix": "eslint . --ext .js,.ts,.tsx,.astro --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "screenshots:download": "bun scripts/download-screenshots.js",
     "translations:find-unused": "bun scripts/find-unused-translations.js",
     "translations:remove-unused": "bun scripts/find-unused-translations.js --remove",
@@ -27,6 +31,14 @@
     "typescript": "^5.9.2"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^9.32.0",
+    "eslint-plugin-astro": "^1.3.1",
+    "eslint-plugin-solid": "^0.14.5",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.14",
     "sass": "^1.89.2",
     "terser": "^5.43.1"
   }
