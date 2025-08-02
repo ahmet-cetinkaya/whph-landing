@@ -1,0 +1,199 @@
+---
+import { CloseIcon, FDroidIcon, GitHubIcon, PlayStoreIcon } from '../../shared/components/icons';
+import Button from '../../shared/components/ui/Button.astro';
+
+
+
+interface Props {
+  t: (key: string, params?: Record<string, any>) => string;
+}
+
+const { t } = Astro.props;
+---
+
+<!-- Modal Backdrop -->
+<div 
+  id="android-modal-backdrop" 
+  class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"
+  aria-hidden="true"
+>
+  <!-- Modal Dialog -->
+  <div class="fixed inset-0 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="android-modal-title">
+    <div 
+      id="android-modal-dialog"
+      class="bg-white dark:bg-gray-900 rounded-whph-lg shadow-2xl max-w-lg w-full p-6 transform scale-95 transition-transform duration-300 border border-gray-200 dark:border-gray-700"
+    >
+      <!-- Header -->
+      <div class="flex items-center justify-between mb-6">
+        <h2 id="android-modal-title" class="text-2xl font-bold text-gray-900 dark:text-white">
+          Download WHPH for Android
+        </h2>
+        <button
+          id="android-modal-close"
+          type="button"
+          class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+          aria-label={t('common.close')}
+        >
+          <CloseIcon class="w-5 h-5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200" />
+        </button>
+      </div>
+
+      <!-- Download Options -->
+      <div class="space-y-4">
+        <!-- Google Play Store -->
+        <div class="p-4 border border-gray-200 dark:border-gray-700 rounded-whph bg-gray-50 dark:bg-gray-800">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <div class="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mr-3">
+                <PlayStoreIcon class="w-5 h-5 text-green-600 dark:text-green-400" />
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg text-gray-900 dark:text-white mb-1">Google Play Store</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Official Android app store</p>
+              </div>
+            </div>
+          </div>
+          <Button 
+            href="https://play.google.com/store/apps/details?id=me.ahmetcetinkaya.whph"
+            variant="primary"
+            size="md"
+            class="w-full mt-3"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Download from Play Store
+          </Button>
+        </div>
+
+        <!-- F-Droid -->
+        <div class="p-4 border border-gray-200 dark:border-gray-700 rounded-whph bg-gray-50 dark:bg-gray-800">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <div class="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mr-3">
+                <FDroidIcon class="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg text-gray-900 dark:text-white mb-1">F-Droid</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Open source app repository</p>
+              </div>
+            </div>
+          </div>
+          <Button 
+            href="https://f-droid.org/packages/me.ahmetcetinkaya.whph/"
+            variant="secondary"
+            size="md"
+            class="w-full mt-3"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Download from F-Droid
+          </Button>
+        </div>
+
+        <!-- GitHub Releases -->
+        <div class="p-4 border border-gray-200 dark:border-gray-700 rounded-whph bg-gray-50 dark:bg-gray-800">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center">
+              <div class="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mr-3">
+                <GitHubIcon class="w-5 h-5 text-gray-600 dark:text-gray-300" />
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg text-gray-900 dark:text-white mb-1">GitHub Releases</h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Direct APK download</p>
+              </div>
+            </div>
+          </div>
+          <Button 
+            href="https://github.com/ahmet-cetinkaya/whph/releases/latest"
+            variant="secondary"
+            size="md"
+            class="w-full mt-3"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Download APK from GitHub
+          </Button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  function initAndroidModal() {
+    const backdrop = document.getElementById('android-modal-backdrop');
+    const dialog = document.getElementById('android-modal-dialog');
+    const closeBtn = document.getElementById('android-modal-close');
+    const androidBtn = document.getElementById('android-btn');
+
+    if (!backdrop || !dialog || !closeBtn || !androidBtn) {
+      console.warn('Android modal elements not found');
+      return;
+    }
+
+    function openModal() {
+      if (!backdrop || !dialog || !closeBtn) return;
+
+      backdrop.classList.remove('pointer-events-none');
+      backdrop.classList.remove('opacity-0');
+      dialog.classList.remove('scale-95');
+      dialog.classList.add('scale-100');
+      backdrop.setAttribute('aria-hidden', 'false');
+      
+      // Focus management
+      closeBtn.focus();
+      
+      // Prevent body scroll
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      if (!backdrop || !dialog || !androidBtn) return;
+      
+      backdrop.classList.add('opacity-0');
+      dialog.classList.remove('scale-100');
+      dialog.classList.add('scale-95');
+      backdrop.setAttribute('aria-hidden', 'true');
+      
+      setTimeout(() => {
+        backdrop.classList.add('pointer-events-none');
+      }, 300);
+      
+      // Restore body scroll
+      document.body.style.overflow = '';
+      
+      // Return focus to trigger
+      androidBtn.focus();
+    }
+
+    // Event listeners
+    androidBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close on backdrop click
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) {
+        closeModal();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !backdrop.classList.contains('pointer-events-none')) {
+        closeModal();
+      }
+    });
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAndroidModal);
+  } else {
+    initAndroidModal();
+  }
+</script>

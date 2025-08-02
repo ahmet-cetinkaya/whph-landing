@@ -46,8 +46,16 @@ export default defineConfig({
     },
   },
   compressHTML: true,
+  image: {
+    // Image optimization configuration
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+    },
+  },
   build: {
     // Enable static file compression
     inlineStylesheets: 'auto',
+    // Generate optimized assets
+    assets: '_astro',
   },
 });

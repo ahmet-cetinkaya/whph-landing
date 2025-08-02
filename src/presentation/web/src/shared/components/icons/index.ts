@@ -14,3 +14,5 @@ export { default as SyncIcon } from './SyncIcon.astro';
 export { default as ChartIcon } from './ChartIcon.astro';
 export { default as TaskIcon } from './TaskIcon.astro';
 export { default as CalendarIcon } from './CalendarIcon.astro';
+export { default as FDroidIcon } from './FDroidIcon.astro';
+export { default as PlayStoreIcon } from './PlayStoreIcon.astro';

@@ -1,7 +1,30 @@
 /** @type {import('astro-i18next').AstroI18nextConfig} */
 export default {
   defaultLanguage: "en",
-  supportedLanguages: ["en", "tr", "es", "fr", "de", "it", "ja", "ko", "ru", "zh"],
+  supportedLanguages: [
+    "en",
+    "cs",
+    "da",
+    "de",
+    "el",
+    "es",
+    "fi",
+    "fr",
+    "it",
+    "ja",
+    "ko",
+    "nl",
+    "no",
+    "pl",
+    "pt",
+    "ro",
+    "ru",
+    "sl",
+    "sv",
+    "tr",
+    "uk",
+    "zh",
+  ],
   i18next: {
     debug: false, // Enable for development debugging
     initImmediate: false,

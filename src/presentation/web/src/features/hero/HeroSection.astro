@@ -11,13 +11,13 @@ interface Props {
 const { t } = Astro.props;
 ---
 
-<Section class="py-20 bg-gradient-to-br from-white to-gray-50 dark:from-black dark:to-gray-900">
+<div>
   <Container>
     <div class="grid lg:grid-cols-2 gap-12 items-center">
       <AnimatedSection animation="fade-up" delay={200}>
         <div class="space-y-6">
           <h1 class="text-hero text-balance text-gray-900 dark:text-white">
-            {t('hero.title')} <span class="text-primary">{t('hero.titleHighlight')}</span>
+            {t('hero.title')}: <span class="text-primary">{t('hero.titleHighlight')}</span>
           </h1>
           <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
             {t('hero.subtitle')}
@@ -67,4 +67,4 @@ const { t } = Astro.props;
       </AnimatedSection>
     </div>
   </Container>
-</Section>
+</div>

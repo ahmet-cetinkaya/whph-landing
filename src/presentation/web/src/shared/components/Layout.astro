@@ -1,5 +1,6 @@
 ---
 import Header from './Header.astro';
+import Footer from './Footer.astro';
 import PerformanceMonitor from './PerformanceMonitor.astro';
 import AccessibilityEnhancements from './AccessibilityEnhancements.astro';
 import Analytics from './Analytics.astro';
@@ -135,10 +136,30 @@ const currentYear = getCurrentYear();
     
     <!-- Dark Mode Only Script (runs before page load) -->
     <script is:inline>
+      import { supportedLanguages } from "../utils/i18n";
+
       // Ensure dark mode is always active
       document.documentElement.classList.add('dark');
       // Remove any potential light mode classes
       document.documentElement.classList.remove('light');
+    </script>
+    
+    <!-- Language Detection Script (only for default route) -->
+    <script is:inline>
+      // Client-side language detection and redirect
+      (function() {
+        // Only run on the default route
+        if (window.location.pathname === '/') {
+          // Get browser language
+          const browserLang = navigator.language.split('-')[0];
+          
+          // Check if browser language is supported and not English
+          if (supportedLanguages.includes(browserLang) && browserLang !== 'en') {
+            // Redirect to localized version
+            window.location.replace('/' + browserLang + '/');
+          }
+        }
+      })();
     </script>
   </head>
   <body class="antialiased bg-black text-white font-sans leading-relaxed">
@@ -147,6 +168,9 @@ const currentYear = getCurrentYear();
     <main id="main-content">
       <slot />
     </main>
+    
+    <!-- Footer -->
+    <Footer t={t} currentYear={currentYear} />
     
     <!-- Performance Monitoring (Development) -->
     <PerformanceMonitor />

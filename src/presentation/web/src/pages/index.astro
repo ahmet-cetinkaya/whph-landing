@@ -1,30 +1,18 @@
 ---
 // Default route - show English content with auto-redirect
-import Layout from '../shared/components/Layout.astro';
-import LanguageDetectionScript from '../shared/components/LanguageDetectionScript.astro';
-import HeroSection from '../features/hero/HeroSection.astro';
-import FeaturesSection from '../features/features/FeaturesSection.astro';
-import DownloadSection from '../features/download/DownloadSection.astro';
-import AboutSection from '../features/about/AboutSection.astro';
-import Footer from '../shared/components/Footer.astro';
-import { 
-  loadTranslations, 
+import Layout from "../shared/components/Layout.astro";
+import HomePage from "./_components/HomePage.astro";
+import {
+  loadTranslations,
   createTranslationFunction,
-  getCurrentYear
-} from '../shared/utils/i18n';
+} from "../shared/utils/i18n";
 
 // For the default route, we'll show English content
-const currentLang = 'en';
+const currentLang = "en";
 const translations = await loadTranslations(currentLang);
 const t = createTranslationFunction(translations);
-const currentYear = getCurrentYear();
 ---
 
 <Layout>
-  <LanguageDetectionScript />
-  <HeroSection t={t} />
-  <FeaturesSection t={t} />
-  <DownloadSection t={t} />
-  <AboutSection t={t} />
-  <Footer t={t} currentYear={currentYear} />
+  <HomePage t={t} currentLang={currentLang} />
 </Layout>

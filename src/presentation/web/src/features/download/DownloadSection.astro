@@ -1,17 +1,20 @@
 ---
 import Container from '../../shared/components/ui/Container.astro';
-import Section from '../../shared/components/ui/Section.astro';
 import Button from '../../shared/components/ui/Button.astro';
 import AnimatedSection from '../../core/acore-astro/src/components/AnimatedSection.astro';
+import AndroidDownloadModal from './AndroidDownloadModal.astro';
 
 interface Props {
   t: (key: string, params?: Record<string, any>) => string;
 }
 
 const { t } = Astro.props;
+
+// GitHub repository releases URL
+const GITHUB_RELEASES_URL = "https://github.com/ahmet-cetinkaya/whph/releases/latest";
 ---
 
-<Section class="py-20 bg-white dark:bg-black" id="download">
+<div>
   <Container>
     <AnimatedSection animation="fade-up" delay={0}>
       <div class="text-center">
@@ -23,17 +26,20 @@ const { t } = Astro.props;
           <Button href="#" variant="secondary" size="lg" id="android-btn">
             {t('download.downloadFor', { platform: t('hero.platforms.android') })}
           </Button>
-          <Button href="#" variant="secondary" size="lg" id="windows-btn">
+          <Button href={GITHUB_RELEASES_URL} variant="secondary" size="lg" id="windows-btn" target="_blank" rel="noopener noreferrer">
             {t('download.downloadFor', { platform: t('hero.platforms.windows') })}
           </Button>
-          <Button href="#" variant="secondary" size="lg" id="linux-btn">
+          <Button href={GITHUB_RELEASES_URL} variant="secondary" size="lg" id="linux-btn" target="_blank" rel="noopener noreferrer">
             {t('download.downloadFor', { platform: t('hero.platforms.linux') })}
           </Button>
         </div>
       </div>
     </AnimatedSection>
   </Container>
-</Section>
+</div>
+
+<!-- Android Download Modal -->
+<AndroidDownloadModal t={t} />
 
 <script>
   // OS Detection and Auto-selection for WHPH Download Section

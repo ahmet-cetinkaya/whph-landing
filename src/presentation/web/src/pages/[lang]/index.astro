@@ -1,18 +1,10 @@
 ---
 import Layout from '../../shared/components/Layout.astro';
-import HeroSection from '../../features/hero/HeroSection.astro';
-import FeaturesSection from '../../features/features/FeaturesSection.astro';
-import SocialProofSection from '../../features/social-proof/SocialProofSection.astro';
-import DownloadSection from '../../features/download/DownloadSection.astro';
-import FAQSection from '../../features/faq/FAQSection.astro';
-import AboutSection from '../../features/about/AboutSection.astro';
-import Footer from '../../shared/components/Footer.astro';
+import HomePage from '../_components/HomePage.astro';
 import { 
-  getLanguageFromURL, 
   loadTranslations, 
   createTranslationFunction,
-  supportedLanguages,
-  getCurrentYear
+  supportedLanguages
 } from '../../shared/utils/i18n';
 
 // Get static paths for all supported languages
@@ -28,15 +20,8 @@ const currentLang = lang || 'en';
 // Load translations
 const translations = await loadTranslations(currentLang);
 const t = createTranslationFunction(translations);
-const currentYear = getCurrentYear();
 ---
 
 <Layout>
-  <HeroSection t={t} />
-  <FeaturesSection t={t} />
-  <SocialProofSection t={t} />
-  <DownloadSection t={t} />
-  <FAQSection t={t} />
-  <AboutSection t={t} />
-  <Footer t={t} currentYear={currentYear} />
+  <HomePage t={t} currentLang={currentLang} />
 </Layout>

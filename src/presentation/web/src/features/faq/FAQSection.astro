@@ -22,7 +22,7 @@ const faqQuestions = [
 ];
 ---
 
-<Section class="py-20 bg-white dark:bg-black" id="faq">
+<div>
   <Container>
     <AnimatedSection animation="fade-up" delay={0}>
       <div class="text-center mb-12">
@@ -37,15 +37,20 @@ const faqQuestions = [
       <div class="space-y-4">
         {faqQuestions.map((questionKey, index) => (
           <AnimatedSection animation="fade-up" delay={index * 100}>
-            <details class="bg-white dark:bg-gray-800 rounded-whph shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-lg">
-              <summary class="cursor-pointer p-6 font-semibold text-gray-900 dark:text-white hover:text-primary transition-colors">
-                {t(`faq.questions.${questionKey}.question`)}
+            <details class="faq-item bg-white dark:bg-gray-800 rounded-whph shadow-sm border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-lg">
+              <summary class="cursor-pointer p-6 font-semibold text-gray-900 dark:text-white hover:text-primary transition-colors flex items-center justify-between">
+                <span>{t(`faq.questions.${questionKey}.question`)}</span>
+                <svg class="faq-chevron w-5 h-5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
               </summary>
-              <div class="px-6 pb-6">
-                <MarkdownRenderer 
-                  content={t(`faq.questions.${questionKey}.answer`)} 
-                  class="text-gray-700 dark:text-gray-300 leading-relaxed prose prose-sm max-w-none prose-a:text-primary prose-a:hover:underline prose-strong:text-gray-900 dark:prose-strong:text-white"
-                />
+              <div class="faq-content">
+                <div class="px-6 pb-6">
+                  <MarkdownRenderer 
+                    content={t(`faq.questions.${questionKey}.answer`)} 
+                    class="text-gray-700 dark:text-gray-300 leading-relaxed prose prose-sm max-w-none prose-a:text-primary prose-a:hover:underline prose-strong:text-gray-900 dark:prose-strong:text-white"
+                  />
+                </div>
               </div>
             </details>
           </AnimatedSection>
@@ -53,4 +58,71 @@ const faqQuestions = [
       </div>
     </div>
   </Container>
-</Section>
+</div>
+
+<style>
+  .faq-item[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+  
+  .faq-content {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  }
+  
+  .faq-item:not([open]) .faq-content {
+    max-height: 0;
+    opacity: 0;
+  }
+  
+  .faq-item[open] .faq-content {
+    max-height: 1000px;
+    opacity: 1;
+  }
+  
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      const summary = item.querySelector('summary');
+      const content = item.querySelector('.faq-content') as HTMLElement | null;
+      
+      if (summary && content) {
+        // Prevent default details behavior
+        summary.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const isOpen = item.hasAttribute('open');
+          
+          if (isOpen) {
+            // Closing animation
+            content.style.maxHeight = content.scrollHeight + 'px';
+            content.offsetHeight; // Force reflow
+            content.style.maxHeight = '0';
+            content.style.opacity = '0';
+            
+            setTimeout(() => {
+              item.removeAttribute('open');
+            }, 300);
+          } else {
+            // Opening animation
+            item.setAttribute('open', '');
+            content.style.maxHeight = '0';
+            content.style.opacity = '0';
+            content.offsetHeight; // Force reflow
+            content.style.maxHeight = content.scrollHeight + 'px';
+            content.style.opacity = '1';
+            
+            // Reset max-height after animation
+            setTimeout(() => {
+              content.style.maxHeight = 'none';
+            }, 300);
+          }
+        });
+      }
+    });
+  });
+</script>

@@ -1,0 +1,48 @@
+---
+import Section from "../../shared/components/ui/Section.astro";
+import Container from "../../shared/components/ui/Container.astro";
+import HeroSection from "../../features/hero/HeroSection.astro";
+import FeaturesSection from "../../features/features/FeaturesSection.astro";
+import ScreenshotsSection from "../../features/gallery/ScreenshotsSection.astro";
+import DownloadSection from "../../features/download/DownloadSection.astro";
+import FAQSection from "../../features/faq/FAQSection.astro";
+import AboutDonateSection from "../../features/about-donate/AboutDonateSection.astro";
+
+interface Props {
+  t: (key: string, params?: Record<string, any>) => string;
+  currentLang?: string;
+}
+
+const { t, currentLang } = Astro.props;
+---
+
+<Section padding="lg" background="gradient">
+  <HeroSection t={t} />
+</Section>
+
+<Section padding="md" id="features">
+  <FeaturesSection t={t} />
+</Section>
+
+<Section padding="sm" background="surface-1">
+  <Container class="max-w-7xl">
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-12 xl:gap-16">
+      <!-- Screenshots Column -->
+      <div id="screenshots">
+        <ScreenshotsSection t={t} currentLang={currentLang} />
+      </div>
+
+      <!-- FAQ Column -->
+      <div id="faq">
+        <FAQSection t={t} />
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<Section padding="md" id="download">
+  <DownloadSection t={t} />
+  <div class="pt-6">
+    <AboutDonateSection t={t} />
+  </div>
+</Section>
