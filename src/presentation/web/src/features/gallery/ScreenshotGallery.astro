@@ -1,7 +1,18 @@
 ---
+import { Image } from 'astro:assets';
 import ImageIcon from '../../shared/components/icons/ImageIcon.astro';
 import ChevronLeftIcon from '../../shared/components/icons/ChevronLeftIcon.astro';
 import ChevronRightIcon from '../../shared/components/icons/ChevronRightIcon.astro';
+import fs from 'fs';
+import path from 'path';
+import type { SupportedLanguage } from '../../shared/utils/i18n';
+
+interface Props {
+  t: (key: string, params?: Record<string, any>) => string;
+  currentLang?: string;
+}
+
+const { t, currentLang = 'en' } = Astro.props;
 
 export interface Screenshot {
   src: string;
@@ -10,32 +21,158 @@ export interface Screenshot {
   description: string;
 }
 
-const screenshots: Screenshot[] = [
-  {
-    src: "/screenshots/today-view.png",
-    alt: "WHPH Today View showing tasks and habits dashboard",
-    title: "Today View",
-    description: "Main dashboard with tasks and habits overview"
-  },
-  {
-    src: "/screenshots/task-detail.png", 
-    alt: "WHPH Task detail view with subtasks and progress",
-    title: "Task Management",
-    description: "Detailed task view with subtasks and scheduling"
-  },
-  {
-    src: "/screenshots/habits.png",
-    alt: "WHPH Habit tracking with progress charts and streaks",
-    title: "Habit Tracking", 
-    description: "Habit progress with streak visualization"
-  },
-  {
-    src: "/screenshots/analytics.png",
-    alt: "WHPH Time analytics and productivity insights",
-    title: "Time Analytics",
-    description: "Productivity patterns and time distribution"
+// Map language codes to screenshot directory names
+const LANGUAGE_MAP: Record<SupportedLanguage, string> = {
+  'en': 'en-EN',
+  'tr': 'tr-TR',
+  'es': 'es-ES',
+  'fr': 'fr-FR',
+  'de': 'de-DE',
+  'it': 'it-IT',
+  'ja': 'ja-JP',
+  'ko': 'ko-KR',
+  'ru': 'ru-RU',
+  'zh': 'zh-CN',
+  'pl': 'pl-PL',
+  'uk': 'uk-UA',
+  'cs': 'cs-CZ',
+  'da': 'da-DK',
+  'el': 'el-GR',
+  'fi': 'fi-FI',
+  'nl': 'nl-NL',
+  'no': 'no-NO',
+  'pt': 'pt-PT',
+  'ro': 'ro-RO',
+  'sl': 'sl-SI',
+  'sv': 'sv-SE'
+};
+
+// Get the correct language directory with type safety
+const screenshotLang = LANGUAGE_MAP[currentLang as SupportedLanguage] || 'en-EN';
+
+// Load screenshots from local metadata or fallback to file system check
+let screenshots: Screenshot[] = [];
+
+try {
+  // Try to load metadata first
+  const metadataPath = path.join(process.cwd(), 'public', 'screenshots', 'metadata.json');
+  if (fs.existsSync(metadataPath)) {
+    const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf-8'));
+    const languageData = metadata.languages[screenshotLang];
+    
+    if (languageData && languageData.screenshots.length > 0) {
+      screenshots = languageData.screenshots.map((filename: string, index: number) => {
+        const screenshotNumber = filename.replace('.png', '');
+        return {
+          src: `/screenshots/${screenshotLang}/${filename}`,
+          alt: t('screenshots.altText', { number: screenshotNumber }),
+          title: t('screenshots.title') + ` ${screenshotNumber}`,
+          description: t('screenshots.description', { number: screenshotNumber })
+        };
+      });
+    }
   }
-];
+} catch (error) {
+  console.warn('Could not load screenshot metadata, checking filesystem...', error);
+}
+
+// Fallback: Check filesystem directly if metadata not available
+if (screenshots.length === 0) {
+  try {
+    const screenshotsDir = path.join(process.cwd(), 'public', 'screenshots', screenshotLang);
+    if (fs.existsSync(screenshotsDir)) {
+      const files = fs.readdirSync(screenshotsDir)
+        .filter(file => file.endsWith('.png'))
+        .map(file => file.replace('.png', ''))
+        .map(num => parseInt(num))
+        .filter(num => !isNaN(num))
+        .sort((a, b) => a - b);
+      
+      screenshots = files.map(num => ({
+        src: `/screenshots/${screenshotLang}/${num}.png`,
+        alt: t('screenshots.altText', { number: num }),
+        title: t('screenshots.title') + ` ${num}`,
+        description: t('screenshots.description', { number: num })
+      }));
+    }
+  } catch (error) {
+    console.warn('Could not read screenshots directory:', error);
+  }
+}
+
+// Final fallback: Use English screenshots if language-specific ones don't exist
+if (screenshots.length === 0) {
+  console.warn(`No local screenshots found for ${screenshotLang}, trying fallback languages...`);
+  
+  // Fallback: current language -> English
+  const fallbackLanguages = [screenshotLang, 'en-EN'];
+  
+  for (const fallbackLang of fallbackLanguages) {
+    if (screenshots.length > 0) break;
+    
+    try {
+      // Try to load from metadata first
+      const metadataPath = path.join(process.cwd(), 'public', 'screenshots', 'metadata.json');
+      if (fs.existsSync(metadataPath)) {
+        const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf-8'));
+        const languageData = metadata.languages[fallbackLang];
+        
+        if (languageData && languageData.screenshots.length > 0) {
+          screenshots = languageData.screenshots.map((filename: string, index: number) => {
+            const screenshotNumber = filename.replace('.png', '');
+            return {
+              src: `/screenshots/${fallbackLang}/${filename}`,
+              alt: t('screenshots.altText', { number: screenshotNumber }),
+              title: t('screenshots.title') + ` ${screenshotNumber}`,
+              description: t('screenshots.description', { number: screenshotNumber })
+            };
+          });
+          console.log(`Using ${fallbackLang} screenshots as fallback`);
+          break;
+        }
+      }
+      
+      // Try filesystem check
+      const screenshotsDir = path.join(process.cwd(), 'public', 'screenshots', fallbackLang);
+      if (fs.existsSync(screenshotsDir)) {
+        const files = fs.readdirSync(screenshotsDir)
+          .filter(file => file.endsWith('.png'))
+          .map(file => file.replace('.png', ''))
+          .map(num => parseInt(num))
+          .filter(num => !isNaN(num))
+          .sort((a, b) => a - b);
+        
+        if (files.length > 0) {
+          screenshots = files.map(num => ({
+            src: `/screenshots/${fallbackLang}/${num}.png`,
+            alt: t('screenshots.altText', { number: num }),
+            title: t('screenshots.title') + ` ${num}`,
+            description: t('screenshots.description', { number: num })
+          }));
+          console.log(`Using ${fallbackLang} screenshots as fallback`);
+          break;
+        }
+      }
+    } catch (error) {
+      console.warn(`Error loading ${fallbackLang} screenshots:`, error);
+    }
+  }
+  
+  // Ultimate fallback: GitHub URLs for English
+  if (screenshots.length === 0) {
+    console.warn('No local screenshots found, using GitHub URLs as final fallback');
+    const GITHUB_BASE_URL = `https://raw.githubusercontent.com/ahmet-cetinkaya/whph/main/fastlane/metadata/android/en-EN/images/phoneScreenshots`;
+    
+    for (let i = 1; i <= 10; i++) {
+      screenshots.push({
+        src: `${GITHUB_BASE_URL}/${i}.png`,
+        alt: t('screenshots.altText', { number: i }),
+        title: t('screenshots.title') + ` ${i}`,
+        description: t('screenshots.description', { number: i })
+      });
+    }
+  }
+}
 ---
 
 <div class="screenshot-gallery">
@@ -50,31 +187,47 @@ const screenshots: Screenshot[] = [
       {screenshots.map((screenshot, index) => (
         <div class="w-full flex-shrink-0 px-4 py-8">
           <div class="max-w-sm mx-auto">
-            <!-- Screenshot with optimized loading -->
+            <!-- Screenshot with Astro Image optimization -->
             <div class="aspect-[9/16] bg-white dark:bg-gray-800 rounded-whph shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden relative">
               <!-- Placeholder while image loads -->
-              <div class="absolute inset-0 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900">
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 screenshot-placeholder">
                 <div class="w-16 h-16 mb-4 bg-primary/10 rounded-full flex items-center justify-center">
                   <ImageIcon class="text-primary" />
                 </div>
-                <h3 class="font-semibold text-lg mb-2 text-center text-gray-900 dark:text-white">{screenshot.title}</h3>
-                <p class="text-sm text-center leading-relaxed mb-2">{screenshot.description}</p>
-                <div class="text-xs opacity-75 text-center">
-                  Screenshot Preview
+                <div class="text-sm opacity-75 text-center">
+                  Loading screenshot...
                 </div>
               </div>
               
-              <!-- Future: Actual image with lazy loading -->
-              <!-- 
-              <img 
-                src={screenshot.src} 
-                alt={screenshot.alt} 
-                class="w-full h-full object-cover" 
-                loading="lazy"
-                decoding="async"
-                fetchpriority={index === 0 ? "high" : "low"}
-              />
-              -->
+              <!-- Optimized image with Astro Image component for local files or fallback to img for external -->
+              {screenshot.src.startsWith('/screenshots/') ? (
+                <Image 
+                  src={screenshot.src}
+                  alt={screenshot.alt}
+                  width={400}
+                  height={711}
+                  format="webp"
+                  quality={85}
+                  class="w-full h-full object-cover opacity-0 transition-opacity duration-500 screenshot-image"
+                  loading={index === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                  data-screenshot-index={index}
+                  onload="this.style.opacity='1'; this.parentElement.querySelector('.screenshot-placeholder').style.display='none';"
+                  onerror="this.parentElement.querySelector('.screenshot-placeholder .text-sm').textContent='Failed to load screenshot';"
+                />
+              ) : (
+                <img 
+                  src={screenshot.src} 
+                  alt={screenshot.alt} 
+                  class="w-full h-full object-cover opacity-0 transition-opacity duration-500 screenshot-image" 
+                  loading={index === 0 ? "eager" : "lazy"}
+                  decoding="async"
+                  fetchpriority={index === 0 ? "high" : index === 1 ? "high" : "low"}
+                  onload="this.style.opacity='1'; this.parentElement.querySelector('.screenshot-placeholder').style.display='none';"
+                  onerror="this.parentElement.querySelector('.screenshot-placeholder .text-sm').textContent='Failed to load screenshot';"
+                  data-screenshot-index={index}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -85,7 +238,7 @@ const screenshots: Screenshot[] = [
     <button 
       id="prev-btn"
       class="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-      aria-label="Previous screenshot"
+      aria-label={t('screenshots.prevScreenshot')}
     >
       <ChevronLeftIcon />
     </button>
@@ -93,7 +246,7 @@ const screenshots: Screenshot[] = [
     <button 
       id="next-btn"
       class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-      aria-label="Next screenshot"
+      aria-label={t('screenshots.nextScreenshot')}
     >
       <ChevronRightIcon />
     </button>
@@ -108,36 +261,150 @@ const screenshots: Screenshot[] = [
           index === 0 ? 'bg-primary' : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
         ]}
         data-index={index}
-        aria-label={`Go to screenshot ${index + 1}`}
+        aria-label={t('screenshots.goToScreenshot', { number: index + 1 })}
       ></button>
     ))}
   </div>
 
-  <!-- Screenshot Info -->
-  <div class="text-center mt-6">
-    <h3 id="current-title" class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-      {screenshots[0].title}
-    </h3>
-    <p id="current-description" class="text-gray-600 dark:text-gray-300">
-      {screenshots[0].description}
-    </p>
-  </div>
 </div>
 
 <script define:vars={{ screenshots }}>
   let currentIndex = 0;
-  const totalScreenshots = screenshots.length;
+  let validScreenshots = [];
+  let totalScreenshots = 0;
   
   function initScreenshotGallery() {
     const container = document.getElementById('screenshots-container');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
-    const dots = document.querySelectorAll('.dot');
-    const currentTitle = document.getElementById('current-title');
-    const currentDescription = document.getElementById('current-description');
+    const dotsContainer = document.querySelector('.screenshot-gallery .flex.justify-center');
+    
+    // Image preloading cache
+    const imageCache = new Map();
+    const preloadedImages = new Set();
+    
+    // Dynamically check which screenshots exist
+    async function checkScreenshotExistence() {
+      validScreenshots = [];
+      
+      for (let i = 0; i < screenshots.length; i++) {
+        const screenshot = screenshots[i];
+        try {
+          const img = new Image();
+          const imageExists = await new Promise((resolve) => {
+            img.onload = () => resolve(true);
+            img.onerror = () => resolve(false);
+            img.src = screenshot.src;
+            
+            // Timeout after 3 seconds
+            setTimeout(() => resolve(false), 3000);
+          });
+          
+          if (imageExists) {
+            validScreenshots.push({...screenshot, originalIndex: i});
+          }
+        } catch {
+          // Skip this screenshot if error occurs
+          continue;
+        }
+      }
+      
+      totalScreenshots = validScreenshots.length;
+      
+      // Update the gallery with only valid screenshots
+      updateGalleryStructure();
+      updateGallery();
+    }
+    
+    // Update gallery structure based on valid screenshots
+    function updateGalleryStructure() {
+      if (!container || !dotsContainer) return;
+      
+      // Clear existing content
+      container.innerHTML = '';
+      dotsContainer.innerHTML = '';
+      
+      // Add only valid screenshots to container
+      validScreenshots.forEach((screenshot, index) => {
+        // Add screenshot slide
+        const slideDiv = document.createElement('div');
+        slideDiv.className = 'w-full flex-shrink-0 px-4 py-8';
+        slideDiv.innerHTML = `
+          <div class="max-w-sm mx-auto">
+            <div class="aspect-[9/16] bg-white dark:bg-gray-800 rounded-whph shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden relative">
+              <div class="absolute inset-0 flex flex-col items-center justify-center text-gray-500 dark:text-gray-400 p-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 screenshot-placeholder">
+                <div class="w-16 h-16 mb-4 bg-primary/10 rounded-full flex items-center justify-center">
+                  <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                </div>
+                <div class="text-sm opacity-75 text-center">Loading screenshot...</div>
+              </div>
+              <img 
+                src="${screenshot.src}" 
+                alt="${screenshot.alt}" 
+                class="w-full h-full object-cover opacity-0 transition-opacity duration-500 screenshot-image" 
+                loading="${index === 0 ? 'eager' : 'lazy'}"
+                decoding="async"
+                data-screenshot-index="${index}"
+                onload="this.style.opacity='1'; this.parentElement.querySelector('.screenshot-placeholder').style.display='none';"
+                onerror="this.parentElement.querySelector('.screenshot-placeholder .text-sm').textContent='Failed to load screenshot';"
+              />
+            </div>
+          </div>
+        `;
+        container.appendChild(slideDiv);
+        
+        // Add navigation dot
+        const dotButton = document.createElement('button');
+        dotButton.className = `dot w-2 h-2 rounded-full transition-all duration-300 ${index === 0 ? 'bg-primary' : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'}`;
+        dotButton.setAttribute('data-index', index);
+        dotButton.setAttribute('aria-label', `Go to screenshot ${index + 1}`);
+        dotButton.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dotButton);
+      });
+    }
+
+    // Preload next and previous images for smoother navigation
+    function preloadAdjacentImages(currentIdx) {
+      const imagesToPreload = [];
+      
+      // Preload next image
+      if (currentIdx + 1 < totalScreenshots) {
+        imagesToPreload.push(currentIdx + 1);
+      }
+      
+      // Preload previous image  
+      if (currentIdx - 1 >= 0) {
+        imagesToPreload.push(currentIdx - 1);
+      }
+      
+      // Preload next 2 images for better UX
+      if (currentIdx + 2 < totalScreenshots) {
+        imagesToPreload.push(currentIdx + 2);
+      }
+
+      imagesToPreload.forEach(idx => {
+        if (!preloadedImages.has(idx) && screenshots[idx]) {
+          const img = new Image();
+          img.src = screenshots[idx].src;
+          img.loading = 'eager';
+          img.decoding = 'async';
+          
+          img.onload = () => {
+            imageCache.set(idx, img);
+            preloadedImages.add(idx);
+          };
+          
+          img.onerror = () => {
+            console.warn(`Failed to preload screenshot ${idx + 1}`);
+          };
+        }
+      });
+    }
 
     function updateGallery() {
-      if (!container || !currentTitle || !currentDescription) return;
+      if (!container) return;
 
       // Update container position
       const translateX = -currentIndex * 100;
@@ -158,9 +425,8 @@ const screenshots: Screenshot[] = [
         }
       });
 
-      // Update info
-      currentTitle.textContent = screenshots[currentIndex].title;
-      currentDescription.textContent = screenshots[currentIndex].description;
+      // Preload adjacent images for smoother navigation
+      preloadAdjacentImages(currentIndex);
     }
 
     function goToSlide(index) {
@@ -198,6 +464,8 @@ const screenshots: Screenshot[] = [
     let autoAdvanceInterval;
     
     function startAutoAdvance() {
+      if (totalScreenshots <= 1) return; // Don't auto-advance if only one screenshot
+      
       autoAdvanceInterval = setInterval(() => {
         if (currentIndex === totalScreenshots - 1) {
           goToSlide(0);
@@ -221,7 +489,16 @@ const screenshots: Screenshot[] = [
     gallery?.addEventListener('mouseleave', startAutoAdvance);
 
     // Initialize
-    updateGallery();
+    if (totalScreenshots > 0) {
+      updateGallery();
+      preloadAdjacentImages(0);
+    } else {
+      // Hide gallery if no screenshots found
+      const galleryElement = document.querySelector('.screenshot-gallery');
+      if (galleryElement) {
+        galleryElement.style.display = 'none';
+      }
+    }
   }
 
   // Initialize when DOM is ready
