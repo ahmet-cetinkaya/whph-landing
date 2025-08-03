@@ -90,7 +90,7 @@ async function optimizeImages() {
         // Generate responsive variants
         for (const size of SIZES) {
           let outputPath, targetWidth, aspectRatio;
-          
+
           if (size.width === null) {
             // Keep original size but optimize quality
             outputPath = inputPath;
@@ -126,9 +126,11 @@ async function optimizeImages() {
               // Resize and optimize
               cmd = `${MAGICK_COMMANDS.convert} "${inputPath}" -resize ${targetWidth}x${targetHeight} -quality ${size.quality} -format webp "${outputPath}"`;
             }
-            
+
             execSync(cmd, { stdio: 'inherit' });
-            console.log(`  ✅ ${baseName}${size.suffix}: ${size.description} (${targetWidth}x${targetHeight})`);
+            console.log(
+              `  ✅ ${baseName}${size.suffix}: ${size.description} (${targetWidth}x${targetHeight})`
+            );
           } catch (error) {
             console.error(`  ❌ Error creating ${baseName}${size.suffix}:`, error.message);
           }
