@@ -1,0 +1,37 @@
+# Cache headers for static assets
+
+# Images - Cache for 1 year (immutable content)
+/screenshots/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Favicon and icons - Cache for 1 month
+/favicon.svg
+  Cache-Control: public, max-age=2592000
+
+/android-chrome-*.png
+  Cache-Control: public, max-age=2592000
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=2592000
+
+# CSS and JS files (hashed) - Cache for 1 year
+/_astro/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/_astro/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML files - Cache for 1 hour with revalidation
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Root HTML
+/
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Manifest and service worker - Cache for 1 day
+/manifest.json
+  Cache-Control: public, max-age=86400
+
+/sw.js
+  Cache-Control: public, max-age=86400
