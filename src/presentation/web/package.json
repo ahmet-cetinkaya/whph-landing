@@ -12,9 +12,10 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "screenshots:download": "bun scripts/download-screenshots.js",
+    "optimize:images": "bun scripts/optimize-images.js",
     "translations:find-unused": "bun scripts/find-unused-translations.js",
     "translations:remove-unused": "bun scripts/find-unused-translations.js --remove",
-    "prebuild": "bun screenshots:download"
+    "prebuild": "bun screenshots:download && bun optimize:images"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

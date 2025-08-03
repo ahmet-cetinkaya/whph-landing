@@ -24,27 +24,27 @@ export interface Screenshot {
 // Map language codes to screenshot directory names
 const LANGUAGE_MAP: Record<SupportedLanguage, string> = {
   en: 'en-GB',
-  tr: 'tr-TR',
-  es: 'es-ES',
-  fr: 'fr-FR',
+  cs: 'cs-CZ',
+  da: 'da-DK',
   de: 'de-DE',
+  el: 'el-GR',
+  es: 'es-ES',
+  fi: 'fi-FI',
+  fr: 'fr-FR',
   it: 'it-IT',
   ja: 'ja-JP',
   ko: 'ko-KR',
-  ru: 'ru-RU',
-  zh: 'zh-CN',
-  pl: 'pl-PL',
-  uk: 'uk-UA',
-  cs: 'cs-CZ',
-  da: 'da-DK',
-  el: 'el-GR',
-  fi: 'fi-FI',
   nl: 'nl-NL',
   no: 'no-NO',
+  pl: 'pl-PL',
   pt: 'pt-PT',
   ro: 'ro-RO',
+  ru: 'ru-RU',
   sl: 'sl-SI',
   sv: 'sv-SE',
+  tr: 'tr-TR',
+  uk: 'uk-UA',
+  zh: 'zh-CN',
 };
 
 // Get the correct language directory with type safety
@@ -55,7 +55,12 @@ let screenshots: Screenshot[] = [];
 
 try {
   // Try to load metadata first
-  const metadataPath = path.join(process.cwd(), 'public', 'screenshots', 'metadata.json');
+  const metadataPath = path.join(
+    process.cwd(),
+    'public',
+    'app-screenshots',
+    'metadata.json'
+  );
   if (fs.existsSync(metadataPath)) {
     const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf-8'));
     const languageData = metadata.languages[screenshotLang];
@@ -64,7 +69,7 @@ try {
       screenshots = languageData.screenshots.map((filename: string, index: number) => {
         const screenshotNumber = filename.replace('.png', '');
         return {
-          src: `/screenshots/${screenshotLang}/${filename}`,
+          src: `/app-screenshots/${screenshotLang}/${filename}`,
           alt: t('screenshots.altText', { number: screenshotNumber }),
           title: t('screenshots.title') + ` ${screenshotNumber}`,
           description: t('screenshots.description', { number: screenshotNumber }),
@@ -79,18 +84,23 @@ try {
 // Fallback: Check filesystem directly if metadata not available
 if (screenshots.length === 0) {
   try {
-    const screenshotsDir = path.join(process.cwd(), 'public', 'screenshots', screenshotLang);
+    const screenshotsDir = path.join(
+      process.cwd(),
+      'public',
+      'app-screenshots',
+      screenshotLang
+    );
     if (fs.existsSync(screenshotsDir)) {
       const files = fs
         .readdirSync(screenshotsDir)
-        .filter(file => file.endsWith('.png'))
-        .map(file => file.replace('.png', ''))
+        .filter(file => file.endsWith('.webp'))
+        .map(file => file.replace('.webp', ''))
         .map(num => parseInt(num))
         .filter(num => !isNaN(num))
         .sort((a, b) => a - b);
 
       screenshots = files.map(num => ({
-        src: `/screenshots/${screenshotLang}/${num}.png`,
+        src: `/app-screenshots/${screenshotLang}/${num}.webp`,
         alt: t('screenshots.altText', { number: num }),
         title: t('screenshots.title') + ` ${num}`,
         description: t('screenshots.description', { number: num }),
@@ -113,7 +123,12 @@ if (screenshots.length === 0) {
 
     try {
       // Try to load from metadata first
-      const metadataPath = path.join(process.cwd(), 'public', 'screenshots', 'metadata.json');
+      const metadataPath = path.join(
+        process.cwd(),
+        'public',
+        'app-screenshots',
+        'metadata.json'
+      );
       if (fs.existsSync(metadataPath)) {
         const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf-8'));
         const languageData = metadata.languages[fallbackLang];
@@ -122,7 +137,7 @@ if (screenshots.length === 0) {
           screenshots = languageData.screenshots.map((filename: string, index: number) => {
             const screenshotNumber = filename.replace('.png', '');
             return {
-              src: `/screenshots/${fallbackLang}/${filename}`,
+              src: `/app-screenshots/${fallbackLang}/${filename}`,
               alt: t('screenshots.altText', { number: screenshotNumber }),
               title: t('screenshots.title') + ` ${screenshotNumber}`,
               description: t('screenshots.description', { number: screenshotNumber }),
@@ -134,19 +149,24 @@ if (screenshots.length === 0) {
       }
 
       // Try filesystem check
-      const screenshotsDir = path.join(process.cwd(), 'public', 'screenshots', fallbackLang);
+      const screenshotsDir = path.join(
+        process.cwd(),
+        'public',
+        'app-screenshots',
+        fallbackLang
+      );
       if (fs.existsSync(screenshotsDir)) {
         const files = fs
           .readdirSync(screenshotsDir)
-          .filter(file => file.endsWith('.png'))
-          .map(file => file.replace('.png', ''))
+          .filter(file => file.endsWith('.webp'))
+          .map(file => file.replace('.webp', ''))
           .map(num => parseInt(num))
           .filter(num => !isNaN(num))
           .sort((a, b) => a - b);
 
         if (files.length > 0) {
           screenshots = files.map(num => ({
-            src: `/screenshots/${fallbackLang}/${num}.png`,
+            src: `/app-screenshots/${fallbackLang}/${num}.webp`,
             alt: t('screenshots.altText', { number: num }),
             title: t('screenshots.title') + ` ${num}`,
             description: t('screenshots.description', { number: num }),
@@ -175,7 +195,14 @@ if (screenshots.length === 0) {
     }
   }
 }
+
+// Add preload hints for critical screenshots
+const preloadScreenshots = screenshots.slice(0, 2);
 ---
+
+{preloadScreenshots.map(screenshot => (
+  <link rel="preload" as="image" href={screenshot.src} fetchpriority="high" />
+))}
 
 <div class="screenshot-gallery">
   <!-- Gallery Container -->
@@ -200,35 +227,23 @@ if (screenshots.length === 0) {
                   <div class="text-center text-sm opacity-75">Loading screenshot...</div>
                 </div>
 
-                {/* Optimized image with Astro Image component for local files or fallback to img for external */}
-                {screenshot.src.startsWith('/screenshots/') ? (
-                  <Image
-                    src={screenshot.src}
-                    alt={screenshot.alt}
-                    width={400}
-                    height={711}
-                    format="webp"
-                    quality={85}
-                    class="screenshot-image h-full w-full object-cover opacity-0 transition-opacity duration-500"
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                    decoding="async"
-                    data-screenshot-index={index}
-                    onload="this.style.opacity='1'; this.parentElement.querySelector('.screenshot-placeholder').style.display='none';"
-                    onerror="this.parentElement.querySelector('.screenshot-placeholder .text-sm').textContent='Failed to load screenshot';"
-                  />
-                ) : (
-                  <img
-                    src={screenshot.src}
-                    alt={screenshot.alt}
-                    class="screenshot-image h-full w-full object-cover opacity-0 transition-opacity duration-500"
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                    decoding="async"
-                    fetchpriority={index === 0 ? 'high' : index === 1 ? 'high' : 'low'}
-                    onload="this.style.opacity='1'; this.parentElement.querySelector('.screenshot-placeholder').style.display='none';"
-                    onerror="this.parentElement.querySelector('.screenshot-placeholder .text-sm').textContent='Failed to load screenshot';"
-                    data-screenshot-index={index}
-                  />
-                )}
+                {/* Responsive optimized image */}
+                <img
+                  src={screenshot.src}
+                  alt={screenshot.alt}
+                  class="screenshot-image h-full w-full object-cover opacity-0 transition-opacity duration-500 cursor-pointer"
+                  style="aspect-ratio: 283/503;"
+                  loading={index === 0 || index === 1 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  fetchpriority={index === 0 ? 'high' : index === 1 ? 'high' : 'low'}
+                  onload="this.style.opacity='1'; this.parentElement.querySelector('.screenshot-placeholder').style.display='none';"
+                  onerror="this.parentElement.querySelector('.screenshot-placeholder .text-sm').textContent='Failed to load screenshot';"
+                  onclick="openFullscreenGallery(this.dataset.screenshotIndex)"
+                  data-screenshot-index={index}
+                  width="283"
+                  height="503"
+                  sizes="(max-width: 640px) min(90vw, 283px), (max-width: 768px) 283px, 283px"
+                />
               </div>
             </div>
           </div>
@@ -270,6 +285,60 @@ if (screenshots.length === 0) {
         />
       ))
     }
+  </div>
+</div>
+
+<!-- Fullscreen Modal -->
+<div id="fullscreen-modal" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-sm">
+  <!-- Close Button -->
+  <button
+    id="fullscreen-close"
+    class="absolute right-4 top-4 z-10 rounded-full bg-black/50 p-2 text-white transition-all hover:bg-black/70"
+    aria-label="Close fullscreen"
+  >
+    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  </button>
+
+  <!-- Fullscreen Gallery Container -->
+  <div class="flex h-full items-center justify-center">
+    <div class="relative flex h-full w-full max-w-sm items-center justify-center px-4 sm:max-w-md md:max-w-lg">
+      <!-- Fullscreen Screenshots Container -->
+      <div
+        id="fullscreen-screenshots-container"
+        class="flex h-full w-full transition-transform duration-500 ease-out"
+        style="transform: translateX(0%)"
+      >
+        <!-- Screenshots will be dynamically added here -->
+      </div>
+
+      <!-- Fullscreen Navigation Arrows -->
+      <button
+        id="fullscreen-prev-btn"
+        class="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white transition-all hover:bg-black/70 disabled:cursor-not-allowed disabled:opacity-30"
+        aria-label="Previous screenshot"
+      >
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+      </button>
+
+      <button
+        id="fullscreen-next-btn"
+        class="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white transition-all hover:bg-black/70 disabled:cursor-not-allowed disabled:opacity-30"
+        aria-label="Next screenshot"
+      >
+        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Fullscreen Navigation Dots -->
+  <div class="absolute bottom-8 left-1/2 flex -translate-x-1/2 space-x-2">
+    <!-- Dots will be dynamically added here -->
   </div>
 </div>
 
@@ -347,20 +416,32 @@ if (screenshots.length === 0) {
                 </div>
                 <div class="text-sm opacity-75 text-center">Loading screenshot...</div>
               </div>
-              <img 
-                src="${screenshot.src}" 
-                alt="${screenshot.alt}" 
-                class="w-full h-full object-cover opacity-0 transition-opacity duration-500 screenshot-image" 
+              <img
+                src="${screenshot.src}"
+                alt="${screenshot.alt}"
+                class="w-full h-full object-cover opacity-0 transition-opacity duration-500 screenshot-image"
+                style="aspect-ratio: 283/503;"
                 loading="${index === 0 ? 'eager' : 'lazy'}"
                 decoding="async"
                 data-screenshot-index="${index}"
+                width="283"
+                height="503"
+                sizes="(max-width: 640px) min(90vw, 283px), (max-width: 768px) 283px, 283px"
                 onload="this.style.opacity='1'; this.parentElement.querySelector('.screenshot-placeholder').style.display='none';"
                 onerror="this.parentElement.querySelector('.screenshot-placeholder .text-sm').textContent='Failed to load screenshot';"
+                onclick="openFullscreenGallery(${index})"
+                style="cursor: pointer;"
               />
             </div>
           </div>
         `;
         container.appendChild(slideDiv);
+        
+        // Add click event listener to the image
+        const img = slideDiv.querySelector('img');
+        if (img) {
+          img.addEventListener('click', () => openFullscreenGallery(index));
+        }
 
         // Add navigation dot
         const dotButton = document.createElement('button');
@@ -501,6 +582,9 @@ if (screenshots.length === 0) {
       // Check screenshot existence and update gallery
       await checkScreenshotExistence();
 
+      // Update global valid screenshots for fullscreen
+      window.galleryValidScreenshots = validScreenshots;
+
       if (totalScreenshots > 0) {
         updateGallery();
         preloadAdjacentImages(0);
@@ -523,5 +607,175 @@ if (screenshots.length === 0) {
     document.addEventListener('DOMContentLoaded', initScreenshotGallery);
   } else {
     initScreenshotGallery();
+  }
+
+  // Global variables for fullscreen
+  window.galleryScreenshots = screenshots;
+  window.galleryValidScreenshots = [];
+
+  // Simple fullscreen functionality
+  window.openFullscreenGallery = function(startIndex) {
+    const modal = document.getElementById('fullscreen-modal');
+    const body = document.body;
+    
+    if (!modal) return;
+    
+    // Use the current valid screenshots or fall back to all screenshots
+    const screenshotsToUse = window.galleryValidScreenshots.length > 0 ? window.galleryValidScreenshots : window.galleryScreenshots;
+    const currentIndex = parseInt(startIndex) || 0;
+    
+    // Show modal and prevent scroll
+    modal.classList.remove('hidden');
+    body.style.overflow = 'hidden';
+    
+    // Initialize fullscreen gallery with current screenshots
+    initializeFullscreenGallery(screenshotsToUse, currentIndex);
+  };
+
+  function initializeFullscreenGallery(screenshotsData, startIndex) {
+    console.log('Initializing fullscreen with', screenshotsData.length, 'screenshots, starting at index', startIndex);
+    
+    const container = document.getElementById('fullscreen-screenshots-container');
+    const dotsContainer = document.querySelector('#fullscreen-modal .absolute.bottom-8');
+    
+    if (!container || !dotsContainer) {
+      console.error('Fullscreen containers not found');
+      return;
+    }
+    
+    // Clear existing content
+    container.innerHTML = '';
+    dotsContainer.innerHTML = '';
+    
+    let currentIndex = startIndex;
+    
+    // Create slides for each screenshot
+    screenshotsData.forEach((screenshot, index) => {
+      console.log('Creating slide for screenshot:', screenshot.src);
+      
+      // Create slide
+      const slide = document.createElement('div');
+      slide.className = 'w-full flex-shrink-0 flex items-center justify-center h-full px-4';
+      slide.innerHTML = `
+        <div class="max-h-full max-w-full flex items-center justify-center">
+          <img
+            src="${screenshot.src}"
+            alt="${screenshot.alt}"
+            class="max-h-[90vh] max-w-full object-contain rounded-lg shadow-2xl"
+            loading="${index === startIndex ? 'eager' : 'lazy'}"
+            onload="console.log('Fullscreen image loaded:', this.src)"
+            onerror="console.error('Fullscreen image failed to load:', this.src)"
+          />
+        </div>
+      `;
+      container.appendChild(slide);
+      
+      // Create dot
+      const dot = document.createElement('button');
+      dot.className = `w-3 h-3 rounded-full transition-all duration-300 ${index === startIndex ? 'bg-white' : 'bg-white/50 hover:bg-white/70'}`;
+      dot.addEventListener('click', () => goToSlide(index));
+      dotsContainer.appendChild(dot);
+    });
+    
+    // Navigation functions
+    function goToSlide(index) {
+      currentIndex = Math.max(0, Math.min(index, screenshotsData.length - 1));
+      updateGallery();
+    }
+    
+    function updateGallery() {
+      // Update container position
+      container.style.transform = `translateX(-${currentIndex * 100}%)`;
+      
+      // Update navigation buttons
+      const prevBtn = document.getElementById('fullscreen-prev-btn');
+      const nextBtn = document.getElementById('fullscreen-next-btn');
+      if (prevBtn) prevBtn.disabled = currentIndex === 0;
+      if (nextBtn) nextBtn.disabled = currentIndex === screenshotsData.length - 1;
+      
+      // Update dots
+      const dots = dotsContainer.querySelectorAll('button');
+      dots.forEach((dot, index) => {
+        if (index === currentIndex) {
+          dot.classList.remove('bg-white/50');
+          dot.classList.add('bg-white');
+        } else {
+          dot.classList.remove('bg-white');
+          dot.classList.add('bg-white/50');
+        }
+      });
+    }
+    
+    // Setup navigation buttons - fix event listeners
+    const prevBtn = document.getElementById('fullscreen-prev-btn');
+    const nextBtn = document.getElementById('fullscreen-next-btn');
+    const closeBtn = document.getElementById('fullscreen-close');
+    
+    // Clear existing event listeners by cloning nodes
+    if (prevBtn) {
+      const newPrevBtn = prevBtn.cloneNode(true);
+      prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
+      newPrevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentIndex > 0) goToSlide(currentIndex - 1);
+      });
+    }
+    
+    if (nextBtn) {
+      const newNextBtn = nextBtn.cloneNode(true);
+      nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
+      newNextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentIndex < screenshotsData.length - 1) goToSlide(currentIndex + 1);
+      });
+    }
+    
+    if (closeBtn) {
+      const newCloseBtn = closeBtn.cloneNode(true);
+      closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
+      newCloseBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeFullscreen();
+      });
+    }
+    
+    // Setup keyboard navigation
+    function handleKeyboard(e) {
+      if (e.key === 'Escape') closeFullscreen();
+      if (e.key === 'ArrowLeft' && currentIndex > 0) goToSlide(currentIndex - 1);
+      if (e.key === 'ArrowRight' && currentIndex < screenshotsData.length - 1) goToSlide(currentIndex + 1);
+    }
+    
+    // Remove old keyboard listener and add new one
+    if (window.fullscreenKeyHandler) {
+      document.removeEventListener('keydown', window.fullscreenKeyHandler);  
+    }
+    window.fullscreenKeyHandler = handleKeyboard;
+    document.addEventListener('keydown', handleKeyboard);
+    
+    // Setup backdrop click
+    const modal = document.getElementById('fullscreen-modal');
+    if (modal) {
+      modal.onclick = (e) => {
+        if (e.target === modal) closeFullscreen();
+      };
+    }
+    
+    // Initial update
+    updateGallery();
+    console.log('Fullscreen gallery initialized');
+  }
+  
+  function closeFullscreen() {
+    const modal = document.getElementById('fullscreen-modal');
+    const body = document.body;
+    
+    modal?.classList.add('hidden');
+    body.style.overflow = '';
+    
+    // Remove keyboard listener
+    if (window.fullscreenKeyHandler) {
+      document.removeEventListener('keydown', window.fullscreenKeyHandler);
+    }
   }
 </script>

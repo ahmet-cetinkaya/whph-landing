@@ -3,6 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import sharp from 'sharp';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,7 +11,7 @@ const __dirname = path.dirname(__filename);
 // Configuration
 const GITHUB_BASE_URL =
   'https://raw.githubusercontent.com/ahmet-cetinkaya/whph/main/fastlane/metadata/android';
-const PUBLIC_DIR = path.join(__dirname, '..', 'public', 'screenshots');
+const PUBLIC_DIR = path.join(__dirname, '..', 'public', 'app-screenshots');
 
 // Supported languages from the WHPH repository
 const SUPPORTED_LANGUAGES = [
@@ -26,6 +27,14 @@ const SUPPORTED_LANGUAGES = [
   'zh-CN',
   'pl-PL',
   'uk-UA',
+  'cs-CZ',
+  'da-DK',
+  'el-GR',
+  'fi-FI',
+  'nl-NL',
+  'ro-RO',
+  'sl-SI',
+  'sv-SE',
 ];
 
 // Create screenshots directory if it doesn't exist
@@ -66,7 +75,7 @@ async function downloadFile(url, filePath) {
 }
 
 /**
- * Download screenshots for a specific language
+ * Download screenshots for a specific language and convert to WebP
  */
 async function downloadLanguageScreenshots(language) {
   console.log(`\nDownloading screenshots for ${language}...`);
@@ -84,10 +93,11 @@ async function downloadLanguageScreenshots(language) {
     const screenshotUrl = `${GITHUB_BASE_URL}/${language}/images/phoneScreenshots/${screenshotIndex}.png`;
     const fileName = `${screenshotIndex}.png`;
     const filePath = path.join(languageDir, fileName);
+    const webpPath = path.join(languageDir, `${screenshotIndex}.webp`);
 
     // Check if file already exists locally
-    if (fs.existsSync(filePath)) {
-      console.log(`  ✓ ${fileName} (already exists)`);
+    if (fs.existsSync(webpPath)) {
+      console.log(`  ✓ ${screenshotIndex}.webp (already exists)`);
       downloadedCount++;
       screenshotIndex++;
       continue;
@@ -105,6 +115,15 @@ async function downloadLanguageScreenshots(language) {
     if (success) {
       console.log(`  ✓ ${fileName} (downloaded)`);
       downloadedCount++;
+      // PNG'den WebP'ye dönüştür
+      try {
+        await sharp(filePath).webp({ quality: 85 }).toFile(webpPath);
+        console.log(`    → Converted to WebP: ${screenshotIndex}.webp`);
+        // PNG dosyasını sil
+        fs.unlinkSync(filePath);
+      } catch (err) {
+        console.error(`    → WebP conversion failed: ${fileName}`, err.message);
+      }
     } else {
       console.log(`  ✗ ${fileName} (download failed)`);
     }
@@ -120,32 +139,19 @@ async function downloadLanguageScreenshots(language) {
 }
 
 /**
- * Clean up old screenshots that no longer exist on GitHub
+ * Remove everything in the public/app-screenshots directory before downloading
  */
-async function cleanupOldScreenshots() {
-  console.log('\nCleaning up old screenshots...');
-
-  for (const language of SUPPORTED_LANGUAGES) {
-    const languageDir = path.join(PUBLIC_DIR, language);
-
-    if (!fs.existsSync(languageDir)) continue;
-
-    const localFiles = fs.readdirSync(languageDir).filter(f => f.endsWith('.png'));
-
-    for (const file of localFiles) {
-      const screenshotNumber = file.replace('.png', '');
-      const githubUrl = `${GITHUB_BASE_URL}/${language}/images/phoneScreenshots/${file}`;
-
-      const exists = await checkUrlExists(githubUrl);
-      if (!exists) {
-        const filePath = path.join(languageDir, file);
-        fs.unlinkSync(filePath);
-        console.log(`  🗑️  Removed ${language}/${file} (no longer exists on GitHub)`);
+function removeAllScreenshots() {
+  if (fs.existsSync(PUBLIC_DIR)) {
+    fs.readdirSync(PUBLIC_DIR).forEach(file => {
+      const curPath = path.join(PUBLIC_DIR, file);
+      if (fs.lstatSync(curPath).isDirectory()) {
+        fs.rmSync(curPath, { recursive: true, force: true });
+      } else {
+        fs.unlinkSync(curPath);
       }
-
-      // Add small delay
-      await new Promise(resolve => setTimeout(resolve, 100));
-    }
+    });
+    console.log(`Cleaned all files and folders in: ${PUBLIC_DIR}`);
   }
 }
 
@@ -166,15 +172,15 @@ function generateMetadata() {
     if (fs.existsSync(languageDir)) {
       const screenshots = fs
         .readdirSync(languageDir)
-        .filter(f => f.endsWith('.png'))
-        .map(f => f.replace('.png', ''))
+        .filter(f => f.endsWith('.webp'))
+        .map(f => f.replace('.webp', ''))
         .map(num => parseInt(num))
         .filter(num => !isNaN(num))
         .sort((a, b) => a - b);
 
       metadata.languages[language] = {
         count: screenshots.length,
-        screenshots: screenshots.map(num => `${num}.png`),
+        screenshots: screenshots.map(num => `${num}.webp`),
       };
     } else {
       metadata.languages[language] = {
@@ -200,14 +206,14 @@ async function main() {
 
   let totalDownloaded = 0;
 
+  // Remove everything in the public/app-screenshots directory before downloading
+  removeAllScreenshots();
+
   // Download screenshots for each language
   for (const language of SUPPORTED_LANGUAGES) {
     const count = await downloadLanguageScreenshots(language);
     totalDownloaded += count;
   }
-
-  // Clean up old screenshots
-  await cleanupOldScreenshots();
 
   // Generate metadata
   const metadata = generateMetadata();

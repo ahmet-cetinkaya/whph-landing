@@ -6,7 +6,7 @@ export default {
       colors: {
         // WHPH Primary Colors
         primary: {
-          DEFAULT: '#F4D03E', // Golden Yellow
+          DEFAULT: '#F4D03E',
           50: '#FEFBF3',
           100: '#FDF6E1',
           200: '#FBEEC4',
