@@ -37,7 +37,7 @@ const faqQuestions = [
         {
           faqQuestions.map((questionKey, index) => (
             <AnimatedSection animation="fade-up" delay={index * 100}>
-              <details class="faq-item rounded-whph border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-lg dark:border-gray-700 dark:bg-gray-800">
+              <details class="faq-item rounded-whph border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:shadow-lg dark:border-gray-700 dark:bg-dark-surface-1">
                 <summary class="flex cursor-pointer items-center justify-between p-6 font-semibold text-gray-900 transition-colors hover:text-primary dark:text-white">
                   <span>{t(`faq.questions.${questionKey}.question`)}</span>
                   <svg

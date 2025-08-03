@@ -12,7 +12,7 @@ const { t } = Astro.props;
 <!-- Modal Backdrop -->
 <div
   id="android-modal-backdrop"
-  class="pointer-events-none fixed inset-0 z-50 bg-black/50 opacity-0 backdrop-blur-sm transition-opacity duration-300"
+  class="pointer-events-none fixed inset-0 z-50 bg-dark-surface-0/50 opacity-0 backdrop-blur-sm transition-opacity duration-300"
 >
   <!-- Modal Dialog -->
   <div
@@ -25,7 +25,7 @@ const { t } = Astro.props;
   >
     <div
       id="android-modal-dialog"
-      class="w-full max-w-lg scale-95 transform rounded-whph-lg border border-gray-200 bg-white p-6 shadow-2xl transition-transform duration-300 dark:border-gray-700 dark:bg-gray-900"
+      class="w-full max-w-lg scale-95 transform rounded-whph-lg border border-gray-200 bg-white p-6 shadow-2xl transition-transform duration-300 dark:border-gray-700 dark:bg-dark-surface-2"
     >
       <!-- Header -->
       <div class="mb-6 flex items-center justify-between">
@@ -35,7 +35,7 @@ const { t } = Astro.props;
         <button
           id="android-modal-close"
           type="button"
-          class="rounded-full p-2 transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary dark:hover:bg-gray-800"
+          class="rounded-full p-2 transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary dark:hover:bg-dark-surface-1"
           aria-label={t('common.close')}
         >
           <CloseIcon
@@ -48,7 +48,7 @@ const { t } = Astro.props;
       <div class="space-y-4">
         <!-- Google Play Store -->
         <div
-          class="rounded-whph border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800"
+          class="rounded-whph border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-dark-surface-1"
         >
           <div class="flex items-center justify-between">
             <div class="flex items-center">
@@ -79,7 +79,7 @@ const { t } = Astro.props;
 
         <!-- F-Droid -->
         <div
-          class="rounded-whph border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800"
+          class="rounded-whph border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-dark-surface-1"
         >
           <div class="flex items-center justify-between">
             <div class="flex items-center">
@@ -108,7 +108,7 @@ const { t } = Astro.props;
 
         <!-- GitHub Releases -->
         <div
-          class="rounded-whph border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800"
+          class="rounded-whph border border-gray-200 bg-gray-50 p-4 dark:border-gray-700 dark:bg-dark-surface-1"
         >
           <div class="flex items-center justify-between">
             <div class="flex items-center">
