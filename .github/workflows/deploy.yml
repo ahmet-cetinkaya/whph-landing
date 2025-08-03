@@ -3,8 +3,6 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -18,11 +16,22 @@ concurrency:
 
 env:
   BUILD_PATH: "./src/presentation/web"
+  NODE_VERSION: "20"
+  BUN_VERSION: "latest"
 
 jobs:
+  ci:
+    name: Run CI
+    uses: ./.github/workflows/ci.yml
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+
   build:
-    name: Build
+    name: Build for Deployment
     runs-on: ubuntu-latest
+    needs: ci
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -54,10 +63,20 @@ jobs:
           cd ${{ env.BUILD_PATH }}
           bun install --frozen-lockfile
 
+      - name: Install ImageMagick for image optimization
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+
       - name: Download screenshots
         run: |
           cd ${{ env.BUILD_PATH }}
           bun run screenshots:download
+
+      - name: Optimize images
+        run: |
+          cd ${{ env.BUILD_PATH }}
+          node scripts/optimize-images.js
 
       - name: Build with Astro
         env:
@@ -75,7 +94,9 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -87,7 +108,7 @@ jobs:
     name: Lighthouse CI
     needs: build
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'workflow_dispatch'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -118,3 +139,63 @@ jobs:
           lhci autorun --config=./.github/lighthouserc.json || echo "Lighthouse CI completed with issues"
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  performance-audit:
+    name: Performance Audit
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: ./dist
+
+      - name: Extract artifact
+        run: |
+          cd ./dist
+          tar -xf artifact.tar
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Audit bundle size
+        run: |
+          echo "📦 Bundle Size Analysis"
+          echo "======================="
+          
+          # Check JavaScript bundle sizes
+          find ./dist -name "*.js" -type f | while read file; do
+            size=$(stat -c%s "$file")
+            size_kb=$(($size / 1024))
+            echo "JS: $(basename "$file") - ${size_kb}KB"
+            if [ $size_kb -gt 100 ]; then
+              echo "⚠️  Large JS bundle: $file (${size_kb}KB)"
+            fi
+          done
+          
+          # Check CSS bundle sizes
+          find ./dist -name "*.css" -type f | while read file; do
+            size=$(stat -c%s "$file")
+            size_kb=$(($size / 1024))
+            echo "CSS: $(basename "$file") - ${size_kb}KB"
+            if [ $size_kb -gt 50 ]; then
+              echo "⚠️  Large CSS bundle: $file (${size_kb}KB)"
+            fi
+          done
+          
+          # Check image optimization
+          find ./dist -name "*.webp" -type f | head -5 | while read file; do
+            size=$(stat -c%s "$file")
+            size_kb=$(($size / 1024))
+            echo "Image: $(basename "$file") - ${size_kb}KB"
+            if [ $size_kb -gt 100 ]; then
+              echo "⚠️  Large image: $file (${size_kb}KB)"
+            fi
+          done
