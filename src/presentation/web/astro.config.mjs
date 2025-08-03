@@ -11,7 +11,28 @@ export default defineConfig({
   // i18n configuration
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'tr', 'es', 'fr', 'de', 'it', 'ja', 'ko', 'ru', 'zh'],
+    locales: [
+      'en',
+      'tr',
+      'es',
+      'fr',
+      'de',
+      'it',
+      'ja',
+      'ko',
+      'ru',
+      'zh',
+      'pl',
+      'uk',
+      'cs',
+      'da',
+      'el',
+      'fi',
+      'nl',
+      'ro',
+      'sl',
+      'sv',
+    ],
     routing: {
       prefixDefaultLocale: false,
     },
@@ -44,14 +65,29 @@ export default defineConfig({
   },
   compressHTML: true,
   image: {
-    // Image optimization configuration
+    // Enhanced image optimization configuration
     service: {
       entrypoint: 'astro/assets/services/sharp',
+      config: {
+        limitInputPixels: false,
+        // Optimize image quality vs size
+        jpeg: { quality: 80, progressive: true },
+        png: { quality: 80, progressive: true },
+        webp: { quality: 80, effort: 6 },
+        avif: { quality: 80, effort: 6 },
+      },
     },
+    // Optimize remote images
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
+      },
+    ],
   },
   build: {
-    // Enable static file compression
-    inlineStylesheets: 'auto',
+    // Inline small stylesheets to reduce render blocking
+    inlineStylesheets: 'always',
     // Generate optimized assets
     assets: '_astro',
   },
