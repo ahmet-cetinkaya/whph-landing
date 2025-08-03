@@ -10,6 +10,79 @@ interface Props {
 const { t } = Astro.props;
 ---
 
+<style>
+  @keyframes rotate-glow {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes rotate-glow-reverse {
+    0% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  .icon-glow-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .icon-glow-container::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    right: -12px;
+    bottom: -12px;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 30deg,
+      theme('colors.primary.DEFAULT') 90deg,
+      theme('colors.primary.600') 120deg,
+      theme('colors.primary.DEFAULT') 150deg,
+      transparent 210deg,
+      transparent 360deg
+    );
+    border-radius: 50%;
+    animation: rotate-glow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    filter: blur(8px);
+    opacity: 0.8;
+    will-change: transform;
+  }
+
+  .icon-glow-container::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    background: conic-gradient(
+      from 180deg,
+      transparent 0deg,
+      transparent 60deg,
+      theme('colors.primary.400') 120deg,
+      theme('colors.primary.DEFAULT') 150deg,
+      theme('colors.primary.400') 180deg,
+      transparent 240deg,
+      transparent 360deg
+    );
+    border-radius: 50%;
+    animation: rotate-glow-reverse 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    filter: blur(4px);
+    opacity: 0.9;
+    will-change: transform;
+  }
+</style>
+
 <div>
   <Container>
     <div class="grid items-center gap-12 lg:grid-cols-2">
@@ -59,16 +132,19 @@ const { t } = Astro.props;
       </AnimatedSection>
       <AnimatedSection animation="slide-right" delay={400}>
         <div class="relative hidden lg:block">
-          <div
-            class="rounded-whph bg-white p-8 text-center shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-lg dark:bg-gray-800"
-          >
             <div class="mx-auto flex h-64 w-64 items-center justify-center">
+              <!-- Dönen ışık efekti arka plan -->
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="icon-glow-container">
+                  <div class="h-48 w-48"></div>
+                </div>
+              </div>
+              <!-- Favicon görseli -->
               <img
                 src="/favicon.svg"
                 alt={t('hero.screenshotAlt')}
-                class="h-48 w-48 object-contain transition-all duration-300 hover:scale-110"
+                class="h-48 w-48 object-contain transition-all duration-300 hover:scale-110 relative z-10"
               />
-            </div>
           </div>
         </div>
       </AnimatedSection>
