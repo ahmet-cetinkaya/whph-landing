@@ -138,7 +138,7 @@ function findDynamicTranslationUsage(content, filePath) {
 /**
  * Resolve dynamic translation templates by analyzing the code context
  */
-function resolveDynamicTemplate(template, content, filePath) {
+function resolveDynamicTemplate(template, content) {
   const resolvedKeys = [];
 
   // Extract the variable name from ${variableName}
@@ -240,7 +240,7 @@ function resolveDynamicTemplate(template, content, filePath) {
   ];
 
   // Check if this template matches any common patterns
-  commonPatterns.forEach(({ pattern, usesParam }) => {
+  commonPatterns.forEach(({ pattern }) => {
     if (template.includes(pattern) || template === pattern) {
       resolvedKeys.push(pattern);
     }

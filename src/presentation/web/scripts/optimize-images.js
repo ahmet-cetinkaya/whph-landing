@@ -7,11 +7,11 @@ import { execSync } from 'child_process';
 const PUBLIC_DIR = path.join(process.cwd(), 'public');
 const SCREENSHOTS_DIR = path.join(PUBLIC_DIR, 'app-screenshots');
 
-// Target sizes for responsive images
-const SIZES = [
-  { suffix: '', width: 400, quality: 85 }, // Default mobile size
-  { suffix: '@2x', width: 800, quality: 85 }, // Retina mobile
-];
+// Target sizes for responsive images (currently unused but kept for future use)
+// const SIZES = [
+//   { suffix: '', width: 400, quality: 85 }, // Default mobile size
+//   { suffix: '@2x', width: 800, quality: 85 }, // Retina mobile
+// ];
 
 // Detect ImageMagick version and commands
 let MAGICK_COMMANDS = {

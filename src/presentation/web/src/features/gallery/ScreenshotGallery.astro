@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import ImageIcon from '../../shared/components/icons/ImageIcon.astro';
 import ChevronLeftIcon from '../../shared/components/icons/ChevronLeftIcon.astro';
 import ChevronRightIcon from '../../shared/components/icons/ChevronRightIcon.astro';
@@ -61,7 +60,7 @@ try {
     const languageData = metadata.languages[screenshotLang];
 
     if (languageData && languageData.screenshots.length > 0) {
-      screenshots = languageData.screenshots.map((filename: string, index: number) => {
+      screenshots = languageData.screenshots.map((filename: string) => {
         const screenshotNumber = filename.replace('.png', '');
         return {
           src: `/app-screenshots/${screenshotLang}/${filename}`,
@@ -119,7 +118,7 @@ if (screenshots.length === 0) {
         const languageData = metadata.languages[fallbackLang];
 
         if (languageData && languageData.screenshots.length > 0) {
-          screenshots = languageData.screenshots.map((filename: string, index: number) => {
+          screenshots = languageData.screenshots.map((filename: string) => {
             const screenshotNumber = filename.replace('.png', '');
             return {
               src: `/app-screenshots/${fallbackLang}/${filename}`,
@@ -329,7 +328,9 @@ const preloadScreenshots = screenshots.slice(0, 2);
   </div>
 </div>
 
-<script define:vars={{ screenshots }}>
+<script is:inline define:vars={{ screenshots }}>
+  // screenshots variable is injected by Astro define:vars
+  const screenshotsData = screenshots;
   let currentIndex = 0;
   let validScreenshots = [];
   let totalScreenshots = 0;
@@ -349,8 +350,8 @@ const preloadScreenshots = screenshots.slice(0, 2);
     async function checkScreenshotExistence() {
       validScreenshots = [];
 
-      for (let i = 0; i < screenshots.length; i++) {
-        const screenshot = screenshots[i];
+      for (let i = 0; i < screenshotsData.length; i++) {
+        const screenshot = screenshotsData[i];
         try {
           const img = new Image();
           const imageExists = await new Promise(resolve => {
@@ -461,9 +462,9 @@ const preloadScreenshots = screenshots.slice(0, 2);
       }
 
       imagesToPreload.forEach(idx => {
-        if (!preloadedImages.has(idx) && screenshots[idx]) {
+        if (!preloadedImages.has(idx) && validScreenshots[idx]) {
           const img = new Image();
-          img.src = screenshots[idx].src;
+          img.src = validScreenshots[idx].src;
           img.loading = 'eager';
           img.decoding = 'async';
 
@@ -597,7 +598,7 @@ const preloadScreenshots = screenshots.slice(0, 2);
   }
 
   // Global variables for fullscreen
-  window.galleryScreenshots = screenshots;
+  window.galleryScreenshots = screenshotsData;
   window.galleryValidScreenshots = [];
 
   // Simple fullscreen functionality

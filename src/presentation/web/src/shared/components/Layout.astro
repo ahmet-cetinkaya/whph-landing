@@ -100,6 +100,7 @@ const currentYear = getCurrentYear();
 
     <!-- Structured Data for Software Application -->
     <script
+      is:inline
       type="application/ld+json"
       set:html={JSON.stringify({
         '@context': 'https://schema.org',
@@ -187,7 +188,7 @@ const currentYear = getCurrentYear();
     <Analytics />
 
     <!-- Global JavaScript with translations -->
-    <script define:vars={{ translations, currentLang, currentYear }}>
+    <script is:inline define:vars={{ translations, currentLang, currentYear }}>
       // Make translations available globally for JavaScript
       window.WHPH_TRANSLATIONS = translations;
       window.WHPH_CURRENT_LANG = currentLang;

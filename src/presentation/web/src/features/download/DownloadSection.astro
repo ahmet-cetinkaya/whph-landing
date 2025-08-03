@@ -65,7 +65,11 @@ const GITHUB_RELEASES_URL = 'https://github.com/ahmet-cetinkaya/whph/releases/la
   // OS Detection and Auto-selection for WHPH Download Section
   function detectOS() {
     const userAgent = navigator.userAgent.toLowerCase();
-    const platform = navigator.platform.toLowerCase();
+    // Use modern userAgentData when available, fallback to userAgent parsing
+    const platform = (navigator as any).userAgentData?.platform?.toLowerCase() || 
+                     userAgent.includes('win') ? 'windows' :
+                     userAgent.includes('mac') ? 'macos' :
+                     userAgent.includes('linux') ? 'linux' : 'unknown';
 
     // More comprehensive OS detection
 
@@ -188,7 +192,7 @@ const GITHUB_RELEASES_URL = 'https://github.com/ahmet-cetinkaya/whph/releases/la
       console.log('WHPH OS Detection:', {
         detected: detectedOS,
         userAgent: navigator.userAgent,
-        platform: navigator.platform,
+        platform: (navigator as any).userAgentData?.platform || 'detected from user agent',
       });
     } catch (error) {
       console.error('Error in OS detection:', error);
