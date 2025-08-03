@@ -83,7 +83,7 @@ const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
   <!-- Mobile Menu Drawer -->
   <div
     id="mobile-menu"
-    class="fixed right-0 top-0 z-50 flex h-screen w-80 max-w-[80vw] translate-x-full transform flex-col border-l border-gray-700 bg-gray-900/95 shadow-xl transition-transform duration-300 md:hidden"
+    class="fixed right-0 top-0 z-50 hidden h-screen w-80 max-w-[80vw] translate-x-full transform flex-col border-l border-gray-700 bg-gray-900/95 shadow-xl transition-transform duration-300 md:hidden"
   >
     <!-- Mobile Menu Header -->
     <div
@@ -158,6 +158,11 @@ const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
         mobileMenuOverlay.classList.add('opacity-0', 'invisible');
         // Slide drawer out
         mobileMenu.classList.add('translate-x-full');
+        // After animation, hide completely
+        setTimeout(() => {
+          mobileMenu.classList.add('hidden');
+          mobileMenu.classList.remove('flex');
+        }, 300);
         // Restore body scroll
         document.body.style.overflow = '';
       }
@@ -167,7 +172,9 @@ const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
       if (mobileMenu && mobileMenuOverlay) {
         // Show overlay
         mobileMenuOverlay.classList.remove('opacity-0', 'invisible');
-        // Slide drawer in
+        // Show and slide drawer in
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('flex');
         mobileMenu.classList.remove('translate-x-full');
         // Prevent body scroll
         document.body.style.overflow = 'hidden';
