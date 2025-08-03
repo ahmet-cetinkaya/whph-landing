@@ -66,10 +66,14 @@ const GITHUB_RELEASES_URL = 'https://github.com/ahmet-cetinkaya/whph/releases/la
   function detectOS() {
     const userAgent = navigator.userAgent.toLowerCase();
     // Use modern userAgentData when available, fallback to userAgent parsing
-    const platform = (navigator as any).userAgentData?.platform?.toLowerCase() || 
-                     userAgent.includes('win') ? 'windows' :
-                     userAgent.includes('mac') ? 'macos' :
-                     userAgent.includes('linux') ? 'linux' : 'unknown';
+    const platform =
+      (navigator as any).userAgentData?.platform?.toLowerCase() || userAgent.includes('win')
+        ? 'windows'
+        : userAgent.includes('mac')
+          ? 'macos'
+          : userAgent.includes('linux')
+            ? 'linux'
+            : 'unknown';
 
     // More comprehensive OS detection
 

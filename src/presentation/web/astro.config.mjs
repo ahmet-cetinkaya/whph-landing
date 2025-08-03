@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-import solidJs from '@astrojs/solid-js';
 
 // https://astro.build/config
 export default defineConfig({
@@ -37,7 +36,7 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
-  integrations: [tailwind(), solidJs()],
+  integrations: [tailwind()],
   vite: {
     build: {
       // Optimize chunks for better caching
@@ -59,9 +58,7 @@ export default defineConfig({
       },
     },
     // Optimize dependencies
-    optimizeDeps: {
-      include: ['solid-js'],
-    },
+    optimizeDeps: {},
   },
   compressHTML: true,
   image: {

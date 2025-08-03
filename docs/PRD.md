@@ -269,7 +269,7 @@ The WHPH landing page serves as the primary digital gateway for potential users 
 
 - **Framework**: AstroJS for static site generation
 - **Styling**: Tailwind CSS for utility-first styling
-- **Dynamic Components**: SolidJS components for interactive elements
+- **Dynamic Components**: Astro components for interactive elements
 - **Responsive Design**: Mobile-first approach with breakpoints at 768px, 1024px, 1440px
 
 ### 6.2 Performance Requirements
@@ -424,7 +424,7 @@ The WHPH landing page serves as the primary digital gateway for potential users 
 **Week 2: Development and Content**
 
 - Day 1-3: Implement responsive layout with Tailwind CSS and language routing
-- Day 4-5: Develop SolidJS components for interactive elements and language switcher
+- Day 4-5: Develop Astro components for interactive elements and language switcher
 - Day 6-7: Add localized content, screenshots, and optimize for performance
 
 **Week 3: Testing and Launch**
@@ -436,7 +436,7 @@ The WHPH landing page serves as the primary digital gateway for potential users 
 ### 10.2 Key Deliverables
 
 - [ ] AstroJS static site with Tailwind CSS styling
-- [ ] SolidJS components for interactive elements
+- [ ] Astro components for interactive elements
 - [ ] Multi-language support with 10 supported languages (de, en, es, fr, it, ja, ko, ru, tr, zh)
 - [ ] Language switcher component with accessible navigation
 - [ ] Localized content management system with JSON translation files
@@ -521,14 +521,14 @@ The WHPH landing page serves as the primary digital gateway for potential users 
 
 - **Framework:** AstroJS for static site generation with optimal performance
 - **Styling:** Tailwind CSS for utility-first styling matching app design
-- **Interactive Components:** SolidJS for minimal JavaScript footprint
+- **Interactive Components:** Astro for minimal JavaScript footprint
 - **Deployment:** Netlify or Vercel for static site hosting
 
 **C.2 Performance Optimization**
 
 - **Image Optimization:** WebP format with fallbacks, lazy loading
 - **Static Generation:** AstroJS pre-builds all pages for optimal performance
-- **Minimal JavaScript:** SolidJS components only where interactivity is needed
+- **Minimal JavaScript:** Astro components only where interactivity is needed
 - **CDN Integration:** Built-in CDN through hosting provider
 
 **C.3 Analytics and Tracking**

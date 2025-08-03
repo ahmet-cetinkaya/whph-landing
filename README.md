@@ -18,7 +18,6 @@ This landing page is built with modern web technologies to provide:
 
 - **Framework**: [AstroJS](https://astro.build/) v5.12.7 - Static site generation
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
-- **Interactive Components**: [SolidJS](https://www.solidjs.com/) - Minimal JavaScript footprint
 - **Package Manager**: [Bun](https://bun.sh/) - Fast JavaScript runtime and package manager
 - **Analytics**: Self-hosted [Umami](https://umami.is/) - Privacy-focused analytics
 - **Deployment**: Github Pages

@@ -132,19 +132,19 @@ const { t } = Astro.props;
       </AnimatedSection>
       <AnimatedSection animation="slide-right" delay={400}>
         <div class="relative hidden lg:block">
-            <div class="mx-auto flex h-64 w-64 items-center justify-center">
-              <!-- Dönen ışık efekti arka plan -->
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="icon-glow-container">
-                  <div class="h-48 w-48"></div>
-                </div>
+          <div class="mx-auto flex h-64 w-64 items-center justify-center">
+            <!-- Dönen ışık efekti arka plan -->
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="icon-glow-container">
+                <div class="h-48 w-48"></div>
               </div>
-              <!-- Favicon görseli -->
-              <img
-                src="/favicon.svg"
-                alt={t('hero.screenshotAlt')}
-                class="h-48 w-48 object-contain transition-all duration-300 hover:scale-110 relative z-10"
-              />
+            </div>
+            <!-- Favicon görseli -->
+            <img
+              src="/favicon.svg"
+              alt={t('hero.screenshotAlt')}
+              class="relative z-10 h-48 w-48 object-contain transition-all duration-300 hover:scale-110"
+            />
           </div>
         </div>
       </AnimatedSection>
