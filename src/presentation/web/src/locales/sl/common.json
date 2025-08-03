@@ -113,7 +113,8 @@
     "links": {
       "github": "GitHub",
       "community": "Skupnost",
-      "license": "Licenca"
+      "license": "Licenca",
+      "contact": "Stik"
     },
     "copyright": "© {{year}} WHPH - Work Hard Play Hard"
   },

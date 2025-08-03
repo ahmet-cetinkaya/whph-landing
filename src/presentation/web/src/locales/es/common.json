@@ -98,7 +98,8 @@
     "links": {
       "github": "GitHub",
       "community": "Comunidad",
-      "license": "Licencia"
+      "license": "Licencia",
+      "contact": "Contacto"
     },
     "copyright": "© {{year}} WHPH - Work Hard Play Hard"
   },

@@ -113,7 +113,8 @@
     "links": {
       "github": "GitHub",
       "community": "커뮤니티",
-      "license": "라이선스"
+      "license": "라이선스",
+      "contact": "연락처"
     },
     "copyright": "© {{year}} WHPH - Work Hard Play Hard"
   },
