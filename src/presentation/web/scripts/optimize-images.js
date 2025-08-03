@@ -7,11 +7,13 @@ import { execSync } from 'child_process';
 const PUBLIC_DIR = path.join(process.cwd(), 'public');
 const SCREENSHOTS_DIR = path.join(PUBLIC_DIR, 'app-screenshots');
 
-// Target sizes for responsive images (currently unused but kept for future use)
-// const SIZES = [
-//   { suffix: '', width: 400, quality: 85 }, // Default mobile size
-//   { suffix: '@2x', width: 800, quality: 85 }, // Retina mobile
-// ];
+// Target sizes for responsive images
+const SIZES = [
+  { suffix: '-480', width: 480, quality: 85, description: 'Mobile' },
+  { suffix: '-720', width: 720, quality: 85, description: 'Tablet' },
+  { suffix: '-1080', width: 1080, quality: 90, description: 'Desktop' },
+  { suffix: '', width: null, quality: 95, description: 'Original' }, // Keep original size
+];
 
 // Detect ImageMagick version and commands
 let MAGICK_COMMANDS = {
@@ -68,33 +70,69 @@ async function optimizeImages() {
     for (const image of images) {
       const inputPath = path.join(langDir, image);
       const baseName = path.parse(image).name;
+      const extension = path.parse(image).ext;
+
+      // Skip if this is already a variant (contains size suffix)
+      if (baseName.includes('-480') || baseName.includes('-720') || baseName.includes('-1080')) {
+        console.log(`  ⏭️  ${image}: Skipping variant file`);
+        continue;
+      }
 
       // Check current image dimensions
       try {
         const dimensions = execSync(`${MAGICK_COMMANDS.identify} -format "%wx%h" "${inputPath}"`, {
           encoding: 'utf8',
         }).trim();
-        const [width, height] = dimensions.split('x').map(Number);
+        const [originalWidth, originalHeight] = dimensions.split('x').map(Number);
 
-        console.log(`  📏 ${image}: ${width}x${height}`);
+        console.log(`  📏 ${image}: ${originalWidth}x${originalHeight}`);
 
-        // Skip if already optimized (width <= 400)
-        if (width <= 400) {
-          console.log(`  ✅ ${image}: Already optimized`);
-          continue;
+        // Generate responsive variants
+        for (const size of SIZES) {
+          let outputPath, targetWidth, aspectRatio;
+          
+          if (size.width === null) {
+            // Keep original size but optimize quality
+            outputPath = inputPath;
+            targetWidth = originalWidth;
+          } else {
+            // Create variant with specific width
+            outputPath = path.join(langDir, `${baseName}${size.suffix}${extension}`);
+            targetWidth = size.width;
+          }
+
+          // Skip if variant already exists and is not the original
+          if (size.width !== null && fs.existsSync(outputPath)) {
+            console.log(`  ✅ ${baseName}${size.suffix}: Already exists`);
+            continue;
+          }
+
+          // Skip if target width is larger than original
+          if (size.width !== null && size.width > originalWidth) {
+            console.log(`  ⏭️  ${baseName}${size.suffix}: Skipping (larger than original)`);
+            continue;
+          }
+
+          // Calculate target height maintaining aspect ratio
+          aspectRatio = originalHeight / originalWidth;
+          const targetHeight = Math.round(targetWidth * aspectRatio);
+
+          try {
+            let cmd;
+            if (size.width === null) {
+              // Just optimize quality for original
+              cmd = `${MAGICK_COMMANDS.convert} "${inputPath}" -quality ${size.quality} -format webp "${outputPath}"`;
+            } else {
+              // Resize and optimize
+              cmd = `${MAGICK_COMMANDS.convert} "${inputPath}" -resize ${targetWidth}x${targetHeight} -quality ${size.quality} -format webp "${outputPath}"`;
+            }
+            
+            execSync(cmd, { stdio: 'inherit' });
+            console.log(`  ✅ ${baseName}${size.suffix}: ${size.description} (${targetWidth}x${targetHeight})`);
+          } catch (error) {
+            console.error(`  ❌ Error creating ${baseName}${size.suffix}:`, error.message);
+          }
         }
-
-        // Generate optimized version
-        const outputPath = path.join(langDir, `${baseName}_optimized.webp`);
-
-        // Use ImageMagick to resize and optimize
-        const cmd = `${MAGICK_COMMANDS.convert} "${inputPath}" -resize 400x711 -quality 85 -format webp "${outputPath}"`;
-        execSync(cmd, { stdio: 'inherit' });
-
-        // Replace original with optimized version
-        fs.renameSync(outputPath, inputPath);
-
-        console.log(`  ✅ ${image}: Optimized to 400x711`);
       } catch (error) {
         console.error(`  ❌ Error processing ${image}:`, error.message);
       }

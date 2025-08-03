@@ -119,10 +119,24 @@ jobs:
         with:
           bun-version: latest
 
-      - name: Install ImageMagick for image optimization
+      - name: Install ImageMagick v7 for image optimization
         run: |
           sudo apt-get update
-          sudo apt-get install -y imagemagick
+          sudo apt-get remove -y imagemagick imagemagick-6-common
+          sudo apt-get install -y build-essential pkg-config libpng-dev libjpeg-dev libwebp-dev
+          
+          # Install ImageMagick v7 from source
+          cd /tmp
+          wget https://github.com/ImageMagick/ImageMagick/archive/7.1.1-29.tar.gz
+          tar xzf 7.1.1-29.tar.gz
+          cd ImageMagick-7.1.1-29
+          ./configure --with-webp=yes --with-png=yes --with-jpeg=yes
+          make -j$(nproc)
+          sudo make install
+          sudo ldconfig
+          
+          # Verify installation
+          magick -version
 
       - name: Restore dependencies
         uses: actions/cache/restore@v4

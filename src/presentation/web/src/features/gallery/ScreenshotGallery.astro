@@ -208,9 +208,10 @@ const preloadScreenshots = screenshots.slice(0, 2);
                   <div class="text-center text-sm opacity-75">Loading screenshot...</div>
                 </div>
 
-                {/* Responsive optimized image */}
+                {/* Responsive optimized image with srcset */}
                 <img
                   src={screenshot.src}
+                  srcset={`${screenshot.src.replace('.webp', '-480.webp')} 480w, ${screenshot.src.replace('.webp', '-720.webp')} 720w, ${screenshot.src.replace('.webp', '-1080.webp')} 1080w, ${screenshot.src} 1920w`}
                   alt={screenshot.alt}
                   class="screenshot-image h-full w-full cursor-pointer object-cover opacity-0 transition-opacity duration-500"
                   style="aspect-ratio: 283/503;"
@@ -223,7 +224,7 @@ const preloadScreenshots = screenshots.slice(0, 2);
                   data-screenshot-index={index}
                   width="283"
                   height="503"
-                  sizes="(max-width: 640px) min(90vw, 283px), (max-width: 768px) 283px, 283px"
+                  sizes="(max-width: 480px) 480px, (max-width: 768px) 720px, (max-width: 1024px) 720px, 1080px"
                 />
               </div>
             </div>
@@ -406,6 +407,7 @@ const preloadScreenshots = screenshots.slice(0, 2);
               </div>
               <img
                 src="${screenshot.src}"
+                srcset="${screenshot.src.replace('.webp', '-480.webp')} 480w, ${screenshot.src.replace('.webp', '-720.webp')} 720w, ${screenshot.src.replace('.webp', '-1080.webp')} 1080w, ${screenshot.src} 1920w"
                 alt="${screenshot.alt}"
                 class="w-full h-full object-cover opacity-0 transition-opacity duration-500 screenshot-image"
                 style="aspect-ratio: 283/503;"
@@ -414,7 +416,7 @@ const preloadScreenshots = screenshots.slice(0, 2);
                 data-screenshot-index="${index}"
                 width="283"
                 height="503"
-                sizes="(max-width: 640px) min(90vw, 283px), (max-width: 768px) 283px, 283px"
+                sizes="(max-width: 480px) 480px, (max-width: 768px) 720px, (max-width: 1024px) 720px, 1080px"
                 onload="this.style.opacity='1'; this.parentElement.querySelector('.screenshot-placeholder').style.display='none';"
                 onerror="this.parentElement.querySelector('.screenshot-placeholder .text-sm').textContent='Failed to load screenshot';"
                 onclick="openFullscreenGallery(${index})"
@@ -656,8 +658,10 @@ const preloadScreenshots = screenshots.slice(0, 2);
         <div class="max-h-full max-w-full flex items-center justify-center">
           <img
             src="${screenshot.src}"
+            srcset="${screenshot.src.replace('.webp', '-480.webp')} 480w, ${screenshot.src.replace('.webp', '-720.webp')} 720w, ${screenshot.src.replace('.webp', '-1080.webp')} 1080w, ${screenshot.src} 1920w"
             alt="${screenshot.alt}"
             class="max-h-[90vh] max-w-full object-contain rounded-lg shadow-2xl"
+            sizes="(max-width: 480px) 480px, (max-width: 768px) 720px, (max-width: 1024px) 720px, 1080px"
             loading="${index === startIndex ? 'eager' : 'lazy'}"
             onload="console.log('Fullscreen image loaded:', this.src)"
             onerror="console.error('Fullscreen image failed to load:', this.src)"
