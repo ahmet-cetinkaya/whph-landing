@@ -16,7 +16,7 @@ const SIZES = [
 // Detect ImageMagick version and commands
 let MAGICK_COMMANDS = {
   identify: 'identify',
-  convert: 'convert'
+  convert: 'convert',
 };
 
 function detectImageMagickVersion() {
@@ -25,7 +25,7 @@ function detectImageMagickVersion() {
     execSync('which magick', { stdio: 'ignore' });
     MAGICK_COMMANDS = {
       identify: 'magick identify',
-      convert: 'magick'
+      convert: 'magick',
     };
     console.log('✅ Using ImageMagick v7+ commands');
     return true;
@@ -35,7 +35,7 @@ function detectImageMagickVersion() {
       execSync('which convert', { stdio: 'ignore' });
       MAGICK_COMMANDS = {
         identify: 'identify',
-        convert: 'convert'
+        convert: 'convert',
       };
       console.log('⚠️  Using ImageMagick v6 commands (consider upgrading to v7+)');
       return true;
@@ -47,7 +47,7 @@ function detectImageMagickVersion() {
 
 async function optimizeImages() {
   console.log('🖼️  Optimizing screenshot images...');
-  
+
   if (!fs.existsSync(SCREENSHOTS_DIR)) {
     console.log('❌ Screenshots directory not found');
     return;
@@ -62,44 +62,45 @@ async function optimizeImages() {
   for (const lang of languages) {
     const langDir = path.join(SCREENSHOTS_DIR, lang);
     const images = fs.readdirSync(langDir).filter(file => file.endsWith('.webp'));
-    
+
     console.log(`\n🔄 Processing ${lang} (${images.length} images)`);
-    
+
     for (const image of images) {
       const inputPath = path.join(langDir, image);
       const baseName = path.parse(image).name;
-      
+
       // Check current image dimensions
       try {
-        const dimensions = execSync(`${MAGICK_COMMANDS.identify} -format "%wx%h" "${inputPath}"`, { encoding: 'utf8' }).trim();
+        const dimensions = execSync(`${MAGICK_COMMANDS.identify} -format "%wx%h" "${inputPath}"`, {
+          encoding: 'utf8',
+        }).trim();
         const [width, height] = dimensions.split('x').map(Number);
-        
+
         console.log(`  📏 ${image}: ${width}x${height}`);
-        
+
         // Skip if already optimized (width <= 400)
         if (width <= 400) {
           console.log(`  ✅ ${image}: Already optimized`);
           continue;
         }
-        
+
         // Generate optimized version
         const outputPath = path.join(langDir, `${baseName}_optimized.webp`);
-        
+
         // Use ImageMagick to resize and optimize
         const cmd = `${MAGICK_COMMANDS.convert} "${inputPath}" -resize 400x711 -quality 85 -format webp "${outputPath}"`;
         execSync(cmd, { stdio: 'inherit' });
-        
+
         // Replace original with optimized version
         fs.renameSync(outputPath, inputPath);
-        
+
         console.log(`  ✅ ${image}: Optimized to 400x711`);
-        
       } catch (error) {
         console.error(`  ❌ Error processing ${image}:`, error.message);
       }
     }
   }
-  
+
   console.log('\n🎉 Image optimization complete!');
 }
 
