@@ -13,14 +13,15 @@ const { t } = Astro.props;
 <div
   id="android-modal-backdrop"
   class="pointer-events-none fixed inset-0 z-50 bg-black/50 opacity-0 backdrop-blur-sm transition-opacity duration-300"
-  aria-hidden="true"
 >
   <!-- Modal Dialog -->
   <div
+    id="android-modal-container"
     class="fixed inset-0 flex items-center justify-center p-4"
     role="dialog"
     aria-modal="true"
     aria-labelledby="android-modal-title"
+    inert
   >
     <div
       id="android-modal-dialog"
@@ -143,23 +144,26 @@ const { t } = Astro.props;
 <script>
   function initAndroidModal() {
     const backdrop = document.getElementById('android-modal-backdrop');
+    const container = document.getElementById('android-modal-container');
     const dialog = document.getElementById('android-modal-dialog');
     const closeBtn = document.getElementById('android-modal-close');
     const androidBtn = document.getElementById('android-btn');
 
-    if (!backdrop || !dialog || !closeBtn || !androidBtn) {
+    if (!backdrop || !container || !dialog || !closeBtn || !androidBtn) {
       console.warn('Android modal elements not found');
       return;
     }
 
+    // Modal starts with inert attribute in HTML
+
     function openModal() {
-      if (!backdrop || !dialog || !closeBtn) return;
+      if (!backdrop || !container || !dialog || !closeBtn) return;
 
       backdrop.classList.remove('pointer-events-none');
       backdrop.classList.remove('opacity-0');
       dialog.classList.remove('scale-95');
       dialog.classList.add('scale-100');
-      backdrop.setAttribute('aria-hidden', 'false');
+      container.removeAttribute('inert');
 
       // Focus management
       closeBtn.focus();
@@ -169,12 +173,12 @@ const { t } = Astro.props;
     }
 
     function closeModal() {
-      if (!backdrop || !dialog || !androidBtn) return;
+      if (!backdrop || !container || !dialog || !androidBtn) return;
 
       backdrop.classList.add('opacity-0');
       dialog.classList.remove('scale-100');
       dialog.classList.add('scale-95');
-      backdrop.setAttribute('aria-hidden', 'true');
+      container.setAttribute('inert', '');
 
       setTimeout(() => {
         backdrop.classList.add('pointer-events-none');
