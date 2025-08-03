@@ -85,7 +85,7 @@
       },
       "offline": {
         "question": "WHPH çevrimdışı çalışır mı?",
-        "answer": "Kesinlikle! WHPH tamamen çevrimdı��ı çalışacak şekilde tasarlanmıştır. Tüm görevleriniz, alışkanlıklarınız ve analizleriniz cihazınızda yerel olarak saklanır. İnternet bağlantısı olmadan her özelliği kullanabilirsiniz."
+        "answer": "Kesinlikle! WHPH tamamen çevrimdışı çalışacak şekilde tasarlanmıştır. Tüm görevleriniz, alışkanlıklarınız ve analizleriniz cihazınızda yerel olarak saklanır. İnternet bağlantısı olmadan her özelliği kullanabilirsiniz."
       },
       "backup": {
         "question": "Verilerimi yedekleyebilir ve geri yükleyebilir miyim?",
