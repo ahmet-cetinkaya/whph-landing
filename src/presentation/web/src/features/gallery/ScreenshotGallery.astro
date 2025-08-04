@@ -343,6 +343,9 @@ const preloadScreenshots = screenshots.slice(0, 2);
     const dotsContainer = document.querySelector('.screenshot-gallery .flex.justify-center');
     let dots = [];
 
+    // Make goToSlide function accessible globally for dot click handlers
+    let goToSlide, updateGallery;
+
     // Image preloading cache
     const imageCache = new Map();
     const preloadedImages = new Set();
@@ -378,6 +381,7 @@ const preloadScreenshots = screenshots.slice(0, 2);
       // Update the gallery with only valid screenshots
       updateGalleryStructure();
       updateGallery();
+      setupDotHandlers(); // Setup dot click handlers AFTER gallery is updated
     }
 
     // Update gallery structure based on valid screenshots
@@ -432,12 +436,11 @@ const preloadScreenshots = screenshots.slice(0, 2);
           img.addEventListener('click', () => openFullscreenGallery(index));
         }
 
-        // Add navigation dot
+        // Add navigation dot - we'll add the click handler after goToSlide is defined
         const dotButton = document.createElement('button');
         dotButton.className = `dot w-2 h-2 rounded-full transition-all duration-300 ${index === 0 ? 'bg-primary' : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'}`;
         dotButton.setAttribute('data-index', index);
         dotButton.setAttribute('aria-label', `Go to screenshot ${index + 1}`);
-        dotButton.addEventListener('click', () => goToSlide(index));
         dotsContainer.appendChild(dotButton);
         dots.push(dotButton); // Add to dots array
       });
@@ -481,7 +484,8 @@ const preloadScreenshots = screenshots.slice(0, 2);
       });
     }
 
-    function updateGallery() {
+    // Define updateGallery function
+    updateGallery = function () {
       if (!container) return;
 
       // Update container position
@@ -492,24 +496,58 @@ const preloadScreenshots = screenshots.slice(0, 2);
       if (prevBtn) prevBtn.disabled = currentIndex === 0;
       if (nextBtn) nextBtn.disabled = currentIndex === totalScreenshots - 1;
 
-      // Update dots
-      dots.forEach((dot, index) => {
-        if (index === currentIndex) {
-          dot.classList.remove('bg-gray-300', 'dark:bg-gray-600');
-          dot.classList.add('bg-primary');
-        } else {
-          dot.classList.remove('bg-primary');
-          dot.classList.add('bg-gray-300', 'dark:bg-gray-600');
-        }
-      });
+      // Update dots - use fresh query every time
+      updateDots();
 
       // Preload adjacent images for smoother navigation
       preloadAdjacentImages(currentIndex);
+    };
+
+    // Separate function to update dots
+    function updateDots() {
+      const currentDots = document.querySelectorAll('.screenshot-gallery .dot');
+
+      currentDots.forEach((dot, index) => {
+        // Clear all classes first
+        dot.classList.remove(
+          'bg-primary',
+          'bg-gray-300',
+          'dark:bg-gray-600',
+          'hover:bg-gray-400',
+          'dark:hover:bg-gray-500'
+        );
+
+        if (index === currentIndex) {
+          dot.classList.add('bg-primary');
+        } else {
+          dot.classList.add(
+            'bg-gray-300',
+            'dark:bg-gray-600',
+            'hover:bg-gray-400',
+            'dark:hover:bg-gray-500'
+          );
+        }
+      });
     }
 
-    function goToSlide(index) {
+    // Define goToSlide function
+    goToSlide = function (index) {
       currentIndex = Math.max(0, Math.min(index, totalScreenshots - 1));
       updateGallery();
+    };
+
+    // Setup dot click handlers - simpler approach
+    function setupDotHandlers() {
+      // Remove all existing event listeners by replacing elements
+      const currentDots = document.querySelectorAll('.screenshot-gallery .dot');
+      currentDots.forEach((dotButton, index) => {
+        dotButton.onclick = function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          goToSlide(index);
+          return false;
+        };
+      });
     }
 
     function nextSlide() {
@@ -575,7 +613,9 @@ const preloadScreenshots = screenshots.slice(0, 2);
       window.galleryValidScreenshots = validScreenshots;
 
       if (totalScreenshots > 0) {
+        // Important: Call setupDotHandlers AFTER updateGallery so dots exist
         updateGallery();
+        setupDotHandlers();
         preloadAdjacentImages(0);
         startAutoAdvance();
       } else {
@@ -625,13 +665,6 @@ const preloadScreenshots = screenshots.slice(0, 2);
   };
 
   function initializeFullscreenGallery(screenshotsData, startIndex) {
-    console.log(
-      'Initializing fullscreen with',
-      screenshotsData.length,
-      'screenshots, starting at index',
-      startIndex
-    );
-
     const container = document.getElementById('fullscreen-screenshots-container');
     const dotsContainer = document.querySelector('#fullscreen-modal .absolute.bottom-8');
 
@@ -648,8 +681,6 @@ const preloadScreenshots = screenshots.slice(0, 2);
 
     // Create slides for each screenshot
     screenshotsData.forEach((screenshot, index) => {
-      console.log('Creating slide for screenshot:', screenshot.src);
-
       // Create slide
       const slide = document.createElement('div');
       slide.className = 'w-full flex-shrink-0 flex items-center justify-center h-full px-4';
@@ -761,7 +792,6 @@ const preloadScreenshots = screenshots.slice(0, 2);
 
     // Initial update
     updateGallery();
-    console.log('Fullscreen gallery initialized');
   }
 
   function closeFullscreen() {
