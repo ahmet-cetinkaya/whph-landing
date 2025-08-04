@@ -1,8 +1,8 @@
 {
   "site": {
-    "title": "WHPH - Work Hard Play Hard | Üretkenliğinizde Ustalaşın",
+    "title": "WHPH - Work Hard Play Hard | Üretkenlikte Ustalaşın",
     "description": "Akıllı görev yönetimi, alışkanlık takibi ve zaman optimizasyonu ile üretkenliğinizi dönüştürün. Android, Windows ve Linux için ücretsiz, açık kaynak ve çapraz platform üretkenlik uygulaması.",
-    "keywords": "üretkenlik uygulaması, görev yönetimi, alışkanlık takipçisi, zaman takibi, açık kaynak üretkenlik, çapraz platform, gizlilik odaklı, ücretsiz üretkenlik araçları"
+    "keywords": "üretkenlik uygulaması, görev yönetimi, alışkanlık takibi, zaman takibi, açık kaynak üretkenlik, çapraz platform, gizlilik odaklı, ücretsiz üretkenlik araçları"
   },
   "navigation": {
     "features": "Özellikler",
@@ -13,36 +13,36 @@
   },
   "hero": {
     "title": "Work Hard, Play Hard",
-    "titleHighlight": "Üretkenliğinizde Ustalaşın",
-    "subtitle": "Tüm cihazlarınızda görevleri yönetmenize, alışkanlıklar oluşturmanıza ve zamanınızı optimize etmenize yardımcı olan kapsamlı üretkenlik uygulaması.",
-    "downloadFree": "Şimdi Ücretsiz İndir",
-    "viewGithub": "GitHub'da Görüntüle",
-    "availableOn": "Şurada mevcut:",
+    "titleHighlight": "Üretkenlikte Ustalaşın",
+    "subtitle": "Tüm cihazlarınızda görevleri yönetin, alışkanlıklar geliştirin ve zamanınızı optimize edin. Kapsamlı üretkenlik uygulaması.",
+    "downloadFree": "Ücretsiz İndir",
+    "viewGithub": "GitHub'da İncele",
+    "availableOn": "Mevcut platformlar:",
     "platforms": {
       "android": "Android",
       "windows": "Windows",
       "linux": "Linux"
     },
-    "screenshotAlt": "Hero Uygulama Ekran Görüntüsü"
+    "screenshotAlt": "WHPH Uygulama Ekran Görüntüsü"
   },
   "features": {
     "title": "Üretkenlik İçin İhtiyacınız Olan Her Şey",
-    "subtitle": "WHPH güçlü görev yönetimi, alışkanlık takibi ve zaman analitiğini tek bir kapsamlı, gizlilik odaklı uygulamada birleştirir.",
+    "subtitle": "WHPH güçlü görev yönetimi, alışkanlık takibi ve zaman analizini tek bir kapsamlı, gizlilik odaklı uygulamada birleştirir.",
     "taskManagement": {
       "title": "Akıllı Görev Yönetimi",
-      "description": "Akıllı zamanlama ve ilerleme görselleştirmesi ile görevlerinizi düzenleyin, önceliklendirin ve takip edin."
+      "description": "Akıllı zamanlama ve görsel ilerleme takibi ile görevlerinizi düzenleyin, önceliklendirin ve takip edin."
     },
     "habitTracking": {
       "title": "Alışkanlık Geliştirme",
-      "description": "İlerleme takibi, seri görselleştirmesi ve motive edici içgörülerle kalıcı alışkanlıklar oluşturun."
+      "description": "İlerleme takibi, süreklilik görselleştirmesi ve motive edici analizlerle kalıcı alışkanlıklar oluşturun."
     },
     "timeAnalytics": {
-      "title": "Zaman İçgörüleri",
-      "description": "Detaylı uygulama kullanım analizi ve zaman dağılımı ile üretkenlik kalıplarınızı anlayın."
+      "title": "Zaman Analizi",
+      "description": "Detaylı kullanım analizi ve zaman dağılımı ile üretkenlik alışkanlıklarınızı keşfedin."
     },
     "crossPlatform": {
-      "title": "Çalıştığınız Her Yerde",
-      "description": "İsteğe bağlı veri senkronizasyonu ile Android, Windows ve Linux'ta kusursuz deneyim."
+      "title": "Her Yerde Yanınızda",
+      "description": "İsteğe bağlı veri senkronizasyonu ile Android, Windows ve Linux'ta kesintisiz deneyim."
     }
   },
   "screenshots": {
@@ -65,35 +65,35 @@
     "questions": {
       "free": {
         "question": "WHPH gerçekten ücretsiz mi?",
-        "answer": "Evet, WHPH tamamen ücretsiz ve açık kaynaklıdır. Premium seviyeler, abonelik ücretleri veya gizli maliyetler yoktur. Tüm özelliklere sınırsız erişim elde edersiniz."
+        "answer": "Evet, WHPH tamamen ücretsiz ve açık kaynaklıdır. Premium özellik, abonelik ücreti veya gizli maliyet yoktur. Tüm özellikleri sınırsız kullanabilirsiniz."
       },
       "platforms": {
         "question": "Hangi platformlar destekleniyor?",
-        "answer": "WHPH Android, Windows ve Linux'ta mevcuttur. GitHub sürümlerimizden, F-Droid'den (Android için) indirebilir veya kaynak koddan derleyebilirsiniz."
+        "answer": "WHPH Android, Windows ve Linux'ta kullanılabilir. GitHub'dan, F-Droid'den (Android için) indirebilir veya kaynak koddan kendiniz derleyebilirsiniz."
       },
       "privacy": {
         "question": "Verilerim nasıl korunuyor?",
-        "answer": "Gizliliğiniz en önemli önceliğimizdir. WHPH varsayılan olarak tüm verileri cihazınızda yerel olarak saklar. Harici sunucularda kişisel bilgileri toplamaz, takip etmez veya saklamayız."
+        "answer": "Gizliliğiniz bizim en önemli önceliğimizdir. WHPH tüm verilerinizi varsayılan olarak cihazınızda yerel olarak saklar. Kişisel bilgilerinizi dış sunucularda toplamaz, takip etmez veya saklamayız."
       },
       "contribute": {
         "question": "Nasıl yardım alabilirim veya katkıda bulunabilirim?",
-        "answer": "Topluluk desteği, özellik istekleri ve genel sorular için GitHub Discussions'a katılın. Geliştirici iseniz, kod katkısında bulunabilir, hata raporlayabilir veya çevirilerde yardımcı olabilirsiniz."
+        "answer": "Topluluk desteği, özellik önerileri ve genel sorular için GitHub Discussions'a katılabilirsiniz. Geliştirici iseniz kod katkısı yapabilir, hata bildirebilir veya çevirilerde yardımcı olabilirsiniz."
       },
       "sync": {
         "question": "Cihazlar arasında verileri nasıl senkronize ederim?",
-        "answer": "WHPH yerel ağınız üzerinden masaüstü ve mobil cihazlarınız arasında isteğe bağlı veri senkronizasyonu sunar. Tüm senkronizasyon yerel olarak gerçekleşir ve üretkenlik verilerinizin tamamen özel kalmasını sağlar."
+        "answer": "WHPH yerel ağınız üzerinden masaüstü ve mobil cihazlarınız arasında isteğe bağlı veri senkronizasyonu sunar. Tüm senkronizasyon yerel olarak gerçekleşir, böylece verileriniz tamamen gizli kalır."
       },
       "offline": {
         "question": "WHPH çevrimdışı çalışır mı?",
-        "answer": "Kesinlikle! WHPH tamamen çevrimdışı çalışacak şekilde tasarlanmıştır. Tüm görevleriniz, alışkanlıklarınız ve analizleriniz cihazınızda yerel olarak saklanır. İnternet bağlantısı olmadan her özelliği kullanabilirsiniz."
+        "answer": "Tabii ki! WHPH tamamen çevrimdışı çalışacak şekilde tasarlanmıştır. Tüm görevleriniz, alışkanlıklarınız ve analizleriniz cihazınızda yerel olarak saklanır. İnternet bağlantısı olmadan tüm özellikleri kullanabilirsiniz."
       },
       "backup": {
         "question": "Verilerimi yedekleyebilir ve geri yükleyebilir miyim?",
-        "answer": "Evet, WHPH kapsamlı yedekleme ve geri yükleme desteği sağlar. Tüm görevlerinizi, alışkanlıklarınızı ve ilerleme verilerinizi kolayca yedekleyebilir ve gerektiğinde geri yükleyebilirsiniz."
+        "answer": "Evet, WHPH kapsamlı yedekleme ve geri yükleme özelliği sunar. Tüm görevlerinizi, alışkanlıklarınızı ve ilerleme verilerinizi kolayca yedekleyebilir, gerektiğinde geri yükleyebilirsiniz."
       },
       "workHardPlayHard": {
         "question": "\"Work Hard Play Hard\" söylemi ne anlama geliyor?",
-        "answer": "\"Work Hard Play Hard\" (Türkçe: \"Çok Çalış, Çok Oyna\") yalnızca bir yaşam tarzını değil, bir dünya görüşünü ifade eder. Bu söylem, bireyin yaşamında yüksek sorumluluk bilinci ile yüksek yaşam tatmini arasında denge kurmasını öneren bir mottodur. 'Çalışırken tüm gücünü ver ama çalışmadığında da hayatı dolu dolu yaşa' demektir. Bu felsefe, çalışmanın sadece geçinmek için değil kendini gerçekleştirmek için olduğunu, eğlencenin de tembellik değil emeğin doğal karşılığı olduğunu savunur. WHPH olarak hem işte daha verimli olmanızı hem de başarılarınızı bilinçli bir şekilde kutlamanızı hedeflememizi yansıtır. Asıl mesele: her iki alanı da bilinçli yaşamaktır. Çalıştığınız kadar yaşamalısınız, ama yaşamak sadece çalışmanın ödülü olmamalı. Artık yeni bir öğrenimle beraber bu söylemin ne olduğunu öğrendiğimize göre [Wiz Khalifa'nın bu şarkısının](https://youtu.be/TWHNr0BrNgo) tadını çıkarabilirsiniz."
+        "answer": "\"Work Hard Play Hard\" (Türkçe: \"Çok Çalış, Çok Oyna\"), bireyin yaşamında yüksek sorumluluk bilinci ile yüksek yaşam tatmini arasında denge kurmasını öneren bir mottodur. Yani işini ciddiyetle yap, ama boş zamanlarında da gerçekten dinlen, eğlen, yaşa. Çalışmak sadece para kazanmak için değil, gelişmek ve tatmin olmak içindir; eğlenmek ise tembellik değil, emeğin doğal karşılığıdır. WHPH olarak biz de hem verimli çalışmayı hem de başarıları bilinçli şekilde kutlamayı önemseriz. Artık bu söylemin ne anlama geldiğini bildiğimize göre [David Guetta](https://youtu.be/5dbEhBKGOtY) ya da [Wiz Khalifa](https://youtu.be/TWHNr0BrNgo)'nın bu konudaki şarkısını dinleyebilirsiniz."
       }
     }
   },
