@@ -43,7 +43,8 @@ jobs:
           LATEST_RELEASE=$(curl -s "https://api.github.com/repos/${{ env.WHPH_REPO }}/releases/latest" | jq -r '.tag_name')
           
           # Check if we have this version in our metadata
-          cd ${{ env.BUILD_PATH }}/public/app-screenshots
+          mkdir -p "${{ env.BUILD_PATH }}/public/app-screenshots"
+          cd "${{ env.BUILD_PATH }}/public/app-screenshots"
           if [ -f metadata.json ]; then
             CURRENT_VERSION=$(jq -r '.version // "none"' metadata.json)
           else
@@ -109,7 +110,8 @@ jobs:
 
       - name: Update metadata with new version
         run: |
-          cd ${{ env.BUILD_PATH }}/public/app-screenshots
+          mkdir -p "${{ env.BUILD_PATH }}/public/app-screenshots"
+          cd "${{ env.BUILD_PATH }}/public/app-screenshots"
           if [ -f metadata.json ]; then
             jq --arg version "${{ needs.check-whph-releases.outputs.latest_version }}" \
                --arg updated "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
@@ -127,7 +129,7 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet HEAD -- ${{ env.BUILD_PATH }}/public/app-screenshots/; then
+          if git diff --quiet HEAD -- "${{ env.BUILD_PATH }}/public/app-screenshots/"; then
             echo "changes=false" >> $GITHUB_OUTPUT
           else
             echo "changes=true" >> $GITHUB_OUTPUT
@@ -180,7 +182,8 @@ jobs:
 
       - name: Validate screenshot integrity
         run: |
-          cd ${{ env.BUILD_PATH }}/public/app-screenshots
+          mkdir -p "${{ env.BUILD_PATH }}/public/app-screenshots"
+          cd "${{ env.BUILD_PATH }}/public/app-screenshots"
           
           echo "🔍 Validating screenshot structure..."
           
@@ -212,7 +215,8 @@ jobs:
 
       - name: Check image sizes and optimization
         run: |
-          cd ${{ env.BUILD_PATH }}/public/app-screenshots
+          mkdir -p "${{ env.BUILD_PATH }}/public/app-screenshots"
+          cd "${{ env.BUILD_PATH }}/public/app-screenshots"
           
           echo "📏 Checking image sizes and optimization..."
           find . -name "*.webp" | while read img; do
