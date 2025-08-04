@@ -1,17 +1,26 @@
 ---
-import { marked } from "marked";
+import { marked } from 'marked';
 
 interface Props {
   content: string;
   class?: string;
 }
 
-const { content, class: className = "" } = Astro.props;
+const { content, class: className = '' } = Astro.props;
 
 // Custom renderer to open links in a new tab
 const renderer = new marked.Renderer();
-renderer.link = function (href, title, text) {
-  const titleAttr = title ? ` title="${title}"` : "";
+renderer.link = function ({
+  href,
+  title,
+  tokens,
+}: {
+  href: string;
+  title?: string | null;
+  tokens: any[];
+}) {
+  const titleAttr = title ? ` title="${title}"` : '';
+  const text = this.parser.parseInline(tokens);
   return `<a href="${href}" target="_blank" rel="noopener noreferrer"${titleAttr}>${text}</a>`;
 };
 
