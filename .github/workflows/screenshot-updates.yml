@@ -73,6 +73,9 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Update submodules
+        run: git submodule update --init --recursive
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
