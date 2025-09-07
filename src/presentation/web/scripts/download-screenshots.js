@@ -86,10 +86,10 @@ async function downloadLanguageScreenshots(language) {
   }
 
   let downloadedCount = 0;
-  let screenshotIndex = 1;
   const maxScreenshots = 20; // Maximum number to check
+  const downloadPromises = [];
 
-  while (screenshotIndex <= maxScreenshots) {
+  for (let screenshotIndex = 1; screenshotIndex <= maxScreenshots; screenshotIndex++) {
     const screenshotUrl = `${GITHUB_BASE_URL}/${language}/images/phoneScreenshots/${screenshotIndex}.png`;
     const fileName = `${screenshotIndex}.png`;
     const filePath = path.join(languageDir, fileName);
@@ -99,40 +99,51 @@ async function downloadLanguageScreenshots(language) {
     if (fs.existsSync(webpPath)) {
       console.log(`  ✓ ${screenshotIndex}.webp (already exists)`);
       downloadedCount++;
-      screenshotIndex++;
       continue;
     }
 
-    // Check if URL exists
-    const urlExists = await checkUrlExists(screenshotUrl);
-    if (!urlExists) {
-      console.log(`  ✗ ${fileName} (not found on GitHub)`);
-      break; // Stop checking further screenshots for this language
-    }
-
-    // Download the file
-    const success = await downloadFile(screenshotUrl, filePath);
-    if (success) {
-      console.log(`  ✓ ${fileName} (downloaded)`);
-      downloadedCount++;
-      // PNG'den WebP'ye dönüştür
-      try {
-        await sharp(filePath).webp({ quality: 85 }).toFile(webpPath);
-        console.log(`    → Converted to WebP: ${screenshotIndex}.webp`);
-        // PNG dosyasını sil
-        fs.unlinkSync(filePath);
-      } catch (err) {
-        console.error(`    → WebP conversion failed: ${fileName}`, err.message);
+    // Create a promise for this screenshot
+    const downloadPromise = (async () => {
+      // Check if URL exists
+      const urlExists = await checkUrlExists(screenshotUrl);
+      if (!urlExists) {
+        console.log(`  ✗ ${fileName} (not found on GitHub)`);
+        return false;
       }
-    } else {
-      console.log(`  ✗ ${fileName} (download failed)`);
-    }
 
-    screenshotIndex++;
+      // Download the file
+      const success = await downloadFile(screenshotUrl, filePath);
+      if (success) {
+        console.log(`  ✓ ${fileName} (downloaded)`);
+        // PNG'den WebP'ye dönüştür
+        try {
+          await sharp(filePath).webp({ quality: 85 }).toFile(webpPath);
+          console.log(`    → Converted to WebP: ${screenshotIndex}.webp`);
+          // PNG dosyasını sil
+          fs.unlinkSync(filePath);
+          return true;
+        } catch (err) {
+          console.error(`    → WebP conversion failed: ${fileName}`, err.message);
+          if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+          }
+          return false;
+        }
+      } else {
+        console.log(`  ✗ ${fileName} (download failed)`);
+        return false;
+      }
+    })();
 
-    // Add small delay to be respectful to GitHub
-    await new Promise(resolve => setTimeout(resolve, 200));
+    downloadPromises.push(downloadPromise);
   }
+
+  // Wait for all downloads to complete
+  const results = await Promise.all(downloadPromises);
+  downloadedCount += results.filter(Boolean).length;
+
+  // For languages with fewer screenshots, the loop will continue but since we check existence, it's fine
+  // But to stop early, we can check if no more screenshots exist, but for simplicity, we check up to 20
 
   console.log(`  Downloaded ${downloadedCount} screenshots for ${language}`);
   return downloadedCount;
@@ -209,11 +220,13 @@ async function main() {
   // Remove everything in the public/app-screenshots directory before downloading
   removeAllScreenshots();
 
-  // Download screenshots for each language
-  for (const language of SUPPORTED_LANGUAGES) {
-    const count = await downloadLanguageScreenshots(language);
-    totalDownloaded += count;
-  }
+  // Download screenshots for each language in parallel
+  const downloadPromises = SUPPORTED_LANGUAGES.map(async (language) => {
+    return await downloadLanguageScreenshots(language);
+  });
+
+  const results = await Promise.all(downloadPromises);
+  totalDownloaded = results.reduce((sum, count) => sum + count, 0);
 
   // Generate metadata
   const metadata = generateMetadata();
