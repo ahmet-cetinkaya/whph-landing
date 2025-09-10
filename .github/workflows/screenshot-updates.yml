@@ -124,46 +124,13 @@ jobs:
           cd ${{ env.BUILD_PATH }}
           bun run build
 
-      - name: Check for changes
-        id: changes
+      - name: Commit and push changes
         run: |
-          if git diff --quiet HEAD -- "${{ env.BUILD_PATH }}/public/app-screenshots/"; then
-            echo "changes=false" >> $GITHUB_OUTPUT
-          else
-            echo "changes=true" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Create Pull Request
-        if: steps.changes.outputs.changes == 'true'
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'feat(screenshots): update to WHPH v${{ needs.check-whph-releases.outputs.latest_version }}'
-          title: 'feat(screenshots): update screenshots to WHPH v${{ needs.check-whph-releases.outputs.latest_version }}'
-          body: |
-            ## Screenshot Updates for WHPH v${{ needs.check-whph-releases.outputs.latest_version }}
-            
-            This PR automatically updates the screenshot gallery with the latest images from WHPH v${{ needs.check-whph-releases.outputs.latest_version }}.
-            
-            ### Changes
-            - 📸 Updated screenshot gallery with latest WHPH app images
-            - 🔄 Updated metadata.json with new version information
-            - ✅ Build tested successfully
-            
-            ### What's Updated
-            - All localized screenshots (15+ languages)
-            - Metadata tracking for version consistency
-            - Gallery displays latest app features and UI
-            
-            ### Verification
-            - ✅ Screenshots downloaded successfully
-            - ✅ Build passes with new images
-            - ✅ All locales updated consistently
-            
-            This ensures the landing page always showcases the current WHPH application state.
-          branch: feat/screenshot-updates-v${{ needs.check-whph-releases.outputs.latest_version }}
-          delete-branch: true
-          draft: false
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add "${{ env.BUILD_PATH }}/public/app-screenshots/"
+          git diff --staged --quiet || git commit -m "feat(screenshots): update to WHPH v${{ needs.check-whph-releases.outputs.latest_version }}"
+          git push
 
   validate-screenshots:
     name: Validate Screenshots
