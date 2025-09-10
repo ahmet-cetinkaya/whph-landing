@@ -1,0 +1,109 @@
+---
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+}
+
+const { size = 'md' } = Astro.props;
+
+const sizeClasses = {
+  sm: 'h-10 w-10',
+  md: 'h-48 w-48',
+  lg: 'h-64 w-64'
+};
+---
+
+<style>
+  @keyframes rotate-glow {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes rotate-glow-reverse {
+    0% {
+      transform: rotate(360deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  .icon-glow-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .icon-glow-container::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: -12px;
+    right: -12px;
+    bottom: -12px;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 30deg,
+      theme('colors.primary.DEFAULT') 90deg,
+      theme('colors.primary.600') 120deg,
+      theme('colors.primary.DEFAULT') 150deg,
+      transparent 210deg,
+      transparent 360deg
+    );
+    border-radius: 50%;
+    animation: rotate-glow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    filter: blur(8px);
+    opacity: 0.8;
+    will-change: transform;
+  }
+
+  .icon-glow-container::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    background: conic-gradient(
+      from 180deg,
+      transparent 0deg,
+      transparent 60deg,
+      theme('colors.primary.400') 120deg,
+      theme('colors.primary.DEFAULT') 150deg,
+      theme('colors.primary.400') 180deg,
+      transparent 240deg,
+      transparent 360deg
+    );
+    border-radius: 50%;
+    animation: rotate-glow-reverse 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    filter: blur(4px);
+    opacity: 0.9;
+    will-change: transform;
+  }
+
+  /* Mobile-specific adjustments */
+  @media (max-width: 1023px) {
+    .icon-glow-container::before {
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      filter: blur(6px);
+    }
+
+    .icon-glow-container::after {
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      filter: blur(3px);
+    }
+  }
+</style>
+
+<div class="icon-glow-container">
+  <div class={sizeClasses[size]}></div>
+</div>
