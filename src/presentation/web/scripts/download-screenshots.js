@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
+import Logger from './utils/Logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -40,7 +41,7 @@ const SUPPORTED_LANGUAGES = [
 // Create screenshots directory if it doesn't exist
 if (!fs.existsSync(PUBLIC_DIR)) {
   fs.mkdirSync(PUBLIC_DIR, { recursive: true });
-  console.log(`Created directory: ${PUBLIC_DIR}`);
+  Logger.logSuccess(`Created directory: ${PUBLIC_DIR}`);
 }
 
 /**
@@ -48,9 +49,10 @@ if (!fs.existsSync(PUBLIC_DIR)) {
  */
 async function checkUrlExists(url) {
   try {
-    const response = await fetch(url, { method: 'HEAD' });
+    const response = await fetch(url, { method: 'HEAD', signal: AbortSignal.timeout(10000) });
     return response.ok;
   } catch (error) {
+    Logger.logWarning(`URL check failed for ${url}: ${error.message}`);
     return false;
   }
 }
@@ -58,19 +60,31 @@ async function checkUrlExists(url) {
 /**
  * Download a file from URL to local path
  */
-async function downloadFile(url, filePath) {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+async function downloadFile(url, filePath, retries = 3) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const relativePath = path.relative(process.cwd(), filePath);
+      Logger.logInfo(`Attempting to download ${relativePath} (attempt ${attempt}/${retries})...`);
+      const response = await fetch(url, { signal: AbortSignal.timeout(30000) });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
-    const buffer = await response.arrayBuffer();
-    fs.writeFileSync(filePath, Buffer.from(buffer));
-    return true;
-  } catch (error) {
-    console.error(`Failed to download ${url}:`, error.message);
-    return false;
+      const buffer = await response.arrayBuffer();
+      fs.writeFileSync(filePath, Buffer.from(buffer));
+      Logger.logSuccess(`Downloaded ${relativePath} successfully`);
+      return true;
+    } catch (error) {
+      Logger.logError(`Failed to download ${path.basename(filePath)} due to ${error.message}.`);
+      if (attempt < retries) {
+        Logger.logWarning(`Retrying download for ${path.basename(filePath)}...`);
+        // Wait before retry
+        await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
+      } else {
+        Logger.logError(`All retry attempts failed for ${path.basename(filePath)}. Skipping.`);
+        return false;
+      }
+    }
   }
 }
 
@@ -78,15 +92,16 @@ async function downloadFile(url, filePath) {
  * Download screenshots for a specific language and convert to WebP
  */
 async function downloadLanguageScreenshots(language) {
-  console.log(`\nDownloading screenshots for ${language}...`);
+  Logger.logInfo(`Starting screenshot download for ${language} (up to 20 images)...`);
 
   const languageDir = path.join(PUBLIC_DIR, language);
   if (!fs.existsSync(languageDir)) {
     fs.mkdirSync(languageDir, { recursive: true });
+    Logger.logSuccess(`Created directory: ${languageDir}`);
   }
 
   let downloadedCount = 0;
-  const maxScreenshots = 20; // Maximum number to check
+  const maxScreenshots = 20;
   const downloadPromises = [];
 
   for (let screenshotIndex = 1; screenshotIndex <= maxScreenshots; screenshotIndex++) {
@@ -95,9 +110,12 @@ async function downloadLanguageScreenshots(language) {
     const filePath = path.join(languageDir, fileName);
     const webpPath = path.join(languageDir, `${screenshotIndex}.webp`);
 
+    Logger.logInfo(`Processing screenshot ${screenshotIndex}/${maxScreenshots} for ${language}...`);
+
     // Check if file already exists locally
     if (fs.existsSync(webpPath)) {
-      console.log(`  ✓ ${screenshotIndex}.webp (already exists)`);
+      const relativePath = path.relative(process.cwd(), webpPath);
+      Logger.logSuccess(`Screenshot ${screenshotIndex}/${maxScreenshots} at ${relativePath}: already exists`);
       downloadedCount++;
       continue;
     }
@@ -107,30 +125,31 @@ async function downloadLanguageScreenshots(language) {
       // Check if URL exists
       const urlExists = await checkUrlExists(screenshotUrl);
       if (!urlExists) {
-        console.log(`  ✗ ${fileName} (not found on GitHub)`);
+        Logger.logWarning(`Screenshot ${screenshotIndex}/${maxScreenshots}: not found on GitHub`);
         return false;
       }
 
       // Download the file
       const success = await downloadFile(screenshotUrl, filePath);
       if (success) {
-        console.log(`  ✓ ${fileName} (downloaded)`);
-        // PNG'den WebP'ye dönüştür
+        // Convert PNG to WebP
         try {
+          const relativePath = path.relative(process.cwd(), webpPath);
+          Logger.logInfo(`Converting ${fileName} to WebP at ${relativePath}...`);
           await sharp(filePath).webp({ quality: 85 }).toFile(webpPath);
-          console.log(`    → Converted to WebP: ${screenshotIndex}.webp`);
-          // PNG dosyasını sil
+          Logger.logSuccess(`Converted screenshot ${screenshotIndex}/${maxScreenshots} to WebP at ${relativePath}`);
+          // Delete PNG file
           fs.unlinkSync(filePath);
           return true;
         } catch (err) {
-          console.error(`    → WebP conversion failed: ${fileName}`, err.message);
+          Logger.logError(`WebP conversion failed for screenshot ${screenshotIndex}/${maxScreenshots}: ${err.message}`);
           if (fs.existsSync(filePath)) {
             fs.unlinkSync(filePath);
           }
           return false;
         }
       } else {
-        console.log(`  ✗ ${fileName} (download failed)`);
+        Logger.logError(`Download failed for screenshot ${screenshotIndex}/${maxScreenshots}`);
         return false;
       }
     })();
@@ -140,12 +159,11 @@ async function downloadLanguageScreenshots(language) {
 
   // Wait for all downloads to complete
   const results = await Promise.all(downloadPromises);
-  downloadedCount += results.filter(Boolean).length;
+  const newDownloads = results.filter(Boolean).length;
+  downloadedCount += newDownloads;
 
-  // For languages with fewer screenshots, the loop will continue but since we check existence, it's fine
-  // But to stop early, we can check if no more screenshots exist, but for simplicity, we check up to 20
+  Logger.logSuccess(`Completed ${language}: ${newDownloads} new screenshots downloaded (total: ${downloadedCount})`);
 
-  console.log(`  Downloaded ${downloadedCount} screenshots for ${language}`);
   return downloadedCount;
 }
 
@@ -154,7 +172,8 @@ async function downloadLanguageScreenshots(language) {
  */
 function removeAllScreenshots() {
   if (fs.existsSync(PUBLIC_DIR)) {
-    fs.readdirSync(PUBLIC_DIR).forEach(file => {
+    const items = fs.readdirSync(PUBLIC_DIR);
+    items.forEach(file => {
       const curPath = path.join(PUBLIC_DIR, file);
       if (fs.lstatSync(curPath).isDirectory()) {
         fs.rmSync(curPath, { recursive: true, force: true });
@@ -162,7 +181,9 @@ function removeAllScreenshots() {
         fs.unlinkSync(curPath);
       }
     });
-    console.log(`Cleaned all files and folders in: ${PUBLIC_DIR}`);
+    Logger.logInfo(`Cleaned all existing screenshots from: ${PUBLIC_DIR}`);
+  } else {
+    Logger.logWarning(`Screenshots directory does not exist: ${PUBLIC_DIR}`);
   }
 }
 
@@ -170,15 +191,17 @@ function removeAllScreenshots() {
  * Generate metadata file with screenshot information
  */
 function generateMetadata() {
-  console.log('\nGenerating metadata...');
+  Logger.logInfo('Generating screenshot metadata...');
 
   const metadata = {
     lastUpdated: new Date().toISOString(),
     languages: {},
   };
 
+  let processedLanguages = 0;
   for (const language of SUPPORTED_LANGUAGES) {
     const languageDir = path.join(PUBLIC_DIR, language);
+    Logger.logInfo(`Scanning metadata for ${language}...`);
 
     if (fs.existsSync(languageDir)) {
       const screenshots = fs
@@ -193,6 +216,7 @@ function generateMetadata() {
         count: screenshots.length,
         screenshots: screenshots.map(num => `${num}.webp`),
       };
+      processedLanguages++;
     } else {
       metadata.languages[language] = {
         count: 0,
@@ -202,8 +226,12 @@ function generateMetadata() {
   }
 
   const metadataPath = path.join(PUBLIC_DIR, 'metadata.json');
-  fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
-  console.log(`Generated metadata: ${metadataPath}`);
+  try {
+    fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
+    Logger.logSuccess(`Generated metadata file: ${metadataPath} (${processedLanguages}/${SUPPORTED_LANGUAGES.length} languages with screenshots)`);
+  } catch (err) {
+    Logger.logError(`Failed to write metadata: ${err.message}`);
+  }
 
   return metadata;
 }
@@ -212,13 +240,15 @@ function generateMetadata() {
  * Main function
  */
 async function main() {
-  console.log('🖼️  WHPH Screenshot Downloader');
-  console.log('=====================================');
+  Logger.logInfo('🖼️  Starting WHPH Screenshot Downloader');
+  Logger.logInfo('=====================================');
 
   let totalDownloaded = 0;
 
   // Remove everything in the public/app-screenshots directory before downloading
   removeAllScreenshots();
+
+  Logger.logInfo(`Downloading screenshots for ${SUPPORTED_LANGUAGES.length} languages in parallel...`);
 
   // Download screenshots for each language in parallel
   const downloadPromises = SUPPORTED_LANGUAGES.map(async (language) => {
@@ -232,20 +262,20 @@ async function main() {
   const metadata = generateMetadata();
 
   // Summary
-  console.log('\n📊 Summary:');
-  console.log(`Total screenshots downloaded: ${totalDownloaded}`);
-  console.log('Screenshots per language:');
-
+  Logger.logSuccess(`\n📊 Download Summary:`);
+  Logger.logSuccess(`Total new screenshots downloaded: ${totalDownloaded}`);
+  Logger.logInfo('Screenshots available per language:');
   for (const [lang, data] of Object.entries(metadata.languages)) {
-    console.log(`  ${lang}: ${data.count} screenshots`);
+    Logger.logInfo(`  ${lang}: ${data.count} screenshots`);
   }
 
-  console.log('\n✅ Screenshot download completed!');
-  console.log(`Screenshots saved to: ${PUBLIC_DIR}`);
+  Logger.logSuccess(`✅ Screenshot download completed successfully!`);
+  Logger.logSuccess(`All screenshots saved to: ${PUBLIC_DIR}`);
 }
 
 // Run the script
 main().catch(error => {
-  console.error('❌ Script failed:', error);
+  Logger.logError(`❌ Script execution failed: ${error.message}`);
+  Logger.logError(`Full error: ${error.stack}`);
   process.exit(1);
 });

@@ -8,6 +8,8 @@ import { promisify } from 'util';
 const PUBLIC_DIR = path.join(process.cwd(), 'public');
 const SCREENSHOTS_DIR = path.join(PUBLIC_DIR, 'app-screenshots');
 
+import Logger from './utils/Logger.js';
+
 // Target sizes for responsive images
 const SIZES = [
   { suffix: '-480', width: 480, quality: 85, description: 'Mobile' },
@@ -30,7 +32,7 @@ function detectImageMagickVersion() {
       identify: 'magick identify',
       convert: 'magick',
     };
-    console.log('✅ Using ImageMagick v7+ commands');
+    Logger.logSuccess('Using ImageMagick v7+ commands');
     return true;
   } catch (error) {
     // Fallback to ImageMagick v6
@@ -40,19 +42,20 @@ function detectImageMagickVersion() {
         identify: 'identify',
         convert: 'convert',
       };
-      console.log('⚠️  Using ImageMagick v6 commands (consider upgrading to v7+)');
+      Logger.logWarning('Using ImageMagick v6 commands (consider upgrading to v7+)');
       return true;
     } catch (fallbackError) {
+      Logger.logError('ImageMagick v6 commands not found');
       return false;
     }
   }
 }
 
 async function optimizeImages() {
-  console.log('🖼️  Optimizing screenshot images...');
+  Logger.logInfo('🖼️  Starting screenshot image optimization...');
 
   if (!fs.existsSync(SCREENSHOTS_DIR)) {
-    console.log('❌ Screenshots directory not found');
+    Logger.logError('Screenshots directory not found. Run download-screenshots.js first.');
     return;
   }
 
@@ -60,28 +63,40 @@ async function optimizeImages() {
     return fs.statSync(path.join(SCREENSHOTS_DIR, item)).isDirectory();
   });
 
-  console.log(`📁 Found ${languages.length} language directories`);
+  Logger.logInfo(`Found ${languages.length} language directories to process.`);
+
+  if (languages.length === 0) {
+    Logger.logWarning('No language directories found. Nothing to optimize.');
+    return;
+  }
 
   const execAsync = promisify(exec);
 
-  // Process each language in parallel
-  const languagePromises = languages.map(async (lang) => {
+  let totalOptimized = 0;
+
+  // Process each language sequentially for better progress tracking, but images in parallel
+  for (let langIndex = 0; langIndex < languages.length; langIndex++) {
+    const lang = languages[langIndex];
     const langDir = path.join(SCREENSHOTS_DIR, lang);
     const images = fs.readdirSync(langDir).filter(file => file.endsWith('.webp'));
 
-    console.log(`\n🔄 Processing ${lang} (${images.length} images)`);
+    Logger.logInfo(`\nProcessing language ${langIndex + 1}/${languages.length}: ${lang} (${images.length} images)`);
 
     // Process each image in parallel
-    const imagePromises = images.map(async (image) => {
+    const imagePromises = images.map(async (image, imageIndex) => {
       const inputPath = path.join(langDir, image);
       const baseName = path.parse(image).name;
       const extension = path.parse(image).ext;
 
       // Skip if this is already a variant (contains size suffix)
       if (baseName.includes('-480') || baseName.includes('-720') || baseName.includes('-1080')) {
-        console.log(`  ⏭️  ${image}: Skipping variant file`);
-        return;
+        const relativeInput = path.relative(process.cwd(), inputPath);
+        Logger.logInfo(`  Skipping variant: ${relativeInput}`);
+        return 0;
       }
+
+      const relativeInput = path.relative(process.cwd(), inputPath);
+      Logger.logInfo(`  Optimizing image ${imageIndex + 1}/${images.length}: ${relativeInput}...`);
 
       // Check current image dimensions
       let originalWidth, originalHeight;
@@ -91,36 +106,40 @@ async function optimizeImages() {
         }).trim();
         [originalWidth, originalHeight] = dimensions.split('x').map(Number);
 
-        console.log(`  📏 ${image}: ${originalWidth}x${originalHeight}`);
+        Logger.logInfo(`    Dimensions: ${originalWidth}x${originalHeight}`);
       } catch (error) {
-        console.error(`  ❌ Error getting dimensions for ${image}:`, error.message);
-        return;
+        Logger.logError(`    Failed to get dimensions for ${relativeInput}: ${error.message}`);
+        return 0;
       }
+
+      let variantsOptimized = 0;
 
       // Generate responsive variants in parallel
       const variantPromises = SIZES.map(async (size) => {
         let outputPath, targetWidth, aspectRatio;
-
+        
         if (size.width === null) {
-          // Keep original size but optimize quality
+          // Optimize original
           outputPath = inputPath;
           targetWidth = originalWidth;
         } else {
-          // Create variant with specific width
+          // Create variant
           outputPath = path.join(langDir, `${baseName}${size.suffix}${extension}`);
           targetWidth = size.width;
         }
-
+        
+        const relativeOutput = path.relative(process.cwd(), outputPath);
+        
         // Skip if variant already exists and is not the original
         if (size.width !== null && fs.existsSync(outputPath)) {
-          console.log(`  ✅ ${baseName}${size.suffix}: Already exists`);
-          return;
+          Logger.logSuccess(`    ${baseName}${size.suffix} at ${relativeOutput}: Already exists (${size.description})`);
+          return 1;
         }
 
         // Skip if target width is larger than original
         if (size.width !== null && size.width > originalWidth) {
-          console.log(`  ⏭️  ${baseName}${size.suffix}: Skipping (larger than original)`);
-          return;
+          Logger.logWarning(`    ${baseName}${size.suffix} at ${relativeOutput}: Skipping (larger than original)`);
+          return 0;
         }
 
         // Calculate target height maintaining aspect ratio
@@ -130,39 +149,43 @@ async function optimizeImages() {
         try {
           let cmd;
           if (size.width === null) {
-            // Just optimize quality for original
-            cmd = `${MAGICK_COMMANDS.convert} "${inputPath}" -quality ${size.quality} -format webp "${outputPath}"`;
+            // Just optimize quality for original (overwrite if needed)
+            cmd = `${MAGICK_COMMANDS.convert} "${inputPath}" -quality ${size.quality} "${inputPath}"`;
           } else {
             // Resize and optimize
-            cmd = `${MAGICK_COMMANDS.convert} "${inputPath}" -resize ${targetWidth}x${targetHeight} -quality ${size.quality} -format webp "${outputPath}"`;
+            cmd = `${MAGICK_COMMANDS.convert} "${inputPath}" -resize ${targetWidth}x${targetHeight}! -quality ${size.quality} -format webp "${outputPath}"`;
           }
 
           await execAsync(cmd, { stdio: 'inherit' });
-          console.log(
-            `  ✅ ${baseName}${size.suffix}: ${size.description} (${targetWidth}x${targetHeight})`
-          );
+          Logger.logSuccess(`    ${baseName}${size.suffix} at ${relativeOutput}: Optimized ${size.description} (${targetWidth}x${targetHeight})`);
+          variantsOptimized++;
+          return 1;
         } catch (error) {
-          console.error(`  ❌ Error creating ${baseName}${size.suffix}:`, error.message);
+          Logger.logError(`    Failed to create ${baseName}${size.suffix} at ${relativeOutput}: ${error.message}`);
+          return 0;
         }
       });
 
-      await Promise.all(variantPromises);
+      const results = await Promise.all(variantPromises);
+      return results.reduce((sum, count) => sum + count, 0);
     });
 
-    await Promise.all(imagePromises);
-  });
+    const langResults = await Promise.all(imagePromises);
+    const langOptimized = langResults.reduce((sum, count) => sum + count, 0);
+    totalOptimized += langOptimized;
+    Logger.logSuccess(`Completed ${lang}: ${langOptimized} variants optimized`);
+  }
 
-  await Promise.all(languagePromises);
-
-  console.log('\n🎉 Image optimization complete!');
+  Logger.logSuccess(`\n🎉 Image optimization complete! Total variants optimized: ${totalOptimized}`);
 }
 
 // Main execution
 if (detectImageMagickVersion()) {
   optimizeImages();
 } else {
-  console.log('❌ ImageMagick not found. Please install it:');
-  console.log('  macOS: brew install imagemagick');
-  console.log('  Ubuntu: sudo apt-get install imagemagick');
-  console.log('  Arch: sudo pacman -S imagemagick');
+  Logger.logError('ImageMagick not found. Installation instructions:');
+  Logger.logInfo('  macOS: brew install imagemagick');
+  Logger.logInfo('  Ubuntu: sudo apt-get install imagemagick');
+  Logger.logInfo('  Arch: sudo pacman -S imagemagick');
+  process.exit(1);
 }
