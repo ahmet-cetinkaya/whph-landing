@@ -1,6 +1,6 @@
-# ![Software logo](https://github.com/user-attachments/assets/f58599ea-3313-49ec-a01c-31436340a2a3) WHPH Landing [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?&logo=buy-me-a-coffee&logoColor=black)](https://ahmetcetinkaya.me/donate) ![GitHub stars](https://img.shields.io/github/stars/ahmet-cetinkaya/whph?style=social) ![GitHub license](https://img.shields.io/github/license/ahmet-cetinkaya/whph)
+# ![Software logo](https://github.com/user-attachments/assets/f58599ea-3313-49ec-a01c-31436340a2a3) WHPH Landing [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?&logo=buy-me-a-coffee&logoColor=black)](https://ahmetcetinkaya.me/donate) ![GitHub Repo stars](https://img.shields.io/github/stars/ahmet-cetinkaya/whph-landing) ![GitHub](https://img.shields.io/github/license/ahmet-cetinkaya/whph-landing)
 
-This repository Contains the official landing page for **WHPH (Work Hard Play Hard)** - a comprehensive productivity application designed to help users manage tasks, develop habits, and optimize their time through intelligent application usage tracking.
+This repository Contains the official landing page for **[WHPH (Work Hard Play Hard)](https://github.com/ahmet-cetinkaya/whph/)** - a comprehensive productivity application designed to help users manage tasks, develop habits, and optimize their time through intelligent application usage tracking.
 
 The landing page serves as the primary gateway for users to discover, understand, and download WHPH across all supported platforms.
 
@@ -9,7 +9,7 @@ The landing page serves as the primary gateway for users to discover, understand
 This landing page is built with modern web technologies to provide:
 - **Fast Performance**: Static site generation with AstroJS
 - **Responsive Design**: Optimized for all devices and screen sizes
-- **Multi-Language Support**: Available in 10 languages (de, en, es, fr, it, ja, ko, ru, tr, zh)
+- **Multi-Language Support**: Available in 23 languages
 - **Accessibility**: WCAG 2.1 AA compliance
 - **Privacy-Focused**: Self-hosted analytics with no tracking
 - **SEO Optimized**: Structured for search engine visibility with localized content
