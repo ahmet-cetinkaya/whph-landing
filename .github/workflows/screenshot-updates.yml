@@ -1,11 +1,6 @@
 name: Screenshot Updates
 
 on:
-  schedule:
-    # Run daily at 06:00 UTC to check for new WHPH releases
-    - cron: '0 6 * * *'
-  repository_dispatch:
-    types: [screenshot-update]
   workflow_dispatch:
     inputs:
       force_update:
@@ -173,7 +168,7 @@ jobs:
   validate-screenshots:
     name: Validate Screenshots
     runs-on: ubuntu-latest
-    if: always() && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch')
+    if: github.event_name == 'workflow_dispatch'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
