@@ -28,11 +28,17 @@ const basePath = currentLang === 'en' ? '' : `/${currentLang}`;
           href={basePath || '/'}
           class="flex items-center space-x-2 transition-opacity hover:opacity-80"
         >
-          <div class="relative h-12 w-12 flex items-center justify-center">
-            <div class="absolute inset-0 flex items-center justify-center pointer-events-none block lg:hidden">
+          <div class="relative flex h-12 w-12 items-center justify-center">
+            <div
+              class="pointer-events-none absolute inset-0 block flex items-center justify-center lg:hidden"
+            >
               <GlowingIcon size="sm" />
             </div>
-            <img src="/favicon.svg" alt="WHPH Logo" class="relative z-10 h-10 w-10 object-contain transition-all duration-300 hover:scale-110" />
+            <img
+              src="/favicon.svg"
+              alt="WHPH Logo"
+              class="relative z-10 h-10 w-10 object-contain transition-all duration-300 hover:scale-110"
+            />
           </div>
           <span class="text-lg font-semibold text-white">WHPH</span>
         </a>

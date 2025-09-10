@@ -5,7 +5,7 @@ export default class Logger {
     success: '\x1b[32m',
     warning: '\x1b[33m',
     error: '\x1b[31m',
-    reset: '\x1b[0m'
+    reset: '\x1b[0m',
   };
 
   static logInfo(message) {

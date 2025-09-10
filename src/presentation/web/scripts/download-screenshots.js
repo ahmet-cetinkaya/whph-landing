@@ -115,7 +115,9 @@ async function downloadLanguageScreenshots(language) {
     // Check if file already exists locally
     if (fs.existsSync(webpPath)) {
       const relativePath = path.relative(process.cwd(), webpPath);
-      Logger.logSuccess(`Screenshot ${screenshotIndex}/${maxScreenshots} at ${relativePath}: already exists`);
+      Logger.logSuccess(
+        `Screenshot ${screenshotIndex}/${maxScreenshots} at ${relativePath}: already exists`
+      );
       downloadedCount++;
       continue;
     }
@@ -137,12 +139,16 @@ async function downloadLanguageScreenshots(language) {
           const relativePath = path.relative(process.cwd(), webpPath);
           Logger.logInfo(`Converting ${fileName} to WebP at ${relativePath}...`);
           await sharp(filePath).webp({ quality: 85 }).toFile(webpPath);
-          Logger.logSuccess(`Converted screenshot ${screenshotIndex}/${maxScreenshots} to WebP at ${relativePath}`);
+          Logger.logSuccess(
+            `Converted screenshot ${screenshotIndex}/${maxScreenshots} to WebP at ${relativePath}`
+          );
           // Delete PNG file
           fs.unlinkSync(filePath);
           return true;
         } catch (err) {
-          Logger.logError(`WebP conversion failed for screenshot ${screenshotIndex}/${maxScreenshots}: ${err.message}`);
+          Logger.logError(
+            `WebP conversion failed for screenshot ${screenshotIndex}/${maxScreenshots}: ${err.message}`
+          );
           if (fs.existsSync(filePath)) {
             fs.unlinkSync(filePath);
           }
@@ -162,7 +168,9 @@ async function downloadLanguageScreenshots(language) {
   const newDownloads = results.filter(Boolean).length;
   downloadedCount += newDownloads;
 
-  Logger.logSuccess(`Completed ${language}: ${newDownloads} new screenshots downloaded (total: ${downloadedCount})`);
+  Logger.logSuccess(
+    `Completed ${language}: ${newDownloads} new screenshots downloaded (total: ${downloadedCount})`
+  );
 
   return downloadedCount;
 }
@@ -228,7 +236,9 @@ function generateMetadata() {
   const metadataPath = path.join(PUBLIC_DIR, 'metadata.json');
   try {
     fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2));
-    Logger.logSuccess(`Generated metadata file: ${metadataPath} (${processedLanguages}/${SUPPORTED_LANGUAGES.length} languages with screenshots)`);
+    Logger.logSuccess(
+      `Generated metadata file: ${metadataPath} (${processedLanguages}/${SUPPORTED_LANGUAGES.length} languages with screenshots)`
+    );
   } catch (err) {
     Logger.logError(`Failed to write metadata: ${err.message}`);
   }
@@ -248,10 +258,12 @@ async function main() {
   // Remove everything in the public/app-screenshots directory before downloading
   removeAllScreenshots();
 
-  Logger.logInfo(`Downloading screenshots for ${SUPPORTED_LANGUAGES.length} languages in parallel...`);
+  Logger.logInfo(
+    `Downloading screenshots for ${SUPPORTED_LANGUAGES.length} languages in parallel...`
+  );
 
   // Download screenshots for each language in parallel
-  const downloadPromises = SUPPORTED_LANGUAGES.map(async (language) => {
+  const downloadPromises = SUPPORTED_LANGUAGES.map(async language => {
     return await downloadLanguageScreenshots(language);
   });
 

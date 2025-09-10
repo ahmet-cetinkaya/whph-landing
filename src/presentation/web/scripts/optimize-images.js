@@ -80,7 +80,9 @@ async function optimizeImages() {
     const langDir = path.join(SCREENSHOTS_DIR, lang);
     const images = fs.readdirSync(langDir).filter(file => file.endsWith('.webp'));
 
-    Logger.logInfo(`\nProcessing language ${langIndex + 1}/${languages.length}: ${lang} (${images.length} images)`);
+    Logger.logInfo(
+      `\nProcessing language ${langIndex + 1}/${languages.length}: ${lang} (${images.length} images)`
+    );
 
     // Process each image in parallel
     const imagePromises = images.map(async (image, imageIndex) => {
@@ -115,9 +117,9 @@ async function optimizeImages() {
       let variantsOptimized = 0;
 
       // Generate responsive variants in parallel
-      const variantPromises = SIZES.map(async (size) => {
+      const variantPromises = SIZES.map(async size => {
         let outputPath, targetWidth, aspectRatio;
-        
+
         if (size.width === null) {
           // Optimize original
           outputPath = inputPath;
@@ -127,18 +129,22 @@ async function optimizeImages() {
           outputPath = path.join(langDir, `${baseName}${size.suffix}${extension}`);
           targetWidth = size.width;
         }
-        
+
         const relativeOutput = path.relative(process.cwd(), outputPath);
-        
+
         // Skip if variant already exists and is not the original
         if (size.width !== null && fs.existsSync(outputPath)) {
-          Logger.logSuccess(`    ${baseName}${size.suffix} at ${relativeOutput}: Already exists (${size.description})`);
+          Logger.logSuccess(
+            `    ${baseName}${size.suffix} at ${relativeOutput}: Already exists (${size.description})`
+          );
           return 1;
         }
 
         // Skip if target width is larger than original
         if (size.width !== null && size.width > originalWidth) {
-          Logger.logWarning(`    ${baseName}${size.suffix} at ${relativeOutput}: Skipping (larger than original)`);
+          Logger.logWarning(
+            `    ${baseName}${size.suffix} at ${relativeOutput}: Skipping (larger than original)`
+          );
           return 0;
         }
 
@@ -157,11 +163,15 @@ async function optimizeImages() {
           }
 
           await execAsync(cmd, { stdio: 'inherit' });
-          Logger.logSuccess(`    ${baseName}${size.suffix} at ${relativeOutput}: Optimized ${size.description} (${targetWidth}x${targetHeight})`);
+          Logger.logSuccess(
+            `    ${baseName}${size.suffix} at ${relativeOutput}: Optimized ${size.description} (${targetWidth}x${targetHeight})`
+          );
           variantsOptimized++;
           return 1;
         } catch (error) {
-          Logger.logError(`    Failed to create ${baseName}${size.suffix} at ${relativeOutput}: ${error.message}`);
+          Logger.logError(
+            `    Failed to create ${baseName}${size.suffix} at ${relativeOutput}: ${error.message}`
+          );
           return 0;
         }
       });
@@ -176,7 +186,9 @@ async function optimizeImages() {
     Logger.logSuccess(`Completed ${lang}: ${langOptimized} variants optimized`);
   }
 
-  Logger.logSuccess(`\n🎉 Image optimization complete! Total variants optimized: ${totalOptimized}`);
+  Logger.logSuccess(
+    `\n🎉 Image optimization complete! Total variants optimized: ${totalOptimized}`
+  );
 }
 
 // Main execution
