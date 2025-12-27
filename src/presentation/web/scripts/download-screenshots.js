@@ -14,28 +14,31 @@ const GITHUB_BASE_URL =
   'https://raw.githubusercontent.com/ahmet-cetinkaya/whph/main/fastlane/metadata/android';
 const PUBLIC_DIR = path.join(__dirname, '..', 'public', 'app-screenshots');
 
-// Supported languages from the WHPH repository
+// Supported languages from the WHPH repository (matching fastlane locale directories)
 const SUPPORTED_LANGUAGES = [
+  'cs',
+  'da',
+  'de',
+  'el',
   'en-GB',
-  'tr-TR',
+  'en-US',
   'es-ES',
+  'fi',
   'fr-FR',
-  'de-DE',
-  'it-IT',
-  'ja-JP',
-  'ko-KR',
-  'ru-RU',
+  'it',
+  'ja',
+  'ko',
+  'nl',
+  'no',
+  'pl',
+  'pt-PT',
+  'ro',
+  'ru',
+  'sl',
+  'sv',
+  'tr',
+  'uk',
   'zh-CN',
-  'pl-PL',
-  'uk-UA',
-  'cs-CZ',
-  'da-DK',
-  'el-GR',
-  'fi-FI',
-  'nl-NL',
-  'ro-RO',
-  'sl-SI',
-  'sv-SE',
 ];
 
 // Create screenshots directory if it doesn't exist

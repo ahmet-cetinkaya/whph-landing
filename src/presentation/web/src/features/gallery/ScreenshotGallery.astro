@@ -23,26 +23,26 @@ export interface Screenshot {
 // Map language codes to screenshot directory names
 const LANGUAGE_MAP: Record<SupportedLanguage, string> = {
   en: 'en-GB',
-  cs: 'cs-CZ',
-  da: 'da-DK',
-  de: 'de-DE',
-  el: 'el-GR',
+  cs: 'cs',
+  da: 'da',
+  de: 'de',
+  el: 'el',
   es: 'es-ES',
-  fi: 'fi-FI',
+  fi: 'fi',
   fr: 'fr-FR',
-  it: 'it-IT',
-  ja: 'ja-JP',
-  ko: 'ko-KR',
-  nl: 'nl-NL',
-  no: 'no-NO',
-  pl: 'pl-PL',
+  it: 'it',
+  ja: 'ja',
+  ko: 'ko',
+  nl: 'nl',
+  no: 'no',
+  pl: 'pl',
   pt: 'pt-PT',
-  ro: 'ro-RO',
-  ru: 'ru-RU',
-  sl: 'sl-SI',
-  sv: 'sv-SE',
-  tr: 'tr-TR',
-  uk: 'uk-UA',
+  ro: 'ro',
+  ru: 'ru',
+  sl: 'sl',
+  sv: 'sv',
+  tr: 'tr',
+  uk: 'uk',
   zh: 'zh-CN',
 };
 
@@ -211,7 +211,6 @@ const preloadScreenshots = screenshots.slice(0, 2);
                 {/* Responsive optimized image with proper srcset */}
                 <img
                   src={screenshot.src}
-                  srcset={`${screenshot.src.replace('.webp', '-480.webp')} 480w, ${screenshot.src.replace('.webp', '-720.webp')} 720w, ${screenshot.src.replace('.webp', '-1080.webp')} 1080w, ${screenshot.src} 1920w`}
                   alt={screenshot.alt}
                   class="screenshot-image h-full w-full cursor-pointer object-cover opacity-0 transition-opacity duration-500"
                   style="aspect-ratio: 283/503;"
@@ -224,7 +223,6 @@ const preloadScreenshots = screenshots.slice(0, 2);
                   data-screenshot-index={index}
                   width="283"
                   height="503"
-                  sizes="(max-width: 480px) 480px, (max-width: 768px) 720px, (max-width: 1024px) 720px, 1080px"
                 />
               </div>
             </div>
@@ -411,7 +409,6 @@ const preloadScreenshots = screenshots.slice(0, 2);
               </div>
               <img
                 src="${screenshot.src}"
-                srcset="${screenshot.src.replace('.webp', '-480.webp')} 480w, ${screenshot.src.replace('.webp', '-720.webp')} 720w, ${screenshot.src.replace('.webp', '-1080.webp')} 1080w, ${screenshot.src} 1920w"
                 alt="${screenshot.alt}"
                 class="w-full h-full object-cover opacity-0 transition-opacity duration-500 screenshot-image"
                 style="aspect-ratio: 283/503; cursor: pointer;"
@@ -420,7 +417,6 @@ const preloadScreenshots = screenshots.slice(0, 2);
                 data-screenshot-index="${index}"
                 width="283"
                 height="503"
-                sizes="(max-width: 480px) 480px, (max-width: 768px) 720px, (max-width: 1024px) 720px, 1080px"
                 onload="this.style.opacity='1'; this.parentElement.querySelector('.screenshot-placeholder').style.display='none';"
                 onerror="this.parentElement.querySelector('.screenshot-placeholder .text-sm').textContent='Failed to load screenshot';"
                 onclick="openFullscreenGallery(${index})"
